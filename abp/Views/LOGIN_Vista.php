@@ -21,7 +21,7 @@ class Login
 			<title>Login</title>
 
 
-			<link rel="stylesheet" href="./css/stylel.css">
+			<link rel="stylesheet" href="../css/stylel.css">
 
 
 		</head>
@@ -31,7 +31,7 @@ class Login
 		<div class="container">
 			<section id="content">
 				<form action='./Acceso.php' method='post'>
-					<h1><img src="./images/logo.png"></h1>
+					<h1><img src="../images/logo.png"></h1>
 					<div>
 						<input type="text" name="username" placeholder="Usuario" required="" id="username"/>
 					</div>
@@ -63,7 +63,7 @@ class Login
 		</div><!-- container -->
 		</body>
 
-		<script src="js/index.js"></script>
+		<script src="../js/index.js"></script>
 
 		</body> <?php
 	}

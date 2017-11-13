@@ -1,13 +1,15 @@
 <?php
 
-class Mensaje {
+class MensajeUser {
 
 //VISTA PARA MOSTRAR AVISOS Y MENSAJES
     private $string;
     private $volver;
+    private $user;
 
     function __construct($string, $user, $volver) {
         $this->string = $string;
+        $this->user = $user;
         $this->volver = $volver;
         $this->render();
     }
@@ -37,7 +39,7 @@ class Mensaje {
                             <?php
                             
  
-                            echo '<a style="font-weight:bold;"  class="form-link" href=\''.$this->volver."'>" . $strings['Volver'] . " </a>";
+                            echo '<a style="font-weight:bold;"  class="form-link" href=\''.$this->volver. "".$this->user."'>" . $strings['Volver'] . " </a>";
                             ?>
 
 

@@ -42,11 +42,10 @@ include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
     <header>
 
         <div class="container">
-            <h1><a href="../Views/DEFAULT_Vista.php"></a></h1>
-			  
+            <h1><a href="../Views/DEFAULT_Vista.php"></a></h1>                                
             <nav>
                 <ul>
-                  <li ><a class="m2"><?php echo $strings['Usuario'].": ". $_SESSION['login']; ?></a></li> 
+                    <li><a href='../Controllers/USUARIO_Controller.php?userName=<?php echo $_SESSION['login'] . '&accion=' . $strings['Modificar']; ?>'><?php echo $strings['Usuario'].": ". $_SESSION['login']; ?></a></li> 
                     <li><a href="../Functions/Desconectar.php" class="m1"><?php echo  $strings['Cerrar Sesión']; ?></a></li> 
                 </ul>
             </nav>

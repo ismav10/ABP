@@ -3,7 +3,7 @@
 $strings = array(
 
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)
-'Registro' => 'Rexistro'
+'Registro' => 'Rexistro',
 'Iniciar Sesion' => 'Iniciar Sesión',
 'Usuario' => 'Usuario',
 'Cerrar Sesión' => 'Pechar Sesión',

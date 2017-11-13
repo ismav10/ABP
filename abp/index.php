@@ -6,8 +6,6 @@ if (IsAuthenticated()){ //Si no está autenticado envía al login y si lo está 
 	header('Location:./Views/DEFAULT_Vista.php');
 }
 else{
-	//include './Views/LOGIN_Vista.php';
-	//$login = new Login();
 	header('Location:./Views/DEFAULT_Vista_NoLogin.php');
 }
 ?>
