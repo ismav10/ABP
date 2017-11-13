@@ -1,10 +1,8 @@
 <?php
+
 //LIBRERIA DE FUNCIONES
-
-
 //Funciones para la creación automática de formulario a partir de array
-
-  //Versión que tiene en cuenta el rol
+//Versión que tiene en cuenta el rol
 function createForm2($listFields, $fieldsDef, $strings, $values, $required, $noedit, $rol) {
     foreach ($listFields as $field) { //miro todos los campos que me piden en su orden
         for ($i = 0; $i < count($fieldsDef); $i++) { //recorro todos los campos de la definición de formulario para encontrarlo
@@ -363,7 +361,8 @@ function createForm2($listFields, $fieldsDef, $strings, $values, $required, $noe
         }
     }
 }
-    //version que tiene en cuenta las paginas
+
+//version que tiene en cuenta las paginas
 function createForm3($listFields, $fieldsDef, $strings, $values, $required, $noedit, $pags) {
     foreach ($listFields as $field) { //miro todos los campos que me piden en su orden
         for ($i = 0; $i < count($fieldsDef); $i++) { //recorro todos los campos de la definición de formulario para encontrarlo
@@ -720,7 +719,8 @@ function createForm3($listFields, $fieldsDef, $strings, $values, $required, $noe
         }
     }
 }
-  //versión genérca
+
+//versión genérca
 function createForm($listFields, $fieldsDef, $strings, $values, $required, $noedit) {
     foreach ($listFields as $field) { //miro todos los campos que me piden en su orden
         for ($i = 0; $i < count($fieldsDef); $i++) { //recorro todos los campos de la definición de formulario para encontrarlo
@@ -1157,7 +1157,7 @@ function createForm($listFields, $fieldsDef, $strings, $values, $required, $noed
                         echo $str;
                         break;
                     case 'textarea':
-                         if (isset($fieldsDef[$i]['texto'])) {
+                        if (isset($fieldsDef[$i]['texto'])) {
                             $str = "<li><label>" . $strings[$fieldsDef[$i]['name']] . "</label>";
                         } else {
                             $str = "<li><label>" . $strings[$fieldsDef[$i]['name']] . "</label>";
@@ -1168,8 +1168,8 @@ function createForm($listFields, $fieldsDef, $strings, $values, $required, $noed
                         $str .= " cols = '" . $fieldsDef[$i]['cols'] . "'";
                         if (isset($values[$fieldsDef[$i]['name']])) {
                             $str .= " >" . $values[$fieldsDef[$i]['name']] . "";
-                        }else {
-                             $str .= " >";
+                        } else {
+                            $str .= " >";
                         }
                         $str .= " </textarea>";
                         echo $str;
@@ -1180,17 +1180,43 @@ function createForm($listFields, $fieldsDef, $strings, $values, $required, $noed
         }
     }
 }
- //Evalúa si el usuario se ha autenticado
+
+//Evalúa si el usuario se ha autenticado
 function IsAuthenticated() {
     session_start();
     if (!isset($_SESSION['login'])) {
         return false;
     } else {
+
         return true;
     }
 }
 
+//Añade los roles al desplegable de tipos
+function AñadirTipos($array) {
+    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = 'SELECT nombreRol from ROL';
+    $result = $mysqli->query($sql);
+    $str = array();
+    while ($tipo = $result->fetch_array()) {
+        array_push($str, $tipo['nombreRol']);
+    }
 
+    $añadido = array(
+        'type' => 'select',
+        'name' => 'tipoUsuario',
+        'multiple' => 'false',
+        'value' => '',
+        'options' => $str,
+        'required' => 'true',
+        'readonly' => false
+    );
+    $array[count($array)] = $añadido;
+    return $array;
+}
 
 //Añade al array los nombre de las paginas disponibles
 function AñadirPaginasTitulos($array) {
@@ -1208,17 +1234,39 @@ function AñadirPaginasTitulos($array) {
 
 //Añade al formulario de definicion las entradas correspondientes a las paginas disponibles
 function AñadirPaginas($array) {
-    $mysqli = new mysqli("localhost", "ET3Grupo2", "ET3Grupo2", "ET3Grupo2");
+    $mysqli = new mysqli("localhost", "root", "", "gymgest");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
-    $sql = 'SELECT PAGINA_NOM from PAGINA';
+    $sql = 'SELECT nombrePagina from PAGINA';
     $result = $mysqli->query($sql);
     while ($tipo = $result->fetch_array()) {
         $array[count($array)] = array(
             'type' => 'checkbox',
             'name' => 'funcionalidad_paginas[]',
-            'value' => $tipo['PAGINA_NOM'],
+            'value' => $tipo['nombrePagina'],
+            'size' => 20,
+            'required' => true,
+            'pattern' => '',
+            'validation' => '',
+            'readonly' => false);
+    }
+    return $array;
+}
+
+//Añade al array de definición de formulario las entradas correspondientes a las funcionalidades añadidas
+function AñadirFunciones($array) {
+    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = 'SELECT nombreFuncionalidad from FUNCIONALIDAD';
+    $result = $mysqli->query($sql);
+    while ($tipo = $result->fetch_array()) {
+        $array[count($array)] = array(
+            'type' => 'checkbox',
+            'name' => 'rol_funcionalidades[]',
+            'value' => $tipo['nombreFuncionalidad'],
             'size' => 20,
             'required' => true,
             'pattern' => '',
@@ -1238,15 +1286,15 @@ function GenerarLinkPagina($PAGINA_NOM) {
 }
 
 /*
-//Genera el link de un controlador a partir del nombre de la funcionalidad
-function GenerarLinkControlador($CON_NOM) {
-    $link = str_replace(" ", "_", $CON_NOM);
-    $s = '../Controllers/';
-    $s .= $link;
-    $s .= '_Controller.php';
-    return $s;
-}
-*/
+  //Genera el link de un controlador a partir del nombre de la funcionalidad
+  function GenerarLinkControlador($CON_NOM) {
+  $link = str_replace(" ", "_", $CON_NOM);
+  $s = '../Controllers/';
+  $s .= $link;
+  $s .= '_Controller.php';
+  return $s;
+  }
+ */
 
 //Devuelve el nombre de una funcionalidad a partir de su id
 function ConsultarNombreFuncionalidad($idFuncionalidad) {
@@ -1258,7 +1306,8 @@ function ConsultarNombreFuncionalidad($idFuncionalidad) {
     $result = $mysqli->query($sql)->fetch_array();
     return $result['nombreFuncionalidad'];
 }
-//Devuelve el nombre de una funcionalidad a partir de su id
+
+//Devuelve el nombre de un rol a partir de su id
 function ConsultarIDRol($nombreRol) {
     $mysqli = new mysqli("localhost", "root", "", "gymgest");
     if ($mysqli->connect_errno) {
@@ -1269,6 +1318,48 @@ function ConsultarIDRol($nombreRol) {
     return $result['idRol'];
 }
 
+//Devuelve el id de un rol a partir del userName del usuario
+function ConsultarTipoUsuario($userName) {
+    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT tipoUsuario FROM USUARIO WHERE USUARIO.userName='" . $userName . "'";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['tipoUsuario'];
+}
+
+//Devuelve el id de un rol a partir del userName del usuario
+function ConsultarTipoUsuarioLogin() {
+    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT tipoUsuario FROM USUARIO WHERE USUARIO.userName='" . $_SESSION['login'] . "'";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['tipoUsuario'];
+//    if ($result['tipoUsuario'] == 1) {
+//        return "1";
+//    } else if ($result['tipoUsuario'] == 2) {
+//        return "2";
+//    } else if ($result['tipoUsuario'] == 3) {
+//        return "3";
+//    }
+}
+
+
+
+
+//Devuelve el nombre de rol a partir del id de rol
+function ConsultarNOMRol($idRol) {
+    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT nombreRol FROM ROL WHERE idRol='" . $idRol . "'";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['nombreRol'];
+}
 
 //añade a la pagina default los enlaces correspondientes a las funcionalidades
 function añadirFuncionalidades($NOM) {
@@ -1278,44 +1369,53 @@ function añadirFuncionalidades($NOM) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
     $rol = "SELECT tipoUsuario FROM USUARIO  WHERE userName='" . $NOM['login'] . "'";
-    $sql = "SELECT idFuncionalidad, idRol FROM Funcionalidad_Rol WHERE idRol=(" . $rol . ")";
+    $sql = "SELECT idFuncionalidad FROM Funcionalidad_Rol WHERE idRol=(" . $rol . ")";
     if (!($resultado = $mysqli->query($sql))) {
         echo 'Error en la consulta sobre la base de datos';
     } else {
         while ($fila = $resultado->fetch_array()) {
             $funcionalidad = ConsultarNombreFuncionalidad($fila['idFuncionalidad']);
-            switch ($funcionalidad) {;
-                            case "GESTION FUNCIONALIDADES":
-                                ?><li><span><a style="font-size:20px;" href='../Controllers/FUNCIONALIDAD_Controller.php'><?php echo $strings['Gestión de Funcionalidades'] ?></a></span></li> <?php
+
+            switch ($funcionalidad) {
+;
+                case "Gestion Funcionalidades":
+                    ?><li><span><a style="font-size:20px;" href='../Controllers/FUNCIONALIDAD_Controller.php'><?php echo $strings['Gestión de Funcionalidades'] ?></a></span></li> <?php
                                 break;
-                            case "GESTION PAGINAS":
-							 ?><li><span><a style="font-size:20px;" href='../Controllers/PAGINA_Controller.php'><?php echo $strings['Gestión de Páginas'] ?></a></span></li> <?php
-                                 break;
-                            case "GESTION ROLES":
-							 ?><li><span><a style="font-size:20px;" href='../Controllers/ROL_Controller.php'><?php echo $strings['Gestión de Roles'] ?></a></span></li> <?php
+                            case "Gestion Paginas":
+                                ?><li><span><a style="font-size:20px;" href='../Controllers/PAGINA_Controller.php'><?php echo $strings['Gestión de Páginas'] ?></a></span></li> <?php
                                 break;
-                            case "GESTION ENTRENADORES":
-							 ?><li><span><a style="font-size:20px;" href='../Controllers/USUARIOS_Controller.php'><?php echo $strings['Gestión de Entrenadores'] ?></a></span></li> <?php
+                            case "Gestion Roles":
+                                ?><li><span><a style="font-size:20px;" href='../Controllers/ROL_Controller.php'><?php echo $strings['Gestión de Roles'] ?></a></span></li> <?php
                                 break;
-                            case "GESTION DEPORTISTAS":
-							 ?><li><span><a style="font-size:20px;" href='../Controllers/USUARIOS_Controller.php'><?php echo $strings['Gestión de Deportistas'] ?></a></span></li> <?php
+
+                            case "Gestion Usuarios"
+                                ?><li class="parent"><span><a style="font-size:20px;" href='../Controllers/USUARIO_Controller.php'><?php echo $strings['Gestión de Usuarios'] ?></a></span></li>
+                    <ul>
+                        <li><span><a href='../Controllers/USUARIO_Controller.php?id=2'><?php echo $strings['Gestión de Entrenadores'] ?></a></span></li>
+                        <li><span><a href='../Controllers/USUARIO_Controller.php?id=3'><?php echo $strings['Gestión de Deportistas'] ?></a></span></li> 
+                    </ul><?
+                    break;
+                    case "Gestion Actividades Grupales":
+                    ?><li><span><a style="font-size:20px;" href='../Controllers/ACTIVIDADGRUPAL_Controller.php'><?php echo $strings['Gestión de Actividades Grupales'] ?></a></span></li> <?php
                                 break;
-                            case "GESTION aCTIVIDADES GRUPALES":
-							 ?><li><span><a style="font-size:20px;" href='../Controllers/ACTIVIDADGRUPAL_Controller.php'><?php echo $strings['Gestión de Actividades Grupales'] ?></a></span></li> <?php
-                               break;
-                            case "GESTION INSTALACIONES":
-							 ?><li><span><a style="font-size:20px;" href='../Controllers/INSTALACION_Controller.php'><?php echo $strings['Gestión de Instalaciones'] ?></a></span></li> <?php
+                            case "Gestion Instalaciones":
+                                ?><li><span><a style="font-size:20px;" href='../Controllers/INSTALACION_Controller.php'><?php echo $strings['Gestión de Instalaciones'] ?></a></span></li> <?php
                                 break;
 
                             default:
-						break;
+                                break;
                         }
                     }
                 }
             }
 
+//Revisa si tiene permiso al comprobar si se ha incluido la clase a la que se quiere acceder
+            function tienePermisos($string) {
+                return class_exists($string);
+            }
+
 //Genera los includes correspondientes a las paginas a las que se tiene acceso
-function generarIncludes() {
+            function generarIncludes() {
                 $toret = array();
                 $mysqli = new mysqli("localhost", "root", "", "gymgest");
                 if ($mysqli->connect_errno) {
@@ -1333,7 +1433,7 @@ function generarIncludes() {
             }
 
 //incluye select
-function createForm4($listFields, $fieldsDef, $strings, $values, $required, $noedit) {
+            function createForm4($listFields, $fieldsDef, $strings, $values, $required, $noedit) {
                 foreach ($listFields as $field) { //miro todos los campos que me piden en su orden
                     for ($i = 0; $i < count($fieldsDef); $i++) { //recorro todos los campos de la definición de formulario para encontrarlo
                         //echo $field . ':' . $fieldsDef[$i]['required'] . '<br>';
@@ -1687,27 +1787,14 @@ function createForm4($listFields, $fieldsDef, $strings, $values, $required, $noe
                 }
             }
 
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-function añadirFuncionalidadesNoLogin() {
-   include '../Locates/Strings_Castellano.php';
-                             //"GESTION INSTALACIONES":
-				                    ?><li><span><a style="font-size:20px;" href='../Controllers/INSTALACIONES_Controller.php'><?php echo $strings['Gestión de Instalaciones'] ?></a></span></li><?php
-				                   // break;
-                             //"GESTION ACTIVIDADES GRUPALES":
-                                    ?><li><span><a style="font-size:20px;" href='../Controllers/ACTIVIDADESGRUPALES_Controller.php'><?php echo $strings['Gestión de Actividades Grupales'] ?></a></span></li><?php
-                                   // break;
-                        }
-                        
+            function añadirFuncionalidadesNoLogin() {
+                include '../Locates/Strings_Castellano.php';
+                //"GESTION INSTALACIONES":
+                ?><li><span><a style="font-size:20px;" href='../Controllers/INSTALACIONES_Controller.php'><?php echo $strings['Gestión de Instalaciones'] ?></a></span></li><?php
+                // break;
+                //"GESTION ACTIVIDADES GRUPALES":
+                ?><li><span><a style="font-size:20px;" href='../Controllers/ACTIVIDADESGRUPALES_Controller.php'><?php echo $strings['Gestión de Actividades Grupales'] ?></a></span></li><?php
+                // break;
+            }
             ?>
 
