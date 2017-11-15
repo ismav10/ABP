@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2017 a las 15:56:01
+-- Tiempo de generación: 14-11-2017 a las 18:12:08
 -- Versión del servidor: 10.1.25-MariaDB
 -- Versión de PHP: 5.6.31
 
@@ -21,7 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `gymgest`
 --
-
 
 -- --------------------------------------------------------
 
@@ -57,7 +56,7 @@ CREATE TABLE `actividadindividual` (
 --
 
 CREATE TABLE `deportista` (
-  `username` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `tipoDeportista` char(3) COLLATE utf8_spanish_ci NOT NULL,
   `metodoPago` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `idActividadIndividual` int(10) DEFAULT NULL
@@ -67,7 +66,7 @@ CREATE TABLE `deportista` (
 -- Volcado de datos para la tabla `deportista`
 --
 
-INSERT INTO `deportista` (`username`, `tipoDeportista`, `metodoPago`, `idActividadIndividual`) VALUES
+INSERT INTO `deportista` (`userName`, `tipoDeportista`, `metodoPago`, `idActividadIndividual`) VALUES
 ('deportista1', 'PEF', '1234567898765432', NULL),
 ('deportista2', 'TDU', '5406282043000000', NULL);
 
@@ -102,7 +101,7 @@ CREATE TABLE `ejercicio` (
 --
 
 CREATE TABLE `entrenador` (
-  `username` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `cuentaBanc` varchar(24) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -110,7 +109,7 @@ CREATE TABLE `entrenador` (
 -- Volcado de datos para la tabla `entrenador`
 --
 
-INSERT INTO `entrenador` (`username`, `cuentaBanc`) VALUES
+INSERT INTO `entrenador` (`userName`, `cuentaBanc`) VALUES
 ('entrenador', 'ES1320900000290350000083');
 
 -- --------------------------------------------------------
@@ -121,21 +120,23 @@ INSERT INTO `entrenador` (`username`, `cuentaBanc`) VALUES
 
 CREATE TABLE `funcionalidad` (
   `idFuncionalidad` int(10) NOT NULL,
-  `nombreFuncionalidad` varchar(45) COLLATE utf8_spanish_ci NOT NULL
+  `nombreFuncionalidad` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `categoriaFuncionalidad` varchar(45) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `funcionalidad`
 --
 
-INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`) VALUES
-(1, 'Gestion Entrenadores'),
-(2, 'Gestion Deportistas'),
-(3, 'Gestion Roles'),
-(4, 'Gestion Paginas'),
-(5, 'Gestion Funcionalidades'),
-(6, 'Gestion Instalaciones'),
-(7, 'Gestion ActividadesGrupales');
+INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categoriaFuncionalidad`) VALUES
+(1, 'Listar Usuarios', 'Gestion Usuarios'),
+(2, 'Insertar Usuarios','Gestion Usuarios'),
+(3, 'Modificar Usuarios', 'Gestion Usuarios');
+-- (3, 'Gestion Roles'),
+-- (4, 'Gestion Paginas'),
+-- (5, 'Gestion Funcionalidades'),
+-- (6, 'Gestion Instalaciones'),
+-- (7, 'Gestion Actividades Grupales');
 
 -- --------------------------------------------------------
 
@@ -147,6 +148,18 @@ CREATE TABLE `funcionalidad_pagina` (
   `idFuncionalidad` int(10) NOT NULL,
   `idPagina` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `funcionalidad_pagina`
+--
+
+INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
+(1, 1),
+(2, 2),
+(3, 3);
+-- (1, 4),
+-- (1, 5),
+-- (1, 6);
 
 -- --------------------------------------------------------
 
@@ -167,10 +180,8 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (1, 1),
 (2, 1),
 (3, 1),
-(4, 1),
-(5, 1),
-(6, 1),
-(7, 1);
+(3, 2),
+(3, 3);
 
 -- --------------------------------------------------------
 
@@ -218,12 +229,15 @@ CREATE TABLE `pagina` (
 --
 
 INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
-(1, '../Views/USUARIO_ADD_Vista.php', 'USUARIO ADD'),
-(2, '../Views/USUARIO_DELETE_Vista.php', 'USUARIO DELETE'),
-(3, '../Views/USUARIO_EDIT_Vista.php', 'USUARIO EDIT'),
-(4, '../Views/USUARIO_SHOWALL_Vista.php', 'USUARIO SHOWALL'),
-(5, '../Views/USUARIO_SHOW_CONSULT_Vista.php', 'USUARIO SHOW CONSULT'),
-(6, '../Views/USUARIO_SHOWCURRENT_Vista.php', 'USUARIO SHOWCURRENT');
+-- (1, '../Views/USUARIO_ADD_Vista.php', 'USUARIO ADD'),
+-- (2, '../Views/USUARIO_DELETE_Vista.php', 'USUARIO DELETE'),
+-- (3, '../Views/USUARIO_EDIT_Vista.php', 'USUARIO EDIT'),
+-- (4, '../Views/USUARIO_SHOWALL_Vista.php', 'USUARIO SHOWALL'),
+-- (5, '../Views/USUARIO_SHOW_CONSULT_Vista.php', 'USUARIO SHOW CONSULT'),
+-- (6, '../Views/USUARIO_SHOWCURRENT_Vista.php', 'USUARIO SHOWCURRENT');
+(1, '../Views/USUARIO_SHOWALL_Vista.php', 'USUARIO SHOWALL'),
+(2, '../Views/USUARIO_ADD_Vista.php', 'USUARIO ADD'),
+(3, '../Views/USUARIO_EDIT_Vista.php', 'USUARIO EDIT');
 
 -- --------------------------------------------------------
 
@@ -241,9 +255,9 @@ CREATE TABLE `rol` (
 --
 
 INSERT INTO `rol` (`idRol`, `nombreRol`) VALUES
-(1, 'ADMINISTRADOR'),
-(2, 'ENTRENADOR'),
-(3, 'DEPORTISTA');
+(1, 'Administrador'),
+(2, 'Entrenador'),
+(3, 'Deportista');
 
 -- --------------------------------------------------------
 
@@ -283,8 +297,7 @@ CREATE TABLE `usuario` (
   `password` varchar(128) COLLATE utf8_spanish_ci NOT NULL,
   `tipoUsuario` int(10) NOT NULL,
   `nombre` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
-  `apellido1` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
-  `apellido2` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `apellidos` varchar(70) COLLATE utf8_spanish_ci NOT NULL,
   `dni` varchar(9) COLLATE utf8_spanish_ci NOT NULL,
   `fechaNac` date NOT NULL,
   `direccion` varchar(80) COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -297,11 +310,11 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`userName`, `password`, `tipoUsuario`, `nombre`, `apellido1`, `apellido2`, `dni`, `fechaNac`, `direccion`, `telefono`, `email`, `foto`) VALUES
-('admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'Iván', 'de Dios', 'Fernández', '44488795X', '1994-03-26', 'Avenida Vistahermosa 8, 3ºA', 988252875, 'ivanddf1994@hotmamil.com', NULL),
-('deportista1', '5e3ea95c649fe43cbc6e9c1c71071f0f', 3, 'Bruno', 'Romero', 'Rodríguez', '87654321Q', '1995-10-10', 'Paseo de la Castellana 22, 1º', 988767165, 'brunoromero@gmail.com', NULL),
-('deportista2', '220a15a78a728aa88fcf45d009705d96', 3, 'Alberto', 'Porral', 'Framiñán', '12678946H', '1992-09-17', 'Manuel Antonio Puga 54, 2ºA', 678987432, 'albertoporral@hotmail.com', NULL),
-('entrenador', 'a990ba8861d2b344810851e7e6b49104', 2, 'Ismael', 'Vázquez', 'Fernández', '12345678A', '1995-10-01', 'Avenida de la Albufera 6, 2ºAvenida de la Albufera 6, 2º', 988767521, 'ismaelvazquez@hotmail.com', NULL);
+INSERT INTO `usuario` (`userName`, `password`, `tipoUsuario`, `nombre`, `apellidos`, `dni`, `fechaNac`, `direccion`, `telefono`, `email`, `foto`) VALUES
+('admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'Iván', 'de Dios Fernández', '44488795X', '1994-03-26', 'Avenida Vistahermosa 8, 3ºA', 988252875, 'ivanddf1994@hotmamil.com', NULL),
+('deportista1', '5e3ea95c649fe43cbc6e9c1c71071f0f', 3, 'Bruno', 'Romero Rodríguez', '87654321Q', '1995-10-10', 'Paseo de la Castellana 22, 1º', 988767165, 'brunoromero@gmail.com', NULL),
+('deportista2', '220a15a78a728aa88fcf45d009705d96', 3, 'Alberto', 'Porral Framiñan', '12678946H', '1992-09-17', 'Manuel Antonio Puga 54, 2ºA', 678987432, 'albertoporral@hotmail.com', NULL),
+('entrenador', 'a990ba8861d2b344810851e7e6b49104', 2, 'Ismael', 'Vázquez Fernández', '12345678A', '1995-10-01', 'Avenida de la Albufera 6, 2º', 988767521, 'ismaelvazquez@hotmail.com', NULL);
 
 -- --------------------------------------------------------
 
@@ -322,9 +335,9 @@ INSERT INTO `usuario_pagina` (`userName`, `idPagina`) VALUES
 ('admin', 1),
 ('admin', 2),
 ('admin', 3),
-('admin', 4),
-('admin', 5),
-('admin', 6);
+('deportista1',3),
+('deportista2',3);
+
 
 --
 -- Índices para tablas volcadas
@@ -348,7 +361,7 @@ ALTER TABLE `actividadindividual`
 -- Indices de la tabla `deportista`
 --
 ALTER TABLE `deportista`
-  ADD PRIMARY KEY (`username`),
+  ADD PRIMARY KEY (`userName`),
   ADD KEY `idActividadIndividual` (`idActividadIndividual`);
 
 --
@@ -368,7 +381,7 @@ ALTER TABLE `ejercicio`
 -- Indices de la tabla `entrenador`
 --
 ALTER TABLE `entrenador`
-  ADD PRIMARY KEY (`username`);
+  ADD PRIMARY KEY (`userName`);
 
 --
 -- Indices de la tabla `funcionalidad`
@@ -490,7 +503,7 @@ ALTER TABLE `pagina`
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `idRol` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idRol` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `sesion`
 --

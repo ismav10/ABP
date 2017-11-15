@@ -25,6 +25,7 @@ function get_data_form() {
     $userName = $_REQUEST['userName'];
     $password = $_REQUEST['password'];
     $nombre = $_REQUEST['nombre'];
+    $tipoUsuario = ConsultarIDRol($_REQUEST['tipoUsuario']);
     $apellidos = $_REQUEST['apellidos'];
     $dni = $_REQUEST['dni'];
     $fechaNac = $_REQUEST['fechaNac'];
@@ -67,7 +68,7 @@ function get_data_form() {
     $accion = $_REQUEST['accion'];
 
     //Este caso se utiliza para crear usuarios que son admin
-    $tipoUsuario = 1;
+    //$tipoUsuario = 1;
     $usuario = new USUARIO_Modelo($userName, $password, $tipoUsuario, $nombre, $apellidos, $dni, $fechaNac, $direccion, $telefono, $email, $foto, "", "", "");
 
     return $usuario;
@@ -120,6 +121,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
                 }
             } else {
                 $usuario = get_data_form();
+                
                 $carpetaFoto = '../Documents/Empleados/' . $_REQUEST['dni'] . '/Foto/';
                 //Se realizan las modificaciones también en las carpetas de documentos
                 if ($_FILES['foto']['name'] !== '') {
@@ -128,8 +130,10 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
                     }
                     move_uploaded_file($_FILES['foto']['tmp_name'], $carpetaFoto . $_FILES['foto']['name']);
                 }
-                $respuesta = $usuario->Modificar();
-                new MensajeUser($respuesta, $id, 'USUARIO_Controller.php');
+                $id = $_REQUEST['id'];
+                $login = ConsultarTipoUsuarioLogin();
+                $respuesta = $usuario->Modificar($login);
+                new MensajeUser($respuesta, $id, 'USUARIO_Controller.php?id=');
             }
         break;
 

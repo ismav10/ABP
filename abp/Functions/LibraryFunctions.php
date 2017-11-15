@@ -1338,16 +1338,8 @@ function ConsultarTipoUsuarioLogin() {
     $sql = "SELECT tipoUsuario FROM USUARIO WHERE USUARIO.userName='" . $_SESSION['login'] . "'";
     $result = $mysqli->query($sql)->fetch_array();
     return $result['tipoUsuario'];
-//    if ($result['tipoUsuario'] == 1) {
-//        return "1";
-//    } else if ($result['tipoUsuario'] == 2) {
-//        return "2";
-//    } else if ($result['tipoUsuario'] == 3) {
-//        return "3";
-//    }
+
 }
-
-
 
 
 //Devuelve el nombre de rol a partir del id de rol
@@ -1369,12 +1361,13 @@ function añadirFuncionalidades($NOM) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
     $rol = "SELECT tipoUsuario FROM USUARIO  WHERE userName='" . $NOM['login'] . "'";
-    $sql = "SELECT idFuncionalidad FROM Funcionalidad_Rol WHERE idRol=(" . $rol . ")";
+    $sql = "SELECT DISTINCT categoriaFuncionalidad FROM FUNCIONALIDAD, FUNCIONALIDAD_ROL WHERE FUNCIONALIDAD_ROL.idFuncionalidad = FUNCIONALIDAD.idFuncionalidad AND FUNCIONALIDAD_ROL.idRol=(" . $rol . ")";
+    //$sql = "SELECT idFuncionalidad FROM Funcionalidad_Rol WHERE idRol=(" . $rol . ")";
     if (!($resultado = $mysqli->query($sql))) {
         echo 'Error en la consulta sobre la base de datos';
     } else {
         while ($fila = $resultado->fetch_array()) {
-            $funcionalidad = ConsultarNombreFuncionalidad($fila['idFuncionalidad']);
+            $funcionalidad = $fila['categoriaFuncionalidad'];
 
             switch ($funcionalidad) {
 ;
@@ -1393,7 +1386,7 @@ function añadirFuncionalidades($NOM) {
                     <ul>
                         <li><span><a href='../Controllers/USUARIO_Controller.php?id=2'><?php echo $strings['Gestión de Entrenadores'] ?></a></span></li>
                         <li><span><a href='../Controllers/USUARIO_Controller.php?id=3'><?php echo $strings['Gestión de Deportistas'] ?></a></span></li> 
-                    </ul><?
+                    </ul><?php
                     break;
                     case "Gestion Actividades Grupales":
                     ?><li><span><a style="font-size:20px;" href='../Controllers/ACTIVIDADGRUPAL_Controller.php'><?php echo $strings['Gestión de Actividades Grupales'] ?></a></span></li> <?php

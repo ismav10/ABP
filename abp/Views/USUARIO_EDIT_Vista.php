@@ -20,13 +20,15 @@ function render(){
 
 	//include '../Functions/LibraryFunctions.php';
 	//Array con los nombres de los campos a modificar
-	if ($this->id == "2") {
-            $lista = array('userName', 'password', 'nombre', 'apellidos', 'dni', 'fechaNac', 'direccion', 'email', 'telefono', 'cuentaBanc', 'foto');
-        } else if ($this->id == "3") {
-            $lista = array('userName', 'password', 'nombre', 'apellidos', 'dni', 'fechaNac', 'direccion', 'email', 'telefono', 'foto', 'tipoDeportista', 'metodoPago');
+	if ($this->id == "2" || $this->valores['tipoUsuario'] == 2) {
+            $lista = array('userName', 'password', 'tipoUsuario', 'nombre', 'apellidos', 'dni', 'fechaNac', 'direccion', 'email', 'telefono', 'cuentaBanc', 'foto');
+        } else if ($this->id == "3" || $this->valores['tipoUsuario'] == 3) {
+            $lista = array('userName', 'password', 'tipoUsuario', 'nombre', 'apellidos', 'dni', 'fechaNac', 'direccion', 'email', 'telefono', 'foto', 'tipoDeportista', 'metodoPago');
         } else if ($this->id != "2" && $this->id != "3") {
             $lista = array('userName', 'password', 'tipoUsuario', 'nombre', 'apellidos', 'dni', 'fechaNac', 'direccion', 'email', 'telefono', 'foto');
         }
+    
+      
         ?>
 
     <html>
@@ -52,10 +54,25 @@ function render(){
 
         <form id="form" name="form"  action = 'USUARIO_Controller.php?id=<?php echo $this->id?>'  method = 'post' enctype="multipart/form-data"><br>
             <ul class="form-style-1">
+                
 	<?php
-        //Generación automática del formulario
-       createForm($lista, $DefForm, $strings, $this->valores, array('foto' => false), array('userName' => false, 'password' => false, 'nombre' => false, 'apellidos' => false, 'dni' => false, 'fechaNac' => false, 'direccion' => false, 'email' => false, 'telefono' => false, 'cuentaBanc' => false));
-       ?>
+//        if(ConsultarTipoUsuarioLogin()==1 && $this->id != "2" && $this->id != "3"){
+//            createForm($lista, $DefForm, $strings, $this->valores, array('foto' => false), array('userName' => false, 'password' => false, 'tipoUsuario'=> false, 'nombre' => false, 'apellidos' => false, 'dni' => false, 'fechaNac' => false, 'direccion' => false, 'email' => false, 'telefono' => false));
+//        }
+//        else if(ConsultarTipoUsuarioLogin()==1 && $this->id == "2"){
+//             createForm($lista, $DefForm, $strings, $this->valores, array('foto' => false), array('userName' => false, 'password' => false, 'tipoUsuario'=> false, 'nombre' => false, 'apellidos' => false, 'dni' => false, 'fechaNac' => false, 'direccion' => false, 'email' => false, 'telefono' => false, 'cuentaBanc'=>false));
+//        } 
+//        else if(ConsultarTipoUsuarioLogin()==1 && $this->id == "3"){
+//             createForm($lista, $DefForm, $strings, $this->valores, array('foto' => false), array('userName' => false, 'password' => false, 'tipoUsuario'=> false, 'nombre' => false, 'apellidos' => false, 'dni' => false, 'fechaNac' => false, 'direccion' => false, 'email' => false, 'telefono' => false, 'tipoDeportista'=>false, 'metodoPago' => false));
+//        }
+        //else 
+            if(ConsultarTipoUsuarioLogin()==2 && $this->valores['userName'] == $_SESSION['login']){
+              createForm($lista, $DefForm, $strings, $this->valores, array('foto' => false), array('userName' => false, 'password' => false, 'nombre' => false, 'apellidos' => false, 'dni' => false, 'fechaNac' => false, 'direccion' => false, 'email' => false, 'telefono' => false, 'cuentaBanc'=>false));
+        }
+        else if(ConsultarTipoUsuarioLogin()==3 && $this->id == "3"){
+             createForm($lista, $DefForm, $strings, $this->valores, array('foto' => false), array('userName' => false, 'password' => false, 'nombre' => false, 'apellidos' => false, 'dni' => false, 'fechaNac' => false, 'direccion' => false, 'email' => false, 'telefono' => false, 'tipoDeportista'=>false, 'metodoPago' => false));
+        }
+        ?>
 
        
                 
