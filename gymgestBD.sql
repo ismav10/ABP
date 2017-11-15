@@ -131,12 +131,12 @@ CREATE TABLE `funcionalidad` (
 INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categoriaFuncionalidad`) VALUES
 (1, 'Listar Usuarios', 'Gestion Usuarios'),
 (2, 'Insertar Usuarios','Gestion Usuarios'),
-(3, 'Modificar Usuarios', 'Gestion Usuarios');
--- (3, 'Gestion Roles'),
--- (4, 'Gestion Paginas'),
--- (5, 'Gestion Funcionalidades'),
--- (6, 'Gestion Instalaciones'),
--- (7, 'Gestion Actividades Grupales');
+(3, 'Modificar Usuarios', 'Gestion Usuarios'),
+(100, 'Listar Ejercicios', 'Gestion Ejercicios'),
+(101, 'Añadir Ejercicio', 'Gestion Ejercicios'),
+(102, 'Borrar Ejercicio', 'Gestion Ejercicios'),
+(103, 'Modificar Ejercicio', 'Gestion Ejercicios'),
+(104, 'Ver Ejercicio', 'Gestion Ejercicios');
 
 -- --------------------------------------------------------
 
@@ -156,10 +156,12 @@ CREATE TABLE `funcionalidad_pagina` (
 INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
 (1, 1),
 (2, 2),
-(3, 3);
--- (1, 4),
--- (1, 5),
--- (1, 6);
+(3, 3),
+(100,100),
+(101, 101),
+(102, 102),
+(103, 103),
+(104, 104);
 
 -- --------------------------------------------------------
 
@@ -181,7 +183,19 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (2, 1),
 (3, 1),
 (3, 2),
-(3, 3);
+(3, 3),
+(100,1),
+(100,2),
+(100,3),
+(101,1),
+(101,2),
+(102,1),
+(102,2),
+(103,1),
+(103,2),
+(104,1),
+(104,2),
+(103,3);
 
 -- --------------------------------------------------------
 
@@ -229,15 +243,14 @@ CREATE TABLE `pagina` (
 --
 
 INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
--- (1, '../Views/USUARIO_ADD_Vista.php', 'USUARIO ADD'),
--- (2, '../Views/USUARIO_DELETE_Vista.php', 'USUARIO DELETE'),
--- (3, '../Views/USUARIO_EDIT_Vista.php', 'USUARIO EDIT'),
--- (4, '../Views/USUARIO_SHOWALL_Vista.php', 'USUARIO SHOWALL'),
--- (5, '../Views/USUARIO_SHOW_CONSULT_Vista.php', 'USUARIO SHOW CONSULT'),
--- (6, '../Views/USUARIO_SHOWCURRENT_Vista.php', 'USUARIO SHOWCURRENT');
 (1, '../Views/USUARIO_SHOWALL_Vista.php', 'USUARIO SHOWALL'),
 (2, '../Views/USUARIO_ADD_Vista.php', 'USUARIO ADD'),
-(3, '../Views/USUARIO_EDIT_Vista.php', 'USUARIO EDIT');
+(3, '../Views/USUARIO_EDIT_Vista.php', 'USUARIO EDIT'),
+(100, '../Views/EJERCICIO_SHOWALL_Vista.php', 'EJERCICIO SHOWALL'),
+(101, '../Views/EJERCICIO_ADD_Vista.php','EJERCICIO ADD'),
+(102, '../Views/EJERCICIO_DELETE_Vista.php', 'EJERCICIO DELETE'),
+(103, '../Views/EJERCICIO_EDIT_Vista.php', 'EJERCICIO EDIT'),
+(104, '../Views/EJERCICIO_SHOWCURRENT_Vista.php', 'EJERCICIO SHOW CURRENT');
 
 -- --------------------------------------------------------
 
