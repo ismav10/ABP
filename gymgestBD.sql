@@ -1,3 +1,10 @@
+DROP DATABASE IF EXISTS `gymgest`;
+CREATE DATABASE IF NOT EXISTS `gymgest` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+USE `gymgest`;
+GRANT ALL PRIVILEGES ON * . * TO 'root'@'localhost';
+FLUSH PRIVILEGES;
+
+
 -- phpMyAdmin SQL Dump
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
@@ -28,7 +35,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `actividadgrupal`
 --
 
-CREATE TABLE `actividadgrupal` (
+CREATE TABLE IF NOT EXISTS `actividadgrupal` (
   `idActividadGrupal` int(10) NOT NULL,
   `nombreActividadGrupal` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
   `descripcionActividadGrupal` text COLLATE utf8_spanish_ci,
@@ -43,7 +50,7 @@ CREATE TABLE `actividadgrupal` (
 -- Estructura de tabla para la tabla `actividadindividual`
 --
 
-CREATE TABLE `actividadindividual` (
+CREATE TABLE IF NOT EXISTS `actividadindividual` (
   `idActividadIndividual` int(10) NOT NULL,
   `nombreActividadIndividual` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `descripcionActividadIndividual` text COLLATE utf8_spanish_ci
@@ -55,7 +62,7 @@ CREATE TABLE `actividadindividual` (
 -- Estructura de tabla para la tabla `deportista`
 --
 
-CREATE TABLE `deportista` (
+CREATE TABLE IF NOT EXISTS `deportista` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `tipoDeportista` char(3) COLLATE utf8_spanish_ci NOT NULL,
   `metodoPago` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
@@ -76,7 +83,7 @@ INSERT INTO `deportista` (`userName`, `tipoDeportista`, `metodoPago`, `idActivid
 -- Estructura de tabla para la tabla `deportista_asignar_tabla`
 --
 
-CREATE TABLE `deportista_asignar_tabla` (
+CREATE TABLE IF NOT EXISTS `deportista_asignar_tabla` (
   `username` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `idTabla` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -87,7 +94,7 @@ CREATE TABLE `deportista_asignar_tabla` (
 -- Estructura de tabla para la tabla `ejercicio`
 --
 
-CREATE TABLE `ejercicio` (
+CREATE TABLE IF NOT EXISTS `ejercicio` (
   `idEjercicio` int(10) NOT NULL,
   `nombreEjercicio` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `descripcionEjercicio` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
@@ -100,7 +107,7 @@ CREATE TABLE `ejercicio` (
 -- Estructura de tabla para la tabla `entrenador`
 --
 
-CREATE TABLE `entrenador` (
+CREATE TABLE IF NOT EXISTS `entrenador` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `cuentaBanc` varchar(24) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -118,7 +125,7 @@ INSERT INTO `entrenador` (`userName`, `cuentaBanc`) VALUES
 -- Estructura de tabla para la tabla `funcionalidad`
 --
 
-CREATE TABLE `funcionalidad` (
+CREATE TABLE IF NOT EXISTS `funcionalidad` (
   `idFuncionalidad` int(10) NOT NULL,
   `nombreFuncionalidad` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `categoriaFuncionalidad` varchar(45) COLLATE utf8_spanish_ci NOT NULL
@@ -144,7 +151,7 @@ INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categori
 -- Estructura de tabla para la tabla `funcionalidad_pagina`
 --
 
-CREATE TABLE `funcionalidad_pagina` (
+CREATE TABLE IF NOT EXISTS `funcionalidad_pagina` (
   `idFuncionalidad` int(10) NOT NULL,
   `idPagina` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -169,7 +176,7 @@ INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
 -- Estructura de tabla para la tabla `funcionalidad_rol`
 --
 
-CREATE TABLE `funcionalidad_rol` (
+CREATE TABLE IF NOT EXISTS `funcionalidad_rol` (
   `idFuncionalidad` int(10) NOT NULL,
   `idRol` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -203,7 +210,7 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 -- Estructura de tabla para la tabla `instalacion`
 --
 
-CREATE TABLE `instalacion` (
+CREATE TABLE IF NOT EXISTS `instalacion` (
   `idInstalacion` int(10) NOT NULL,
   `nombreInstalacion` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `descipcionInstalacion` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -232,7 +239,7 @@ CREATE TABLE `notificacion` (
 -- Estructura de tabla para la tabla `pagina`
 --
 
-CREATE TABLE `pagina` (
+CREATE TABLE IF NOT EXISTS `pagina` (
   `idPagina` int(10) NOT NULL,
   `linkPagina` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `nombrePagina` varchar(80) COLLATE utf8_spanish_ci NOT NULL
@@ -258,7 +265,7 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 -- Estructura de tabla para la tabla `rol`
 --
 
-CREATE TABLE `rol` (
+CREATE TABLE IF NOT EXISTS `rol` (
   `idRol` int(10) NOT NULL,
   `nombreRol` varchar(45) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -278,7 +285,7 @@ INSERT INTO `rol` (`idRol`, `nombreRol`) VALUES
 -- Estructura de tabla para la tabla `sesion`
 --
 
-CREATE TABLE `sesion` (
+CREATE TABLE IF NOT EXISTS `sesion` (
   `idSesion` int(10) NOT NULL,
   `username` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `idTabla` int(10) NOT NULL,
@@ -292,7 +299,7 @@ CREATE TABLE `sesion` (
 -- Estructura de tabla para la tabla `tabla`
 --
 
-CREATE TABLE `tabla` (
+CREATE TABLE IF NOT EXISTS `tabla` (
   `idTabla` int(10) NOT NULL,
   `idEjercicio` int(10) NOT NULL,
   `descripcionTabla` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -305,7 +312,7 @@ CREATE TABLE `tabla` (
 -- Estructura de tabla para la tabla `usuario`
 --
 
-CREATE TABLE `usuario` (
+CREATE TABLE IF NOT EXISTS `usuario` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(128) COLLATE utf8_spanish_ci NOT NULL,
   `tipoUsuario` int(10) NOT NULL,
@@ -335,7 +342,7 @@ INSERT INTO `usuario` (`userName`, `password`, `tipoUsuario`, `nombre`, `apellid
 -- Estructura de tabla para la tabla `usuario_pagina`
 --
 
-CREATE TABLE `usuario_pagina` (
+CREATE TABLE IF NOT EXISTS `usuario_pagina` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `idPagina` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
