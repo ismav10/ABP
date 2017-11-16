@@ -1,6 +1,7 @@
 <?php
 //Gestión del acceso, login, selección de idioma
 	include '../Models/USUARIO_Model.php';
+        include './header.php';
 
 	if (isset($_REQUEST['accion'])){
 

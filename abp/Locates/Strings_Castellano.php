@@ -22,14 +22,14 @@ $strings = array(
 'Usuario' => 'Usuario',
 'Cerrar Sesión' => 'Cerrar Sesión',
 'MENU' => 'Menú Principal',
-'Gestión de Funcionalidades' => 'Gestión de Funcionalidades',
-'Gestión de Roles' => 'Gestión de Roles',
-'Gestión de Páginas' => 'Gestión de Páginas',
-'Gestión de Usuarios' => 'Gestión de Usuarios',
-'Gestión de Entrenadores' => 'Gestión de Entrenadores',
-'Gestión de Deportistas' => 'Gestión de Deportistas',
-'Gestión de Instalaciones' => 'Gestión de Instalaciones',
-'Gestión de Actividades Grupales' => 'Gestión de Actividades Grupales',
+'Gestión de Funcionalidades' => 'Funcionalidades',
+'Gestión de Roles' => 'Roles',
+'Gestión de Páginas' => 'Páginas',
+'Gestión de Usuarios' => 'Usuarios',
+'Gestión de Entrenadores' => 'Entrenadores',
+'Gestión de Deportistas' => 'Deportistas',
+'Gestión de Instalaciones' => 'Instalaciones',
+'Gestión de Actividades Grupales' => 'Actividades Grupales',
 
 
 //Acciones
