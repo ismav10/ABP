@@ -16,12 +16,10 @@ $strings = array(
     
     
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)
-'El usuario no existe'=>'El usuario no existe',
-'Registro' => 'Registro',
 'Iniciar Sesion' => 'Iniciar Sesion',
 'Usuario' => 'Usuario',
 'Cerrar Sesión' => 'Cerrar Sesión',
-'MENU' => 'Menú Principal',
+'Mi Perfil' => 'Mi Perfil',
 'Gestión de Funcionalidades' => 'Funcionalidades',
 'Gestión de Roles' => 'Roles',
 'Gestión de Páginas' => 'Páginas',
@@ -48,10 +46,13 @@ $strings = array(
 'tipoUsuario' => 'Tipo',
 'dni' => 'DNI',
 'fechaNac' => 'Fecha de Nacimiento',
-'telefono' => 'Telefono',
+'telefono' => 'Teléfono',
 'direccion' => 'Dirección',
 'email' => 'Email',
 'foto' => 'Foto',
+'Administrador' => 'Administrador',
+'Entrenador' => 'Entrenador',
+'Deportista' => 'Deportista',
 'Insertar usuario' => 'Insertar Usuario',
 'Modificar usuario'=>'Modificar Usuario',
 'Inserción realizada con éxito' => 'Inserción realizada con éxito',

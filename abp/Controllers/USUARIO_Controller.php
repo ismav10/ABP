@@ -2,9 +2,8 @@
 
 //Controlador para la gestión de usuarios
 include '../Models/USUARIO_Model.php';
-include '../Views/USUARIO_EDIT_ACCIONES_Vista.php';
-include '../Views/MENSAJEU_Vista.php';
-include '../Views/LOGIN_Vista.php';
+include '../Views/MENSAJE_Vista.php';
+//include '../Views/LOGIN_Vista.php';
 
 
 if (!IsAuthenticated()) {
@@ -78,64 +77,61 @@ if (!isset($_REQUEST['accion'])) {
     $_REQUEST['accion'] = '';
 }
 
-if (!isset($_REQUEST['id'])) {
-    $_REQUEST['id'] = '';
-}
 
 Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
-    case $strings['Insertar']:
-            if (!isset($_REQUEST['userName'])) { //Si aún no se ha establecido el usuario
-                $id = $_REQUEST['id'];
-                new USUARIO_Insertar($id);
-            } else {
-                $usuario = get_data_form();
-
-                //Creamos las carpetas para guardar los archivos
-                $carpetaFoto = '../Documents/Empleados/' . $_REQUEST['dni'] . '/Foto/';
-
-                if ($_FILES['foto']['name'] !== '') {
-                    if (!file_exists($carpetaFoto)) {
-                        mkdir($carpetaFoto, 0777, true);
-                    }
-                    move_uploaded_file($_FILES['foto']['tmp_name'], $carpetaFoto . $_FILES['foto']['name']);
-                }
-
-                //Insertamos el usuario
-                $respuesta = $usuario->Insertar();
-                $id = $_REQUEST['id'];
-                new MensajeUser($respuesta, $id, 'USUARIO_Controller.php?id=');
-        }
-        break;
-
-    case $strings['Modificar']:
-            if (!isset($_REQUEST['dni'])) {
-                //Crea un usuario solo con el user para posteriormente rellenar el formulario con sus datos
-                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '');
-                $valores = $usuario->RellenaDatos();
-                if (!tienePermisos('USUARIO_Modificar')) {
-                    new Mensaje('No tienes los permisos necesarios', 'USUARIO_Controller.php');
-                } else {
-                    //Muestra el formulario de modificación
-                    $id = $_REQUEST['id'];
-                    new USUARIO_Modificar($valores, $id, 'USUARIO_Controller.php?id=');
-                }
-            } else {
-                $usuario = get_data_form();
-                
-                $carpetaFoto = '../Documents/Empleados/' . $_REQUEST['dni'] . '/Foto/';
-                //Se realizan las modificaciones también en las carpetas de documentos
-                if ($_FILES['foto']['name'] !== '') {
-                    if (!file_exists($carpetaFoto)) {
-                        mkdir($carpetaFoto, 0777, true);
-                    }
-                    move_uploaded_file($_FILES['foto']['tmp_name'], $carpetaFoto . $_FILES['foto']['name']);
-                }
-                $id = $_REQUEST['id'];
-                $login = ConsultarTipoUsuarioLogin();
-                $respuesta = $usuario->Modificar($login);
-                new MensajeUser($respuesta, $id, 'USUARIO_Controller.php?id=');
-            }
-        break;
+//    case $strings['Insertar']:
+//            if (!isset($_REQUEST['userName'])) { //Si aún no se ha establecido el usuario
+//                $id = $_REQUEST['id'];
+//                new USUARIO_Insertar($id);
+//            } else {
+//                $usuario = get_data_form();
+//
+//                //Creamos las carpetas para guardar los archivos
+//                $carpetaFoto = '../Documents/Empleados/' . $_REQUEST['dni'] . '/Foto/';
+//
+//                if ($_FILES['foto']['name'] !== '') {
+//                    if (!file_exists($carpetaFoto)) {
+//                        mkdir($carpetaFoto, 0777, true);
+//                    }
+//                    move_uploaded_file($_FILES['foto']['tmp_name'], $carpetaFoto . $_FILES['foto']['name']);
+//                }
+//
+//                //Insertamos el usuario
+//                $respuesta = $usuario->Insertar();
+//                $id = $_REQUEST['id'];
+//                new MensajeUser($respuesta, $id, 'USUARIO_Controller.php?id=');
+//        }
+//        break;
+//
+//    case $strings['Modificar']:
+//            if (!isset($_REQUEST['dni'])) {
+//                //Crea un usuario solo con el user para posteriormente rellenar el formulario con sus datos
+//                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '');
+//                $valores = $usuario->RellenaDatos();
+//                if (!tienePermisos('USUARIO_Modificar')) {
+//                    new Mensaje('No tienes los permisos necesarios', 'USUARIO_Controller.php');
+//                } else {
+//                    //Muestra el formulario de modificación
+//                    $id = $_REQUEST['id'];
+//                    new USUARIO_Modificar($valores, $id, 'USUARIO_Controller.php?id=');
+//                }
+//            } else {
+//                $usuario = get_data_form();
+//                
+//                $carpetaFoto = '../Documents/Empleados/' . $_REQUEST['dni'] . '/Foto/';
+//                //Se realizan las modificaciones también en las carpetas de documentos
+//                if ($_FILES['foto']['name'] !== '') {
+//                    if (!file_exists($carpetaFoto)) {
+//                        mkdir($carpetaFoto, 0777, true);
+//                    }
+//                    move_uploaded_file($_FILES['foto']['tmp_name'], $carpetaFoto . $_FILES['foto']['name']);
+//                }
+//                $id = $_REQUEST['id'];
+//                $login = ConsultarTipoUsuarioLogin();
+//                $respuesta = $usuario->Modificar($login);
+//                new MensajeUser($respuesta, $id, 'USUARIO_Controller.php?id=');
+//            }
+//        break;
 
 
     /*
@@ -193,21 +189,6 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
      */
 
     default: //Por defecto se realiza el show all
-        if ($_REQUEST['id'] == "2") {
-            if (!isset($_REQUEST['userName'])) {
-                $usuario = new USUARIO_Modelo('', '', '2', '', '', '', '', '', '', '', '', '', '', '');
-            } else {
-                $usuario = get_data_form();
-            }
-            $datos = $usuario->ConsultarTodo();
-        } else if ($_REQUEST['id'] == "3") {
-            if (!isset($_REQUEST['userName'])) {
-                $usuario = new USUARIO_Modelo('', '', '3', '', '', '', '', '', '', '', '', '', '', '');
-            } else {
-                $usuario = get_data_form();
-            }
-            $datos = $usuario->ConsultarTodo();
-        } else if ($_REQUEST['id'] != "2" && $_REQUEST['id'] != "3") {
             if (!isset($_REQUEST['userName'])) {
                 $usuario = new USUARIO_Modelo('', '', '', '', '', '', '', '', '', '', '', '', '', '');
             } else {
@@ -215,14 +196,11 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
             }
 
             $datos = $usuario->ConsultarTodo();
-        }
-
-
+        
         if (!tienePermisos('USUARIO_Show')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
-            $id = $_REQUEST['id'];
-            new USUARIO_Show($datos, $id, '../Views/DEFAULT_Vista.php');
+            new USUARIO_Show($datos, '../Views/DEFAULT_Vista.php');
         }
 }
 ?>
