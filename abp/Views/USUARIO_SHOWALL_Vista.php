@@ -24,7 +24,7 @@ class USUARIO_Show {
 
             <div class="container">
                 <div class="col-lg-12">
-                    <button type="button" class="btn btn-default btn-lg"><a href='USUARIO_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><?php echo $strings['Insertar'] ?></a></button>
+                   <a href='USUARIO_Controller.php?accion=<?php echo $strings['Seleccionar']; ?>'><img src="../img/useradd.png" width="50px" height="50px"></a>
                     <button type="button" class="btn btn-default btn-lg"><a href='USUARIO_Controller.php?accion=<?php echo $strings['Consultar']; ?>'><?php echo $strings['Consultar'] ?></a></button>
                     <table class="table">
                         <thead class="thead-dark">
@@ -55,6 +55,7 @@ class USUARIO_Show {
                                             if (($clave === 'foto')) {
                                                 if (is_file($valor)) {
                                                     echo "<a target='_blank' href='" . $valor . "'>" . $strings['Ver'] . "</a>";
+                                                    break;
                                                 }
                                             } if ($clave === 'tipoUsuario') {
                                                 echo $strings[ConsultarNOMRol($valor)];

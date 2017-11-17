@@ -1,7 +1,7 @@
 <?php
 
-//VISTA PARA LA INSERCIÓN DE USUARIOS
-class USUARIO_Insertar {
+//VISTA PARA LA INSERCIÓN DE USUARIOS ENTRENADORES
+class DEPORTISTA_Insertar {
 
     function __construct() {
         $this->render();
@@ -10,13 +10,12 @@ class USUARIO_Insertar {
     function render() {
         ?> <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
 
-        <?php
-        include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php'; ?>
+        <?php include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php'; ?>
 
         <div class="container" >
-            <form  id="form" name="form" action='USUARIO_Controller.php?user=admin'  method='post'   enctype="multipart/form-data">
+            <form  id="form" name="form" action='USUARIO_Controller.php?user=deportista'  method='post'   enctype="multipart/form-data">
                 <div class="form-group" >
-                    <label class="control-label" ><?php echo $strings['Insertar Administrador']; ?></label><br>
+                    <label class="control-label" ><?php echo $strings['Insertar deportista']; ?></label><br>
                 </div>
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['userName']; ?></label><br>
@@ -68,10 +67,24 @@ class USUARIO_Insertar {
                     <label class="control-label" ><?php echo $strings['foto']; ?></label><br>
                     <input type="file" name="foto" accept="image/*">
                 </div>
+
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['tipoDeportista']; ?></label><br>
+                    <select name="tipoDeportista" id="tipoDeportista"> 
+                        <option value="PEF" selected><?php echo $strings['PEF']; ?></option> 
+                        <option value="TDU"><?php echo $strings['TDU']; ?></option>
+                    </select>
+                </div>
+                
+                 <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['metodoPago']; ?></label><br>
+                    <input class="form" id="metodoPago" name="metodoPago" size="30" type="text" required="true"/>
+                </div>
+                
                 <br>
 
                 <input type='submit' onclick="return valida_envia_USUARIO()" name='accion'  value="<?php echo $strings['Insertar']; ?>">
-                <a class="form-link" href=..\Controllers\USUARIO_Controller.php?accion=Seleccionar><?php echo $strings['Volver']; ?>
+                <a class="form-link" href="..\Controllers\USUARIO_Controller.php?accion=<?php echo $strings['Seleccionar']; ?>"><?php echo $strings['Volver']; ?>
             </form>
         </div>
 

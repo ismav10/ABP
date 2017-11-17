@@ -820,8 +820,10 @@ function createForm($listFields, $fieldsDef, $strings, $values, $required, $noed
                         }
 
                         echo $str;
+                        echo "<br>";
                         break;
                     case 'email':
+                         echo "<br>";
                         $str = "<li><label>" . $strings[$fieldsDef[$i]['name']] . "</label>";
                         $str .= "<input type = '" . $fieldsDef[$i]['type'] . "'";
                         $str .= " name = '" . $fieldsDef[$i]['name'] . "'";
@@ -863,9 +865,8 @@ function createForm($listFields, $fieldsDef, $strings, $values, $required, $noed
                                 }
                             }
                         }
-
-
                         echo $str;
+                        echo "<br>";
                         break;
                     case 'search':
                         break;
@@ -1370,12 +1371,13 @@ function añadirFuncionalidades($NOM) {
             switch ($funcionalidad) {
                 case "Gestion Usuarios":
                     ?>
+<br><br>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios'] ?> </a>
+                         <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios'] ?> </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="../Controllers/ENTRENADOR_Controller.php"><?php echo $strings['Gestión de Entrenadores'] ?></a>
                             <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php"><?php echo $strings['Gestión de Deportistas'] ?></a>
-                             <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios'] ?></a>
+                            <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios'] ?></a>
                         </div>
                     </li>
                     <?php
@@ -1425,7 +1427,7 @@ function añadirFuncionalidades($NOM) {
             function showNavbar() {
            
                 if (!isset($_SESSION)) {
-                    echo '<li role="presentation" class="active"><a href="../Functions/Conectar.php" class="m1">Iniciar Sesion</a></li>';
+                    echo '<br><br><li role="presentation" class="active"><a href="../Functions/Conectar.php" class="m1">Iniciar Sesion</a></li>';
                     echo '<li role="presentation"><a href="" class="m1">Sobre Nosotros</a></li>';
                     echo '<li role="presentation"><a href="" class="m1">Contacto</a></li>';
                 } else {

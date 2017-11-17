@@ -1,7 +1,7 @@
 <?php
 
-//VISTA PARA LA INSERCIÓN DE USUARIOS
-class USUARIO_Insertar {
+//VISTA PARA LA INSERCIÓN DE USUARIOS ENTRENADORES
+class ENTRENADOR_Insertar {
 
     function __construct() {
         $this->render();
@@ -14,9 +14,9 @@ class USUARIO_Insertar {
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php'; ?>
 
         <div class="container" >
-            <form  id="form" name="form" action='USUARIO_Controller.php?user=admin'  method='post'   enctype="multipart/form-data">
+            <form  id="form" name="form" action='USUARIO_Controller.php?user=entrenador'  method='post'   enctype="multipart/form-data">
                 <div class="form-group" >
-                    <label class="control-label" ><?php echo $strings['Insertar Administrador']; ?></label><br>
+                    <label class="control-label" ><?php echo $strings['Insertar entrenador']; ?></label><br>
                 </div>
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['userName']; ?></label><br>
@@ -68,10 +68,15 @@ class USUARIO_Insertar {
                     <label class="control-label" ><?php echo $strings['foto']; ?></label><br>
                     <input type="file" name="foto" accept="image/*">
                 </div>
+                
+                 <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['cuentaBanc']; ?></label><br>
+                    <input class="form" id="cuentaBanc" name="cuentaBanc" size="50" type="text" required="true"/>
+                </div>
                 <br>
 
                 <input type='submit' onclick="return valida_envia_USUARIO()" name='accion'  value="<?php echo $strings['Insertar']; ?>">
-                <a class="form-link" href=..\Controllers\USUARIO_Controller.php?accion=Seleccionar><?php echo $strings['Volver']; ?>
+                <a class="form-link" href="..\Controllers\USUARIO_Controller.php?accion=<?php echo $strings['Seleccionar']; ?>"><?php echo $strings['Volver']; ?>
             </form>
         </div>
 

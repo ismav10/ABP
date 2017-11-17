@@ -54,6 +54,9 @@ $strings = array(
 'Entrenador' => 'Entrenador',
 'Deportista' => 'Deportista',
 'Insertar usuario' => 'Insertar Usuario',
+'Insertar entrenador' => 'Insertar Entrenador',
+'Insertar Administrador' => 'Insertar Administrador',
+'Seleccionar'=> 'Seleccionar',
 'Modificar usuario'=>'Modificar Usuario',
 'Inserción realizada con éxito' => 'Inserción realizada con éxito',
 'Introduzca un valor para usuario del usuario' =>'Introduzca un valor para usuario del usuario',
@@ -62,14 +65,16 @@ $strings = array(
     
 //ENTRENADOR
 'cuentaBanc' => 'Cuenta Bancaria',
-'Insertar entrenador' => 'Insertar Entrenador',
+'Insertar entrenador' => 'INSERTAR ENTRENADOR',
 'Modificar entrenador' => 'Modificar Entrenador',
     
     
 //DEPORTISTA
 'metodoPago' =>'Tarjeta de Crédito',
 'tipoDeportista' => 'Tipo',
-'Insertar deportista' => 'Insertar Deportista',
+'PEF' => 'PEF',
+'TDU'=>'TDU',
+'Insertar deportista' => 'INSERTAR DEPORTISTA',
 'Modificar deportista' => 'Modificar Deportista'
 
 

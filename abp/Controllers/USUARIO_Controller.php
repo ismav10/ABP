@@ -3,7 +3,6 @@
 //Controlador para la gestión de usuarios
 include '../Models/USUARIO_Model.php';
 include '../Views/MENSAJE_Vista.php';
-//include '../Views/LOGIN_Vista.php';
 
 
 if (!IsAuthenticated()) {
@@ -17,14 +16,14 @@ for ($z = 0; $z < count($pags); $z++) {
     include $pags[$z];
 }
 
-//Método que recoge la información del formulario
-function get_data_form() {
+//Método que recoge la información del formulario para usuarios administradores
+function get_data_form_Admin() {
 
     //Atributos comunes a entrenadores y deportistas
     $userName = $_REQUEST['userName'];
     $password = $_REQUEST['password'];
     $nombre = $_REQUEST['nombre'];
-    $tipoUsuario = ConsultarIDRol($_REQUEST['tipoUsuario']);
+    $tipoUsuario = 1;
     $apellidos = $_REQUEST['apellidos'];
     $dni = $_REQUEST['dni'];
     $fechaNac = $_REQUEST['fechaNac'];
@@ -34,43 +33,70 @@ function get_data_form() {
 
     //Si no se ha introducido un nuevo archivo se deja el que había
     if (isset($_FILES['foto']['name']) && ($_FILES['foto']['name'] !== '')) {
-        $foto = '../Documents/Empleados/' . $_REQUEST['dni'] . '/Foto/' . $_FILES['foto']['name'];
+        $foto = '../Documents/Administradores/' . $_REQUEST['dni'] . '/Foto/' . $_FILES['foto']['name'];
     } else {
         $foto = '';
     }
-    //Atributos especificos de entrenador
-    if ($_REQUEST['id'] == "2") {
-        $tipoUsuario = 2;
-        $cuentaBanc = $_REQUEST['cuentaBanc'];
 
-        //Creamos el usuario con los datos anteriores
-        $usuario = new USUARIO_Modelo($userName, $password, $tipoUsuario, $nombre, $apellidos, $dni, $fechaNac, $direccion, $telefono, $email, $foto, $cuentaBanc, "", "");
-        $id = $_REQUEST['id'];
-        $accion = $_REQUEST['accion'];
-        return $usuario;
-    }
-
-    //Atributos especificos de deportista
-    if ($_REQUEST['id'] == "3") {
-        $tipoUsuario = 3;
-        $tipoDeportista = $_REQUEST['tipoDeportista'];
-        $metodoPago = $_REQUEST['metodoPago'];
-
-        //Creamos el usuario con los datos anteriores
-        $usuario = new USUARIO_Modelo($userName, $password, $tipoUsuario, $nombre, $apellidos, $dni, $fechaNac, $direccion, $telefono, $email, $foto, "", $tipoDeportista, $metodoPago);
-        $id = $_REQUEST['id'];
-        $accion = $_REQUEST['accion'];
-        return $usuario;
-    }
-
-    $id = $_REQUEST['id'];
-    $accion = $_REQUEST['accion'];
-
-    //Este caso se utiliza para crear usuarios que son admin
-    //$tipoUsuario = 1;
     $usuario = new USUARIO_Modelo($userName, $password, $tipoUsuario, $nombre, $apellidos, $dni, $fechaNac, $direccion, $telefono, $email, $foto, "", "", "");
 
     return $usuario;
+}
+
+//Método que recoge la información del formulario para usuarios entrenadores
+function get_data_form_Entrenador() {
+
+    //Atributos comunes a entrenadores y deportistas
+    $userName = $_REQUEST['userName'];
+    $password = $_REQUEST['password'];
+    $nombre = $_REQUEST['nombre'];
+    $tipoUsuario = 2;
+    $apellidos = $_REQUEST['apellidos'];
+    $dni = $_REQUEST['dni'];
+    $fechaNac = $_REQUEST['fechaNac'];
+    $direccion = $_REQUEST['direccion'];
+    $telefono = $_REQUEST['telefono'];
+    $email = $_REQUEST['email'];
+    $cuentaBanc = $_REQUEST['cuentaBanc'];
+
+    //Si no se ha introducido un nuevo archivo se deja el que había
+    if (isset($_FILES['foto']['name']) && ($_FILES['foto']['name'] !== '')) {
+        $foto = '../Documents/Entrenadores/' . $_REQUEST['dni'] . '/Foto/' . $_FILES['foto']['name'];
+    } else {
+        $foto = '';
+    }
+
+    $entrenador = new USUARIO_Modelo($userName, $password, $tipoUsuario, $nombre, $apellidos, $dni, $fechaNac, $direccion, $telefono, $email, $foto, $cuentaBanc, "", "");
+
+    return $entrenador;
+}
+
+function get_data_form_Deportista() {
+
+    //Atributos comunes a entrenadores y deportistas
+    $userName = $_REQUEST['userName'];
+    $password = $_REQUEST['password'];
+    $nombre = $_REQUEST['nombre'];
+    $tipoUsuario = 3;
+    $apellidos = $_REQUEST['apellidos'];
+    $dni = $_REQUEST['dni'];
+    $fechaNac = $_REQUEST['fechaNac'];
+    $direccion = $_REQUEST['direccion'];
+    $telefono = $_REQUEST['telefono'];
+    $email = $_REQUEST['email'];
+    $tipoDeportista = $_REQUEST['tipoDeportista'];
+    $metodoPago = $_REQUEST['tipoDeportista'];
+
+    //Si no se ha introducido un nuevo archivo se deja el que había
+    if (isset($_FILES['foto']['name']) && ($_FILES['foto']['name'] !== '')) {
+        $foto = '../Documents/Deportistas/' . $_REQUEST['dni'] . '/Foto/' . $_FILES['foto']['name'];
+    } else {
+        $foto = '';
+    }
+
+    $deportista = new USUARIO_Modelo($userName, $password, $tipoUsuario, $nombre, $apellidos, $dni, $fechaNac, $direccion, $telefono, $email, $foto, "", $tipoDeportista, $metodoPago);
+
+    return $deportista;
 }
 
 if (!isset($_REQUEST['accion'])) {
@@ -79,29 +105,73 @@ if (!isset($_REQUEST['accion'])) {
 
 
 Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
-//    case $strings['Insertar']:
-//            if (!isset($_REQUEST['userName'])) { //Si aún no se ha establecido el usuario
-//                $id = $_REQUEST['id'];
-//                new USUARIO_Insertar($id);
-//            } else {
-//                $usuario = get_data_form();
-//
-//                //Creamos las carpetas para guardar los archivos
-//                $carpetaFoto = '../Documents/Empleados/' . $_REQUEST['dni'] . '/Foto/';
-//
-//                if ($_FILES['foto']['name'] !== '') {
-//                    if (!file_exists($carpetaFoto)) {
-//                        mkdir($carpetaFoto, 0777, true);
-//                    }
-//                    move_uploaded_file($_FILES['foto']['tmp_name'], $carpetaFoto . $_FILES['foto']['name']);
-//                }
-//
-//                //Insertamos el usuario
-//                $respuesta = $usuario->Insertar();
-//                $id = $_REQUEST['id'];
-//                new MensajeUser($respuesta, $id, 'USUARIO_Controller.php?id=');
-//        }
-//        break;
+    case $strings['Seleccionar']:
+        if (!isset($_REQUEST['user'])) {
+            new USUARIO_Select();
+        } else {
+            if ($_REQUEST['user'] == "admin") { //Si aún no se ha establecido el usuario
+                new USUARIO_Insertar();
+            } else if ($_REQUEST['user'] == "entrenador") {
+                new ENTRENADOR_Insertar();
+            } else if ($_REQUEST['user'] == "deportista") {
+                new DEPORTISTA_Insertar();
+            }
+        }
+        break;
+
+
+    case $strings['Insertar']:
+
+        if ($_REQUEST['user'] == "admin") {
+            $usuario = get_data_form_Admin(); //Recogemos los datos del formulario
+            //Creamos las carpetas para guardar los archivos
+            $carpetaFoto = '../Documents/Administradores/' . $_REQUEST['dni'] . '/Foto/';
+
+            if ($_FILES['foto']['name'] !== '') {
+                if (!file_exists($carpetaFoto)) {
+                    mkdir($carpetaFoto, 0777, true);
+                }
+                move_uploaded_file($_FILES['foto']['tmp_name'], $carpetaFoto . $_FILES['foto']['name']);
+            }
+
+            $respuesta = $usuario->Insertar();
+            new Mensaje($respuesta, 'USUARIO_Controller.php?accion=' . $strings['Seleccionar']);
+        } else if ($_REQUEST['user'] == "entrenador") {
+            $entrenador = get_data_form_Entrenador(); //Recogemos los datos del formulario
+            //Creamos las carpetas para guardar los archivos
+            $carpetaFoto = '../Documents/Entrenadores/' . $_REQUEST['dni'] . '/Foto/';
+
+            if ($_FILES['foto']['name'] !== '') {
+                if (!file_exists($carpetaFoto)) {
+                    mkdir($carpetaFoto, 0777, true);
+                }
+                move_uploaded_file($_FILES['foto']['tmp_name'], $carpetaFoto . $_FILES['foto']['name']);
+            }
+
+            $respuesta = $entrenador->Insertar();
+            new Mensaje($respuesta, 'USUARIO_Controller.php?accion=' . $strings['Seleccionar']);
+        
+            
+                } else if ($_REQUEST['user'] == "deportista") {
+            $deportista = get_data_form_Deportista(); //Recogemos los datos del formulario
+            //Creamos las carpetas para guardar los archivos
+            $carpetaFoto = '../Documents/Deportistas/' . $_REQUEST['dni'] . '/Foto/';
+
+            if ($_FILES['foto']['name'] !== '') {
+                if (!file_exists($carpetaFoto)) {
+                    mkdir($carpetaFoto, 0777, true);
+                }
+                move_uploaded_file($_FILES['foto']['tmp_name'], $carpetaFoto . $_FILES['foto']['name']);
+            }
+
+            $respuesta = $deportista->Insertar();
+            new Mensaje($respuesta, 'USUARIO_Controller.php?accion=' . $strings['Seleccionar']);
+        }
+
+        break;
+
+
+
 //
 //    case $strings['Modificar']:
 //            if (!isset($_REQUEST['dni'])) {
@@ -189,14 +259,14 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
      */
 
     default: //Por defecto se realiza el show all
-            if (!isset($_REQUEST['userName'])) {
-                $usuario = new USUARIO_Modelo('', '', '', '', '', '', '', '', '', '', '', '', '', '');
-            } else {
-                $usuario = get_data_form();
-            }
+        if (!isset($_REQUEST['userName'])) {
+            $usuario = new USUARIO_Modelo('', '', '', '', '', '', '', '', '', '', '', '', '', '');
+        } else {
+            $usuario = get_data_form();
+        }
 
-            $datos = $usuario->ConsultarTodo();
-        
+        $datos = $usuario->ConsultarTodo();
+
         if (!tienePermisos('USUARIO_Show')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
