@@ -27,6 +27,10 @@ class USUARIO_Insertar {
                     <label class="control-label" ><?php echo $strings['password']; ?></label><br>
                     <input class="form" id="password" name="password" size="25" type="password" required="true"/>
                 </div>
+                
+                 <div class="form-group">
+                    <input type="hidden" id="tipoUsuario" name="tipoUsuario" size="25" type="tipoUsuario" required="true" value='Administrador'/>
+                </div>
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['nombre']; ?></label><br>
@@ -74,9 +78,6 @@ class USUARIO_Insertar {
                 <a class="form-link" href=..\Controllers\USUARIO_Controller.php?accion=Seleccionar><?php echo $strings['Volver']; ?>
             </form>
         </div>
-
-
-
         <?php
         include '../Views/footer.php';
     }

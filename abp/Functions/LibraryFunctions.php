@@ -1436,10 +1436,10 @@ function añadirFuncionalidades($NOM) {
 ?>
                     <li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					  Cuenta
+					 <?php echo $strings['Cuenta'] ?>
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href="#"><?php echo $strings['Mi Perfil'] ?></a><br>
+                                            <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=Modificar"><?php echo $strings['Mi Perfil'] ?></a><br>
                                            <a class="dropdown-item" href="../Functions/Desconectar.php"><?php echo $strings['Cerrar Sesión'] ?></a> <br>
 					</div>
 				</li> 

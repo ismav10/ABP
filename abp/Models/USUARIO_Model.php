@@ -199,7 +199,7 @@ class USUARIO_Modelo {
     //Devuelve los valores almacenados para un determinado usuario para posteriormente rellenar un formulario
     function RellenaDatos() {
         $this->ConectarBD();
-        if ($this->tipoUsuario != 2 && $this->tipoUsuario != 3) {
+        if ($this->tipoUsuario == 1) {
             $sql = "SELECT * FROM USUARIO WHERE USUARIO.userName = '" . $this->userName . "'";
         } else if ($this->tipoUsuario == 2) {
             $sql = "SELECT * FROM USUARIO, ENTRENADOR WHERE USUARIO.userName = ENTRENADOR.userName AND ENTRENADOR.userName = '" . $this->userName . "'";
@@ -212,34 +212,27 @@ class USUARIO_Modelo {
         } else {
             $result = $resultado->fetch_array();
             return $result;
-           
         }
     }
 
-    
     //Actualiza en la base de datos la información de un determinado usuario
-    function Modificar($login) {
-        
+    function Modificar() {
+
         $this->ConectarBD();
         $sql = "SELECT * FROM USUARIO where userName = '" . $this->userName . "'";
         $result = $this->mysqli->query($sql);
-        if ($result->num_rows == 1) {
 
-            if ($login == 1) {
-                $sql = "UPDATE USUARIO SET password = '" . md5($this->password) . "',tipoUsuario ='" . $this->tipoUsuario . "',nombre= '" . $this->nombre . "',apellidos= '" . $this->apellidos . "',dni = '" . $this->dni . "',fechaNac= '" . $this->fechaNac . "',direccion= '" . $this->direccion . "',telefono= '" . $this->telefono . "',email= '" . $this->email . "'";
-            } else {
-                $sql = "UPDATE USUARIO SET password = '" . md5($this->password) . "',nombre= '" . $this->nombre . "',apellidos= '" . $this->apellidos . "',dni = '" . $this->dni . "',fechaNac= '" . $this->fechaNac . "',direccion= '" . $this->direccion . "',telefono= '" . $this->telefono . "',email= '" . $this->email . "'";
-            }
-            
+        if ($result->num_rows == 1) {
+            $sql = "UPDATE USUARIO SET password = '" . md5($this->password) . "',tipoUsuario ='" . $this->tipoUsuario . "',nombre= '" . $this->nombre . "',apellidos= '" . $this->apellidos . "',dni = '" . $this->dni . "',fechaNac= '" . $this->fechaNac . "',direccion= '" . $this->direccion . "',telefono= '" . $this->telefono . "',email= '" . $this->email . "'";
+
             if ($this->foto != '') {
                 $sql.=", foto='" . $this->foto . "'";
             }
-            
-            //Funcionalidad propia de un usuario ADMIN
-            if ($login == 1) {
+
+            if ($this->tipoUsuario != '') {
                 $sql1 = "DELETE FROM USUARIO_PAGINA WHERE userName='" . $this->userName . "'";
                 $this->mysqli->query($sql1);
-                
+
                 //Cogemos las páginas que le corresponden por pertenecer a un determinado rol
                 $sql2 = "SELECT DISTINCT PAGINA.idPagina FROM  FUNCIONALIDAD_ROL, FUNCIONALIDAD_PAGINA, PAGINA  WHERE FUNCIONALIDAD_ROL.idRol='" . consultarTipoUsuario($this->userName) . "' AND FUNCIONALIDAD_ROL.idFuncionalidad=FUNCIONALIDAD_PAGINA.idFuncionalidad AND PAGINA.idPagina=FUNCIONALIDAD_PAGINA.idPagina";
 
@@ -253,23 +246,15 @@ class USUARIO_Modelo {
                         $this->mysqli->query($sql3);
                     }
                 }
-
-                //$sql.=", USUARIO_TIPO='" . $this->USUARIO_TIPO . "'";
             }
 
             $sql.=" WHERE userName='" . $this->userName . "'";
 
-
-
-
-            //En caso de producirse un error en la modificación, deshacer los cambios sobre las páginas del usuario
             if (!($resultado = $this->mysqli->query($sql))) {
-                return "Se ha producido un error en la modificación del usuario"; // sustituir por un try
+                return "Se ha producido un error en la modificación del usuario";
             } else {
                 $sql = "DELETE FROM USUARIO_PAGINA WHERE userName='" . $this->userName . "'";
-
                 $this->mysqli->query($sql);
-
                 $sql = "SELECT DISTINCT PAGINA.idPagina FROM USUARIO, FUNCIONALIDAD_ROL, FUNCIONALIDAD_PAGINA, PAGINA  WHERE USUARIO.tipoUsuario=FUNCIONALIDAD_ROL.idRol AND FUNCIONALIDAD_ROL.idFuncionalidad=FUNCIONALIDAD_PAGINA.idFuncionalidad AND PAGINA.idPagina=FUNCIONALIDAD_PAGINA.idPagina AND userName='" . $this->userName . "'";
 
                 if (!($resultado = $this->mysqli->query($sql))) {
@@ -285,8 +270,9 @@ class USUARIO_Modelo {
 
                 return "El usuario se ha modificado con éxito";
             }
-        } else
+        } else {
             return "El usuario no existe";
+        }
     }
 
     /*

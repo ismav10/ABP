@@ -19,6 +19,7 @@ $strings = array(
 'Iniciar Sesion' => 'Iniciar Sesion',
 'Usuario' => 'Usuario',
 'Cerrar Sesión' => 'Cerrar Sesión',
+'Cuenta' => 'Cuenta',
 'Mi Perfil' => 'Mi Perfil',
 'Gestión de Funcionalidades' => 'Funcionalidades',
 'Gestión de Roles' => 'Roles',
@@ -54,8 +55,8 @@ $strings = array(
 'Entrenador' => 'Entrenador',
 'Deportista' => 'Deportista',
 'Insertar usuario' => 'Insertar Usuario',
-'Insertar entrenador' => 'Insertar Entrenador',
 'Insertar Administrador' => 'Insertar Administrador',
+'Modificar Administrador' => 'Modificar Administrador',
 'Seleccionar'=> 'Seleccionar',
 'Modificar usuario'=>'Modificar Usuario',
 'Inserción realizada con éxito' => 'Inserción realizada con éxito',
@@ -65,7 +66,7 @@ $strings = array(
     
 //ENTRENADOR
 'cuentaBanc' => 'Cuenta Bancaria',
-'Insertar entrenador' => 'INSERTAR ENTRENADOR',
+'Insertar entrenador' => 'Insertar Entrenador',
 'Modificar entrenador' => 'Modificar Entrenador',
     
     
@@ -74,7 +75,7 @@ $strings = array(
 'tipoDeportista' => 'Tipo',
 'PEF' => 'PEF',
 'TDU'=>'TDU',
-'Insertar deportista' => 'INSERTAR DEPORTISTA',
+'Insertar deportista' => 'Insertar Deportista',
 'Modificar deportista' => 'Modificar Deportista'
 
 
