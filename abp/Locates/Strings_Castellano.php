@@ -30,6 +30,9 @@ $strings = array(
 'Gestión de Deportistas' => 'Deportistas',
 'Gestión de Instalaciones' => 'Instalaciones',
 'Gestión de Actividades Grupales' => 'Actividades Grupales',
+'Gestión de notificaciones' => 'Notificaciones',
+'Gestión de sesiones' => 'Sesiones',
+
 
 
 //Acciones
@@ -78,8 +81,18 @@ $strings = array(
 'PEF' => 'PEF',
 'TDU'=>'TDU',
 'Insertar deportista' => 'Insertar Deportista',
-'Modificar deportista' => 'Modificar Deportista'
+'Modificar deportista' => 'Modificar Deportista',
 
+
+    //NOTIFICACION
+'idNotificacion' => 'idNotificacion',
+'remitenteNotificacion' => 'Remitente',
+'destinatarioNotificacion' => 'Destinatario',
+'fechaHoraNotificacion' => 'Fecha',
+'asuntoNotificacion' => 'Asunto',
+'mensajeNotificacion' => 'Mensaje',
+'username' => 'Usuario',
+'Ver Notificacion' => 'Ver Notificación'
 
 
 
