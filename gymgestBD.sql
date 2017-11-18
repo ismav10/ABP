@@ -151,7 +151,15 @@ INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categori
 (101, 'Añadir Ejercicio', 'Gestion Ejercicios'),
 (102, 'Borrar Ejercicio', 'Gestion Ejercicios'),
 (103, 'Modificar Ejercicio', 'Gestion Ejercicios'),
-(104, 'Ver Ejercicio', 'Gestion Ejercicios');
+(104, 'Ver Ejercicio', 'Gestion Ejercicios'),
+(200,'Listar Notificaciones','Gestion Notificaciones'),
+(201, 'Consultar Notificaciones','Gestion Notificaciones'),
+(202,'Ver Notificacion', 'Gestion Notificaciones'),
+(203, 'Insertar Notificacion','Gestion Notificaciones'),
+(204, 'Baja Notificacion', 'Gestion Notificaciones'),
+(300, 'Alta sesion', 'Gestion Sesiones'),
+(301, 'Consultar sesion', 'Gestion Sesiones'),
+(302, 'Modificar sesion', 'Gestion Sesiones');
 
 -- --------------------------------------------------------
 
@@ -184,7 +192,15 @@ INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
 (101, 101),
 (102, 102),
 (103, 103),
-(104, 104);
+(104, 104),
+(200, 200),
+(201, 201),
+(202, 202),
+(203, 203),
+(204, 204),
+(300, 300),
+(301, 301),
+(302, 302);
 
 -- --------------------------------------------------------
 
@@ -225,7 +241,20 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (103, 1),
 (103, 2),
 (104, 1),
-(104, 2);
+(104, 2),
+(200,1),
+(200,2),
+(200,3),
+(201,1),
+(202,1),
+(202,2),
+(202,3),
+(203,1),
+(203,2),
+(204,1),
+(300,3),
+(301,3),
+(302,3);
 
 -- --------------------------------------------------------
 
@@ -288,7 +317,15 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 (101, '../Views/EJERCICIO_ADD_Vista.php', 'EJERCICIO ADD'),
 (102, '../Views/EJERCICIO_DELETE_Vista.php', 'EJERCICIO DELETE'),
 (103, '../Views/EJERCICIO_EDIT_Vista.php', 'EJERCICIO EDIT'),
-(104, '../Views/EJERCICIO_SHOWCURRENT_Vista.php', 'EJERCICIO SHOW CURRENT');
+(104, '../Views/EJERCICIO_SHOWCURRENT_Vista.php', 'EJERCICIO SHOW CURRENT'),
+(200, '../Views/NOTIFICACION_SHOWALL_Vista.php', 'NOTIFICACION SHOW ALL'),
+(201, '../Views/NOTIFICACION_SHOWCURRENT_Vista.php', 'NOTIFICACION SHOW CURRENT'),
+(202, '../Views/NOTIFICACION_SELECT_Vista.php', 'NOTIFICACION SELECT'),
+(203, '../Views/NOTIFICACION_ADD_Vista.php', 'NOTIFICACION ADD'),
+(204,'../Views/NOTIFICACION_DELETE_Vista.php', 'NOTIFICACION DELETE'),
+(300,'../Views/SESSION_ADD_Vista.php', 'SESSION ADD'),
+(301,'../Views/SESSION_SHOWALL_Vista.php', 'SESSION SHOWALL'),
+(302, '../Views/SESSION_EDIT_Vista.php','SESSION EDIT');
 
 -- --------------------------------------------------------
 
