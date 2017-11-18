@@ -4,13 +4,12 @@ USE `gymgest`;
 GRANT ALL PRIVILEGES ON * . * TO 'root'@'localhost';
 FLUSH PRIVILEGES;
 
-
 -- phpMyAdmin SQL Dump
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-11-2017 a las 18:12:08
+-- Tiempo de generación: 18-11-2017 a las 12:52:15
 -- Versión del servidor: 10.1.25-MariaDB
 -- Versión de PHP: 5.6.31
 
@@ -137,13 +136,14 @@ CREATE TABLE IF NOT EXISTS `funcionalidad` (
 
 INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categoriaFuncionalidad`) VALUES
 (1, 'Listar Usuarios', 'Gestion Usuarios'),
-(2, 'Seleccionar Usuarios','Gestion Usuarios'),
+(2, 'Seleccionar Usuarios', 'Gestion Usuarios'),
 (3, 'Añadir Usuario', 'Gestion Usuarios'),
 (4, 'Añadir Entrenador', 'Gestion Usuarios'),
-(5, 'Añadir Deportista','Gestion Usuarios'),
+(5, 'Añadir Deportista', 'Gestion Usuarios'),
 (6, 'Modificar Usuario', 'Gestion Usuarios'),
-(7, 'Modificar Entrenador','Gestion Usuarios'),
-(8, 'Modificar Deportista', 'Gestion Usuarios'),
+(7, 'Modificar Entrenador', 'Gestion Entrenadores'),
+(8, 'Modificar Deportista', 'Gestion Deportistas'),
+(9, 'Borrar Usuario', 'Gestion Usuario'),
 (100, 'Listar Ejercicios', 'Gestion Ejercicios'),
 (101, 'Añadir Ejercicio', 'Gestion Ejercicios'),
 (102, 'Borrar Ejercicio', 'Gestion Ejercicios'),
@@ -174,7 +174,8 @@ INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
 (6, 6),
 (7, 7),
 (8, 8),
-(100,100),
+(9, 9),
+(100, 100),
 (101, 101),
 (102, 102),
 (103, 103),
@@ -203,21 +204,21 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (5, 1),
 (6, 1),
 (7, 1),
-(8, 1),
 (7, 2),
+(8, 1),
 (8, 3),
-(100,1),
-(100,2),
-(100,3),
-(101,1),
-(101,2),
-(102,1),
-(102,2),
-(103,1),
-(103,2),
-(104,1),
-(104,2),
-(103,3);
+(9, 1),
+(100, 1),
+(100, 2),
+(100, 3),
+(101, 1),
+(101, 2),
+(102, 1),
+(102, 2),
+(103, 1),
+(103, 2),
+(104, 1),
+(104, 2);
 
 -- --------------------------------------------------------
 
@@ -238,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `instalacion` (
 -- Estructura de tabla para la tabla `notificacion`
 --
 
-CREATE TABLE `notificacion` (
+CREATE TABLE IF NOT EXISTS `notificacion` (
   `idNotificacion` int(100) NOT NULL,
   `remitenteNotificacion` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `destinatarioNotificacion` text COLLATE utf8_spanish_ci NOT NULL,
@@ -273,8 +274,9 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 (6, '../Views/USUARIO_EDIT_Vista.php', 'USUARIO EDIT'),
 (7, '../Views/ENTRENADOR_EDIT_Vista.php', 'ENTRENADOR EDIT'),
 (8, '../Views/DEPORTISTA_EDIT_Vista.php', 'DEPORTISTA EDIT'),
+(9, '../Views/USUARIO_DELETE_Vista.php', 'USUARIO DELETE'),
 (100, '../Views/EJERCICIO_SHOWALL_Vista.php', 'EJERCICIO SHOWALL'),
-(101, '../Views/EJERCICIO_ADD_Vista.php','EJERCICIO ADD'),
+(101, '../Views/EJERCICIO_ADD_Vista.php', 'EJERCICIO ADD'),
 (102, '../Views/EJERCICIO_DELETE_Vista.php', 'EJERCICIO DELETE'),
 (103, '../Views/EJERCICIO_EDIT_Vista.php', 'EJERCICIO EDIT'),
 (104, '../Views/EJERCICIO_SHOWCURRENT_Vista.php', 'EJERCICIO SHOW CURRENT');
@@ -351,39 +353,31 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`userName`, `password`, `tipoUsuario`, `nombre`, `apellidos`, `dni`, `fechaNac`, `direccion`, `telefono`, `email`, `foto`) VALUES
-('admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'Iván', 'de Dios Fernández', '44488795X', '1994-03-26', 'Avenida Vistahermosa 8, 3ºA', 988252875, 'ivanddf1994@hotmamil.com', NULL),
-('deportista1', '5e3ea95c649fe43cbc6e9c1c71071f0f', 3, 'Bruno', 'Romero Rodríguez', '87654321Q', '1995-10-10', 'Paseo de la Castellana 22, 1º', 988767165, 'brunoromero@gmail.com', NULL),
+('admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'IvÃ¡nchu', 'de Dios FernÃ¡ndez', '44488795X', '1994-03-26', 'Avenida Vistahermosa 8, 3ÂºA', 988252875, 'ivanddf1994@hotmail.com', NULL),
+('deportista1', '5e3ea95c649fe43cbc6e9c1c71071f0f', 3, 'Bruno', 'Romero RodrÃ­guez', '87654321Q', '1995-10-10', 'Paseo de la Castellana 22, 1ï¿½', 988767165, 'brunoromero@gmail.com', NULL),
 ('deportista2', '220a15a78a728aa88fcf45d009705d96', 3, 'Alberto', 'Porral Framiñan', '12678946H', '1992-09-17', 'Manuel Antonio Puga 54, 2ºA', 678987432, 'albertoporral@hotmail.com', NULL),
-('entrenador', 'a990ba8861d2b344810851e7e6b49104', 2, 'Ismael', 'Vázquez Fernández', '12345678A', '1995-10-01', 'Avenida de la Albufera 6, 2º', 988767521, 'ismaelvazquez@hotmail.com', NULL);
+('entrenador', 'a990ba8861d2b344810851e7e6b49104', 2, 'Ismael1111', 'Vï¿½zquez Fernï¿½ndez', '12345678A', '1995-10-01', 'Avenida de la Albufera 6, 2ï¿½', 988767521, 'ismaelvazquez@hotmail.com', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario_pagina`
+-- Estructura de tabla para la tabla `usuario_rol`
 --
 
-CREATE TABLE IF NOT EXISTS `usuario_pagina` (
-  `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
-  `idPagina` int(10) NOT NULL
+CREATE TABLE IF NOT EXISTS `usuario_rol` (
+  `userName` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
+  `idRol` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `usuario_pagina`
+-- Volcado de datos para la tabla `usuario_rol`
 --
 
-INSERT INTO `usuario_pagina` (`userName`, `idPagina`) VALUES
+INSERT INTO `usuario_rol` (`userName`, `idRol`) VALUES
 ('admin', 1),
-('admin', 2),
-('admin', 3),
-('admin', 4),
-('admin', 5),
-('admin', 6),
-('admin', 7),
-('admin', 8),
-('deportista1',8),
-('deportista2',8),
-('entrenador',7);
-
+('deportista1', 3),
+('deportista2', 3),
+('entrenador', 2);
 
 --
 -- Índices para tablas volcadas
@@ -500,11 +494,11 @@ ALTER TABLE `usuario`
   ADD KEY `tipoUsuario` (`tipoUsuario`);
 
 --
--- Indices de la tabla `usuario_pagina`
+-- Indices de la tabla `usuario_rol`
 --
-ALTER TABLE `usuario_pagina`
-  ADD PRIMARY KEY (`userName`,`idPagina`),
-  ADD KEY `idPagina` (`idPagina`);
+ALTER TABLE `usuario_rol`
+  ADD PRIMARY KEY (`userName`,`idRol`),
+  ADD KEY `usuario_rol_ibfk_2` (`idRol`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -529,7 +523,7 @@ ALTER TABLE `ejercicio`
 -- AUTO_INCREMENT de la tabla `funcionalidad`
 --
 ALTER TABLE `funcionalidad`
-  MODIFY `idFuncionalidad` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idFuncionalidad` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000;
 --
 -- AUTO_INCREMENT de la tabla `instalacion`
 --
@@ -544,7 +538,7 @@ ALTER TABLE `notificacion`
 -- AUTO_INCREMENT de la tabla `pagina`
 --
 ALTER TABLE `pagina`
-  MODIFY `idPagina` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idPagina` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1002;
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
@@ -561,6 +555,11 @@ ALTER TABLE `sesion`
 ALTER TABLE `tabla`
   MODIFY `idTabla` int(10) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT de la tabla `usuario_rol`
+--
+ALTER TABLE `usuario_rol`
+  MODIFY `idRol` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- Restricciones para tablas volcadas
 --
 
@@ -568,28 +567,28 @@ ALTER TABLE `tabla`
 -- Filtros para la tabla `actividadgrupal`
 --
 ALTER TABLE `actividadgrupal`
-  ADD CONSTRAINT `actividadgrupal_ibfk_1` FOREIGN KEY (`username`) REFERENCES `entrenador` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `actividadgrupal_ibfk_1` FOREIGN KEY (`username`) REFERENCES `entrenador` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `actividadgrupal_ibfk_2` FOREIGN KEY (`idInstalacion`) REFERENCES `instalacion` (`idInstalacion`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `deportista`
 --
 ALTER TABLE `deportista`
-  ADD CONSTRAINT `deportista_ibfk_1` FOREIGN KEY (`username`) REFERENCES `usuario` (`userName`),
+  ADD CONSTRAINT `deportista_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `usuario` (`userName`),
   ADD CONSTRAINT `deportista_ibfk_2` FOREIGN KEY (`idActividadIndividual`) REFERENCES `actividadindividual` (`idActividadIndividual`);
 
 --
 -- Filtros para la tabla `deportista_asignar_tabla`
 --
 ALTER TABLE `deportista_asignar_tabla`
-  ADD CONSTRAINT `deportista_asignar_tabla_ibfk_1` FOREIGN KEY (`username`) REFERENCES `deportista` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `deportista_asignar_tabla_ibfk_1` FOREIGN KEY (`username`) REFERENCES `deportista` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `deportista_asignar_tabla_ibfk_2` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `entrenador`
 --
 ALTER TABLE `entrenador`
-  ADD CONSTRAINT `entrenador_ibfk_1` FOREIGN KEY (`username`) REFERENCES `usuario` (`userName`);
+  ADD CONSTRAINT `entrenador_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `usuario` (`userName`);
 
 --
 -- Filtros para la tabla `funcionalidad_pagina`
@@ -615,7 +614,7 @@ ALTER TABLE `notificacion`
 -- Filtros para la tabla `sesion`
 --
 ALTER TABLE `sesion`
-  ADD CONSTRAINT `sesion_ibfk_1` FOREIGN KEY (`username`) REFERENCES `deportista` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sesion_ibfk_1` FOREIGN KEY (`username`) REFERENCES `deportista` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `sesion_ibfk_2` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `sesion_ibfk_3` FOREIGN KEY (`idActividadIndividual`) REFERENCES `actividadindividual` (`idActividadIndividual`) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -632,11 +631,11 @@ ALTER TABLE `usuario`
   ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`tipoUsuario`) REFERENCES `rol` (`idRol`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `usuario_pagina`
+-- Filtros para la tabla `usuario_rol`
 --
-ALTER TABLE `usuario_pagina`
-  ADD CONSTRAINT `usuario_pagina_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `usuario` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuario_pagina_ibfk_2` FOREIGN KEY (`idPagina`) REFERENCES `pagina` (`idPagina`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `usuario_rol`
+  ADD CONSTRAINT `usuario_rol_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `usuario` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuario_rol_ibfk_2` FOREIGN KEY (`idRol`) REFERENCES `rol` (`idRol`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
