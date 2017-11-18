@@ -13,6 +13,7 @@ $strings = array(
 'Error en la consulta sobre la base de datos' => 'Error en la consulta sobre la base de datos',
 'El usuario se ha modificado con éxito'=>'El usuario se ha modificado con éxito',
 'El usuario no existe'=>'El usuario no existe',
+'El usuario ha sido borrado correctamente' => 'El usuario ha sido borrado correctamente',
     
     
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)
@@ -57,6 +58,7 @@ $strings = array(
 'Insertar usuario' => 'Insertar Usuario',
 'Insertar Administrador' => 'Insertar Administrador',
 'Modificar Administrador' => 'Modificar Administrador',
+'Eliminar Administrador' => 'Eliminar Administrador',
 'Seleccionar'=> 'Seleccionar',
 'Modificar usuario'=>'Modificar Usuario',
 'Inserción realizada con éxito' => 'Inserción realizada con éxito',

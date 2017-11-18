@@ -1371,7 +1371,7 @@ function añadirFuncionalidades($NOM) {
             switch ($funcionalidad) {
                 case "Gestion Usuarios":
                     ?>
-<br><br>
+                    <br><br>
                     <li class="nav-item dropdown">
                          <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios'] ?> </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -1410,7 +1410,7 @@ function añadirFuncionalidades($NOM) {
                 if ($mysqli->connect_errno) {
                     echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
                 }
-                $sql = "SELECT DISTINCT PAGINA.linkPagina FROM USUARIO_PAGINA, PAGINA  WHERE PAGINA.idPagina=USUARIO_PAGINA.idPagina AND USUARIO_PAGINA.username='" . $_SESSION['login'] . "'";
+                $sql = "SELECT DISTINCT pagina.linkPagina FROM Pagina, funcionalidad_pagina, funcionalidad_rol, usuario_rol WHERE pagina.idPagina=funcionalidad_pagina.idPagina AND funcionalidad_pagina.idFuncionalidad=funcionalidad_rol.idFuncionalidad AND funcionalidad_rol.idRol=usuario_rol.idRol AND usuario_rol.userName ='".$_SESSION['login']."'";
                 if (!($resultado = $mysqli->query($sql))) {
                     echo 'Error en la consulta sobre la base de datos';
                 } else {

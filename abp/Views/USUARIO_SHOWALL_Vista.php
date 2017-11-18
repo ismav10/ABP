@@ -1,6 +1,4 @@
 <?php
-include '../Views/header.php';
-
 class USUARIO_Show {
 
 //VISTA PARA LISTAR TODOS LOS USUARIOS

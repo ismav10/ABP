@@ -1,5 +1,4 @@
 <?php
-//include '../Views/header.php';
 
 class USUARIO_Select {
 

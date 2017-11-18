@@ -1,8 +1,4 @@
 <hr>
-	
-	
-	
-	
 	<!--Aqui empieza el footer :)-->
 	<footer>
 		<div class="container">

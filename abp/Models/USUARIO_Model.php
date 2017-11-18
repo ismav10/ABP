@@ -76,7 +76,7 @@ class USUARIO_Modelo {
                 return 'No se ha podido conectar con la base de datos';
             } else {
                 if ($result->num_rows == 0) {
-                    //Insertamos en la tabla USUARIO
+//Insertamos en la tabla USUARIO
                     $sql = "INSERT INTO USUARIO VALUES ('" . $this->userName . "','" . md5($this->password) . "','" . $this->tipoUsuario . "','" . $this->nombre . "','" . $this->apellidos . "','" . $this->dni . "','" . $this->fechaNac . "','" . $this->direccion . "','" . $this->telefono . "', '" . $this->email . "', '" . $this->foto . "');";
                     $this->mysqli->query($sql);
 
@@ -90,29 +90,15 @@ class USUARIO_Modelo {
                         $this->mysqli->query($sql);
                     }
 
-                    //Cogemos las páginas que le corresponden por pertenecer a un determinado rol
-                    $sql = "SELECT DISTINCT PAGINA.idPagina FROM USUARIO, FUNCIONALIDAD_ROL, FUNCIONALIDAD_PAGINA, PAGINA  WHERE USUARIO.tipoUsuario=FUNCIONALIDAD_ROL.idRol AND FUNCIONALIDAD_ROL.idFuncionalidad=FUNCIONALIDAD_PAGINA.idFuncionalidad AND PAGINA.idPagina=FUNCIONALIDAD_PAGINA.idPagina AND userName='" . $this->userName . "'";
+                    $sql = "INSERT INTO USUARIO_ROL (userName, idRol) VALUES('" . $this->userName . "'," . $this->tipoUsuario . ")";
 
-                    if (!($resultado = $this->mysqli->query($sql))) {
-                        echo 'Error en la consulta sobre la base de datos';
-                    } else {
-                        while ($tupla = $resultado->fetch_array()) {
-                            //Insertamos esas páginas en la tabla USUARIO_PÁGINA de la que se van a recoger las acciones permitidas
-                            $sql = "INSERT INTO USUARIO_PAGINA (userName, idPagina) VALUES('" . $this->userName . "'," . $tupla['idPagina'] . ")";
-
-                            $this->mysqli->query($sql);
-                        }
-                    }
-
-                    return 'Inserción realizada con éxito';
-                } else
-                    return 'El usuario ya existe en la base de datos';
+                    $this->mysqli->query($sql);
+                }
             }
-        }
-        else {
 
-            return 'Introduzca un valor para username del usuario';
-        }
+            return 'Inserción realizada con éxito';
+        } else
+            return 'El usuario ya existe en la base de datos';
     }
 
     /*
@@ -173,30 +159,34 @@ class USUARIO_Modelo {
         }
     }
 
-    /*
-      //Realiza el borrado lógico de un usuario cambiando su estado a Inactivo
-      function Borrar()
-      {
-      $this->ConectarBD();
-      $sql = "select * from USUARIO where USUARIO_USER = '".$this->USUARIO_USER."'";
-      $result = $this->mysqli->query($sql);
-      if ($result->num_rows == 1)
-      {
-      if ($this->USUARIO_ESTADO='Activo') {
-      $sql = "UPDATE  USUARIO SET USUARIO_ESTADO='Inactivo' where USUARIO_USER = '" . $this->USUARIO_USER . "'";
-      $this->mysqli->query($sql);
-      return "El usuario ha sido borrado correctamente";
-      }
-      else {
-      return "El usuario ya no se encuentra contratado";
-      }
-      }
-      else
-      return "El usuario no existe";
-      }
-     */
+    //Realiza el borrado lógico de un usuario cambiando su estado a Inactivo
+    function Borrar() {
+        $this->ConectarBD();
+        $sql = "SELECT * FROM USUARIO WHERE userName = '" . $this->userName . "'";
+        $result = $this->mysqli->query($sql);
+        if ($result->num_rows == 1) {
+            if ($this->tipoUsuario = 1) {
+                $sql = "DELETE FROM USUARIO WHERE userName = '" . $this->userName . "'";
+                $this->mysqli->query($sql);
+                return "El usuario ha sido borrado correctamente";
+            } else if ($this->tipoUsuario = 2) {
+                $sql = "DELETE FROM ENTRENADOR WHERE userName = '" . $this->userName . "'";
+                $this->mysqli->query($sql);
+                $sql2 = "DELETE FROM USUARIO WHERE userName= '" . $this->userName . "'";
+                $this->mysqli->query($sql2);
+                return "El usuario ha sido borrado correctamente";
+            } else if ($this->tipoUsuario = 3) {
+                $sql = "DELETE FROM DEPORTISTA WHERE userName = '" . $this->userName . "'";
+                $this->mysqli->query($sql);
+                $sql2 = "DELETE FROM USUARIO WHERE userName= '" . $this->userName . "'";
+                $this->mysqli->query($sql2);
+                return "El usuario ha sido borrado correctamente";
+            }
+        } else
+            return "El usuario no existe";
+    }
 
-    //Devuelve los valores almacenados para un determinado usuario para posteriormente rellenar un formulario
+//Devuelve los valores almacenados para un determinado usuario para posteriormente rellenar un formulario
     function RellenaDatos() {
         $this->ConectarBD();
         if ($this->tipoUsuario == 1) {
@@ -215,7 +205,7 @@ class USUARIO_Modelo {
         }
     }
 
-    //Actualiza en la base de datos la información de un determinado usuario
+//Actualiza en la base de datos la información de un determinado usuario
     function Modificar() {
 
         $this->ConectarBD();
@@ -230,44 +220,19 @@ class USUARIO_Modelo {
             }
 
             if ($this->tipoUsuario != '') {
-                $sql1 = "DELETE FROM USUARIO_PAGINA WHERE userName='" . $this->userName . "'";
+                $sql1 = "DELETE FROM USUARIO_ROL WHERE userName='" . $this->userName . "'";
                 $this->mysqli->query($sql1);
 
-                //Cogemos las páginas que le corresponden por pertenecer a un determinado rol
-                $sql2 = "SELECT DISTINCT PAGINA.idPagina FROM  FUNCIONALIDAD_ROL, FUNCIONALIDAD_PAGINA, PAGINA  WHERE FUNCIONALIDAD_ROL.idRol='" . consultarTipoUsuario($this->userName) . "' AND FUNCIONALIDAD_ROL.idFuncionalidad=FUNCIONALIDAD_PAGINA.idFuncionalidad AND PAGINA.idPagina=FUNCIONALIDAD_PAGINA.idPagina";
-
-                if (!($resultado = $this->mysqli->query($sql2))) {
-                    echo 'Error en la consulta sobre la base de datos';
-                } else {
-                    while ($tupla = $resultado->fetch_array()) {
-                        //Insertamos esas páginas en la tabla USUARIO_PÁGINA de la que se van a recoger las acciones permitidas
-                        $sql3 = "INSERT INTO USUARIO_PAGINA (userName, idPagina) VALUES('" . $this->userName . "'," . $tupla['idPagina'] . ")";
-
-                        $this->mysqli->query($sql3);
-                    }
-                }
+                $sql3 = "INSERT INTO USUARIO_ROL (userName, idRol) VALUES('" . $this->userName . "'," . $this->tipoUsuario . ")";
+                $this->mysqli->query($sql3);
             }
 
             $sql.=" WHERE userName='" . $this->userName . "'";
 
             if (!($resultado = $this->mysqli->query($sql))) {
+
                 return "Se ha producido un error en la modificación del usuario";
             } else {
-                $sql = "DELETE FROM USUARIO_PAGINA WHERE userName='" . $this->userName . "'";
-                $this->mysqli->query($sql);
-                $sql = "SELECT DISTINCT PAGINA.idPagina FROM USUARIO, FUNCIONALIDAD_ROL, FUNCIONALIDAD_PAGINA, PAGINA  WHERE USUARIO.tipoUsuario=FUNCIONALIDAD_ROL.idRol AND FUNCIONALIDAD_ROL.idFuncionalidad=FUNCIONALIDAD_PAGINA.idFuncionalidad AND PAGINA.idPagina=FUNCIONALIDAD_PAGINA.idPagina AND userName='" . $this->userName . "'";
-
-                if (!($resultado = $this->mysqli->query($sql))) {
-                    echo 'Error en la consulta sobre la base de datos';
-                } else {
-                    while ($tupla = $resultado->fetch_array()) {
-
-                        $sql = "INSERT INTO USUARIO_PAGINA (userName, idPagina) VALUES('" . $this->userName . "'," . $tupla['idPagina'] . ")";
-
-                        $this->mysqli->query($sql);
-                    }
-                }
-
                 return "El usuario se ha modificado con éxito";
             }
         } else {
