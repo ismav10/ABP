@@ -1,3 +1,4 @@
+﻿
 DROP DATABASE IF EXISTS `gymgest`;
 CREATE DATABASE IF NOT EXISTS `gymgest` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 USE `gymgest`;
@@ -144,6 +145,8 @@ INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categori
 (7, 'Modificar Entrenador', 'Gestion Entrenadores'),
 (8, 'Modificar Deportista', 'Gestion Deportistas'),
 (9, 'Borrar Usuario', 'Gestion Usuario'),
+(10, 'Borrar Entrenador', 'Gestion Usuario'),
+(11, 'Borrar Deportista', 'Gestion Usuario'),
 (100, 'Listar Ejercicios', 'Gestion Ejercicios'),
 (101, 'Añadir Ejercicio', 'Gestion Ejercicios'),
 (102, 'Borrar Ejercicio', 'Gestion Ejercicios'),
@@ -175,6 +178,8 @@ INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
 (7, 7),
 (8, 8),
 (9, 9),
+(10, 10),
+(11, 11),
 (100, 100),
 (101, 101),
 (102, 102),
@@ -208,6 +213,8 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (8, 1),
 (8, 3),
 (9, 1),
+(10, 1),
+(11, 1),
 (100, 1),
 (100, 2),
 (100, 3),
@@ -275,6 +282,8 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 (7, '../Views/ENTRENADOR_EDIT_Vista.php', 'ENTRENADOR EDIT'),
 (8, '../Views/DEPORTISTA_EDIT_Vista.php', 'DEPORTISTA EDIT'),
 (9, '../Views/USUARIO_DELETE_Vista.php', 'USUARIO DELETE'),
+(10, '../Views/ENTRENADOR_DELETE_Vista.php', 'ENTRENADOR DELETE'),
+(11, '../Views/DEPORTISTA_DELETE_Vista.php', 'DEPORTISTA DELETE'),
 (100, '../Views/EJERCICIO_SHOWALL_Vista.php', 'EJERCICIO SHOWALL'),
 (101, '../Views/EJERCICIO_ADD_Vista.php', 'EJERCICIO ADD'),
 (102, '../Views/EJERCICIO_DELETE_Vista.php', 'EJERCICIO DELETE'),
@@ -353,10 +362,10 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`userName`, `password`, `tipoUsuario`, `nombre`, `apellidos`, `dni`, `fechaNac`, `direccion`, `telefono`, `email`, `foto`) VALUES
-('admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'IvÃ¡nchu', 'de Dios FernÃ¡ndez', '44488795X', '1994-03-26', 'Avenida Vistahermosa 8, 3ÂºA', 988252875, 'ivanddf1994@hotmail.com', NULL),
-('deportista1', '5e3ea95c649fe43cbc6e9c1c71071f0f', 3, 'Bruno', 'Romero RodrÃ­guez', '87654321Q', '1995-10-10', 'Paseo de la Castellana 22, 1ï¿½', 988767165, 'brunoromero@gmail.com', NULL),
-('deportista2', '220a15a78a728aa88fcf45d009705d96', 3, 'Alberto', 'Porral Framiñan', '12678946H', '1992-09-17', 'Manuel Antonio Puga 54, 2ºA', 678987432, 'albertoporral@hotmail.com', NULL),
-('entrenador', 'a990ba8861d2b344810851e7e6b49104', 2, 'Ismael1111', 'Vï¿½zquez Fernï¿½ndez', '12345678A', '1995-10-01', 'Avenida de la Albufera 6, 2ï¿½', 988767521, 'ismaelvazquez@hotmail.com', NULL);
+('admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'Iván', 'de Dios Fernández', '44488795X', '1994-03-26', 'Avenida Vistahermosa 8, 3ÂºA', 988252875, 'ivanddf1994@hotmail.com', NULL),
+('deportista1', '5e3ea95c649fe43cbc6e9c1c71071f0f', 3, 'Bruno', 'Romero Rodríguez', '87654321Q', '1995-10-10', 'Paseo de la Castellana 22, 1º', 988767165, 'brunoromero@gmail.com', NULL),
+('deportista2', '220a15a78a728aa88fcf45d009705d96', 3, 'Alberto', 'Porral Framiñán', '12678946H', '1992-09-17', 'Manuel Antonio Puga 54, 2ºA', 678987432, 'albertoporral@hotmail.com', NULL),
+('entrenador', 'a990ba8861d2b344810851e7e6b49104', 2, 'Ismael', 'Vázquez Fernández', '12345678A', '1995-10-01', 'Avenida de la Albufera 6, 2º', 988767521, 'ismaelvazquez@hotmail.com', NULL);
 
 -- --------------------------------------------------------
 
