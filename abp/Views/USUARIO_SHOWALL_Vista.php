@@ -1,4 +1,5 @@
 <?php
+
 class USUARIO_Show {
 
 //VISTA PARA LISTAR TODOS LOS USUARIOS
@@ -41,29 +42,33 @@ class USUARIO_Show {
                                     foreach ($this->datos [$j] as $clave => $valor) {
                                         for ($i = 0; $i < count($lista); $i++) {
                                             if ($clave === $lista[$i]) {
-                                                    echo "<td>";
+                                                echo "<td>";
                                                 if (($clave === 'foto')) {
                                                     if (is_file($valor)) {
-                                                        echo "<a target='_blank' href='" . $valor . "'>" . $strings['Ver'] . "</a>";
-                                                        break;
-                                                    }
-                                                } if ($clave === 'tipoUsuario') {
-                                                    echo $strings[ConsultarNOMRol($valor)];
+                                                        if ($valor == '') {
+                                                            ?><a target='_blank' href="../img/user.jpg"><img src="../img/user.jpg" width="50" height="50"></a> <?php
+                                                        } else {
+                                                            ?><a target='_blank' href='<?php echo $valor ?>'><img src='<?php echo $valor ?>' width="50" height="50"></a> <?php
+                                                        }
                                                     break;
-                                                }
-                                                if ($clave === 'userName') {
-                                                    ?>
-                                            <a href='USUARIO_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Ver']; ?>'><font color="#088A4B"><?php echo $valor; ?></font></a> <?php
-                                        } else {
-                                            echo $valor;
+                                                }   
+                                        } if ($clave === 'tipoUsuario') {
+                                            echo $strings[ConsultarNOMRol($valor)];
+                                            break;
                                         }
-                                        echo "</td>";
-                                    }
-                                }
-                            }
+                                        if ($clave === 'userName') {
+                                            ?>
+                                            <a href='USUARIO_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Ver']; ?>'><font color="#088A4B"><?php echo $valor; ?></font></a> <?php
+                        } else {
+                            echo $valor;
+                        }
+                        echo "</td>";
+                    }
+                }
+            }
                             ?>
 
-                                    <!--<td><button type="button" class="btn btn-success"><a href='USUARIO_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Ver']; ?>'><?php echo $strings['Ver']; ?></a></button></td>   -->          
+                                                            <!--<td><button type="button" class="btn btn-success"><a href='USUARIO_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Ver']; ?>'><?php echo $strings['Ver']; ?></a></button></td>   -->          
                             <td><button type="button" class="btn btn-info"><a href='USUARIO_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Modificar']; ?>'><?php echo $strings['Modificar']; ?></a></button></td>
                             <td><button type="button" class="btn btn-danger"><a href='USUARIO_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Borrar']; ?>'><?php echo $strings['Borrar']; ?></a></button></td>
                                     <?php

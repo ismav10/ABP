@@ -407,7 +407,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`userName`, `password`, `tipoUsuario`, `nombre`, `apellidos`, `dni`, `fechaNac`, `direccion`, `telefono`, `email`, `foto`) VALUES
-('admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'Iván', 'de Dios Fernández', '44488795X', '1994-03-26', 'Avenida Vistahermosa 8, 3ÂºA', 988252875, 'ivanddf1994@hotmail.com', NULL),
+('admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'Iván', 'de Dios Fernández', '44488795X', '1994-03-26', 'Avenida Vistahermosa 8, 3ÂºA', 988252875, 'ivanddf1994@hotmail.com', '../Documents/Administradores/44488795X/Foto/ivan.jpg'),
 ('deportista1', '5e3ea95c649fe43cbc6e9c1c71071f0f', 3, 'Bruno', 'Romero Rodríguez', '87654321Q', '1995-10-10', 'Paseo de la Castellana 22, 1º', 988767165, 'brunoromero@gmail.com', NULL),
 ('deportista2', '220a15a78a728aa88fcf45d009705d96', 3, 'Alberto', 'Porral Framiñán', '12678946H', '1992-09-17', 'Manuel Antonio Puga 54, 2ºA', 678987432, 'albertoporral@hotmail.com', NULL),
 ('entrenador', 'a990ba8861d2b344810851e7e6b49104', 2, 'Ismael', 'Vázquez Fernández', '12345678A', '1995-10-01', 'Avenida de la Albufera 6, 2º', 988767521, 'ismaelvazquez@hotmail.com', NULL);

@@ -164,22 +164,23 @@ class USUARIO_Modelo {
         $this->ConectarBD();
         $sql = "SELECT * FROM USUARIO WHERE userName = '" . $this->userName . "'";
         $result = $this->mysqli->query($sql);
+
         if ($result->num_rows == 1) {
-            if ($this->tipoUsuario = 1) {
+            if ($this->tipoUsuario == 1) {
                 $sql = "DELETE FROM USUARIO WHERE userName = '" . $this->userName . "'";
                 $this->mysqli->query($sql);
                 return "El usuario ha sido borrado correctamente";
-            } else if ($this->tipoUsuario = 2) {
+            } else if ($this->tipoUsuario == 2) {
                 $sql = "DELETE FROM ENTRENADOR WHERE userName = '" . $this->userName . "'";
                 $this->mysqli->query($sql);
                 $sql2 = "DELETE FROM USUARIO WHERE userName= '" . $this->userName . "'";
                 $this->mysqli->query($sql2);
                 return "El usuario ha sido borrado correctamente";
-            } else if ($this->tipoUsuario = 3) {
+            } else if ($this->tipoUsuario == 3) {
                 $sql = "DELETE FROM DEPORTISTA WHERE userName = '" . $this->userName . "'";
                 $this->mysqli->query($sql);
-                $sql2 = "DELETE FROM USUARIO WHERE userName= '" . $this->userName . "'";
-                $this->mysqli->query($sql2);
+                $sql3 = "DELETE FROM USUARIO WHERE userName= '" . $this->userName . "'";
+                $this->mysqli->query($sql3);
                 return "El usuario ha sido borrado correctamente";
             }
         } else

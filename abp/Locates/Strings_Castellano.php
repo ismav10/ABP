@@ -73,16 +73,18 @@ $strings = array(
 'cuentaBanc' => 'Cuenta Bancaria',
 'Insertar entrenador' => 'Insertar Entrenador',
 'Modificar entrenador' => 'Modificar Entrenador',
+'Eliminar Entrenador' => 'Eliminar Entrenador',
     
     
 //DEPORTISTA
 'metodoPago' =>'Tarjeta de Crédito',
-'tipoDeportista' => 'Tipo',
+'tipoDeportista' => 'Tipo Deportista',
 'PEF' => 'PEF',
 'TDU'=>'TDU',
 'Insertar deportista' => 'Insertar Deportista',
 'Modificar deportista' => 'Modificar Deportista',
-
+'Eliminar Deportista' => 'Eliminar Deportista',
+    
 
     //NOTIFICACION
 'idNotificacion' => 'idNotificacion',
