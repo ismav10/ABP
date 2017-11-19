@@ -114,9 +114,9 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
             if ($_REQUEST['user'] == "admin") { //Si aún no se ha establecido el usuario
                 new USUARIO_Insertar('USUARIO_Controller.php?accion=' . $strings['Seleccionar']);
             } else if ($_REQUEST['user'] == "entrenador") {
-                new ENTRENADOR_Insertar('USUARIO_Controller.php?accion=' . $strings['Seleccionar']);
+                new ENTRENADOR_Insertar('USUARIO_Controller.php?accion=' . $strings['Seleccionar'],'USUARIO_Controller.php?user=entrenador');
             } else if ($_REQUEST['user'] == "deportista") {
-                new DEPORTISTA_Insertar('USUARIO_Controller.php?accion=' . $strings['Seleccionar']);
+                new DEPORTISTA_Insertar('USUARIO_Controller.php?accion=' . $strings['Seleccionar'],'USUARIO_Controller.php?user=deportista');
             }
         }
         break;

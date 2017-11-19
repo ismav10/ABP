@@ -76,8 +76,7 @@ class USUARIO_Modelo {
                 return 'No se ha podido conectar con la base de datos';
             } else {
                 if ($result->num_rows == 0) {
-//Insertamos en la tabla USUARIO
-                    $sql = "INSERT INTO USUARIO VALUES ('" . $this->userName . "','" . md5($this->password) . "','" . $this->tipoUsuario . "','" . $this->nombre . "','" . $this->apellidos . "','" . $this->dni . "','" . $this->fechaNac . "','" . $this->direccion . "','" . $this->telefono . "', '" . $this->email . "', '" . $this->foto . "');";
+                    $sql = "INSERT INTO USUARIO VALUES ('" . $this->foto . "', '" . $this->userName . "','" . md5($this->password) . "','" . $this->tipoUsuario . "','" . $this->nombre . "','" . $this->apellidos . "','" . $this->dni . "','" . $this->fechaNac . "','" . $this->direccion . "','" . $this->telefono . "', '" . $this->email . "');";
                     $this->mysqli->query($sql);
 
                     if ($this->tipoUsuario == 2) {
@@ -139,9 +138,9 @@ class USUARIO_Modelo {
 
         $this->ConectarBD();
         if ($user == "entrenador") {
-            $sql = "SELECT DISTINCT * FROM USUARIO, ENTRENADOR WHERE USUARIO.userName=ENTRENADOR.userName AND USUARIO.tipoUsuario=2";
+            $sql = "SELECT * FROM USUARIO, ENTRENADOR WHERE USUARIO.userName=ENTRENADOR.userName AND USUARIO.tipoUsuario=2";
         } else if ($user == "deportista") {
-            $sql = "SELECT * FROM USUARIO, DEPORTISTA WHERE tipoUsuario = '" . $this->tipoUsuario . "' AND USUARIO.userName=DEPORTISTA.userName";
+            $sql = "SELECT * FROM USUARIO, DEPORTISTA WHERE USUARIO.userName=DEPORTISTA.userName AND USUARIO.tipoUsuario=3";
         } else {
             $sql = "SELECT * FROM USUARIO";
         }

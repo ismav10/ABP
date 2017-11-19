@@ -16,9 +16,10 @@ class Mensaje {
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
         ?>
         <div class="container">
-        <h2><?php echo $strings[$this->string]?></h2>
-            
-        <br><a style='font-weight:bold' href="<?php echo$this->volver; ?>"> <?php echo $strings['Volver']; ?></a>
+            <br>
+            <h2><div align="center"><font color="#088A4B"><?php echo $strings[$this->string]?></font></div></h2>
+            <br>
+            <br><a color="#088A4B" style='font-weight:bold' href="<?php echo$this->volver; ?>"><?php echo $strings['Volver']; ?></a>
         </div>
 
         <?php

@@ -4,9 +4,11 @@
 class DEPORTISTA_Insertar {
 
     private $volver;
+    private $cont;
     
-    function __construct($volver) {
+    function __construct($volver,$cont) {
         $this->volver = $volver;
+        $this->cont = $cont;
         $this->render();
     }
 
@@ -16,7 +18,7 @@ class DEPORTISTA_Insertar {
         <?php include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php'; ?>
 
         <div class="container" >
-            <form  id="form" name="form" action='USUARIO_Controller.php?user=deportista'  method='post'   enctype="multipart/form-data">
+            <form  id="form" name="form" action='<?php echo $this->cont; ?>'  method='post'   enctype="multipart/form-data">
                 <div class="form-group" >
                     <label class="control-label" ><?php echo $strings['Insertar deportista']; ?></label><br>
                 </div>
@@ -30,6 +32,10 @@ class DEPORTISTA_Insertar {
                     <input class="form" id="password" name="password" size="25" type="password" required="true"/>
                 </div>
 
+                <div class="form-group">
+                    <input type='hidden' class="form" id="tipoUsuario" name="tipoUsuario" size="25" type="password" required="true" value='Deportista'/>
+                </div>
+                
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['nombre']; ?></label><br>
                     <input class="form" id="nombre" name="nombre" size="50" type="text" required="true"/>

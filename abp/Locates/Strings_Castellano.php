@@ -12,7 +12,6 @@ $strings = array(
 'Introduzca un valor para username del usuario' => 'Introduzca un valor para username del usuario',
 'Error en la consulta sobre la base de datos' => 'Error en la consulta sobre la base de datos',
 'El usuario se ha modificado con éxito'=>'El usuario se ha modificado con éxito',
-'El usuario no existe'=>'El usuario no existe',
 'El usuario ha sido borrado correctamente' => 'El usuario ha sido borrado correctamente',
     
     
@@ -22,9 +21,6 @@ $strings = array(
 'Cerrar Sesión' => 'Cerrar Sesión',
 'Cuenta' => 'Cuenta',
 'Mi Perfil' => 'Mi Perfil',
-'Gestión de Funcionalidades' => 'Funcionalidades',
-'Gestión de Roles' => 'Roles',
-'Gestión de Páginas' => 'Páginas',
 'Gestión de Usuarios' => 'Usuarios',
 'Gestión de Entrenadores' => 'Entrenadores',
 'Gestión de Deportistas' => 'Deportistas',
@@ -42,7 +38,8 @@ $strings = array(
 'Modificar' => 'Modificar',
 'Consultar' => 'Consultar',
 'Borrar' => 'Borrar',
-
+'Ver'=>'Ver',
+'Seleccionar'=> 'Seleccionar',
 
 //USUARIOS
 'userName' => 'Usuario',
@@ -63,12 +60,8 @@ $strings = array(
 'Insertar Administrador' => 'Insertar Administrador',
 'Modificar Administrador' => 'Modificar Administrador',
 'Eliminar Administrador' => 'Eliminar Administrador',
-'Seleccionar'=> 'Seleccionar',
 'Modificar usuario'=>'Modificar Usuario',
-'Inserción realizada con éxito' => 'Inserción realizada con éxito',
-'Introduzca un valor para usuario del usuario' =>'Introduzca un valor para usuario del usuario',
-'El usuario ya existe en la base de datos' => 'El usuario ya existe en la base de datos',
-'Ver'=>'Ver',
+
     
 //ENTRENADOR
 'cuentaBanc' => 'Cuenta Bancaria',
@@ -98,7 +91,6 @@ $strings = array(
 'fechaHoraNotificacion' => 'Fecha',
 'asuntoNotificacion' => 'Asunto',
 'mensajeNotificacion' => 'Mensaje',
-'username' => 'Usuario',
 'Ver Notificacion' => 'Ver Notificación'
 
 

@@ -44,6 +44,13 @@ CREATE TABLE IF NOT EXISTS `actividadgrupal` (
   `idInstalacion` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `deportista`
+--
+
+INSERT INTO `actividadgrupal` (`idActividadGrupal`, `nombreActividadGrupal`, `descripcionActividadGrupal`, `numPlazasActividadGrupal`, `username`, `idInstalacion`) VALUES
+(1, 'Yoga', 'El yoga se refiere a una tradicional disciplina física, mental y espiritual que se originó en la India. La palabra se asocia con prácticas de meditación en el hinduismo, el budismo y el jainismo.', 25, 'entrenador', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -112,6 +119,14 @@ CREATE TABLE IF NOT EXISTS `deportista_inscribir_actividadgrupal` (
   `estado` tinyint(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `deportista_inscribir_actividadgrupal`
+--
+
+INSERT INTO `deportista_inscribir_actividadgrupal` (`userName`, `idActividadGrupal`, `estado`) VALUES
+('deportista1', 1, 0),
+('deportista2', 1, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -135,6 +150,13 @@ CREATE TABLE IF NOT EXISTS `entrenador` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `cuentaBanc` varchar(24) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `entrenador`
+--
+
+INSERT INTO `entrenador` (`userName`, `cuentaBanc`) VALUES
+('entrenador', 'ES1320900000290350000083');
 
 -- --------------------------------------------------------
 
@@ -165,6 +187,7 @@ INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categori
 (10, 'Borrar Entrenador', 'Gestion Usuario'),
 (11, 'Borrar Deportista', 'Gestion Usuario'),
 (12, 'Listar Entrenadores', 'Gestion Entrenadores'),
+(13, 'Listar Deportistas', 'Gestion Deportistas'),
 (50, 'Listar Solicitudes de Inscripcion', 'Gestion Inscripciones'),
 (100, 'Listar Ejercicios', 'Gestion Ejercicios'),
 (101, 'Añadir Ejercicio', 'Gestion Ejercicios'),
@@ -208,6 +231,7 @@ INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
 (10, 10),
 (11, 11),
 (12, 12),
+(13, 13),
 (50, 50),
 (100, 100),
 (101, 101),
@@ -253,6 +277,7 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (10, 1),
 (11, 1),
 (12, 1),
+(13, 1),
 (50, 1),
 (100, 1),
 (100, 2),
@@ -352,6 +377,7 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 (10, '../Views/ENTRENADOR_DELETE_Vista.php', 'ENTRENADOR DELETE'),
 (11, '../Views/DEPORTISTA_DELETE_Vista.php', 'DEPORTISTA DELETE'),
 (12, '../Views/ENTRENADOR_SHOWALL_Vista.php', 'ENTRENADOR SHOW ALL'),
+(13, '../Views/DEPORTISTA_SHOWALL_Vista.php', 'DEPORTISTA SHOW ALL'),
 (50, '../Views/INSCRIPCIONPENDIENTE_SHOWALL_Vista.php', 'INSCRIPCIONES PENDIENTES SHOW ALL'),
 (100, '../Views/EJERCICIO_SHOWALL_Vista.php', 'EJERCICIO SHOWALL'),
 (101, '../Views/EJERCICIO_ADD_Vista.php', 'EJERCICIO ADD'),
@@ -421,6 +447,7 @@ CREATE TABLE IF NOT EXISTS `tabla` (
 --
 
 CREATE TABLE IF NOT EXISTS `usuario` (
+  `foto` varchar(500) COLLATE utf8_spanish_ci DEFAULT NULL,
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(128) COLLATE utf8_spanish_ci NOT NULL,
   `tipoUsuario` int(10) NOT NULL,
@@ -430,19 +457,18 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `fechaNac` date NOT NULL,
   `direccion` varchar(80) COLLATE utf8_spanish_ci DEFAULT NULL,
   `telefono` int(15) DEFAULT NULL,
-  `email` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `foto` varchar(500) COLLATE utf8_spanish_ci DEFAULT NULL
+  `email` varchar(30) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`userName`, `password`, `tipoUsuario`, `nombre`, `apellidos`, `dni`, `fechaNac`, `direccion`, `telefono`, `email`, `foto`) VALUES
-('admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'Iván', 'de Dios Fernández', '44488795X', '1994-03-26', 'Avenida Vistahermosa 8, 3ÂºA', 988252875, 'ivanddf1994@hotmail.com', '../Documents/Administradores/44488795X/Foto/ivan.jpg'),
-('deportista1', '5e3ea95c649fe43cbc6e9c1c71071f0f', 3, 'Bruno', 'Romero Rodríguez', '87654321Q', '1995-10-10', 'Paseo de la Castellana 22, 1º', 988767165, 'brunoromero@gmail.com', NULL),
-('deportista2', '220a15a78a728aa88fcf45d009705d96', 3, 'Alberto', 'Porral Framiñán', '12678946H', '1992-09-17', 'Manuel Antonio Puga 54, 2ºA', 678987432, 'albertoporral@hotmail.com', NULL),
-('entrenador', 'a990ba8861d2b344810851e7e6b49104', 2, 'Ismael', 'Vázquez Fernández', '12345678A', '1995-10-01', 'Avenida de la Albufera 6, 2º', 988767521, 'ismaelvazquez@hotmail.com', NULL);
+INSERT INTO `usuario` (`foto`, `userName`, `password`, `tipoUsuario`, `nombre`, `apellidos`, `dni`, `fechaNac`, `direccion`, `telefono`, `email`) VALUES
+('../Documents/Administradores/44488795X/Foto/ivan.jpg', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'Iván', 'de Dios Fernández', '44488795X', '1994-03-26', 'Avenida Vistahermosa 8, 3ÂºA', 988252875, 'ivanddf1994@hotmail.com'),
+(NULL, 'deportista1', '5e3ea95c649fe43cbc6e9c1c71071f0f', 3, 'Bruno', 'Romero Rodríguez', '87654321Q', '1995-10-10', 'Paseo de la Castellana 22, 1º', 988767165, 'brunoromero@gmail.com'),
+(NULL, 'deportista2', '220a15a78a728aa88fcf45d009705d96', 3, 'Alberto', 'Porral Framiñán', '12678946H', '1992-09-17', 'Manuel Antonio Puga 54, 2ºA', 678987432, 'albertoporral@hotmail.com'),
+(NULL, 'entrenador', 'a990ba8861d2b344810851e7e6b49104', 2, 'Ismael', 'Vázquez Fernández', '12345678A', '1995-10-01', 'Avenida de la Albufera 6, 2º', 988767521, 'ismaelvazquez@hotmail.com');
 
 -- --------------------------------------------------------
 

@@ -4,9 +4,11 @@
 class ENTRENADOR_Insertar {
 
     private $volver;
+    private $cont;
 
-    function __construct($volver) {
+    function __construct($volver, $cont) {
         $this->volver = $volver;
+        $this->cont = $cont;
         $this->render();
     }
 
@@ -16,7 +18,7 @@ class ENTRENADOR_Insertar {
         <?php include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php'; ?>
 
         <div class="container" >
-            <form  id="form" name="form" action='ENTRENADOR_Controller.php?user=entrenador'  method='post'   enctype="multipart/form-data">
+            <form  id="form" name="form" action='<?php $this->cont; ?>'  method='post'   enctype="multipart/form-data">
                 <div class="form-group" >
                     <label class="control-label" ><?php echo $strings['Insertar entrenador']; ?></label><br>
                 </div>

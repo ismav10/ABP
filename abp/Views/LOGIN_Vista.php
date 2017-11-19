@@ -16,7 +16,7 @@ class Login {
         $this->view = '<div class="container text-center">
 			<section id="content">
 				<form action="./Acceso.php" method="post">
-					Login
+					<span>Login</span>
 					<div>
 						<input type="text" name="username" placeholder="Usuario" required="" id="username"/>
 					</div>
