@@ -1,4 +1,4 @@
-﻿
+
 DROP DATABASE IF EXISTS `gymgest`;
 CREATE DATABASE IF NOT EXISTS `gymgest` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 USE `gymgest`;
@@ -10,7 +10,7 @@ FLUSH PRIVILEGES;
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-11-2017 a las 12:52:15
+-- Tiempo de generación: 19-11-2017 a las 21:19:21
 -- Versión del servidor: 10.1.25-MariaDB
 -- Versión de PHP: 5.6.31
 
@@ -91,6 +91,30 @@ CREATE TABLE IF NOT EXISTS `deportista_asignar_tabla` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `deportista_asistir_actividadgrupal`
+--
+
+CREATE TABLE IF NOT EXISTS `deportista_asistir_actividadgrupal` (
+  `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `idActividadGrupal` int(10) NOT NULL,
+  `fechaAsistencia` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `deportista_inscribir_actividadgrupal`
+--
+
+CREATE TABLE IF NOT EXISTS `deportista_inscribir_actividadgrupal` (
+  `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `idActividadGrupal` int(10) NOT NULL,
+  `estado` tinyint(1) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `ejercicio`
 --
 
@@ -111,13 +135,6 @@ CREATE TABLE IF NOT EXISTS `entrenador` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `cuentaBanc` varchar(24) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `entrenador`
---
-
-INSERT INTO `entrenador` (`userName`, `cuentaBanc`) VALUES
-('entrenador', 'ES1320900000290350000083');
 
 -- --------------------------------------------------------
 
@@ -147,15 +164,17 @@ INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categori
 (9, 'Borrar Usuario', 'Gestion Usuario'),
 (10, 'Borrar Entrenador', 'Gestion Usuario'),
 (11, 'Borrar Deportista', 'Gestion Usuario'),
+(12, 'Listar Entrenadores', 'Gestion Entrenadores'),
+(50, 'Listar Solicitudes de Inscripcion', 'Gestion Inscripciones'),
 (100, 'Listar Ejercicios', 'Gestion Ejercicios'),
 (101, 'Añadir Ejercicio', 'Gestion Ejercicios'),
 (102, 'Borrar Ejercicio', 'Gestion Ejercicios'),
 (103, 'Modificar Ejercicio', 'Gestion Ejercicios'),
 (104, 'Ver Ejercicio', 'Gestion Ejercicios'),
-(200,'Listar Notificaciones','Gestion Notificaciones'),
-(201, 'Consultar Notificaciones','Gestion Notificaciones'),
-(202,'Ver Notificacion', 'Gestion Notificaciones'),
-(203, 'Insertar Notificacion','Gestion Notificaciones'),
+(200, 'Listar Notificaciones', 'Gestion Notificaciones'),
+(201, 'Consultar Notificaciones', 'Gestion Notificaciones'),
+(202, 'Ver Notificacion', 'Gestion Notificaciones'),
+(203, 'Insertar Notificacion', 'Gestion Notificaciones'),
 (204, 'Baja Notificacion', 'Gestion Notificaciones'),
 (300, 'Alta sesion', 'Gestion Sesiones'),
 (301, 'Consultar sesion', 'Gestion Sesiones'),
@@ -188,6 +207,8 @@ INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
 (9, 9),
 (10, 10),
 (11, 11),
+(12, 12),
+(50, 50),
 (100, 100),
 (101, 101),
 (102, 102),
@@ -231,6 +252,8 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (9, 1),
 (10, 1),
 (11, 1),
+(12, 1),
+(50, 1),
 (100, 1),
 (100, 2),
 (100, 3),
@@ -242,19 +265,19 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (103, 2),
 (104, 1),
 (104, 2),
-(200,1),
-(200,2),
-(200,3),
-(201,1),
-(202,1),
-(202,2),
-(202,3),
-(203,1),
-(203,2),
-(204,1),
-(300,3),
-(301,3),
-(302,3);
+(200, 1),
+(200, 2),
+(200, 3),
+(201, 1),
+(202, 1),
+(202, 2),
+(202, 3),
+(203, 1),
+(203, 2),
+(204, 1),
+(300, 3),
+(301, 3),
+(302, 3);
 
 -- --------------------------------------------------------
 
@@ -268,6 +291,13 @@ CREATE TABLE IF NOT EXISTS `instalacion` (
   `descipcionInstalacion` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
   `aforoIntalacion` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `instalacion`
+--
+
+INSERT INTO `instalacion` (`idInstalacion`, `nombreInstalacion`, `descipcionInstalacion`, `aforoIntalacion`) VALUES
+(1, 'Sala Multiusos', NULL, 50);
 
 -- --------------------------------------------------------
 
@@ -301,7 +331,7 @@ INSERT INTO `notificacion` (`idNotificacion`, `remitenteNotificacion`, `destinat
 
 CREATE TABLE IF NOT EXISTS `pagina` (
   `idPagina` int(10) NOT NULL,
-  `linkPagina` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `linkPagina` varchar(55) COLLATE utf8_spanish_ci NOT NULL,
   `nombrePagina` varchar(80) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -321,6 +351,8 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 (9, '../Views/USUARIO_DELETE_Vista.php', 'USUARIO DELETE'),
 (10, '../Views/ENTRENADOR_DELETE_Vista.php', 'ENTRENADOR DELETE'),
 (11, '../Views/DEPORTISTA_DELETE_Vista.php', 'DEPORTISTA DELETE'),
+(12, '../Views/ENTRENADOR_SHOWALL_Vista.php', 'ENTRENADOR SHOW ALL'),
+(50, '../Views/INSCRIPCIONPENDIENTE_SHOWALL_Vista.php', 'INSCRIPCIONES PENDIENTES SHOW ALL'),
 (100, '../Views/EJERCICIO_SHOWALL_Vista.php', 'EJERCICIO SHOWALL'),
 (101, '../Views/EJERCICIO_ADD_Vista.php', 'EJERCICIO ADD'),
 (102, '../Views/EJERCICIO_DELETE_Vista.php', 'EJERCICIO DELETE'),
@@ -330,10 +362,10 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 (201, '../Views/NOTIFICACION_SHOWCURRENT_Vista.php', 'NOTIFICACION SHOW CURRENT'),
 (202, '../Views/NOTIFICACION_SELECT_Vista.php', 'NOTIFICACION SELECT'),
 (203, '../Views/NOTIFICACION_ADD_Vista.php', 'NOTIFICACION ADD'),
-(204,'../Views/NOTIFICACION_DELETE_Vista.php', 'NOTIFICACION DELETE'),
-(300,'../Views/SESSION_ADD_Vista.php', 'SESSION ADD'),
-(301,'../Views/SESSION_SHOWALL_Vista.php', 'SESSION SHOWALL'),
-(302, '../Views/SESSION_EDIT_Vista.php','SESSION EDIT');
+(204, '../Views/NOTIFICACION_DELETE_Vista.php', 'NOTIFICACION DELETE'),
+(300, '../Views/SESSION_ADD_Vista.php', 'SESSION ADD'),
+(301, '../Views/SESSION_SHOWALL_Vista.php', 'SESSION SHOWALL'),
+(302, '../Views/SESSION_EDIT_Vista.php', 'SESSION EDIT');
 
 -- --------------------------------------------------------
 
@@ -430,8 +462,7 @@ CREATE TABLE IF NOT EXISTS `usuario_rol` (
 INSERT INTO `usuario_rol` (`userName`, `idRol`) VALUES
 ('admin', 1),
 ('deportista1', 3),
-('deportista2', 3),
-('entrenador', 2);
+('deportista2', 3);
 
 --
 -- Índices para tablas volcadas
@@ -464,6 +495,20 @@ ALTER TABLE `deportista`
 ALTER TABLE `deportista_asignar_tabla`
   ADD PRIMARY KEY (`username`,`idTabla`),
   ADD KEY `idTabla` (`idTabla`);
+
+--
+-- Indices de la tabla `deportista_asistir_actividadgrupal`
+--
+ALTER TABLE `deportista_asistir_actividadgrupal`
+  ADD PRIMARY KEY (`userName`,`idActividadGrupal`),
+  ADD KEY `idActividadGrupal` (`idActividadGrupal`);
+
+--
+-- Indices de la tabla `deportista_inscribir_actividadgrupal`
+--
+ALTER TABLE `deportista_inscribir_actividadgrupal`
+  ADD PRIMARY KEY (`userName`,`idActividadGrupal`),
+  ADD KEY `idActividadGrupal` (`idActividadGrupal`);
 
 --
 -- Indices de la tabla `ejercicio`
@@ -562,7 +607,7 @@ ALTER TABLE `usuario_rol`
 -- AUTO_INCREMENT de la tabla `actividadgrupal`
 --
 ALTER TABLE `actividadgrupal`
-  MODIFY `idActividadGrupal` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `idActividadGrupal` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `actividadindividual`
 --
@@ -577,22 +622,22 @@ ALTER TABLE `ejercicio`
 -- AUTO_INCREMENT de la tabla `funcionalidad`
 --
 ALTER TABLE `funcionalidad`
-  MODIFY `idFuncionalidad` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000;
+  MODIFY `idFuncionalidad` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=303;
 --
 -- AUTO_INCREMENT de la tabla `instalacion`
 --
 ALTER TABLE `instalacion`
-  MODIFY `idInstalacion` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `idInstalacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `notificacion`
 --
 ALTER TABLE `notificacion`
-  MODIFY `idNotificacion` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `idNotificacion` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `pagina`
 --
 ALTER TABLE `pagina`
-  MODIFY `idPagina` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1002;
+  MODIFY `idPagina` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=303;
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
@@ -637,6 +682,20 @@ ALTER TABLE `deportista`
 ALTER TABLE `deportista_asignar_tabla`
   ADD CONSTRAINT `deportista_asignar_tabla_ibfk_1` FOREIGN KEY (`username`) REFERENCES `deportista` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `deportista_asignar_tabla_ibfk_2` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `deportista_asistir_actividadgrupal`
+--
+ALTER TABLE `deportista_asistir_actividadgrupal`
+  ADD CONSTRAINT `deportista_asistir_actividadgrupal_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `deportista` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `deportista_asistir_actividadgrupal_ibfk_2` FOREIGN KEY (`idActividadGrupal`) REFERENCES `actividadgrupal` (`idActividadGrupal`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `deportista_inscribir_actividadgrupal`
+--
+ALTER TABLE `deportista_inscribir_actividadgrupal`
+  ADD CONSTRAINT `deportista_inscribir_actividadgrupal_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `deportista` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `deportista_inscribir_actividadgrupal_ibfk_2` FOREIGN KEY (`idActividadGrupal`) REFERENCES `actividadgrupal` (`idActividadGrupal`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `entrenador`

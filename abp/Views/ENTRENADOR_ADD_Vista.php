@@ -3,18 +3,20 @@
 //VISTA PARA LA INSERCIÓN DE USUARIOS ENTRENADORES
 class ENTRENADOR_Insertar {
 
-    function __construct() {
+    private $volver;
+
+    function __construct($volver) {
+        $this->volver = $volver;
         $this->render();
     }
 
     function render() {
         ?> <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
 
-        <?php
-        include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php'; ?>
+        <?php include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php'; ?>
 
         <div class="container" >
-            <form  id="form" name="form" action='USUARIO_Controller.php?user=entrenador'  method='post'   enctype="multipart/form-data">
+            <form  id="form" name="form" action='ENTRENADOR_Controller.php?user=entrenador'  method='post'   enctype="multipart/form-data">
                 <div class="form-group" >
                     <label class="control-label" ><?php echo $strings['Insertar entrenador']; ?></label><br>
                 </div>
@@ -26,6 +28,10 @@ class ENTRENADOR_Insertar {
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['password']; ?></label><br>
                     <input class="form" id="password" name="password" size="25" type="password" required="true"/>
+                </div>
+
+                <div class="form-group">
+                    <input type='hidden' class="form" id="tipoUsuario" name="tipoUsuario" size="25" type="password" required="true" value='Entrenador'/>
                 </div>
 
                 <div class="form-group">
@@ -68,15 +74,17 @@ class ENTRENADOR_Insertar {
                     <label class="control-label" ><?php echo $strings['foto']; ?></label><br>
                     <input type="file" name="foto" accept="image/*">
                 </div>
-                
-                 <div class="form-group">
+
+                <div class="form-group">
                     <label class="control-label" ><?php echo $strings['cuentaBanc']; ?></label><br>
                     <input class="form" id="cuentaBanc" name="cuentaBanc" size="50" type="text" required="true"/>
                 </div>
                 <br>
 
                 <input type='submit' onclick="return valida_envia_USUARIO()" name='accion'  value="<?php echo $strings['Insertar']; ?>">
-                <a class="form-link" href="..\Controllers\USUARIO_Controller.php?accion=<?php echo $strings['Seleccionar']; ?>"><?php echo $strings['Volver']; ?>
+                <a class="form-link" href="<?php echo $this->volver ?>"><?php echo $strings['Volver']; ?>
+
+
             </form>
         </div>
 

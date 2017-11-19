@@ -135,11 +135,12 @@ class USUARIO_Modelo {
      */
 
 //Devuelve la información de todos los usuarios en funcion de si son entrenadores o deportistas
-    function ConsultarTodo() {
+    function ConsultarTodo($user) {
+
         $this->ConectarBD();
-        if ($this->tipoUsuario == 2) {
-            $sql = "SELECT * FROM USUARIO, ENTRENADOR WHERE tipoUsuario = '" . $this->tipoUsuario . "' AND USUARIO.userName=ENTRENADOR.userName";
-        } else if ($this->tipoUsuario == 3) {
+        if ($user == "entrenador") {
+            $sql = "SELECT DISTINCT * FROM USUARIO, ENTRENADOR WHERE USUARIO.userName=ENTRENADOR.userName AND USUARIO.tipoUsuario=2";
+        } else if ($user == "deportista") {
             $sql = "SELECT * FROM USUARIO, DEPORTISTA WHERE tipoUsuario = '" . $this->tipoUsuario . "' AND USUARIO.userName=DEPORTISTA.userName";
         } else {
             $sql = "SELECT * FROM USUARIO";

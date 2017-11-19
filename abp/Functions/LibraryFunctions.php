@@ -1369,36 +1369,43 @@ function añadirFuncionalidades($NOM) {
             $funcionalidad = $fila['categoriaFuncionalidad'];
 
             switch ($funcionalidad) {
+
                 case "Gestion Usuarios":
-                    ?>
-                    <br><br>
+                    ?><br><br>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios'] ?> </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="../Controllers/ENTRENADOR_Controller.php"><?php echo $strings['Gestión de Entrenadores'] ?></a>
-                            <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php"><?php echo $strings['Gestión de Deportistas'] ?></a>
-                            <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios'] ?></a>
+                            <a class="dropdown-item" href="../Controllers/ENTRENADOR_Controller.php?user=entrenador"><?php echo $strings['Gestión de Entrenadores']; ?></a>
+                            <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?user=deportista"><?php echo $strings['Gestión de Deportistas']; ?></a>
+                            <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios']; ?></a>
                         </div>
                     </li>
                     <?php
                     break;
 
                 case "Gestion Actividades Grupales":
-                    ?><li role="presentation"><a href="" class="m1"><?php echo $strings['Gestión de Actividades Grupales'] ?></a></li> <?php
+                    ?><li role="presentation"><a href="" class="m1"><?php echo $strings['Gestión de Actividades Grupales']; ?></a></li> <?php
                     break;
 
-                case "Gestion Instalaciones":
-                    ?><li><span><a href='../Controllers/INSTALACION_Controller.php'><?php echo $strings['Gestión de Instalaciones'] ?></a></span></li> <?php
-                        break;
-                    
+
                 case "Gestion Notificaciones":
-                    ?><li><a style="font-size:15px;" href='../Controllers/NOTIFICACION_Controller.php'><?php echo $strings['Gestión de notificaciones'] ?></a></li> <?php
+                    ?><li><a style="font-size:15px;" href='../Controllers/NOTIFICACION_Controller.php'><?php echo $strings['Gestión de notificaciones']; ?></a></li> <?php
+                        break;
+
+                    case "Gestion Sesiones":
+                        ?><li><a style="font-size:15;" href='../Controllers/SESION_Controller.php'><?php echo $strings['Gestión de sesiones']; ?></a></li><?php
+                        break;
+
+                    case "Gestion Inscripciones":
+                        ?><li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $strings['Gestión de Inscripciones'] ?> </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="../Controllers/INSCRIPCION_Controller.php"><?php echo $strings['Pendientes']; ?></a>
+                        </div>
+                    </li>
+                    <?php
                     break;
 
-                case "Gestion Sesiones":
-                    ?><li><a style="font-size:15;" href='../Controllers/SESION_Controller.php'><?php echo $strings['Gestión de sesiones'] ?></a></li><?php
-                    break;
-                
                 default:
                     break;
             }

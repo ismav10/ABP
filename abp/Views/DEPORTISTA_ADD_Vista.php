@@ -3,7 +3,10 @@
 //VISTA PARA LA INSERCIÓN DE USUARIOS ENTRENADORES
 class DEPORTISTA_Insertar {
 
-    function __construct() {
+    private $volver;
+    
+    function __construct($volver) {
+        $this->volver = $volver;
         $this->render();
     }
 
@@ -84,7 +87,7 @@ class DEPORTISTA_Insertar {
                 <br>
 
                 <input type='submit' onclick="return valida_envia_USUARIO()" name='accion'  value="<?php echo $strings['Insertar']; ?>">
-                <a class="form-link" href="..\Controllers\USUARIO_Controller.php?accion=<?php echo $strings['Seleccionar']; ?>"><?php echo $strings['Volver']; ?>
+                 <a class="form-link" href="<?php echo $this->volver ?>"><?php echo $strings['Volver']; ?>
             </form>
         </div>
 

@@ -18,7 +18,7 @@ class DEPORTISTA_Borrar {
         ?>
 
         <div class="container" >
-            <form  id="form" name="form" action='USUARIO_Controller.php?user=deportista'  method='post'   enctype="multipart/form-data">
+            <form  id="form" name="form" action='ENTRENADOR_Controller.php?user=deportista'  method='post'   enctype="multipart/form-data">
                 <div class="form-group" >
                     <label class="control-label" ><?php echo $strings['Eliminar Deportista']; ?></label><br>
                 </div>

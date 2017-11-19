@@ -104,17 +104,19 @@ if (!isset($_REQUEST['accion'])) {
 }
 
 
+
+
 Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
     case $strings['Seleccionar']:
         if (!isset($_REQUEST['user'])) {
             new USUARIO_Select('USUARIO_Controller.php');
         } else {
             if ($_REQUEST['user'] == "admin") { //Si aún no se ha establecido el usuario
-                new USUARIO_Insertar();
+                new USUARIO_Insertar('USUARIO_Controller.php?accion=' . $strings['Seleccionar']);
             } else if ($_REQUEST['user'] == "entrenador") {
-                new ENTRENADOR_Insertar();
+                new ENTRENADOR_Insertar('USUARIO_Controller.php?accion=' . $strings['Seleccionar']);
             } else if ($_REQUEST['user'] == "deportista") {
-                new DEPORTISTA_Insertar();
+                new DEPORTISTA_Insertar('USUARIO_Controller.php?accion=' . $strings['Seleccionar']);
             }
         }
         break;
@@ -135,7 +137,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
             }
 
             $respuesta = $usuario->Insertar();
-            new Mensaje($respuesta, 'USUARIO_Controller.php?accion=' . $strings['Seleccionar']);
+            new Mensaje($respuesta, 'USUARIO_Controller.php');
         } else if ($_REQUEST['user'] == "entrenador") {
             $entrenador = get_data_form_Entrenador(); //Recogemos los datos del formulario
             //Creamos las carpetas para guardar los archivos
@@ -149,7 +151,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
             }
 
             $respuesta = $entrenador->Insertar();
-            new Mensaje($respuesta, 'USUARIO_Controller.php?accion=' . $strings['Seleccionar']);
+            new Mensaje($respuesta, 'USUARIO_Controller.php');
         } else if ($_REQUEST['user'] == "deportista") {
             $deportista = get_data_form_Deportista(); //Recogemos los datos del formulario
             //Creamos las carpetas para guardar los archivos
@@ -163,7 +165,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
             }
 
             $respuesta = $deportista->Insertar();
-            new Mensaje($respuesta, 'USUARIO_Controller.php?accion=' . $strings['Seleccionar']);
+            new Mensaje($respuesta, 'USUARIO_Controller.php');
         }
 
         break;
@@ -366,8 +368,10 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         } else {
             $usuario = get_data_form();
         }
-
-        $datos = $usuario->ConsultarTodo();
+        if (!isset($_REQUEST['user'])) {
+            $_REQUEST['user'] = '';
+        }
+        $datos = $usuario->ConsultarTodo($_REQUEST['user']);
 
         if (!tienePermisos('USUARIO_Show')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');

@@ -32,6 +32,7 @@ $strings = array(
 'Gestión de Actividades Grupales' => 'Actividades Grupales',
 'Gestión de notificaciones' => 'Notificaciones',
 'Gestión de sesiones' => 'Sesiones',
+'Gestión de Inscripciones' => 'Inscripciones',
 
 
 
@@ -86,7 +87,11 @@ $strings = array(
 'Eliminar Deportista' => 'Eliminar Deportista',
     
 
-    //NOTIFICACION
+//INSCRIPCIONES
+'Pendientes' => 'Pendientes',
+    
+    
+//NOTIFICACION
 'idNotificacion' => 'idNotificacion',
 'remitenteNotificacion' => 'Remitente',
 'destinatarioNotificacion' => 'Destinatario',
