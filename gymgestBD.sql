@@ -433,11 +433,30 @@ CREATE TABLE IF NOT EXISTS `sesion` (
 -- Estructura de tabla para la tabla `tabla`
 --
 
-CREATE TABLE IF NOT EXISTS `tabla` (
+CREATE TABLE `tabla` (
   `idTabla` int(10) NOT NULL,
-  `idEjercicio` int(10) NOT NULL,
-  `descripcionTabla` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `repeticiones` int(10) NOT NULL
+  `nombreTabla` varchar(50) NOT NULL,
+  `descripcionTabla` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tabla`
+--
+
+INSERT INTO `tabla` (`idTabla`, `nombreTabla`, `descripcionTabla`) VALUES
+(1, 'Tabla PET', 'Tabla Intensa'),
+(2, 'Tabla PET 2','Tabla Intensidad Media');
+
+-- --------------------------------------------------------
+
+
+--
+-- Estructura de tabla para la tabla `tabla_con_ejercicio`
+--
+
+CREATE TABLE `tabla_con_ejercicio` (
+  `idTabla` int(10) NOT NULL,
+  `idEjercicio` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -445,6 +464,7 @@ CREATE TABLE IF NOT EXISTS `tabla` (
 --
 -- Estructura de tabla para la tabla `usuario`
 --
+
 
 CREATE TABLE IF NOT EXISTS `usuario` (
   `foto` varchar(500) COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -491,9 +511,6 @@ INSERT INTO `usuario_rol` (`userName`, `idRol`) VALUES
 ('deportista1', 3),
 ('deportista2', 3);
 
---
--- Índices para tablas volcadas
---
 
 --
 -- Indices de la tabla `actividadgrupal`
@@ -607,7 +624,14 @@ ALTER TABLE `sesion`
 -- Indices de la tabla `tabla`
 --
 ALTER TABLE `tabla`
-  ADD PRIMARY KEY (`idTabla`),
+  ADD PRIMARY KEY (`idTabla`);
+
+--
+-- Indices de la tabla `tabla_con_ejercicio`
+--
+ALTER TABLE `tabla_con_ejercicio`
+  ADD PRIMARY KEY (`idTabla`,`idEjercicio`),
+  ADD KEY `idTabla` (`idTabla`),
   ADD KEY `idEjercicio` (`idEjercicio`);
 
 --
@@ -759,10 +783,11 @@ ALTER TABLE `sesion`
   ADD CONSTRAINT `sesion_ibfk_3` FOREIGN KEY (`idActividadIndividual`) REFERENCES `actividadindividual` (`idActividadIndividual`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `tabla`
+-- Filtros para la tabla `tabla_con_ejercicio`
 --
-ALTER TABLE `tabla`
-  ADD CONSTRAINT `tabla_ibfk_1` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `tabla_con_ejercicio`
+  ADD CONSTRAINT `tabla_con_ejercicio_ibfk_1` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tabla_con_ejercicio_ibfk_2` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuario`
