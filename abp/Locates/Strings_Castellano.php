@@ -83,6 +83,12 @@ $strings = array(
 
 //INSCRIPCIONES
 'Pendientes' => 'Pendientes',
+'nombreActividadGrupal'=> 'Actividad',
+0 => 'Solicitud Pendiente',
+1 => 'Solicitud Aceptada',
+'estado' => 'Estado',
+'Aceptar' => 'Aceptar',
+'Rechazar' => 'Rechazar',
     
     
 //NOTIFICACION
