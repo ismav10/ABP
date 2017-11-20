@@ -3,64 +3,87 @@
 //VISTA PARA LA INSERCIÓN DE USUARIOS
 class USUARIO_Insertar {
 
-    private $id;
-
-    function __construct($id) {
-        $this->id = $id;
+    private $volver;
+    
+    function __construct($volver) {
+        $this->volver = $volver;
         $this->render();
     }
 
     function render() {
-        ?><div class="wrap">
+        ?> <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
 
-            <head>
-                <link rel="stylesheet" href="../css/style.css" type="text/css" media="all">
-                <link rel="stylesheet" href="../css/Styles/styles.css" type="text/css" media="screen" />
-                <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script></head>
+        <?php
+        include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php'; ?>
 
-            <?php
-            include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
-            include '../Functions/USUARIOShowAllDefForm.php';
+        <div class="container" >
+            <form  id="form" name="form" action='USUARIO_Controller.php?user=admin'  method='post'   enctype="multipart/form-data">
+                <div class="form-group" >
+                    <label class="control-label" ><?php echo $strings['Insertar Administrador']; ?></label><br>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['userName']; ?></label><br>
+                    <input class="form" id="userName" name="userName" size="25" type="text" required="true"/>
+                </div>
 
-            //Array con los nombres de los campos a insertar en funcion del usuario que vayamos a insertar
-            if ($this->id == "2") {
-                $lista = array('userName', 'password', 'nombre', 'apellidos', 'dni', 'fechaNac', 'direccion', 'email', 'telefono', 'cuentaBanc', 'foto');
-            } else if ($this->id == "3") {
-                $lista = array('userName', 'password', 'nombre', 'apellidos', 'dni', 'fechaNac', 'direccion', 'email', 'telefono', 'foto', 'tipoDeportista', 'metodoPago');
-            } else if ($this->id != "2" && $this->id != "3") {
-                $lista = array('userName', 'password', 'tipoUsuario', 'nombre', 'apellidos', 'dni', 'fechaNac', 'direccion', 'email', 'telefono', 'foto');
-            }
-            ?>
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['password']; ?></label><br>
+                    <input class="form" id="password" name="password" size="25" type="password" required="true"/>
+                </div>
+                
+                 <div class="form-group">
+                    <input type="hidden" id="tipoUsuario" name="tipoUsuario" size="25" type="tipoUsuario" required="true" value='Administrador'/>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['nombre']; ?></label><br>
+                    <input class="form" id="nombre" name="nombre" size="50" type="text" required="true"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['apellidos']; ?></label><br>
+                    <input class="form" id="apellidos" name="apellidos" size="50" type="text" required="true"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['dni']; ?></label><br>
+                    <input class="form" id="dni" name="dni" size="9" type="text" required="true"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['fechaNac']; ?></label><br>
+                    <input class="form" id="fechaNac" name="fechaNac" type="date" required="true"/>
+                </div>
 
 
-            <form  id="form" name="form" action='USUARIO_Controller.php?id=<?php echo $this->id?>'  method='post'   enctype="multipart/form-data">
-                <div id="centrado"><span class="form-title">
-                <?php 
-                    if ($this->id == "2") { ?>
-                        <br><?php echo $strings['Insertar entrenador'] ?><br></span></div><?php 
-                        
-                    } else if ($this->id == "3") {  ?>
-                        <br><?php echo $strings['Insertar deportista'] ?><br></span></div><?php 
-                        
-                    } else if ($this->id != "entrenador" || $this->id != "deportista") {?>
-                        <br><?php echo $strings['Insertar usuario'] ?><br></span></div><?php
-                }   
-                ?>
-                <ul class="form-style-1">
-                    <?php
-                    //Generación automática del formulario
-                    createForm($lista, $DefForm, $strings, '', array('foto' => false), false);
-                    ?>
-                    <input type='submit' onclick="return valida_envia_USUARIO()" name='accion'  value=<?php echo $strings['Insertar'] ?>
-                           <ul>
-                        </form>
-                        <?php
-                        echo '<a class="form-link" href=\'USUARIO_Controller.php?id='.$this->id.'\'>' . $strings['Volver'] . " </a>";
-                        ?>
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['direccion']; ?></label><br>
+                    <input class="form" id="direccion" name="direccion" size="50" type="text" required="true"/>
+                </div>
 
-                        <?php
-                    }
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['email']; ?></label><br>
+                    <input class="form" id="email" name="email" size="50" type="email" required="true"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['telefono']; ?></label><br>
+                    <input class="form" id="telefono" name="telefono" size="15" type="numeric" required="true"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['foto']; ?></label><br>
+                    <input type="file" name="foto" accept="image/*">
+                </div>
+                <br>
+
+                <input type='submit' onclick="return valida_envia_USUARIO()" name='accion'  value="<?php echo $strings['Insertar']; ?>">
+                <a class="form-link" href="<?php echo $this->volver ?>"><?php echo $strings['Volver']; ?>
+            </form>
+        </div>
+        <?php
+        include '../Views/footer.php';
+    }
 
 //fin metodo render
-                }
-                
+}
