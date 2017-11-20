@@ -423,6 +423,9 @@ CREATE TABLE IF NOT EXISTS `sesion` (
   `idSesion` int(10) NOT NULL,
   `username` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `idTabla` int(10) NOT NULL,
+  `fechaSesion` date NOT NULL,
+  `horaInicio` varchar(5) NOT NULL,
+  `horaFin` varchar(5) NOT NULL,
   `comentarioSesion` text COLLATE utf8_spanish_ci,
   `idActividadIndividual` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -467,7 +470,7 @@ CREATE TABLE `tabla_con_ejercicio` (
 
 
 CREATE TABLE IF NOT EXISTS `usuario` (
-  `foto` varchar(500) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `foto` varchar(500) COLLATE utf8_spanish_ci DEFAULT '../img/user.jpg',
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(128) COLLATE utf8_spanish_ci NOT NULL,
   `tipoUsuario` int(10) NOT NULL,
@@ -486,9 +489,9 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 
 INSERT INTO `usuario` (`foto`, `userName`, `password`, `tipoUsuario`, `nombre`, `apellidos`, `dni`, `fechaNac`, `direccion`, `telefono`, `email`) VALUES
 ('../Documents/Administradores/44488795X/Foto/ivan.jpg', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'IvÃ¡n', 'de Dios FernÃ¡ndez', '44488795X', '1994-03-26', 'Avenida Vistahermosa 8, 3ÂºA', 988252875, 'ivanddf1994@hotmail.com'),
-(NULL, 'deportista1', '5e3ea95c649fe43cbc6e9c1c71071f0f', 3, 'Bruno', 'Romero RodrÃguez', '87654321Q', '1995-10-10', 'Paseo de la Castellana 22, 1Âº', 988767165, 'brunoromero@gmail.com'),
-(NULL, 'deportista2', '220a15a78a728aa88fcf45d009705d96', 3, 'Alberto', 'Porral FramiÃ±Ã¡Ã¡n', '12678946H', '1992-09-17', 'Manuel Antonio Puga 54, 2ÂºA', 678987432, 'albertoporral@hotmail.com'),
-(NULL, 'entrenador', 'a990ba8861d2b344810851e7e6b49104', 2, 'Ismael', 'VÃ¡zquez FernÃ¡ndez', '12345678A', '1995-10-01', 'Avenida de la Albufera 6, 2Âº I', 988767521, 'ismaelvazquez@hotmail.com');
+('../Documents/Deportistas/87654321Q/Foto/s.jpeg', 'deportista1', '5e3ea95c649fe43cbc6e9c1c71071f0f', 3, 'Bruno', 'Romero Rodriguez', '87654321Q', '1995-10-10', 'Paseo de la Castellana 22, 1Âº', 988767165, 'brunoromero@gmail.com'),
+('../img/user.jpg', 'deportista2', '220a15a78a728aa88fcf45d009705d96', 3, 'Alberto', 'Porral FramiÃ±Ã¡n', '12678946H', '1992-09-17', 'Manuel Antonio Puga 54, 2ÂºA', 678987432, 'albertoporral@hotmail.com'),
+('../img/user.jpg', 'entrenador', 'a990ba8861d2b344810851e7e6b49104', 2, 'Ismael', 'VÃ¡zquez FernÃ¡ndez', '12345678A', '1995-10-01', 'Avenida de la Albufera 6, 2Âº', 988767521, 'ismaelvazquez@hotmail.com');
 
 -- --------------------------------------------------------
 

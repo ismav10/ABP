@@ -44,6 +44,7 @@ $strings = array(
 //USUARIOS
 'userName' => 'Usuario',
 'password'=>'Contraseña',
+'newPassword'=>'Contraseña Nueva',
 'nombre' => 'Nombre',
 'apellidos' => 'Apellidos',
 'tipoUsuario' => 'Tipo',

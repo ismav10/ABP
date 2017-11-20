@@ -1,4 +1,5 @@
 <?php
+
 //VISTA PARA LA INSERCIÓN DE USUARIOS ENTRENADORES
 class DEPORTISTA_Modificar {
 
@@ -22,6 +23,13 @@ class DEPORTISTA_Modificar {
                 <div class="form-group" >
                     <label class="control-label" ><?php echo $strings['Modificar deportista']; ?></label><br>
                 </div>
+
+                <br>
+                <div class="form-group">
+                    <a target='_blank' href='<?php echo $this->valores['foto']; ?>'><img src='<?php echo $this->valores['foto']; ?>' width="250" height="250"></a>
+                    <input type="file" name="foto" accept="image/*" value="<?php echo $this->valores['foto']; ?>">
+                </div>
+
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['userName']; ?></label><br>
                     <input class="form" id="userName" name="userName" size="25" type="text" required="true" readonly="true" value="<?php echo $this->valores['userName']; ?>">
@@ -29,9 +37,14 @@ class DEPORTISTA_Modificar {
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['password']; ?></label><br>
-                    <input class="form" id="password" name="password" size="25" type="password" required="true">
+                    <input class="form" id="password" name="password" size="25" type="password" readonly="true" value="<?php echo $this->valores['password']; ?>">
                 </div>
 
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['newPassword']; ?></label><br>
+                    <input class="form" id="newPassword" name="newPassword" size="25" type="password"/>
+                </div>
+                
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['tipoUsuario']; ?></label><br>
                     <select name="tipoUsuario" id="tipoUsuario"> 
@@ -77,11 +90,6 @@ class DEPORTISTA_Modificar {
                     <input class="form" id="telefono" name="telefono" size="15" type="numeric" required="true" value="<?php echo $this->valores['telefono']; ?>">
                 </div>
 
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['foto']; ?></label><br>
-                    <input type="file" name="foto" accept="image/*" value="<?php echo $this->valores['foto']; ?>"/>
-                </div>
-
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['tipoDeportista']; ?></label><br>
@@ -92,7 +100,7 @@ class DEPORTISTA_Modificar {
                         <?php } else { ?>
                             <option value="TDU" selected><?php echo $strings['TDU']; ?></option> 
                             <option value="PEF"><?php echo $strings['PEF']; ?></option>
-                        <?php
+                            <?php
                         }
                         ?>
                     </select>

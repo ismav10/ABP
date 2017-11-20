@@ -20,9 +20,10 @@ class USUARIO_Modelo {
     var $cuentaBanc;
     var $tipoDeportista;
     var $metodoPago;
+    var $newPassword;
     var $mysqli;
 
-    function __construct($userName, $password, $tipoUsuario, $nombre, $apellidos, $dni, $fechaNac, $direccion, $telefono, $email, $foto, $cuentaBanc, $tipoDeportista, $metodoPago) {
+    function __construct($userName, $password, $tipoUsuario, $nombre, $apellidos, $dni, $fechaNac, $direccion, $telefono, $email, $foto, $cuentaBanc, $tipoDeportista, $metodoPago, $newPassword) {
         $this->userName = $userName;
         $this->password = $password;
         $this->tipoUsuario = $tipoUsuario;
@@ -37,6 +38,7 @@ class USUARIO_Modelo {
         $this->cuentaBanc = $cuentaBanc;
         $this->tipoDeportista = $tipoDeportista;
         $this->medotoPago = $metodoPago;
+        $this->newPassword = $newPassword;
     }
 
 //Función para conectarnos a la Base de datos
@@ -51,7 +53,6 @@ class USUARIO_Modelo {
 //Comprueba que el usuario pueda loguearse
     function Login() {
         $this->ConectarBD();
-        echo $this->userName;
         $sql = "SELECT * FROM USUARIO WHERE userName = '" . $this->userName . "'";
         $result = $this->mysqli->query($sql);
         if ($result->num_rows == 1) {
@@ -214,8 +215,12 @@ class USUARIO_Modelo {
         $result = $this->mysqli->query($sql);
 
         if ($result->num_rows == 1) {
-            $sql = "UPDATE USUARIO SET password = '" . md5($this->password) . "',tipoUsuario ='" . $this->tipoUsuario . "',nombre= '" . $this->nombre . "',apellidos= '" . $this->apellidos . "',dni = '" . $this->dni . "',fechaNac= '" . $this->fechaNac . "',direccion= '" . $this->direccion . "',telefono= '" . $this->telefono . "',email= '" . $this->email . "'";
-
+            if ($this->newPassword == '') {
+                $sql = "UPDATE USUARIO SET tipoUsuario ='" . $this->tipoUsuario . "',nombre= '" . $this->nombre . "',apellidos= '" . $this->apellidos . "',dni = '" . $this->dni . "',fechaNac= '" . $this->fechaNac . "',direccion= '" . $this->direccion . "',telefono= '" . $this->telefono . "',email= '" . $this->email . "'";
+            } else {
+                $sql = "UPDATE USUARIO SET password = '" . md5($this->newPassword) . "',tipoUsuario ='" . $this->tipoUsuario . "',nombre= '" . $this->nombre . "',apellidos= '" . $this->apellidos . "',dni = '" . $this->dni . "',fechaNac= '" . $this->fechaNac . "',direccion= '" . $this->direccion . "',telefono= '" . $this->telefono . "',email= '" . $this->email . "'";
+            }
+            
             if ($this->foto != '') {
                 $sql.=", foto='" . $this->foto . "'";
             }

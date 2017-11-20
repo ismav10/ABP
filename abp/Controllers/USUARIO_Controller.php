@@ -30,7 +30,11 @@ function get_data_form_Admin() {
     $direccion = $_REQUEST['direccion'];
     $telefono = $_REQUEST['telefono'];
     $email = $_REQUEST['email'];
-
+    if ($_REQUEST['newPassword'] == '') {
+        $newPassword = '';
+    } else {
+        $newPassword = $_REQUEST['newPassword'];
+    }
     //Si no se ha introducido un nuevo archivo se deja el que había
     if (isset($_FILES['foto']['name']) && ($_FILES['foto']['name'] !== '')) {
         $foto = '../Documents/Administradores/' . $_REQUEST['dni'] . '/Foto/' . $_FILES['foto']['name'];
@@ -38,7 +42,7 @@ function get_data_form_Admin() {
         $foto = '';
     }
 
-    $usuario = new USUARIO_Modelo($userName, $password, $tipoUsuario, $nombre, $apellidos, $dni, $fechaNac, $direccion, $telefono, $email, $foto, "", "", "");
+    $usuario = new USUARIO_Modelo($userName, $password, $tipoUsuario, $nombre, $apellidos, $dni, $fechaNac, $direccion, $telefono, $email, $foto, "", "", "", $newPassword);
 
     return $usuario;
 }
@@ -58,15 +62,20 @@ function get_data_form_Entrenador() {
     $telefono = $_REQUEST['telefono'];
     $email = $_REQUEST['email'];
     $cuentaBanc = $_REQUEST['cuentaBanc'];
+     if ($_REQUEST['newPassword'] == '') {
+        $newPassword = '';
+    } else {
+        $newPassword = $_REQUEST['newPassword'];
+    }
 
     //Si no se ha introducido un nuevo archivo se deja el que había
     if (isset($_FILES['foto']['name']) && ($_FILES['foto']['name'] !== '')) {
         $foto = '../Documents/Entrenadores/' . $_REQUEST['dni'] . '/Foto/' . $_FILES['foto']['name'];
     } else {
-        $foto = '';
+        $foto = '../img/user.jpg';
     }
 
-    $entrenador = new USUARIO_Modelo($userName, $password, $tipoUsuario, $nombre, $apellidos, $dni, $fechaNac, $direccion, $telefono, $email, $foto, $cuentaBanc, "", "");
+    $entrenador = new USUARIO_Modelo($userName, $password, $tipoUsuario, $nombre, $apellidos, $dni, $fechaNac, $direccion, $telefono, $email, $foto, $cuentaBanc, "", "", $newPassword);
 
     return $entrenador;
 }
@@ -86,15 +95,20 @@ function get_data_form_Deportista() {
     $email = $_REQUEST['email'];
     $tipoDeportista = $_REQUEST['tipoDeportista'];
     $metodoPago = $_REQUEST['tipoDeportista'];
+     if ($_REQUEST['newPassword'] == '') {
+        $newPassword = '';
+    } else {
+        $newPassword = $_REQUEST['newPassword'];
+    }
 
     //Si no se ha introducido un nuevo archivo se deja el que había
     if (isset($_FILES['foto']['name']) && ($_FILES['foto']['name'] !== '')) {
         $foto = '../Documents/Deportistas/' . $_REQUEST['dni'] . '/Foto/' . $_FILES['foto']['name'];
     } else {
-        $foto = '';
+        $foto = '../img/user.jpg';
     }
 
-    $deportista = new USUARIO_Modelo($userName, $password, $tipoUsuario, $nombre, $apellidos, $dni, $fechaNac, $direccion, $telefono, $email, $foto, "", $tipoDeportista, $metodoPago);
+    $deportista = new USUARIO_Modelo($userName, $password, $tipoUsuario, $nombre, $apellidos, $dni, $fechaNac, $direccion, $telefono, $email, $foto, "", $tipoDeportista, $metodoPago, $newPassword);
 
     return $deportista;
 }
@@ -114,9 +128,9 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
             if ($_REQUEST['user'] == "admin") { //Si aún no se ha establecido el usuario
                 new USUARIO_Insertar('USUARIO_Controller.php?accion=' . $strings['Seleccionar']);
             } else if ($_REQUEST['user'] == "entrenador") {
-                new ENTRENADOR_Insertar('USUARIO_Controller.php?accion=' . $strings['Seleccionar'],'USUARIO_Controller.php?user=entrenador');
+                new ENTRENADOR_Insertar('USUARIO_Controller.php?accion=' . $strings['Seleccionar'], 'USUARIO_Controller.php?user=entrenador');
             } else if ($_REQUEST['user'] == "deportista") {
-                new DEPORTISTA_Insertar('USUARIO_Controller.php?accion=' . $strings['Seleccionar'],'USUARIO_Controller.php?user=deportista');
+                new DEPORTISTA_Insertar('USUARIO_Controller.php?accion=' . $strings['Seleccionar'], 'USUARIO_Controller.php?user=deportista');
             }
         }
         break;
@@ -178,7 +192,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         if (ConsultarTipoUsuario($_REQUEST['userName']) == 1) {
             if (!isset($_REQUEST['dni'])) {
                 //Crea un usuario solo con el user para posteriormente rellenar el formulario con sus datos
-                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '');
+                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '','');
                 $valores = $usuario->RellenaDatos();
                 if (!tienePermisos('USUARIO_Modificar')) {
                     new Mensaje('No tienes los permisos necesarios', 'USUARIO_Controller.php');
@@ -203,7 +217,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         } else if (ConsultarTipoUsuario($_REQUEST['userName']) == 2) {
             if (!isset($_REQUEST['dni'])) {
                 //Crea un usuario solo con el user para posteriormente rellenar el formulario con sus datos
-                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '');
+                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '','');
                 $valores = $usuario->RellenaDatos();
                 if (!tienePermisos('ENTRENADOR_Modificar')) {
                     new Mensaje('No tienes los permisos necesarios', 'USUARIO_Controller.php');
@@ -228,7 +242,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         } else if (ConsultarTipoUsuario($_REQUEST['userName']) == 3) {
             if (!isset($_REQUEST['dni'])) {
                 //Crea un usuario solo con el user para posteriormente rellenar el formulario con sus datos
-                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '');
+                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '','');
                 $valores = $usuario->RellenaDatos();
                 if (!tienePermisos('DEPORTISTA_Modificar')) {
                     new Mensaje('No tienes los permisos necesarios', 'USUARIO_Controller.php');
@@ -258,7 +272,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         if (ConsultarTipoUsuario($_REQUEST['userName']) == 1) {
             if (!isset($_REQUEST['nombre'])) {
                 //Crea un usuario solo con el user para rellenar posteriormente sus datos y mostrarlos en el formulario
-                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '');
+                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '','');
                 $valores = $usuario->RellenaDatos();
                 if (!tienePermisos('USUARIO_Borrar')) {
                     new Mensaje('No tienes los permisos necesarios', 'USUARIO_Controller.php');
@@ -275,7 +289,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         } if (ConsultarTipoUsuario($_REQUEST['userName']) == 2) {
             if (!isset($_REQUEST['nombre'])) {
                 //Crea un usuario solo con el user para rellenar posteriormente sus datos y mostrarlos en el formulario
-                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '');
+                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '','');
                 $valores = $usuario->RellenaDatos();
                 if (!tienePermisos('ENTRENADOR_Borrar')) {
                     new Mensaje('No tienes los permisos necesarios', 'USUARIO_Controller.php');
@@ -292,7 +306,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         } if (ConsultarTipoUsuario($_REQUEST['userName']) == 3) {
             if (!isset($_REQUEST['nombre'])) {
                 //Crea un usuario solo con el user para rellenar posteriormente sus datos y mostrarlos en el formulario
-                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '');
+                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '','');
                 $valores = $usuario->RellenaDatos();
                 if (!tienePermisos('DEPORTISTA_Borrar')) {
                     new Mensaje('No tienes los permisos necesarios', 'USUARIO_Controller.php');
@@ -364,7 +378,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 
     default: //Por defecto se realiza el show all
         if (!isset($_REQUEST['userName'])) {
-            $usuario = new USUARIO_Modelo('', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $usuario = new USUARIO_Modelo('', '', '', '', '', '', '', '', '', '', '', '', '', '','');
         } else {
             $usuario = get_data_form();
         }

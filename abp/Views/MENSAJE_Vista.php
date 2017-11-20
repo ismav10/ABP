@@ -1,5 +1,4 @@
 <?php
-
 class Mensaje {
 
 //VISTA PARA MOSTRAR AVISOS Y MENSAJES

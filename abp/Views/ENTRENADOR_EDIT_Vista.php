@@ -1,4 +1,5 @@
 <?php
+
 //VISTA PARA LA INSERCIÓN DE USUARIOS ENTRENADORES
 class ENTRENADOR_Modificar {
 
@@ -22,6 +23,12 @@ class ENTRENADOR_Modificar {
                 <div class="form-group" >
                     <label class="control-label" ><?php echo $strings['Modificar entrenador']; ?></label><br>
                 </div>
+
+                <div class="form-group">
+                    <a target='_blank' href='<?php echo $this->valores['foto']; ?>'><img src='<?php echo $this->valores['foto']; ?>' width="250" height="250"></a>
+                    <input type="file" name="foto" accept="image/*" value="<?php echo $this->valores['foto']; ?>">
+                </div>
+
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['userName']; ?></label><br>
                     <input class="form" id="userName" name="userName" size="25" type="text" required="true" readonly="true" value="<?php echo $this->valores['userName']; ?>"/>
@@ -30,6 +37,11 @@ class ENTRENADOR_Modificar {
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['password']; ?></label><br>
                     <input class="form" id="password" name="password" size="25" type="password" required="true"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['newPassword']; ?></label><br>
+                    <input class="form" id="newPassword" name="newPassword" size="25" type="password"/>
                 </div>
 
                 <div class="form-group">
@@ -78,16 +90,11 @@ class ENTRENADOR_Modificar {
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['foto']; ?></label><br>
-                    <input type="file" name="foto" accept="image/*" value="<?php echo $this->valores['foto']; ?>"/>
-                </div>
-
-                <div class="form-group">
                     <label class="control-label" ><?php echo $strings['cuentaBanc']; ?></label><br>
                     <input class="form" id="cuentaBanc" name="cuentaBanc" size="50" type="text" required="true" value="<?php echo $this->valores['cuentaBanc']; ?>"/>
                 </div>
                 <br>
-                
+
                 <input type = 'submit' name = 'accion' value = '<?php echo $strings['Modificar'] ?>'  onclick="return valida_envia_USUARIO()" >
                 <a class="form-link" href='<?php echo $this->volver ?> '><?php echo $strings['Volver']; ?> </a>
             </form>
