@@ -487,6 +487,7 @@ CREATE TABLE IF NOT EXISTS `usuario_rol` (
 
 INSERT INTO `usuario_rol` (`userName`, `idRol`) VALUES
 ('admin', 1),
+('entrenador', 2),
 ('deportista1', 3),
 ('deportista2', 3);
 
