@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 class EJERCICIO_EDIT
 {
 

@@ -22,11 +22,6 @@ class NOTIFICACION_Seleccionar {
                     <label class="control-label" ><?php echo $strings['Ver Notificacion']; ?></label><br>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['idNotificacion']; ?></label><br>
-                    <input class="form" id="idNotificacion" name="idNotificacion" size="10" type="text" readonly="true" value="<?php echo $this->valores['idNotificacion']; ?>">
-                </div>
-
-                <div class="form-group">
                     <label class="control-label" ><?php echo $strings['remitenteNotificacion']; ?></label><br>
                     <input class="form" id="remitenteNotificacion" name="remitenteNotificacion" size="50" type="text" readonly="true" value="<?php echo $this->valores['remitenteNotificacion']; ?>">
                 </div>

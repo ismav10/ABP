@@ -1,7 +1,7 @@
 <?php
 
-//VISTA PARA LISTAR NOTIFICACIONES
-class NOTIFICACION_Listar {
+//VISTA PARA LA INSERCIÓN DE USUARIOS
+class SESION_Consulta {
 
     private $datos;
     private $volver;
@@ -13,11 +13,14 @@ class NOTIFICACION_Listar {
     }
 
     function render() {
+        ?> <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
+
+        <?php
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
-        ?> 
+        ?>
         <div class="container">
             <?php
-            $lista = array('idNotificacion', 'remitenteNotificacion', 'destinatarioNotificacion', 'fechaHoraNotificacion', 'asuntoNotificacion');
+            $lista = array('idTabla', 'idActividadIndividual', 'comentarioSesion', 'fechaSesion', 'horaInicio', 'horaFin');
             ?>
             <br><br>
 
@@ -41,30 +44,31 @@ class NOTIFICACION_Listar {
                                         for ($i = 0; $i < count($lista); $i++) {
                                             if ($clave === $lista[$i]) {
                                                 echo "<td>";
-                                                if ($clave === 'idNotificacion') {
-                                                    ?>
-                                            <a href='NOTIFICACION_Controller.php?idNotificacion=<?php echo $this->datos[$j]['idNotificacion'] . '&accion=' . $strings['Ver']; ?>'><img src="../img/notificacion.png" width="30px" height="30px"></a>                       
-                                            <?php
-                                            break;
-                                        } else {
-                                            echo $valor;
+                                                echo $valor;
+                                                echo "</td>";
+                                            }
                                         }
-                                        echo "</td>";
                                     }
+
+                                    /*
+                                      for($i=0;$i<count($this->datos);$i++)
+                                      {
+                                      echo $this->datos[$i]['idTabla'];
+                                      echo $this->datos[$i]['idActividadIndividual'];
+                                      echo $this->datos[$i]['comentarioSesion'];
+                                      echo $this->datos[$i]['fechaSesion'];
+                                      echo $this->datos[$i]['horaInicio'];
+                                      echo $this->datos[$i]['horaFin'];
+                                      }
+                                      ?>
+                                     */
+
+
+                                    include '../Views/footer.php';
                                 }
+
+//fin metodo render
                             }
-                            ?>
-                            <?php
+
                         }
                         ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <?php
-        include '../Views/footer.php';
-    }
-
-}

@@ -29,6 +29,8 @@ $strings = array(
 'Gestión de notificaciones' => 'Notificaciones',
 'Gestión de sesiones' => 'Sesiones',
 'Gestión de Inscripciones' => 'Inscripciones',
+'Gestión de ejercicios' => 'Ejercicios',
+'Gestión de tablas' => 'Tablas',
 
 
 
@@ -86,20 +88,35 @@ $strings = array(
 'nombreActividadGrupal'=> 'Actividad',
 0 => 'Solicitud Pendiente',
 1 => 'Solicitud Aceptada',
+'plazasDisponibles' => 'Plazas',
 'estado' => 'Estado',
 'Aceptar' => 'Aceptar',
 'Rechazar' => 'Rechazar',
     
     
 //NOTIFICACION
-'idNotificacion' => 'idNotificacion',
+'idNotificacion' => '',
 'remitenteNotificacion' => 'Remitente',
 'destinatarioNotificacion' => 'Destinatario',
 'fechaHoraNotificacion' => 'Fecha',
 'asuntoNotificacion' => 'Asunto',
 'mensajeNotificacion' => 'Mensaje',
-'Ver Notificacion' => 'Ver Notificación'
+'Ver Notificacion' => 'Ver Notificación',
 
+ 
+ //SESIONES
+
+'nombreTabla' => 'Tabla',
+'nombreActividadIndividual' =>'Actividad',
+'idTabla' =>'Tabla',
+'idActividadIndividual' => 'Actividad',
+'comentarioSesion' => 'Comentario',
+'fechaSesion' => 'Fecha',
+'horaInicio' => 'Inicio',
+'horaFin' => 'Fin',
+'Modificar sesion' => 'Modificar Sesión'
+    
+        
 
 
 )

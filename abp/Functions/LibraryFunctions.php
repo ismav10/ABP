@@ -203,6 +203,13 @@ function añadirFuncionalidades($NOM) {
                     ?><li role="presentation"><a href="" class="m1"><?php echo $strings['Gestión de Actividades Grupales']; ?></a></li> <?php
                     break;
 
+                  case "Gestion Ejercicios":
+                        ?><li><a style="font-size:15;" href='../Controllers/EJERCICIO_Controller.php'><?php echo $strings['Gestión de ejercicios']; ?></a></li><?php
+                        break;
+                    
+                     case "Gestion Tablas":
+                        ?><li><a style="font-size:15;" href='../Controllers/TABLA_Controller.php'><?php echo $strings['Gestión de tablas']; ?></a></li><?php
+                        break;
 
                 case "Gestion Notificaciones":
                     ?><li><a style="font-size:15px;" href='../Controllers/NOTIFICACION_Controller.php'><?php echo $strings['Gestión de notificaciones']; ?></a></li> <?php

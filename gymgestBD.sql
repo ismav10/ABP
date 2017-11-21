@@ -116,16 +116,17 @@ CREATE TABLE IF NOT EXISTS `deportista_asistir_actividadgrupal` (
 CREATE TABLE IF NOT EXISTS `deportista_inscribir_actividadgrupal` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `idActividadGrupal` int(10) NOT NULL,
-  `estado` tinyint(1) DEFAULT '0'
+  `estado` tinyint(1) DEFAULT '0',
+  `plazasDisponibles` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `deportista_inscribir_actividadgrupal`
 --
 
-INSERT INTO `deportista_inscribir_actividadgrupal` (`userName`, `idActividadGrupal`, `estado`) VALUES
-('deportista1', 1, 0),
-('deportista2', 1, 0);
+INSERT INTO `deportista_inscribir_actividadgrupal` (`userName`, `idActividadGrupal`, `estado`, `plazasDisponibles`) VALUES
+('deportista1', 1, 0, 25),
+('deportista2', 1, 0, 25);
 
 -- --------------------------------------------------------
 
@@ -194,6 +195,9 @@ INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categori
 (102, 'Borrar Ejercicio', 'Gestion Ejercicios'),
 (103, 'Modificar Ejercicio', 'Gestion Ejercicios'),
 (104, 'Ver Ejercicio', 'Gestion Ejercicios'),
+(150, 'Listar Tablas', 'Gestion Tablas'),
+(151, 'Añadir Tabla', 'Gestion Tablas'),
+(152, 'Editar Tabla', 'Gestion Tablas'),
 (200, 'Listar Notificaciones', 'Gestion Notificaciones'),
 (201, 'Consultar Notificaciones', 'Gestion Notificaciones'),
 (202, 'Ver Notificacion', 'Gestion Notificaciones'),
@@ -201,7 +205,8 @@ INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categori
 (204, 'Baja Notificacion', 'Gestion Notificaciones'),
 (300, 'Alta sesion', 'Gestion Sesiones'),
 (301, 'Consultar sesion', 'Gestion Sesiones'),
-(302, 'Modificar sesion', 'Gestion Sesiones');
+(302, 'Modificar sesion', 'Gestion Sesiones'),
+(303, 'Filtrar sesion', 'Gestion Sesiones');
 
 -- --------------------------------------------------------
 
@@ -238,6 +243,9 @@ INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
 (102, 102),
 (103, 103),
 (104, 104),
+(150, 150),
+(151, 151),
+(152, 152),
 (200, 200),
 (201, 201),
 (202, 202),
@@ -245,7 +253,8 @@ INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
 (204, 204),
 (300, 300),
 (301, 301),
-(302, 302);
+(302, 302),
+(303, 303);
 
 -- --------------------------------------------------------
 
@@ -290,6 +299,13 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (103, 2),
 (104, 1),
 (104, 2),
+(150, 1),
+(151, 1),
+(152, 1),
+(150, 2),
+(151, 2),
+(152, 2),
+(150, 3),
 (200, 1),
 (200, 2),
 (200, 3),
@@ -302,7 +318,8 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (204, 1),
 (300, 3),
 (301, 3),
-(302, 3);
+(302, 3),
+(303, 3);
 
 -- --------------------------------------------------------
 
@@ -384,6 +401,9 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 (102, '../Views/EJERCICIO_DELETE_Vista.php', 'EJERCICIO DELETE'),
 (103, '../Views/EJERCICIO_EDIT_Vista.php', 'EJERCICIO EDIT'),
 (104, '../Views/EJERCICIO_SHOWCURRENT_Vista.php', 'EJERCICIO SHOW CURRENT'),
+(150, '../Views/TABLA_SHOWALL_Vista.php', 'TABLA SHOW ALL'),
+(151, '../Views/TABLA_ADD_Vista.php', 'TABLA ADD'),
+(152, '../Views/TABLA_EDIT_Vista.php', 'TABLA EDIT'),
 (200, '../Views/NOTIFICACION_SHOWALL_Vista.php', 'NOTIFICACION SHOW ALL'),
 (201, '../Views/NOTIFICACION_SHOWCURRENT_Vista.php', 'NOTIFICACION SHOW CURRENT'),
 (202, '../Views/NOTIFICACION_SELECT_Vista.php', 'NOTIFICACION SELECT'),
@@ -391,7 +411,8 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 (204, '../Views/NOTIFICACION_DELETE_Vista.php', 'NOTIFICACION DELETE'),
 (300, '../Views/SESSION_ADD_Vista.php', 'SESSION ADD'),
 (301, '../Views/SESSION_SHOWALL_Vista.php', 'SESSION SHOWALL'),
-(302, '../Views/SESSION_EDIT_Vista.php', 'SESSION EDIT');
+(302, '../Views/SESSION_EDIT_Vista.php', 'SESSION EDIT'),
+(303, '../Views/SESSION_SHOW_Vista.php', 'SESSION SHOW');
 
 -- --------------------------------------------------------
 

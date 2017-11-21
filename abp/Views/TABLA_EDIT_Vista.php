@@ -1,5 +1,5 @@
 <?php
-class TABLA_Show
+class TABLA_Edit
 {
 
 //VISTA PARA LISTAR TODOS LOS USUARIOS

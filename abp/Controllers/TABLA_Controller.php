@@ -72,7 +72,7 @@ switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 		$tabla = get_data_form();
 		$datos = $tabla->obtenerTablaDetalle(  $_REQUEST['id']);
 		require_once '../Views/TABLA_EDIT_Vista.php';
-        new TABLA_Show($datos, '../Views/EJERCICIO_SHOWALL_Vista.php');
+        new TABLA_Edit($datos, '../Views/EJERCICIO_SHOWALL_Vista.php');
     break;
 	
 	case 'guardarmod':

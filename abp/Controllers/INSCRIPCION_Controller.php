@@ -18,7 +18,7 @@ for ($z = 0; $z < count($pags); $z++) {
 //Método que recoge la información del formulario para usuarios entrenadores
 function get_data_form() {
 
-    //Atributos comunes a entrenadores y deportistas
+//Atributos comunes a entrenadores y deportistas
     $userName = $_REQUEST['userName'];
     $password = $_REQUEST['password'];
     $nombre = $_REQUEST['nombre'];
@@ -68,35 +68,15 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 //
 //
 //
-//    case $strings['Modificar']:
-//
-//        if (ConsultarTipoUsuario($_REQUEST['userName']) == 2) {
-//            if (!isset($_REQUEST['dni'])) {
-//                //Crea un usuario solo con el user para posteriormente rellenar el formulario con sus datos
-//                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '','');
-//                $valores = $usuario->RellenaDatos();
-//                if (!tienePermisos('ENTRENADOR_Modificar')) {
-//                    new Mensaje('No tienes los permisos necesarios', 'ENTRENADOR_Controller.php');
-//                } else {
-//                    //Muestra el formulario de modificación
-//                    new Entrenador_Modificar($valores, 'ENTRENADOR_Controller.php');
-//                }
-//            } else {
-//                $entrenador = get_data_form_Entrenador();
-//
-//                $carpetaFoto = '../Documents/Entrenadores/' . $_REQUEST['dni'] . '/Foto/';
-//                //Se realizan las modificaciones también en las carpetas de documentos
-//                if ($_FILES['foto']['name'] !== '') {
-//                    if (!file_exists($carpetaFoto)) {
-//                        mkdir($carpetaFoto, 0777, true);
-//                    }
-//                    move_uploaded_file($_FILES['foto']['tmp_name'], $carpetaFoto . $_FILES['foto']['name']);
-//                }
-//                $respuesta = $entrenador->Modificar();
-//                new Mensaje($respuesta, 'ENTRENADOR_Controller.php');
-//            }
-//        }
-//        break;
+    case $strings['Aceptar']:
+
+
+        $inscripcion = new INSCRIPCION_Modelo($_REQUEST['userName'], $_REQUEST['actividad'], '', '');
+        $respuesta = $entrenador->Aceptar();
+        new Mensaje($respuesta, 'ENTRENADOR_Controller.php');
+
+
+        break;
 //
 //
 //    case $strings['Borrar']:
@@ -175,7 +155,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 
     default: //Por defecto se realiza el show all
         if (!isset($_REQUEST['idInscripcion'])) {
-            $inscripcion = new INSCRIPCION_Model('','','');
+            $inscripcion = new INSCRIPCION_Model('', '', '', '');
         } else {
             $inscripcion = get_data_form();
         }

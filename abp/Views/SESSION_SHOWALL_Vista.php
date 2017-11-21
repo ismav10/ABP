@@ -1,9 +1,14 @@
 <?php
 
 //VISTA PARA LA INSERCIÓN DE USUARIOS
-class SESSION_Listar {
+class SESION_Listar {
 
-    function __construct() {
+    private $datos;
+    private $volver;
+
+    function __construct($datos, $volver) {
+        $this->datos = $datos;
+        $this->volver = $volver;
         $this->render();
     }
 
@@ -11,76 +16,66 @@ class SESSION_Listar {
         ?> <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
 
         <?php
-        include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php'; ?>
-
-        <div class="container" >
-            <form  id="form" name="form" action='USUARIO_Controller.php?user=admin'  method='post'   enctype="multipart/form-data">
-                <div class="form-group" >
-                    <label class="control-label" ><?php echo $strings['Insertar Administrador']; ?></label><br>
-                </div>
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['userName']; ?></label><br>
-                    <input class="form" id="userName" name="userName" size="25" type="text" required="true"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['password']; ?></label><br>
-                    <input class="form" id="password" name="password" size="25" type="password" required="true"/>
-                </div>
-                
-                 <div class="form-group">
-                    <input type="hidden" id="tipoUsuario" name="tipoUsuario" size="25" type="tipoUsuario" required="true" value='Administrador'/>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['nombre']; ?></label><br>
-                    <input class="form" id="nombre" name="nombre" size="50" type="text" required="true"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['apellidos']; ?></label><br>
-                    <input class="form" id="apellidos" name="apellidos" size="50" type="text" required="true"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['dni']; ?></label><br>
-                    <input class="form" id="dni" name="dni" size="9" type="text" required="true"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['fechaNac']; ?></label><br>
-                    <input class="form" id="fechaNac" name="fechaNac" type="date" required="true"/>
-                </div>
-
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['direccion']; ?></label><br>
-                    <input class="form" id="direccion" name="direccion" size="50" type="text" required="true"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['email']; ?></label><br>
-                    <input class="form" id="email" name="email" size="50" type="email" required="true"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['telefono']; ?></label><br>
-                    <input class="form" id="telefono" name="telefono" size="15" type="numeric" required="true"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['foto']; ?></label><br>
-                    <input type="file" name="foto" accept="image/*">
-                </div>
-                <br>
-
-                <input type='submit' onclick="return valida_envia_USUARIO()" name='accion'  value="<?php echo $strings['Insertar']; ?>">
-                <a class="form-link" href=..\Controllers\USUARIO_Controller.php?accion=Seleccionar><?php echo $strings['Volver']; ?>
-            </form>
-        </div>
+        include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
+        ?>
         <?php
+        $lista = array('idTabla', 'idActividadIndividual', 'comentarioSesion', 'fechaSesion', 'horaInicio', 'horaFin');
+        ?>
+        <br><br>
+
+        <div class="container">
+            <div class="col-lg-12">
+                <button type="button" class="btn btn-default btn-lg"><a href='SESION_Controller.php?accion=<?php echo $strings['Consultar']; ?>'><?php echo $strings['Consultar'] ?></a></button>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <?php
+                            foreach ($lista as $titulo) {
+                                echo "<th>";
+                                echo $strings[$titulo];
+                                echo "</th>";
+                            }
+                            echo "</tr>";
+                            echo "</thead>";
+                            echo "<tbody>";
+                            for ($j = 0; $j < count($this->datos); $j++) {
+                                echo "<tr>";
+                                foreach ($this->datos [$j] as $clave => $valor) {
+                                    for ($i = 0; $i < count($lista); $i++) {
+                                        if ($clave === $lista[$i]) {
+                                            echo "<td>";
+                                            echo $valor;
+                                            echo "</td>";
+                                        }
+                                    }
+                                }
+                                ?>
+                                <td><button type="button" class="btn btn-info"><a href='SESION_Controller.php?idSesion=<?php echo $this->datos[$j]['idSesion'] . '&accion=' . $strings['Modificar']; ?>'><?php echo $strings['Modificar']; ?></a></button></td>
+
+                    </table>
+                </div>
+            </div>
+
+            <?php
+        }
+
+        /*
+          for($i=0;$i<count($this->datos);$i++)
+          {
+          echo $this->datos[$i]['idTabla'];
+          echo $this->datos[$i]['idActividadIndividual'];
+          echo $this->datos[$i]['comentarioSesion'];
+          echo $this->datos[$i]['fechaSesion'];
+          echo $this->datos[$i]['horaInicio'];
+          echo $this->datos[$i]['horaFin'];
+          }
+          ?>
+         */
+
+
         include '../Views/footer.php';
     }
 
 //fin metodo render
 }
+?>

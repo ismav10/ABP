@@ -37,23 +37,87 @@ function get_data_form() {
 
 switch ($_REQUEST['accion']) {
     case $strings['Insertar']:
-        if (!isset($_REQUEST['username'])) {
+        if(!tienePermisos('NOTIFICACION_Insertar'))
+        {
+            new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+        }
+        else
+        {
+            if(!isset($_REQUEST['username']))
+            {
             new NOTIFICACION_Insertar();
-        } else {
-            $notificacion = get_data_form();
-            $respuesta = $notificacion->Insertar();
-            //COMPLETAR AQUI ENVIANDO LA RESPUESTA.
+            }
+            else
+            {
+                $notificacion = new NOTIFICACION_Model('','','','','','',$_REQUEST['username']);
+                $respuesta = $notificacion->Insertar();
+                new Mensaje($respuesta, '../Views/DEFAULT_Vista.php');
+            }
         }
         break;
+
+    case $strings['Borrar']:
+        if(!isset($_REQUEST['identificador']))
+        {
+            $notificacion = new NOTIFICACION_Model($_REQUEST['idNotificacion'], '','','','','','');
+            $valores = $notificacion->RellenaDatos();
+            if(!tienePermisos('NOTIFICACION_Borrar'))
+            {
+                new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+            }
+            else
+            {
+                new NOTIFICACION_Borrar($valores, 'NOTIFICACION_Controller.php');
+            }
+        }
+        else
+        {
+            $notificacion = new NOTIFICACION_Model($_REQUEST['identificador'],'','','','','','');
+            $respuesta = $notificacion->Borrar();
+            new Mensaje($respuesta, '../Views/DEFAULT_Vista.php');
+        }
+        break;
+
+    case $strings['Consultar']:
+        if(!isset($_REQUEST['usuarioConsulta']))
+        {
+            if(!tienePermisos('NOTIFICACION_Consultar'))
+            {
+                new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+            }
+            else
+            {
+                new NOTIFICACION_Consultar('../Views/DEFAULT_Vista.php');
+            }
+        }
+        else
+        {
+            $notificacion = new NOTIFICACION_Model('',$_REQUEST['remitente'],$_REQUEST['destinatario'],$_REQUEST['fechaHoraNotificacion'], $_REQUEST['asunto'],'',$_REQUEST['username']);
+            $datos = $notificacion->Consultar();
+            new NOTIFICACION_Consulta($datos, '../Views/DEFAULT_Vista.php');
+        }
+    
     //En el caso de que quiera consultar una notificacion en concreto creo la notificacion solo con el id que va a venir de la vista,
     //llamo a la funcion que obtiene los datos sobre esa notificacion y creo una vista showcurrent mostrando los datos y con el controlador de las notificaciones.
     case $strings['Ver']:
-        if ($_REQUEST['idNotificacion'] != '') {
+    if(!tienePermisos('NOTIFICACION_Seleccionar'))
+    {
+        new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+    }
+    else 
+    {
+        if(!isset($_REQUEST['idNotificacion']))
+        {
+
+        } 
+        else
+        {
             $idNotificacion = $_REQUEST['idNotificacion'];
             $notificacion = new NOTIFICACION_Model($idNotificacion, '', '', '', '', '', '');
-            $resultado = $notificacion->VerDetalleNotificacion();
+            $resultado = $notificacion->RellenaDatos();
             new NOTIFICACION_Seleccionar($resultado, 'NOTIFICACION_Controller.php');
         }
+    }
         break;
 
 
@@ -67,4 +131,5 @@ switch ($_REQUEST['accion']) {
             new NOTIFICACION_Listar($datos, '../Views/DEFAULT_Vista.php');
         }
 }
+
 ?>

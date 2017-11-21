@@ -1,82 +1,67 @@
 <?php
 
 //VISTA PARA LA INSERCIÓN DE USUARIOS
-class SESSION_Editar {
+class SESION_Editar {
 
-    function __construct() {
+    private $datos;
+    private $volver;
+
+    function __construct($datos, $volver) {
+        $this->datos = $datos;
+        $this->volver = $volver;
         $this->render();
     }
 
     function render() {
-        ?> <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
-
-        <?php
-        include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php'; ?>
-
+        include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
+        ?>
         <div class="container" >
-            <form  id="form" name="form" action='USUARIO_Controller.php?user=admin'  method='post'   enctype="multipart/form-data">
+            <form  id="form" name="form" action='SESION_Controller.php?'  method='post'   enctype="multipart/form-data">
                 <div class="form-group" >
-                    <label class="control-label" ><?php echo $strings['Insertar Administrador']; ?></label><br>
+                    <label class="control-label" ><?php echo $strings['Modificar sesion']; ?></label><br>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['userName']; ?></label><br>
-                    <input class="form" id="userName" name="userName" size="25" type="text" required="true"/>
+                    <label class="control-label" ><?php echo $strings['nombreTabla']; ?></label><br>
+                    <input class="form" id="nombreTabla" name="nombreTabla" size="25" type="text" required="true" readonly="true" value="<?php echo $this->datos['nombreTabla']; ?>">
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['password']; ?></label><br>
-                    <input class="form" id="password" name="password" size="25" type="password" required="true"/>
-                </div>
-                
-                 <div class="form-group">
-                    <input type="hidden" id="tipoUsuario" name="tipoUsuario" size="25" type="tipoUsuario" required="true" value='Administrador'/>
+                    <input type='hidden' class="form" id="idSesion" name="idSesion" size="25" type="text" required="true" readonly="true" value="<?php echo $this->datos['idSesion']; ?>">
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['nombre']; ?></label><br>
-                    <input class="form" id="nombre" name="nombre" size="50" type="text" required="true"/>
+                    <label class="control-label" ><?php echo $strings['nombreActividadIndividual']; ?></label><br>
+                    <input class="form" id="nombreActividadIndividual" name="nombreActividadIndividual" size="25" type="text" required="true" readonly='true' value="<?php echo $this->datos['nombreActividadIndividual']; ?>"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['apellidos']; ?></label><br>
-                    <input class="form" id="apellidos" name="apellidos" size="50" type="text" required="true"/>
+                    <label class="control-label" ><?php echo $strings['fechaSesion']; ?></label><br>
+                    <input class="form" id="fechaSesion" name="fechaSesion" size="10" type="date" readonly="true" value="<?php echo $this->datos['fechaSesion']; ?>"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['dni']; ?></label><br>
-                    <input class="form" id="dni" name="dni" size="9" type="text" required="true"/>
+                    <label class="control-label" ><?php echo $strings['horaInicio']; ?></label><br>
+                    <input class="form" id="horaInicio" name="horaInicio" size="6" type="text" required="true" value="<?php echo $this->datos['horaInicio']; ?>">
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['fechaNac']; ?></label><br>
-                    <input class="form" id="fechaNac" name="fechaNac" type="date" required="true"/>
+                    <label class="control-label" ><?php echo $strings['horaFin']; ?></label><br>
+                    <input class="form" id="horaFin" name="horaFin" size="6" type="text" required="true" value="<?php echo $this->datos['horaFin']; ?>">
                 </div>
 
 
                 <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['direccion']; ?></label><br>
-                    <input class="form" id="direccion" name="direccion" size="50" type="text" required="true"/>
+                    <label class="control-label" ><?php echo $strings['comentarioSesion']; ?></label><br>
+                    <textarea rows="10" cols="50" name="comentarioSesion" readonly="true"><?php echo $this->datos['comentarioSesion']; ?></textarea>
+
                 </div>
 
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['email']; ?></label><br>
-                    <input class="form" id="email" name="email" size="50" type="email" required="true"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['telefono']; ?></label><br>
-                    <input class="form" id="telefono" name="telefono" size="15" type="numeric" required="true"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['foto']; ?></label><br>
-                    <input type="file" name="foto" accept="image/*">
-                </div>
                 <br>
 
-                <input type='submit' onclick="return valida_envia_USUARIO()" name='accion'  value="<?php echo $strings['Insertar']; ?>">
-                <a class="form-link" href=..\Controllers\USUARIO_Controller.php?accion=Seleccionar><?php echo $strings['Volver']; ?>
+                <input type = 'submit' name = 'accion' value = '<?php echo $strings['Modificar'] ?>' >
+                <a class="form-link" href='<?php echo $this->volver ?> '><?php echo $strings['Volver']; ?> </a>
             </form>
+
         </div>
         <?php
         include '../Views/footer.php';

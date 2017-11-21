@@ -137,20 +137,8 @@ class NOTIFICACION_Model {
         }
     }
 
-    //Funcion para ver una notificacion en detalle, es decir, con todos los campos.
-    function VerDetalleNotificacion() {
-        $this->ConectarBD();
-        $sql = "SELECT * FROM NOTIFICACION WHERE idNotificacion ='" . $this->idNotificacion . "'";
-        if (!($resultado = $this->mysqli->query($sql))) {
-            return 'Error en la consulta sobre la base de datos';
-        } else {
-            $result = $resultado->fetch_array();
-            return $result;
-        }
-    }
-
     //Funcion para dar de baja una notificacion en el sistema.
-    function BajaNotificacion() {
+    function Borrar() {
         $this->ConectarBD();
         $sql = "SELECT * FROM NOTIFICACION WHERE idNotificacion= '" . $this->idNotificacion . "'";
 
@@ -163,6 +151,23 @@ class NOTIFICACION_Model {
             $this->mysqli->query($sql);
             return "La notificación fue borrada con éxito.";
         }
+    }
+
+    function RellenaDatos()
+    {
+    	$this->ConectarBD();
+    	$sql = "SELECT remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, 
+    	asuntoNotificacion, mensajeNotificacion FROM NOTIFICACION WHERE idNotificacion= '".$this->idNotificacion."'";
+    	if(!($resultado = $this->mysqli->query($sql)))
+    	{
+    		return 'Error en la consulta sobre la base de datos.';
+    	}
+    	else
+    	{
+    		$result = $resultado->fetch_array();
+    		return $result;
+    	}
+
     }
 
     function Enviar_Email() {

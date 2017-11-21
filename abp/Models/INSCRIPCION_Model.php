@@ -9,12 +9,14 @@ class INSCRIPCION_Model {
     var $userName;
     var $idActividadGrupal;
     var $estado;
+    var $numPlazasDisponibles;
     var $mysqli;
 
-    function __construct($userName, $idActividadGrupal, $estado) {
+    function __construct($userName, $idActividadGrupal, $estado, $numPlazasDisponibles) {
         $this->userName = $userName;
         $this->idActividadGrupal = $idActividadGrupal;
         $this->estado = $estado;
+        $this->numPlazasDisponibles = $numPlazasDisponibles;
     }
 
 //Función para conectarnos a la Base de datos
@@ -25,74 +27,25 @@ class INSCRIPCION_Model {
             echo "Fallo al conectar a MySQL: (" . $this->mysqli->connect_errno . ") " . $this->mysqli->connect_error;
         }
     }
+    
+//Actualiza en la base de datos la información de un determinado usuario
+    function Aceptar() {
 
-//Insertar Notificacion para un usuario
-    function Insertar() {
         $this->ConectarBD();
-        //En el caso de las notificaciones no hace falta hacer comprobacion de si existe el id puesto que este es incremental
-        $sql = "SELECT * FROM NOTIFICACION";
-        if (!$result = $this->mysqli->query($sql)) {
-            return 'No se ha podido conectar con la base de datos';
-        } else {
-            $sql = "INSERT INTO NOTIFICACION VALUES ('','" . $this->remitente . "','"
-                    . $this->destinatario . "','','" . $this->asunto . "','" . $this->mensaje . "','" . $this->username . "')";
-            $this->mysqli->query($sql);
-        }
-    }
+        $sql = "SELECT * FROM DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL where userName = '" . $this->userName . "' AND idActividadGrupal = '" . $this->idActividadGrupal . "'";
+        $result = $this->mysqli->query($sql);
 
-    function Consultar() {
-        $this->ConectarBD();
-
-        if ($this->remitente == '' && $this->fechaHoraNotif == '' && $this->destinatario == '' && $this->username == '') { //0000
-            $sql = "SELECT remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion, username FROM NOTIFICACION ";
-        } else if ($this->remitente == '' && $this->fechaHoraNotif == '' && $this->destinatario == '' && $this->username != '') { //0001
-            $sql = "SELECT remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion, username FROM NOTIFICACION WHERE username = '" . $this->username . "'";
-        } else if ($this->remitente == '' && $this->fechaHoraNotif == '' && $this->destinatario != '' && $this->username == '') { //0010
-            $sql = "SELECT remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion, username FROM NOTIFICACION WHERE destinatarioNotificacion = '" . $this->destinatario . "'";
-        } else if ($this->remitente == '' && $this->fechaHoraNotif == '' && $this->destinatario != '' && $this->username != '') { //0011
-            $sql = "SELECT remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion,username FROM NOTIFICACION WHERE destinatarioNotificacion = '" . $this->destinatario . " AND username = '" . $this->username . "'";
-        } else if ($this->remitente == '' && $this->fechaHoraNotif != '' && $this->destinatario == '' && $this->username == '') { //0100
-            $sql = "SELECT remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion, username FROM NOTIFICACION WHERE fechaHoraNotificacion BETWEEN  '" . $this->fechaHoraNotif . "' AND '" . $this->fechaHora2 . "'";
-        } else if ($this->remitente == '' && $this->fechaHoraNotif != '' && $this->destinatario == '' && $this->username != '') { //0101
-            $sql = "SELECT remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion, username FROM NOTIFICACION WHERE (fechaHoraNotificacion BETWEEN  '" . $this->fechaHoraNotif . "' AND '" . $this->fechaHora2 . "') AND username = '" . $this->username . "'";
-        } else if ($this->remitente == '' && $this->fechaHoraNotif != '' && $this->destinatario != '' && $this->username == '') { //0110
-            $sql = "SELECT remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion, username FROM NOTIFICACION WHERE (fechaHoraNotificacion BETWEEN  '" . $this->fechaHoraNotif . "' AND '" . $this->fechaHora2 . "') AND destinatarioNotificacion = '" . $this->destinatario . "'";
-        } else if ($this->remitente == '' && $this->fechaHoraNotif != '' && $this->destinatario != '' && $this->username != '') { //0111
-            $sql = "SELECT remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion, username FROM NOTIFICACION WHERE (fechaHoraNotificacion BETWEEN  '" . $this->fechaHoraNotif . "' AND '" . $this->fechaHora2 . "') AND destinatarioNotificacion = '" . $this->destinatario . "'AND username = '" . $this->username . "'";
-        } else if ($this->remitente != '' && $this->fechaHoraNotif == '' && $this->destinatario == '' && $this->username == '') { //1000
-            $sql = "SELECT remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion, username FROM NOTIFICACION WHERE  remitenteNotificacion = '" . $this->remitente . "'";
-        } else if ($this->remitente != '' && $this->fechaHoraNotif == '' && $this->destinatario == '' && $this->username != '') { //1001
-            $sql = "SELECT remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion, username FROM NOTIFICACION WHERE  remitenteNotificacion = '" . $this->remitente . "' AND username = '" . $this->username . "'";
-        } else if ($this->remitente != '' && $this->fechaHoraNotif == '' && $this->destinatario != '' && $this->username == '') { //1010
-            $sql = "SELECT remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion, username FROM NOTIFICACION WHERE  remitenteNotificacion = '" . $this->remitente . "' AND destinatarioNotificacion = '" . $this->destinatario . "'";
-        } else if ($this->remitente != '' && $this->fechaHoraNotif == '' && $this->destinatario != '' && $this->username != '') { //1011
-            $sql = "SELECT remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion, username FROM NOTIFICACION WHERE  remitenteNotificacion = '" . $this->remitente . "' AND destinatarioNotificacion = '" . $this->destinatario . "' AND username = '" . $this->username . "'";
-        } else if ($this->remitente != '' && $this->fechaHoraNotif != '' && $this->destinatario == '' && $this->username == '') { //1100
-            $sql = "SELECT remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion, username FROM NOTIFICACION WHERE  remitenteNotificacion = '" . $this->remitente . "' AND (FechaHoraNotificacion BETWEEN  '" . $this->fechaHoraNotif . "' AND '" . $this->FechaHora2 . "')";
-        } else if ($this->remitente != '' && $this->fechaHoraNotif != '' && $this->destinatario == '' && $this->username != '') { //1101
-            $sql = "SELECT remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion, username FROM NOTIFICACION WHERE  remitenteNotificacion = '" . $this->remitente . "' AND (FechaHoraNotificacion BETWEEN  '" . $this->fechaHoraNotif . "' AND '" . $this->FechaHora2 . "') AND username = '" . $this->username . "'";
-        } else if ($this->remitente != '' && $this->fechaHoraNotif != '' && $this->destinatario != '' && $this->username == '') { //1110
-            $sql = "SELECT remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion,asuntoNotificacion, username FROM NOTIFICACION WHERE  remitenteNotificacion = '" . $this->remitente . "' AND (FechaHoraNotificacion BETWEEN  '" . $this->fechaHoraNotif . "' AND '" . $this->FechaHora2 . "') AND destinatarioNotificacion = '" . $this->destinatario . "'";
-        } else if ($this->remitente != '' && $this->fechaHoraNotif != '' && $this->destinatario != '' && $this->username != '') { //1111
-            $sql = "SELECT remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion, username FROM NOTIFICACION WHERE  remitenteNotificacion = '" . $this->remitente . "' AND (fechaHoraNotificacion BETWEEN  '" . $this->fechaHoraNotif . "' AND '" . $this->fechaHora2 . "') AND destinatarioNotificacion = '" . $this->destinatario . "' AND username = '" . $this->username . "'";
-        }
-
-        if (!$resultado = $this->mysqli->query($sql)) {
-            return 'No se ha podido conectar con la base de datos';
-        } else {
-            $toret = array();
-            $i = 0;
-            while ($fila = $resultado->fetch_array()) {
-                $toret[$i] = $fila;
-                $i++;
+        if ($result->num_rows == 1) {
+            if ($this->newPassword == '') {
+                $sql = "UPDATE USUARIO SET tipoUsuario ='" . $this->tipoUsuario . "',nombre= '" . $this->nombre . "',apellidos= '" . $this->apellidos . "',dni = '" . $this->dni . "',fechaNac= '" . $this->fechaNac . "',direccion= '" . $this->direccion . "',telefono= '" . $this->telefono . "',email= '" . $this->email . "'";
+            } else {
+                $sql = "UPDATE USUARIO SET password = '" . md5($this->newPassword) . "',tipoUsuario ='" . $this->tipoUsuario . "',nombre= '" . $this->nombre . "',apellidos= '" . $this->apellidos . "',dni = '" . $this->dni . "',fechaNac= '" . $this->fechaNac . "',direccion= '" . $this->direccion . "',telefono= '" . $this->telefono . "',email= '" . $this->email . "'";
             }
-            return $toret;
+        } else {
+            return "No existe la inscripcion";
         }
     }
-
-
-    //Devuelve la información de todas las notificaciones asociadas a este usuario
-    //para esto hace falta saber que usuario esta accediendo a la funcion.
+            
     function ConsultarTodo() {
             $this->ConectarBD();
             $sql = "SELECT * FROM DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL WHERE estado = 0";
@@ -138,42 +91,6 @@ class INSCRIPCION_Model {
         }
     }
 
-    function Enviar_Email() {
-
-        $cont = 0;
-
-        $this->mail->isSMTP();
-        $this->mail->SMTPAuth = true;
-        $this->mail->SMTPSecure = "ssl";
-        $this->mail->Host = "smtp.gmail.com";
-        $this->mail->Port = 465;
-        $this->mail->username = $this->username;
-        $this->mail->Password = $this->password;
-        $this->mail->setFrom($this->remitente, $this->NOTIFICACION_NOMBRE_REMITENTE);
-        $this->mail->addReplyTo($this->remitente, $this->NOTIFICACION_NOMBRE_REMITENTE);
-        $this->mail->Subject = $this->asunto;
-        $this->mail->msgHTML($this->mensaje);
-        $this->mail->CharSet = "UTF-8";
-
-        /*
-          $destinatarios = explode(',', $this->NOTIFICACION_DESTINATARIOS); //Ya que en la vista convertimos el array de los checkbox a un string para pasarlo sin problemas al controlador y ahora al modelo, volvemos a convertir en un array los correos de destinatarios
-
-          foreach ($destinatarios as $address) {
-          $this->mail->addAddress($address, $this->NOTIFICACION_NOMBRE_REMITENTE);
-          if ($this->mail->send()) {
-          $cont = $cont + 1;
-          $this->mail->clearAddresses();
-          $this->Insertar($address);
-          } else {
-          return ("Ha ocurrido un error durante el envio de las notificaciones");
-          }
-          }
-
-          if ($cont = count($destinatarios)) {
-
-          return ("Notificacion enviada con exito");
-          }^ */
-    }
 
 }
 
