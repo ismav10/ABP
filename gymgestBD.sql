@@ -1,4 +1,4 @@
-
+﻿
 DROP DATABASE IF EXISTS `gymgest`;
 CREATE DATABASE IF NOT EXISTS `gymgest` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 USE `gymgest`;
@@ -468,7 +468,9 @@ CREATE TABLE `tabla` (
 --
 
 INSERT INTO `tabla` (`idTabla`, `nombreTabla`, `descripcionTabla`) VALUES
-(1, 'Tabla PET', 'Tabla Intensa');
+(1, 'Tabla PET', 'Tabla Intensa'),
+(2, 'Tabla PET 2','Tabla Intensidad Media'),
+(3, 'Tabla PET 3','Tabla Intensidad Baja');
 
 -- --------------------------------------------------------
 
