@@ -468,8 +468,7 @@ CREATE TABLE `tabla` (
 --
 
 INSERT INTO `tabla` (`idTabla`, `nombreTabla`, `descripcionTabla`) VALUES
-(1, 'Tabla PET', 'Tabla Intensa'),
-(2, 'Tabla PET 2','Tabla Intensidad Media');
+(1, 'Tabla PET', 'Tabla Intensa');
 
 -- --------------------------------------------------------
 
