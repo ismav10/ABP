@@ -17,7 +17,7 @@ class EJERCICIO_Show
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
       
 		echo '<div class="container">';
-		echo '<a href="../Views/EJERCICIO_ADD_Vista.php"><button type="button" class="btn btn-primary btn-lg btn-block">Nuevo ejercicio</button></a>';
+		echo '<a href="?accion=vistainsertar"><button type="button" class="btn btn-primary btn-lg btn-block">Nuevo ejercicio</button></a>';
 		echo'<table class="table">
 			  <thead class="thead-dark">
 				<tr>

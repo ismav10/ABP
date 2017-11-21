@@ -23,7 +23,7 @@ class TABLA_Show
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
 
 		echo '<div class="container">';
-		echo '<a href="../Views/TABLA_ADD_Vista.php"><button type="button" class="btn btn-primary btn-lg btn-block">Nueva tabla</button></a>';
+		echo '<a href="?accion=vistainsertar"><button type="button" class="btn btn-primary btn-lg btn-block">Nueva tabla</button></a>';
 		
 		echo '<!-- Modal -->
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
