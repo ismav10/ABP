@@ -14,6 +14,7 @@ $strings = array(
 'El usuario se ha modificado con éxito'=>'El usuario se ha modificado con éxito',
 'El usuario ha sido borrado correctamente' => 'El usuario ha sido borrado correctamente',
 'Solicitud aceptada' => 'Solicitud aceptada',
+'Solicitud rechazada' => 'Solicitud rechazada',
 'No hay plazas para esa actividad' => 'No hay plazas para esa actividad',
 'No existe la inscripcion' => 'No existe la inscripción',
     
@@ -66,6 +67,7 @@ $strings = array(
 'Insertar Administrador' => 'Insertar Administrador',
 'Modificar Administrador' => 'Modificar Administrador',
 'Eliminar Administrador' => 'Eliminar Administrador',
+'Ver Administrador' => 'Ver Administrador',
 'Modificar usuario'=>'Modificar Usuario',
 
     
@@ -74,6 +76,7 @@ $strings = array(
 'Insertar entrenador' => 'Insertar Entrenador',
 'Modificar entrenador' => 'Modificar Entrenador',
 'Eliminar Entrenador' => 'Eliminar Entrenador',
+'Ver Entrenador' => 'Ver Entrenador',
     
     
 //DEPORTISTA
@@ -84,6 +87,7 @@ $strings = array(
 'Insertar deportista' => 'Insertar Deportista',
 'Modificar deportista' => 'Modificar Deportista',
 'Eliminar Deportista' => 'Eliminar Deportista',
+'Ver Deportista' => 'Ver Deportista',
     
 
 //INSCRIPCIONES

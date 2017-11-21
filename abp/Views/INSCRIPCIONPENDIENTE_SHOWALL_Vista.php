@@ -46,35 +46,29 @@ class INSCRIPCIONPENDIENTE_Show {
                                             if ($clave === $lista[$i]) {
                                                 echo "<td>";
                                                 if (($clave === 'idActividadGrupal')) {
-                                                    ?>
-                                            <a href='ACTIVIDADGRUPAL_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Ver']; ?>'><font color="#088A4B"><?php echo ConsultarNombreActividadGrupal($valor);?></font></a> <?php
-                                            break;
-                                        }
-                                        if (($clave === 'userName')) {
-                                            ?>
-                                            <a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Ver']; ?>'><font color="#088A4B"><?php echo $valor; ?></font></a> <?php
-                                            break;
-                                        }
+                                                    echo ConsultarNombreActividadGrupal($valor);
 
-                                        if (($clave === 'estado')) {
-                                            echo $strings[$valor];
-                                            break;
-                                        } else {
-                                            echo $valor;
+                                                    break;
+                                                }
+
+                                                if (($clave === 'estado')) {
+                                                    echo $strings[$valor];
+                                                    break;
+                                                } else {
+                                                    echo $valor;
+                                                }
+                                                echo "</td>";
+                                            }
                                         }
-                                        echo "</td>";
                                     }
-                                }
-                            }
-                            ?>
+                                    ?>
 
-                                                                                                                                                <!--<td><button type="button" class="btn btn-success"><a href='USUARIO_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Ver']; ?>'><?php echo $strings['Ver']; ?></a></button></td>   -->          
-                            <td><button type="button" class="btn btn-success"><a href='INSCRIPCION_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&actividad='. $this->datos[$j]['idActividadGrupal'] . '&accion=' .$strings['Aceptar']; ?>'><?php echo $strings['Aceptar']; ?></a></button></td>
-                            <td><button type="button" class="btn btn-danger"><a href='INSCRIPCION_Controller.php?userName=<?php echo $this->datos[$j]['idInscripcion'] . '&accion=' . $strings['Rechazar']; ?>'><?php echo $strings['Rechazar']; ?></a></button></td>
-                                    <?php
-                                }
-                                ?>
-                        </tbody>
+                                    <td><button type="button" class="btn btn-success"><a href='INSCRIPCION_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&actividad=' . $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Aceptar']; ?>'><?php echo $strings['Aceptar']; ?></a></button></td>
+                                    <td><button type="button" class="btn btn-danger"> <a href='INSCRIPCION_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&actividad=' . $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Rechazar']; ?>'><?php echo $strings['Rechazar']; ?></a></button></td>
+                                            <?php
+                                        }
+                                        ?>
+                                </tbody>
                     </table>
                 </div>
             </div>

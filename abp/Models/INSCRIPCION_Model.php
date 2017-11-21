@@ -27,7 +27,6 @@ class INSCRIPCION_Model {
         }
     }
 
-//Actualiza en la base de datos la información de un determinado usuario
     function Aceptar() {
 
         $this->ConectarBD();
@@ -50,6 +49,21 @@ class INSCRIPCION_Model {
         }
     }
 
+    function Rechazar() {
+
+        $this->ConectarBD();
+        $sql = "SELECT * FROM DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL where userName = '" . $this->userName . "' AND idActividadGrupal = '" . $this->idActividadGrupal . "'";
+        $result = $this->mysqli->query($sql);
+
+        if ($result->num_rows == 1) {
+            $sql1 = "DELETE FROM DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL where userName = '" . $this->userName . "' AND idActividadGrupal = '" . $this->idActividadGrupal . "'";
+            $this->mysqli->query($sql1);
+            return "Solicitud rechazada";
+        } else {
+            return "No existe la inscripcion";
+        }
+    }
+
     function ConsultarTodo() {
         $this->ConectarBD();
         $sql = "SELECT * FROM DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL WHERE estado = 0";
@@ -63,34 +77,6 @@ class INSCRIPCION_Model {
                 $i++;
             }
             return $toret;
-        }
-    }
-
-    //Funcion para ver una notificacion en detalle, es decir, con todos los campos.
-    function VerDetalleNotificacion() {
-        $this->ConectarBD();
-        $sql = "SELECT * FROM NOTIFICACION WHERE idNotificacion ='" . $this->idNotificacion . "'";
-        if (!($resultado = $this->mysqli->query($sql))) {
-            return 'Error en la consulta sobre la base de datos';
-        } else {
-            $result = $resultado->fetch_array();
-            return $result;
-        }
-    }
-
-    //Funcion para dar de baja una notificacion en el sistema.
-    function BajaNotificacion() {
-        $this->ConectarBD();
-        $sql = "SELECT * FROM NOTIFICACION WHERE idNotificacion= '" . $this->idNotificacion . "'";
-
-        if (!($resultado = $this->mysqli->query($sql))) {
-            return 'Error en la consulta sobre la base de datos.';
-        } else if ($resultado->num_rows == 0) {
-            return 'No se puede borrar porque no existe esa notificacion.';
-        } else {
-            $sql = "DELETE FROM NOTIFICACION WHERE idNotificacion='" . $this->idNotificacion . "'";
-            $this->mysqli->query($sql);
-            return "La notificación fue borrada con éxito.";
         }
     }
 

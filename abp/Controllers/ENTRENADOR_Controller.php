@@ -31,7 +31,8 @@ function get_data_form_Entrenador() {
     $telefono = $_REQUEST['telefono'];
     $email = $_REQUEST['email'];
     $cuentaBanc = $_REQUEST['cuentaBanc'];
-    if ($_REQUEST['newPassword'] == '') {
+    
+    if (!isset($_REQUEST['newPassword']) || $_REQUEST['newPassword'] == '' ) {
         $newPassword = '';
     } else {
         $newPassword = $_REQUEST['newPassword'];
@@ -90,7 +91,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         if (ConsultarTipoUsuario($_REQUEST['userName']) == 2) {
             if (!isset($_REQUEST['dni'])) {
                 //Crea un usuario solo con el user para posteriormente rellenar el formulario con sus datos
-                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '','');
+                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '', '');
                 $valores = $usuario->RellenaDatos();
                 if (!tienePermisos('ENTRENADOR_Modificar')) {
                     new Mensaje('No tienes los permisos necesarios', 'ENTRENADOR_Controller.php');
@@ -120,7 +121,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         if (ConsultarTipoUsuario($_REQUEST['userName']) == 2) {
             if (!isset($_REQUEST['nombre'])) {
                 //Crea un usuario solo con el user para rellenar posteriormente sus datos y mostrarlos en el formulario
-                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '','');
+                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '', '');
                 $valores = $usuario->RellenaDatos();
                 if (!tienePermisos('ENTRENADOR_Borrar')) {
                     new Mensaje('No tienes los permisos necesarios', 'ENTRENADOR_Controller.php');
@@ -129,12 +130,32 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
                     new ENTRENADOR_Borrar($valores, 'ENTRENADOR_Controller.php');
                 }
             } else {
-                $_REQUEST['password'] = '';
                 $entrenador = get_data_form_Entrenador();
                 $respuesta = $entrenador->Borrar();
                 new Mensaje($respuesta, 'ENTRENADOR_Controller.php');
             }
         }
+        break;
+
+
+    case $strings['Ver']:
+        if (!isset($_REQUEST['nombre'])) {
+            //Crea un usuario solo con el user para rellenar posteriormente sus datos y mostrarlos en el formulario
+            $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '', '');
+            $valores = $usuario->RellenaDatos();
+            if (!tienePermisos('ENTRENADOR_SELECT_SHOW')) {
+                new Mensaje('No tienes los permisos necesarios', 'DEPORTISTA_Controller.php');
+            } else {
+                //muestra el formulario de borrado
+                new ENTRENADOR_SELECT_SHOW($valores, 'ENTRENADOR_Controller.php');
+            }
+        } else {
+            $_REQUEST['password'] = '';
+            $entrenador = get_data_form_Entrenador();
+            $respuesta = $entrenador->Borrar();
+            new Mensaje($respuesta, 'ENTRENADOR_Controller.php');
+        }
+
         break;
     /*
       case  $strings['Consultar']: //Consultar los usuarios que cumplan unas ciertas condiciones
@@ -192,7 +213,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 
     default: //Por defecto se realiza el show all
         if (!isset($_REQUEST['userName'])) {
-            $usuario = new USUARIO_Modelo('', '', '', '', '', '', '', '', '', '', '', '', '', '','');
+            $usuario = new USUARIO_Modelo('', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
         } else {
             $usuario = get_data_form_Entrenador();
         }

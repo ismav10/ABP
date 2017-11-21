@@ -22,9 +22,18 @@ class DEPORTISTA_Borrar {
                 <div class="form-group" >
                     <label class="control-label" ><?php echo $strings['Eliminar Deportista']; ?></label><br>
                 </div>
+                
+                 <div class="form-group">
+                    <a target='_blank' href='<?php echo $this->valores['foto']; ?>'><img src='<?php echo $this->valores['foto']; ?>' width="250" height="250"></a>
+                </div>
+                
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['userName']; ?></label><br>
                     <input class="form" id="userName" name="userName" size="25" type="text" readonly="true" value="<?php echo $this->valores['userName']; ?>">
+                </div>
+                
+                 <div class="form-group">
+                    <input type='hidden' class="form" id="userName" name="password" size="25" type="text" readonly="true" value="<?php echo $this->valores['password']; ?>">
                 </div>
 
                 <div class="form-group">
@@ -66,18 +75,6 @@ class DEPORTISTA_Borrar {
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['telefono']; ?></label><br>
                     <input class="form" id="telefono" name="telefono" size="15" type="numeric" readonly="true" value="<?php echo $this->valores['telefono']; ?>">
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['foto']; ?></label><br>
-                    <?php
-                    if ($this->valores['foto'] == '') {
-                        echo "El usuario no tiene foto";
-                    } else {
-                        ?>
-                        <a target='_blank' href='<?php echo $this->valores['foto']; ?>'><?php echo $strings['Ver']; ?></a>
-                    <?php } ?>
-
                 </div>
 
                 <div class="form-group">

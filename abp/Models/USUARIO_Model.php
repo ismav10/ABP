@@ -76,6 +76,10 @@ class USUARIO_Modelo {
                 return 'No se ha podido conectar con la base de datos';
             } else {
                 if ($result->num_rows == 0) {
+                    if($this->foto = ''){
+                        $this->foto = '../img/user.jpg';
+                    }
+                    
                     $sql = "INSERT INTO USUARIO VALUES ('" . $this->foto . "', '" . $this->userName . "','" . md5($this->password) . "','" . $this->tipoUsuario . "','" . $this->nombre . "','" . $this->apellidos . "','" . $this->dni . "','" . $this->fechaNac . "','" . $this->direccion . "','" . $this->telefono . "', '" . $this->email . "');";
                     $this->mysqli->query($sql);
 
@@ -100,38 +104,7 @@ class USUARIO_Modelo {
             return 'El usuario ya existe en la base de datos';
     }
 
-    /*
-      //destrucción del objeto
-      function __destruct()
-      {
-
-      }
-
-      //Consulta por todos los campos
-      function Consultar()
-      {
-      $this->ConectarBD();
-      $sql = "select USUARIO_USER, USUARIO_PASSWORD, USUARIO_NOMBRE, USUARIO_APELLIDO, USUARIO_DNI, USUARIO_FECH_NAC, USUARIO_EMAIL, USUARIO_TELEFONO, USUARIO_CUENTA, USUARIO_DIRECCION, USUARIO_COMENTARIOS, USUARIO_TIPO, USUARIO_FOTO, USUARIO_ESTADO from USUARIO where (USUARIO_USER LIKE '".$this->USUARIO_USER."' )OR (USUARIO_NOMBRE LIKE '".$this->USUARIO_NOMBRE."' )OR (USUARIO_APELLIDO LIKE '".$this->USUARIO_APELLIDO."')OR (USUARIO_FECH_NAC LIKE '".$this->USUARIO_FECH_NAC."')OR(USUARIO_DNI LIKE '".$this->USUARIO_DNI."')OR (USUARIO_EMAIL LIKE '".$this->USUARIO_EMAIL."') OR (USUARIO_TELEFONO LIKE '".$this->USUARIO_TELEFONO."' ) OR (USUARIO_DIRECCION LIKE '".$this->USUARIO_DIRECCION."') OR (USUARIO_CUENTA LIKE '".$this->USUARIO_CUENTA."' )" ;
-
-      if (!($resultado = $this->mysqli->query($sql))){
-      return 'Error en la consulta sobre la base de datos';
-      }
-      else{
-      $toret=array();
-      $i=0;
-
-      while ($fila= $resultado->fetch_array()) {
-
-
-      $toret[$i]=$fila;
-      $i++;
-
-      }
-
-      return $toret;
-      }
-      }
-     */
+  
 
 //Devuelve la información de todos los usuarios en funcion de si son entrenadores o deportistas
     function ConsultarTodo($user) {
@@ -159,7 +132,6 @@ class USUARIO_Modelo {
         }
     }
 
-    //Realiza el borrado lógico de un usuario cambiando su estado a Inactivo
     function Borrar() {
         $this->ConectarBD();
         $sql = "SELECT * FROM USUARIO WHERE userName = '" . $this->userName . "'";

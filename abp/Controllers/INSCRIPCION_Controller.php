@@ -15,10 +15,8 @@ for ($z = 0; $z < count($pags); $z++) {
     include $pags[$z];
 }
 
-//Método que recoge la información del formulario para usuarios entrenadores
 function get_data_form() {
 
-//Atributos comunes a entrenadores y deportistas
     $userName = $_REQUEST['userName'];
     $password = $_REQUEST['password'];
     $nombre = $_REQUEST['nombre'];
@@ -42,116 +40,25 @@ if (!isset($_REQUEST['accion'])) {
 
 
 Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
-//    case $strings['Insertar']:
-//
-//        if ($_REQUEST['user'] == "entrenador") {
-//            if (!isset($_REQUEST['nombre'])) { //Si no se ha introducido ningun valor, mostramos la vista con el formulario
-//                new ENTRENADOR_Insertar('ENTRENADOR_Controller.php', 'ENTRENADOR_Controller.php?user=entrenador');
-//            } else {
-//                $entrenador = get_data_form_Entrenador(); //Recogemos los datos del formulario
-//                //Creamos las carpetas para guardar los archivos
-//                $carpetaFoto = '../Documents/Entrenadores/' . $_REQUEST['dni'] . '/Foto/';
-//
-//                if ($_FILES['foto']['name'] !== '') {
-//                    if (!file_exists($carpetaFoto)) {
-//                        mkdir($carpetaFoto, 0777, true);
-//                    }
-//                    move_uploaded_file($_FILES['foto']['tmp_name'], $carpetaFoto . $_FILES['foto']['name']);
-//                }
-//
-//                $respuesta = $entrenador->Insertar();
-//                new Mensaje($respuesta, 'ENTRENADOR_Controller.php');
-//            }
-//        }
-//        break;
-//
-//
-//
-//
     case $strings['Aceptar']:
-
 
         $inscripcion = new INSCRIPCION_Model($_REQUEST['userName'], $_REQUEST['actividad'], '', '');
         $respuesta = $inscripcion->Aceptar();
         new Mensaje($respuesta, 'INSCRIPCION_Controller.php');
 
+        break;
+
+
+    case $strings['Rechazar']:
+
+
+        $inscripcion = new INSCRIPCION_Model($_REQUEST['userName'], $_REQUEST['actividad'], '', '');
+        $respuesta = $inscripcion->Rechazar();
+        new Mensaje($respuesta, 'INSCRIPCION_Controller.php');
+
 
         break;
-//
-//
-//    case $strings['Borrar']:
-//        if (ConsultarTipoUsuario($_REQUEST['userName']) == 2) {
-//            if (!isset($_REQUEST['nombre'])) {
-//                //Crea un usuario solo con el user para rellenar posteriormente sus datos y mostrarlos en el formulario
-//                $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '','');
-//                $valores = $usuario->RellenaDatos();
-//                if (!tienePermisos('ENTRENADOR_Borrar')) {
-//                    new Mensaje('No tienes los permisos necesarios', 'ENTRENADOR_Controller.php');
-//                } else {
-//                    //muestra el formulario de borrado
-//                    new ENTRENADOR_Borrar($valores, 'ENTRENADOR_Controller.php');
-//                }
-//            } else {
-//                $_REQUEST['password'] = '';
-//                $entrenador = get_data_form_Entrenador();
-//                $respuesta = $entrenador->Borrar();
-//                new Mensaje($respuesta, 'ENTRENADOR_Controller.php');
-//            }
-//        }
-//        break;
-    /*
-      case  $strings['Consultar']: //Consultar los usuarios que cumplan unas ciertas condiciones
-      if (!isset($_REQUEST['USUARIO_USER'])){
-      if(!tienePermisos('USUARIO_Consultar')){
-      new Mensaje('No tienes los permisos necesarios','USUARIO_Controller.php');
-      }
-      else { //Se muestra el formulario de consulta
-      new USUARIO_Consultar();
-      }
-      }
-      else{
 
-      //Establecemos a cadena vacía la información que no se obtiene del formulario
-
-      $_REQUEST['USUARIO_TIPO']='';
-      $_REQUEST['USUARIO_ESTADO']='';
-
-
-      $_REQUEST['USUARIO_PASSWORD']='';
-      $_REQUEST['USUARIO_COMENTARIOS']='';
-
-      $_REQUEST['USUARIO_FOTO']='';
-
-
-      $usuario = get_data_form();
-      $datos = $usuario->Consultar();
-
-
-      new USUARIO_ShowConsulta($datos, 'USUARIO_Controller.php');
-      }
-      break;
-      case $strings['Modificar acciones']:
-
-      if (!isset($_REQUEST['funcionalidad_paginas'])) { //Consulta de las páginas asociadas
-      $empleado = new USUARIO_Modelo($_REQUEST['USUARIO_USER'], '', '', '', '', '', '', '', '', '', '', '', '', '');
-
-      $valores = $empleado->ConsultarPaginas();
-
-
-      if (!tienePermisos('USUARIO_Edit_Accion')) {
-      new Mensaje('No tienes los permisos necesarios', 'USUARIO_Controller.php');
-      } else {
-
-      new USUARIO_Edit_Accion($_REQUEST['USUARIO_USER'],$valores, 'USUARIO_Controller.php');
-      }
-      }
-      else{
-      $empleado = new USUARIO_Modelo($_REQUEST['USUARIO_USER'], '', '', '', '', '', '', '', '', '', '', '', '', '');
-      $empleado->ModificarPaginas($_REQUEST['funcionalidad_paginas']);
-      new Mensaje('El usuario se ha modificado con éxito', 'USUARIO_Controller.php');
-      }
-      break;
-     */
 
     default: //Por defecto se realiza el show all
         if (!isset($_REQUEST['idInscripcion'])) {

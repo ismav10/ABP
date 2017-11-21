@@ -1,11 +1,11 @@
 <?php
 
-class ENTRENADOR_Borrar {
+class DEPORTISTA_SELECT_SHOW {
 
     private $valores;
     private $volver;
 
-//VISTA PARA LA ELIMINACION DE USUARIOS ENTRENADORES
+//VISTA PARA LA MODIFICACIÓN DE USUARIOS
     function __construct($valores, $volver) {
         $this->valores = $valores;
         $this->volver = $volver;
@@ -18,9 +18,9 @@ class ENTRENADOR_Borrar {
         ?>
 
         <div class="container" >
-            <form  id="form" name="form" action='<?php $this->volver; ?>'  method='post'   enctype="multipart/form-data">
+            <form  id="form" name="form" action='DEPORTISTA_Controller.php'  method='post'   enctype="multipart/form-data">
                 <div class="form-group" >
-                    <label class="control-label" ><?php echo $strings['Eliminar Entrenador']; ?></label><br>
+                    <label class="control-label" ><?php echo $strings['Ver Deportista']; ?></label><br>
                 </div>
                 
                  <div class="form-group">
@@ -32,10 +32,6 @@ class ENTRENADOR_Borrar {
                     <input class="form" id="userName" name="userName" size="25" type="text" readonly="true" value="<?php echo $this->valores['userName']; ?>">
                 </div>
 
-                 <div class="form-group">
-                    <input type='hidden' class="form" id="password" name="password" size="25" type="text" readonly="true" value="<?php echo $this->valores['password']; ?>">
-                </div>
-                
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['tipoUsuario']; ?></label><br>
                     <input class="form" id="tipoUsuario" name="tipoUsuario" size="25" type="text" readonly="true" value="<?php echo ConsultarNOMRol($this->valores['tipoUsuario']); ?>">
@@ -76,16 +72,19 @@ class ENTRENADOR_Borrar {
                     <label class="control-label" ><?php echo $strings['telefono']; ?></label><br>
                     <input class="form" id="telefono" name="telefono" size="15" type="numeric" readonly="true" value="<?php echo $this->valores['telefono']; ?>">
                 </div>
-                
+
                 <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['cuentaBanc']; ?></label><br>
-                    <input class="form" id="cuentaBanc" name="cuentaBanc" size="50" type="text" readonly="true" value="<?php echo $this->valores['cuentaBanc']; ?>"/>
+                    <label class = "control-label" ><?php echo $strings['tipoDeportista']; ?></label><br>
+                    <input class="form" id="tipoDeportista" name="tipoDeportista" size="3" type="text" readonly="true" value="<?php echo $this->valores['tipoDeportista']; ?>">
                 </div>
 
-
+                <div class = "form-group">
+                    <label class = "control-label" ><?php echo $strings['metodoPago']; ?></label><br>
+                    <input class="form" id="metodoPago" name="metodoPago" size="30" type="text" readonly="true" value="<?php echo $this->valores['metodoPago']; ?>">
+                </div>
+                
                 <br>
 
-                <input type = 'submit' name = 'accion' value = '<?php echo $strings['Borrar'] ?>'>
                 <a class="form-link" href='<?php echo $this->volver ?> '><?php echo $strings['Volver']; ?> </a>
             </form>
 
