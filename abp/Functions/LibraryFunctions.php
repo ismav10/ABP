@@ -187,7 +187,7 @@ function añadirFuncionalidades($NOM) {
             switch ($funcionalidad) {
 
                 case "Gestion Usuarios":
-                    ?><br><br>
+                    ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios'] ?> </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
