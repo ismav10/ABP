@@ -69,7 +69,7 @@ class INSCRIPCIONPENDIENTE_Show {
                             ?>
 
                                                                                                                                                 <!--<td><button type="button" class="btn btn-success"><a href='USUARIO_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Ver']; ?>'><?php echo $strings['Ver']; ?></a></button></td>   -->          
-                            <td><button type="button" class="btn btn-success"><a href='INSCRIPCION_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&actividad='. $this->datos[$j]['idActividadGrupal'] . $strings['Aceptar']; ?>'><?php echo $strings['Aceptar']; ?></a></button></td>
+                            <td><button type="button" class="btn btn-success"><a href='INSCRIPCION_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&actividad='. $this->datos[$j]['idActividadGrupal'] . '&accion=' .$strings['Aceptar']; ?>'><?php echo $strings['Aceptar']; ?></a></button></td>
                             <td><button type="button" class="btn btn-danger"><a href='INSCRIPCION_Controller.php?userName=<?php echo $this->datos[$j]['idInscripcion'] . '&accion=' . $strings['Rechazar']; ?>'><?php echo $strings['Rechazar']; ?></a></button></td>
                                     <?php
                                 }

@@ -13,6 +13,9 @@ $strings = array(
 'Error en la consulta sobre la base de datos' => 'Error en la consulta sobre la base de datos',
 'El usuario se ha modificado con éxito'=>'El usuario se ha modificado con éxito',
 'El usuario ha sido borrado correctamente' => 'El usuario ha sido borrado correctamente',
+'Solicitud aceptada' => 'Solicitud aceptada',
+'No hay plazas para esa actividad' => 'No hay plazas para esa actividad',
+'No existe la inscripcion' => 'No existe la inscripción',
     
     
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)
@@ -92,6 +95,7 @@ $strings = array(
 'estado' => 'Estado',
 'Aceptar' => 'Aceptar',
 'Rechazar' => 'Rechazar',
+  
     
     
 //NOTIFICACION

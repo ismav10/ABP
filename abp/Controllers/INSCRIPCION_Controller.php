@@ -71,9 +71,9 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
     case $strings['Aceptar']:
 
 
-        $inscripcion = new INSCRIPCION_Modelo($_REQUEST['userName'], $_REQUEST['actividad'], '', '');
-        $respuesta = $entrenador->Aceptar();
-        new Mensaje($respuesta, 'ENTRENADOR_Controller.php');
+        $inscripcion = new INSCRIPCION_Model($_REQUEST['userName'], $_REQUEST['actividad'], '', '');
+        $respuesta = $inscripcion->Aceptar();
+        new Mensaje($respuesta, 'INSCRIPCION_Controller.php');
 
 
         break;
