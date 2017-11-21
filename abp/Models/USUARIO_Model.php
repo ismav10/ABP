@@ -76,10 +76,10 @@ class USUARIO_Modelo {
                 return 'No se ha podido conectar con la base de datos';
             } else {
                 if ($result->num_rows == 0) {
-                    if($this->foto == ''){
+                    if ($this->foto == '') {
                         $this->foto = '../img/user.jpg';
                     }
-                    
+
                     $sql = "INSERT INTO USUARIO VALUES ('" . $this->foto . "', '" . $this->userName . "','" . md5($this->password) . "','" . $this->tipoUsuario . "','" . $this->nombre . "','" . $this->apellidos . "','" . $this->dni . "','" . $this->fechaNac . "','" . $this->direccion . "','" . $this->telefono . "', '" . $this->email . "');";
                     $this->mysqli->query($sql);
 
@@ -103,8 +103,6 @@ class USUARIO_Modelo {
         } else
             return 'El usuario ya existe en la base de datos';
     }
-
-  
 
 //Devuelve la información de todos los usuarios en funcion de si son entrenadores o deportistas
     function ConsultarTodo($user) {
@@ -191,7 +189,7 @@ class USUARIO_Modelo {
             } else {
                 $sql = "UPDATE USUARIO SET password = '" . md5($this->newPassword) . "',tipoUsuario ='" . $this->tipoUsuario . "',nombre= '" . $this->nombre . "',apellidos= '" . $this->apellidos . "',dni = '" . $this->dni . "',fechaNac= '" . $this->fechaNac . "',direccion= '" . $this->direccion . "',telefono= '" . $this->telefono . "',email= '" . $this->email . "'";
             }
-            
+
             if ($this->foto != '') {
                 $sql.=", foto='" . $this->foto . "'";
             }
@@ -217,51 +215,6 @@ class USUARIO_Modelo {
         }
     }
 
-    /*
-      //Nos permite modificar las acciones que puede realizar un determinado usuario
-      function ModificarPaginas($pags){
-      $this->ConectarBD();
-      $sql="DELETE FROM USUARIO_PAGINA WHERE USUARIO_USER='".$this->USUARIO_USER."'";
-      $this->mysqli->query($sql);
-      for ($i=0;$i<count($pags);$i++){
-      $sql="INSERT INTO  USUARIO_PAGINA(USUARIO_USER,PAGINA_ID) VALUES ('".$this->USUARIO_USER."', ".ConsultarIDPagina($pags[$i]).")";
-
-      $this->mysqli->query($sql);
-      }
-      }
-
-
-      //Nos devuelve las páginas a las que tiene acceso el usuario
-      function ConsultarPaginas()
-      {
-      $this->ConectarBD();
-
-      $sql = "select PAGINA_ID from USUARIO_PAGINA WHERE USUARIO_USER='".$this->USUARIO_USER."'";
-
-      if (!($resultado = $this->mysqli->query($sql))){
-      return 'Error en la consulta sobre la base de datos';
-      }
-      else{
-
-
-      $toret=array();
-      $i=0;
-
-      while ($fila= $resultado->fetch_array()) {
-
-
-      $toret[$i]=ConsultarNOMPagina($fila['PAGINA_ID']);
-      $i++;
-
-      }
-
-
-      return $toret;
-
-      }
-      }
-
-     */
 }
 
 ?>

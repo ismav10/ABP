@@ -13,6 +13,10 @@ $strings = array(
 'Error en la consulta sobre la base de datos' => 'Error in the query on the database',
 'El usuario se ha modificado con éxito'=>'The user has been modified successfully',
 'El usuario ha sido borrado correctamente' => 'The user has been deleted correctly',
+'Solicitud aceptada' => 'Request accepted',
+'Solicitud rechazada' => 'Rejected Request',
+'No hay plazas para esa actividad' => 'There are no places for this activity',
+ 'No existe la inscripcion' => 'There is no registration',
     
     
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)
@@ -28,6 +32,8 @@ $strings = array(
 'Gestión de notificaciones' => 'Notifications',
 'Gestión de sesiones' => 'Sessions',
 'Gestión de Inscripciones' => 'Inscription',
+'Gestión de ejercicios' => 'Exercise ',
+'Gestión de tablas' => 'Boards',
 
 
 
@@ -39,11 +45,13 @@ $strings = array(
 'Borrar' => 'Delete',
 'Seleccionar'=> 'Select',
 'Ver'=>'See',
+'Consultar' => 'Consult',
 
 
 //USUARIOS
 'userName' => 'User',
 'password'=>'Password',
+'newPassword'=>'New Password',
 'nombre' => 'Name',
 'apellidos' => 'Apellidos',
 'tipoUsuario' => 'Type',
@@ -61,6 +69,7 @@ $strings = array(
 'Modificar Administrador' => 'Edit Administrator',
 'Eliminar Administrador' => 'Delete Administrator',
 'Modificar usuario'=>'Edit User',
+'Ver Administrador' => 'See Administrator',
 
     
 //ENTRENADOR
@@ -68,6 +77,7 @@ $strings = array(
 'Insertar entrenador' => 'Add Coach',
 'Modificar entrenador' => 'Edit Coach',
 'Eliminar Entrenador' => 'Delete Coach',
+'Ver Entrenador' => 'See Coach',
     
     
 //DEPORTISTA
@@ -78,11 +88,21 @@ $strings = array(
 'Insertar deportista' => 'Add Athlete',
 'Modificar deportista' => 'Edit Athlete',
 'Eliminar Deportista' => 'Delete Athlete',
-    
+'Ver Deportista' => 'See Athlete',    
 
-//INSCRIPCIONES
-'Pendientes' => 'Pendientes',
     
+    
+//INSCRIPCIONES
+'Pendientes' => 'Pending',
+ 'nombreActividadGrupal'=> 'Activity',
+0 => 'Pending Request',
+1 => 'Pending request',
+'plazasDisponibles' => 'Sites',
+'estado' => 'State',
+'Aceptar' => 'Accept',
+'Rechazar' => 'Reject',   
+    
+      
     
 //NOTIFICACION
 'idNotificacion' => 'idNotificacion',
@@ -91,7 +111,21 @@ $strings = array(
 'fechaHoraNotificacion' => 'Dare',
 'asuntoNotificacion' => 'Affair',
 'mensajeNotificacion' => 'Message',
-'Ver Notificacion' => 'See Notification'
+'Ver Notificacion' => 'See Notification',
+
+
+
+//SESIONES
+
+'nombreTabla' => 'Table',
+'nombreActividadIndividual' =>'Activity',
+'idTabla' =>'Table',
+'idActividadIndividual' => 'Activity',
+'comentarioSesion' => 'Commentary',
+'fechaSesion' => 'Date',
+'horaInicio' => 'Start',
+'horaFin' => 'Edn',
+'Modificar sesion' => 'Modify Session'
 
 
 

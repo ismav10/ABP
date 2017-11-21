@@ -381,61 +381,6 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         break;
 
 
-
-    /*
-      case  $strings['Consultar']: //Consultar los usuarios que cumplan unas ciertas condiciones
-      if (!isset($_REQUEST['USUARIO_USER'])){
-      if(!tienePermisos('USUARIO_Consultar')){
-      new Mensaje('No tienes los permisos necesarios','USUARIO_Controller.php');
-      }
-      else { //Se muestra el formulario de consulta
-      new USUARIO_Consultar();
-      }
-      }
-      else{
-
-      //Establecemos a cadena vacía la información que no se obtiene del formulario
-
-      $_REQUEST['USUARIO_TIPO']='';
-      $_REQUEST['USUARIO_ESTADO']='';
-
-
-      $_REQUEST['USUARIO_PASSWORD']='';
-      $_REQUEST['USUARIO_COMENTARIOS']='';
-
-      $_REQUEST['USUARIO_FOTO']='';
-
-
-      $usuario = get_data_form();
-      $datos = $usuario->Consultar();
-
-
-      new USUARIO_ShowConsulta($datos, 'USUARIO_Controller.php');
-      }
-      break;
-      case $strings['Modificar acciones']:
-
-      if (!isset($_REQUEST['funcionalidad_paginas'])) { //Consulta de las páginas asociadas
-      $empleado = new USUARIO_Modelo($_REQUEST['USUARIO_USER'], '', '', '', '', '', '', '', '', '', '', '', '', '');
-
-      $valores = $empleado->ConsultarPaginas();
-
-
-      if (!tienePermisos('USUARIO_Edit_Accion')) {
-      new Mensaje('No tienes los permisos necesarios', 'USUARIO_Controller.php');
-      } else {
-
-      new USUARIO_Edit_Accion($_REQUEST['USUARIO_USER'],$valores, 'USUARIO_Controller.php');
-      }
-      }
-      else{
-      $empleado = new USUARIO_Modelo($_REQUEST['USUARIO_USER'], '', '', '', '', '', '', '', '', '', '', '', '', '');
-      $empleado->ModificarPaginas($_REQUEST['funcionalidad_paginas']);
-      new Mensaje('El usuario se ha modificado con éxito', 'USUARIO_Controller.php');
-      }
-      break;
-     */
-
     default: //Por defecto se realiza el show all
         if (!isset($_REQUEST['userName'])) {
             $usuario = new USUARIO_Modelo('', '', '', '', '', '', '', '', '', '', '', '', '', '', '');

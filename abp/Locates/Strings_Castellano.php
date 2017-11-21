@@ -45,6 +45,7 @@ $strings = array(
 'Consultar' => 'Consultar',
 'Borrar' => 'Borrar',
 'Ver'=>'Ver',
+'Consultar' => 'Consultar',
 'Seleccionar'=> 'Seleccionar',
 
 //USUARIOS
