@@ -14,6 +14,7 @@ class ENTRENADOR_Insertar {
 
     function render() {
         ?> <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
+         <script type="text/javascript" src="../js/validate.js"></script>
 
         <?php include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php'; ?>
 
@@ -38,7 +39,7 @@ class ENTRENADOR_Insertar {
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['nombre']; ?></label><br>
-                    <input class="form" id="nombre" name="nombre" size="50" type="text" required="true"/>
+                    <input class="form" id="nombre" name="nombre" size="25" type="text" required="true"/>
                 </div>
 
                 <div class="form-group">
@@ -69,7 +70,7 @@ class ENTRENADOR_Insertar {
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['telefono']; ?></label><br>
-                    <input class="form" id="telefono" name="telefono" size="15" type="numeric" required="true"/>
+                    <input class="form" id="telefono" name="telefono" size="10" type="numeric" required="true"/>
                 </div>
 
                 <div class="form-group">
@@ -79,19 +80,15 @@ class ENTRENADOR_Insertar {
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['cuentaBanc']; ?></label><br>
-                    <input class="form" id="cuentaBanc" name="cuentaBanc" size="50" type="text" required="true"/>
+                    <input class="form" id="cuentaBanc" name="cuentaBanc" size="20" type="text" required="true"/>
                 </div>
                 <br>
 
                 <input type='submit' onclick="return valida_envia_USUARIO()" name='accion'  value="<?php echo $strings['Insertar']; ?>">
-                <a class="form-link" href="<?php echo $this->volver ?>"><?php echo $strings['Volver']; ?>
-
-
+                <a class="form-link" href="<?php echo $this->volver ?>"><?php echo $strings['Volver']; ?></a>
             </form>
         </div>
-
-
-
+         
         <?php
         include '../Views/footer.php';
     }

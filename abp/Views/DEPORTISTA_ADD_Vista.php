@@ -5,8 +5,8 @@ class DEPORTISTA_Insertar {
 
     private $volver;
     private $cont;
-    
-    function __construct($volver,$cont) {
+
+    function __construct($volver, $cont) {
         $this->volver = $volver;
         $this->cont = $cont;
         $this->render();
@@ -14,6 +14,7 @@ class DEPORTISTA_Insertar {
 
     function render() {
         ?> <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
+        <script type="text/javascript" src="../js/validate.js"></script>
 
         <?php include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php'; ?>
 
@@ -33,12 +34,12 @@ class DEPORTISTA_Insertar {
                 </div>
 
                 <div class="form-group">
-                    <input type='hidden' class="form" id="tipoUsuario" name="tipoUsuario" size="25" type="password" required="true" value='Deportista'/>
+                    <input type='hidden' class="form" id="tipoUsuario" name="tipoUsuario" size="25" type="text" required="true" value='Deportista'/>
                 </div>
-                
+
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['nombre']; ?></label><br>
-                    <input class="form" id="nombre" name="nombre" size="50" type="text" required="true"/>
+                    <input class="form" id="nombre" name="nombre" size="25" type="text" required="true"/>
                 </div>
 
                 <div class="form-group">
@@ -69,7 +70,7 @@ class DEPORTISTA_Insertar {
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['telefono']; ?></label><br>
-                    <input class="form" id="telefono" name="telefono" size="15" type="numeric" required="true"/>
+                    <input class="form" id="telefono" name="telefono" size="9" type="numeric" required="true"/>
                 </div>
 
                 <div class="form-group">
@@ -84,16 +85,16 @@ class DEPORTISTA_Insertar {
                         <option value="TDU"><?php echo $strings['TDU']; ?></option>
                     </select>
                 </div>
-                
-                 <div class="form-group">
+
+                <div class="form-group">
                     <label class="control-label" ><?php echo $strings['metodoPago']; ?></label><br>
-                    <input class="form" id="metodoPago" name="metodoPago" size="30" type="text" required="true"/>
+                    <input class="form" id="metodoPago" name="metodoPago" size="30" type="numeric" required="true"/>
                 </div>
-                
+
                 <br>
 
                 <input type='submit' onclick="return valida_envia_USUARIO()" name='accion'  value="<?php echo $strings['Insertar']; ?>">
-                 <a class="form-link" href="<?php echo $this->volver ?>"><?php echo $strings['Volver']; ?>
+                <a class="form-link" href="<?php echo $this->volver ?>"><?php echo $strings['Volver']; ?></a>
             </form>
         </div>
 

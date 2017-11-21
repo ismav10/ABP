@@ -15,9 +15,9 @@ class USUARIO_Select {
         ?> 
         <div class="container">
             <div align='center'>
-                <a href='USUARIO_Controller.php?accion=<?php echo $strings['Seleccionar']; ?>&user=admin'><img src="../img/useradd.png" width="50px" height="50px"><?php echo $strings['Administrador']; ?></a>
-                <a href='USUARIO_Controller.php?accion=<?php echo $strings['Seleccionar']; ?>&user=entrenador'><img src="../img/useradd.png" width="50px" height="50px"><?php echo $strings['Entrenador']; ?></a>
-                <a href='USUARIO_Controller.php?accion=<?php echo $strings['Seleccionar']; ?>&user=deportista'><img src="../img/useradd.png" width="50px" height="50px"><?php echo $strings['Deportista']; ?></a>
+                <a href='USUARIO_Controller.php?accion=<?php echo $strings['Seleccionar']; ?>&user=admin'><img src="../img/admin.jpg" width="54px" height="54px"><?php echo $strings['Administrador']; ?></a>
+                <a href='USUARIO_Controller.php?accion=<?php echo $strings['Seleccionar']; ?>&user=entrenador'><img src="../img/entrenador.jpg" width="50px" height="50px"><?php echo $strings['Entrenador']; ?></a>
+                <a href='USUARIO_Controller.php?accion=<?php echo $strings['Seleccionar']; ?>&user=deportista'><img src="../img/deportista1.jpg" width="50px" height="50px"><?php echo $strings['Deportista']; ?></a>
 
             </div>
             <div align='right'>

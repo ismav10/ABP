@@ -76,7 +76,6 @@ function validarFechaMenorActual(date) {
     var fecha = date.split("-");
 
     x.setFullYear(fecha[0], fecha[1] - 1, fecha[2]);
-    alert(X);
     var today = new Date();
 
     if (x >= today)
@@ -122,7 +121,6 @@ function valida_envia_USUARIO() {
         return false;
     }
 
-//Validamos un campo o área de texto, por ejemplo el campo nombre
     if (document.form.nombre.value.length == 0) {
         alert("Introduzca un valor para el nombre");
         document.form.nombre.focus();
@@ -163,21 +161,31 @@ function valida_envia_USUARIO() {
         return false;
     }
 
-    if (document.form.fechNac.value == false) {
+    if (document.form.fechaNac.value == false) {
         alert("Introduzca un valor  para la fecha de nacimiento");
         document.form.fechaNac.focus();
         return false;
     }
+
     if (!validarFechaMenorActual(document.form.fechaNac.value)) {
-        alert("¿Viene del futuro?");
+        alert("¿Viene del futuro? Introduzca una fecha válida");
         document.form.fechaNac.focus();
         return false;
     }
+
+    if (document.form.direccion.value.length == 0) {
+        alert("Introduzca dirección");
+        document.form.direccion.focus();
+        return false;
+    }
+
+
     if (((document.form.email.value.length == 0) || !validarEmail(document.form.email.value))) {
         alert("Introduzca una dirección de email válida");
         document.form.email.focus();
         return false;
     }
+
     valor = document.form.telefono.value;
     if (!(/^\d{9}$/.test(valor))) {
         alert("Tiene que escribir un teléfono de 9 dígitos");
@@ -185,18 +193,13 @@ function valida_envia_USUARIO() {
         return false;
     }
 
+
     if (document.form.cuentaBanc.value.length == 0 || !validaCCC(document.form.cuentaBanc.value)) {
         alert("Introduzca un valor correcto para el numero de CCC(sin espacios)");
         document.form.cuentaBanc.focus();
         return false;
     }
 
-
-    if (document.form.direccion.value.length == 0) {
-        alert("Introduzca dirección");
-        document.form.direccion.focus();
-        return false;
-    }
 
 
     return true;

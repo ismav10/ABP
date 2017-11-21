@@ -63,7 +63,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 
         if ($_REQUEST['user'] == "deportista") {
             if (!isset($_REQUEST['nombre'])) { //Si no se ha introducido ningun valor, mostramos la vista con el formulario
-                new ENTRENADOR_Insertar('DEPORTISTA_Controller.php', 'DEPORTISTA_Controller.php?user=deportista');
+                new DEPORTISTA_Insertar('DEPORTISTA_Controller.php', 'DEPORTISTA_Controller.php?user=deportista');
             } else {
                 //Recogemos los datos del formulario
                 $deportista = get_data_form_Deportista();

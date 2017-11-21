@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `ejercicio` (
 
 CREATE TABLE IF NOT EXISTS `entrenador` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
-  `cuentaBanc` varchar(24) COLLATE utf8_spanish_ci NOT NULL
+  `cuentaBanc` varchar(20) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `entrenador` (
 --
 
 INSERT INTO `entrenador` (`userName`, `cuentaBanc`) VALUES
-('entrenador', 'ES1320900000290350000083');
+('entrenador', '20900000290350000083');
 
 -- --------------------------------------------------------
 

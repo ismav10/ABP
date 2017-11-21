@@ -76,7 +76,7 @@ class USUARIO_Modelo {
                 return 'No se ha podido conectar con la base de datos';
             } else {
                 if ($result->num_rows == 0) {
-                    if($this->foto = ''){
+                    if($this->foto == ''){
                         $this->foto = '../img/user.jpg';
                     }
                     
@@ -89,7 +89,7 @@ class USUARIO_Modelo {
                     }
 
                     if ($this->tipoUsuario == 3) {
-                        $sql = "INSERT INTO DEPORTISTA VALUES ( '" . $this->userName . "', '" . $this->tipoDeportista . "', '" . $this->medotoPago . "');";
+                        $sql = "INSERT INTO DEPORTISTA (userName, tipoDeportista, metodoPago) VALUES ( '" . $this->userName . "', '" . $this->tipoDeportista . "', '" . $this->medotoPago . "');";
                         $this->mysqli->query($sql);
                     }
 

@@ -62,7 +62,7 @@ function get_data_form_Entrenador() {
     $telefono = $_REQUEST['telefono'];
     $email = $_REQUEST['email'];
     $cuentaBanc = $_REQUEST['cuentaBanc'];
-    if ($_REQUEST['newPassword'] == '') {
+    if (!isset($_REQUEST['newPassword']) || $_REQUEST['newPassword'] == '') {
         $newPassword = '';
     } else {
         $newPassword = $_REQUEST['newPassword'];
@@ -94,8 +94,8 @@ function get_data_form_Deportista() {
     $telefono = $_REQUEST['telefono'];
     $email = $_REQUEST['email'];
     $tipoDeportista = $_REQUEST['tipoDeportista'];
-    $metodoPago = $_REQUEST['tipoDeportista'];
-    if ($_REQUEST['newPassword'] == '') {
+    $metodoPago = $_REQUEST['metodoPago'];
+    if (!isset($_REQUEST['newPassword']) || $_REQUEST['newPassword'] == '') {
         $newPassword = '';
     } else {
         $newPassword = $_REQUEST['newPassword'];
@@ -105,7 +105,7 @@ function get_data_form_Deportista() {
     if (isset($_FILES['foto']['name']) && ($_FILES['foto']['name'] !== '')) {
         $foto = '../Documents/Deportistas/' . $_REQUEST['dni'] . '/Foto/' . $_FILES['foto']['name'];
     } else {
-        $foto = '../img/user.jpg';
+        $foto = '';
     }
 
     $deportista = new USUARIO_Modelo($userName, $password, $tipoUsuario, $nombre, $apellidos, $dni, $fechaNac, $direccion, $telefono, $email, $foto, "", $tipoDeportista, $metodoPago, $newPassword);
