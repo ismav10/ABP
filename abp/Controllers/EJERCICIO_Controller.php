@@ -10,12 +10,12 @@ if (!IsAuthenticated()) {
 include '../Views/header.php';
 include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
 
-/*
+
 $pags = generarIncludes(); //Realizamos los includes de las páginas a las que tiene acceso
 for ($z = 0; $z < count($pags); $z++) {
     include $pags[$z];
 }
-*/
+
 function get_data_form()
 {
 	if( isset($_REQUEST['nombreEjercicio']) )
@@ -42,7 +42,14 @@ if ( !isset($_REQUEST['accion']) )
 }
 
 switch ($_REQUEST['accion']) { //Actúa según la acción elegida
-    case 'insertar':
+    
+	case 'vistainsertar':
+		require_once '../Views/EJERCICIO_ADD_Vista.php';
+		$datos = "";
+        new EJERCICIO_ADD($datos, '../Views/EJERCICIO_EDIT_Vista.php');
+	break;
+	
+	case 'insertar':
 		$ejercicio = get_data_form();
 		$ejercicio->insertarEjercicio();
 		header("Location: ../Controllers/EJERCICIO_Controller.php");
@@ -55,7 +62,7 @@ switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 		$ejercicio = get_data_form();
 		$datos = $ejercicio->getEjercicio( $_REQUEST['id'] );
 		require_once '../Views/EJERCICIO_EDIT_Vista.php';
-        new EJERCICIO_Show($datos, '../Views/EJERCICIO_EDIT_Vista.php');
+        new EJERCICIO_EDIT($datos, '../Views/EJERCICIO_EDIT_Vista.php');
     break;
 	
 	case 'guardarmod':

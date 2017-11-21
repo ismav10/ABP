@@ -10,12 +10,12 @@ if (!IsAuthenticated()) {
 include '../Views/header.php';
 include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
 
-/*
+
 $pags = generarIncludes(); //Realizamos los includes de las páginas a las que tiene acceso
 for ($z = 0; $z < count($pags); $z++) {
     include $pags[$z];
 }
-*/
+
 function get_data_form()
 {
 	if( isset($_REQUEST['nombreTabla']) )
@@ -39,7 +39,13 @@ if ( !isset($_REQUEST['accion']) )
 }
 
 switch ($_REQUEST['accion']) { //Actúa según la acción elegida
-    
+
+    case 'vistainsertar':
+			require_once '../Views/TABLA_ADD_Vista.php';
+			$datos = "";
+            new TABLA_ADD($datos, '../Views/TABLA_SHOWALL_Vista.php');
+	break;
+	
 	case 'ver':
 			$tabla = get_data_form();
 			$datos['tabla'] = $tabla->obtenerTablaDetalle(  $_REQUEST['id']);
