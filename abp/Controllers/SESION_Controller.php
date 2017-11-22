@@ -24,24 +24,32 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         if (!tienePermisos('SESION_Insertar')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
-            if (!isset($_REQUEST['username'])) {
-                new SESION_Insertar();
+            if (!isset($_REQUEST['comentarioSesion'])) {
+                $sesion = new SESION_Model($_SESSION['login'], '','','','','','','');
+                $idTablas = $sesion->ConsultarIdTablas();
+                $idActividadesIndividuales = $sesion->ConsultarIdActividadesIndividuales();
+                $tablas = $sesion->ConsultarTablas();
+                $actividadesIndividuales = $sesion->ConsultarActividades();
+                new SESION_Insertar($tablas, $actividadesIndividuales,$idTablas,$idActividadesIndividuales,'../Views/SESION_SHOWALL_Vista.php');
             } else {
-                $sesion = new SESION_Model($_SESSION['login'], $_REQUEST['idSesion'], $_REQUEST['idTabla'], $_REQUEST['comentarioSesion'], $_REQUEST['idActividadIndividual'], $_REQUEST['fecha'], $_REQUEST['horaInicio'], $_REQUEST['horaFin']);
+                $hoy = getDate();
+                $horaFin = $hoy['hours'].":".$hoy['minutes'];
+                $sesion = new SESION_Model($_SESSION['login'], '', $_REQUEST['idTabla'], $_REQUEST['comentarioSesion'], $_REQUEST['idActividadIndividual'], $_REQUEST['fechaSesion'], $_REQUEST['horaInicio'], $horaFin);
                 $respuesta = $sesion->Insertar();
-                new Mensaje($respuesta, '../Views/DEFAULT_Vista.php');
+                new Mensaje($_SESSION['login'], '../Views/SESION_SHOWALL_Vista.php');
             }
         }
+        break;
 
 
     case $strings['Consultar']:
         if (!tienePermisos('SESION_Consultar')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
-            if (!isset($_REQUEST['username'])) {
+            if (!isset($_REQUEST['fechaSesion'])) {
                 new SESION_Consultar();
             } else {
-                $sesion = new SESION_Model($_SESSION['login'], '', '', $_REQUEST['comentario'], '', $_REQUEST['fecha'], '', '');
+                $sesion = new SESION_Model($_SESSION['login'], '', '', '', '', $_REQUEST['fechaSesion'], '', '');
                 $datos = $sesion->Consultar();
                 new SESION_Consulta($datos, '../Views/DEFAULT_Vista.php');
             }

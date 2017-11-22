@@ -49,7 +49,7 @@ switch ($_REQUEST['accion']) {
             }
             else
             {
-                $notificacion = new NOTIFICACION_Model('','','','','','',$_REQUEST['username']);
+                $notificacion = new NOTIFICACION_Model('','',$_REQUEST['destinatarioNotificacion'],'',$_REQUEST['asuntoNotificacion'],$_REQUEST['mensajeNotificacion'],$_SESSION['login']);
                 $respuesta = $notificacion->Insertar();
                 new Mensaje($respuesta, '../Views/DEFAULT_Vista.php');
             }
@@ -128,7 +128,8 @@ switch ($_REQUEST['accion']) {
         } else {
             $notificacion = new NOTIFICACION_Model('', '', '', '', '', '', $_SESSION['login']);
             $datos = $notificacion->Listar();
-            new NOTIFICACION_Listar($datos, '../Views/DEFAULT_Vista.php');
+            $tipoUsuario = ConsultarTipoUsuario($_SESSION['login']);
+            new NOTIFICACION_Listar($datos,$tipoUsuario, '../Views/DEFAULT_Vista.php');
         }
 }
 
