@@ -50,6 +50,11 @@ $strings = array(
 'Ver'=>'Ver',
 'Consultar' => 'Consultar',
 'Seleccionar'=> 'Seleccionar',
+'AsignarT' => 'Asignar Tabla',
+'SeleccionaTabla' => 'Selecciona las Tablas',
+'AsignarTablaDeportista' => 'Asignar Tablas a un Deportista',
+'Cerrar' => 'Cerrar',
+'Guardar' => 'Guardar',
 
 //USUARIOS
 'userName' => 'Usuario',

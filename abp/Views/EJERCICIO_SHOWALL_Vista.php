@@ -16,8 +16,17 @@ class EJERCICIO_Show
 	{
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
       
+               
 		echo '<div class="container">';
+                echo '<br>';
+                echo '<br>';
+                /*
+                if(ConsultarTipoUsuario($_SESSION['login']) != 3){
 		echo '<a href="?accion=vistainsertar"><button type="button" class="btn btn-primary btn-lg btn-block">Nuevo ejercicio</button></a>';
+                } else {
+                     echo "<br><br>";
+                }
+                */
 		echo'<table class="table">
 			  <thead class="thead-dark">
 				<tr>

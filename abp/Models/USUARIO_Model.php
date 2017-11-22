@@ -229,6 +229,22 @@ class USUARIO_Modelo {
         }
     }
 
+    function obtenerTablas() {
+        $this->ConectarBD();
+        $sql = "SELECT * FROM tabla";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            return $toret;
+        }
+    }
+
 }
 
 ?>
