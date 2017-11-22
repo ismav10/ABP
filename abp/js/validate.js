@@ -192,7 +192,7 @@ function valida_envia_USUARIO() {
         return false;
     }
 
-    if (document.form.cuentaBanc.value.length == 0 || !validaCCC(document.form.cuentaBanc.value)) {
+    if (document.form.cuentaBanc.value.length != 20) {
         alert("Introduzca un valor correcto para el numero de CCC(sin espacios)");
         document.form.cuentaBanc.focus();
         return false;
@@ -312,7 +312,7 @@ function valida_envia_DEPOR() {
         return false;
     }
 
-    if (document.form.metodoPago.value.length != 12) {
+    if (document.form.metodoPago.value.length != 16) {
         alert("Introduzca un valor correcto para el numero de tarjeta de crédito");
         document.form.metodoPago.focus();
         return false;

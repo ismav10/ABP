@@ -87,7 +87,7 @@ class DEPORTISTA_Insertar {
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['metodoPago']; ?></label><br>
-                    <input class="form" id="metodoPago" name="metodoPago" size="12" type="numeric" required="true"/>
+                    <input class="form" id="metodoPago" name="metodoPago" size="16" type="numeric" required="true"/>
                 </div>
 
                 <br>

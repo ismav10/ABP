@@ -74,29 +74,43 @@ class USUARIO_Modelo {
             $sql = "select * from USUARIO where userName = '" . $this->userName . "'";
             if (!$result = $this->mysqli->query($sql)) {
                 return 'No se ha podido conectar con la base de datos';
-            } else {
-                if ($result->num_rows == 0) {
-                    if ($this->foto == '') {
-                        $this->foto = '../img/user.jpg';
-                    }
+            }
+            if ($result->num_rows == 0) {
+                $sql1 = "select * from USUARIO where dni = '" . $this->dni . "'";
+                $result1 = $this->mysqli->query($sql1);
+                if ($result1->num_rows == 0) {
+                    $sql2 = "select * from USUARIO where email = '" . $this->email . "'";
+                    $result2 = $this->mysqli->query($sql2);
+                    if ($result2->num_rows == 0) {
 
-                    $sql = "INSERT INTO USUARIO VALUES ('" . $this->foto . "', '" . $this->userName . "','" . md5($this->password) . "','" . $this->tipoUsuario . "','" . $this->nombre . "','" . $this->apellidos . "','" . $this->dni . "','" . $this->fechaNac . "','" . $this->direccion . "','" . $this->telefono . "', '" . $this->email . "');";
-                    $this->mysqli->query($sql);
+                        if ($this->foto == '') {
+                            $this->foto = '../img/user.jpg';
+                        }
 
-                    if ($this->tipoUsuario == 2) {
-                        $sql = "INSERT INTO ENTRENADOR VALUES ( '" . $this->userName . "', '" . $this->cuentaBanc . "');";
+                        $sql = "INSERT INTO USUARIO VALUES ('" . $this->foto . "', '" . $this->userName . "','" . md5($this->password) . "','" . $this->tipoUsuario . "','" . $this->nombre . "','" . $this->apellidos . "','" . $this->dni . "','" . $this->fechaNac . "','" . $this->direccion . "','" . $this->telefono . "', '" . $this->email . "');";
                         $this->mysqli->query($sql);
-                    }
 
-                    if ($this->tipoUsuario == 3) {
-                        $sql = "INSERT INTO DEPORTISTA (userName, tipoDeportista, metodoPago) VALUES ( '" . $this->userName . "', '" . $this->tipoDeportista . "', '" . $this->medotoPago . "');";
+                        if ($this->tipoUsuario == 2) {
+                            $sql = "INSERT INTO ENTRENADOR VALUES ( '" . $this->userName . "', '" . $this->cuentaBanc . "');";
+                            $this->mysqli->query($sql);
+                        }
+
+                        if ($this->tipoUsuario == 3) {
+                            $sql = "INSERT INTO DEPORTISTA (userName, tipoDeportista, metodoPago) VALUES ( '" . $this->userName . "', '" . $this->tipoDeportista . "', '" . $this->medotoPago . "');";
+                            $this->mysqli->query($sql);
+                        }
+
+                        $sql = "INSERT INTO USUARIO_ROL (userName, idRol) VALUES('" . $this->userName . "'," . $this->tipoUsuario . ")";
+
                         $this->mysqli->query($sql);
+                    } else {
+                        return "Ya existe un Usuario con ese E-mail";
                     }
-
-                    $sql = "INSERT INTO USUARIO_ROL (userName, idRol) VALUES('" . $this->userName . "'," . $this->tipoUsuario . ")";
-
-                    $this->mysqli->query($sql);
+                } else {
+                    return "Ya existe un Usuario con ese DNI";
                 }
+            } else {
+                return "Ya existe un Usuario con ese userName";
             }
 
             return 'Inserción realizada con éxito';

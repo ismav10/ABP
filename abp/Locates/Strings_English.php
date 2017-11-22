@@ -16,7 +16,10 @@ $strings = array(
 'Solicitud aceptada' => 'Request accepted',
 'Solicitud rechazada' => 'Rejected Request',
 'No hay plazas para esa actividad' => 'There are no places for this activity',
- 'No existe la inscripcion' => 'There is no registration',
+'No existe la inscripcion' => 'There is no registration',
+'Ya existe un Usuario con ese userName' => 'A user with that username already exists',
+'Ya existe un Usuario con ese DNI' => 'A user with that NID already exists',
+'Ya existe un Usuario con ese E-mail' =>'A user with that E-mail already exists',
     
     
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)

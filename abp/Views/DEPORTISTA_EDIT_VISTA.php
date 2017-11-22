@@ -108,7 +108,7 @@ class DEPORTISTA_Modificar {
 
                 <div class = "form-group">
                     <label class = "control-label" ><?php echo $strings['metodoPago']; ?></label><br>
-                    <input class="form" id="metodoPago" name="metodoPago" size="12" type="text" required="true" value="<?php echo $this->valores['metodoPago']; ?>">
+                    <input class="form" id="metodoPago" name="metodoPago" size="16" type="text" required="true" value="<?php echo $this->valores['metodoPago']; ?>">
                 </div>
                 <br>
 

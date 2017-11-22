@@ -36,7 +36,7 @@ class ENTRENADOR_Modificar {
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['password']; ?></label><br>
-                    <input class="form" id="password" name="password" size="25" type="password" required="true"/>
+                    <input class="form" id="password" name="password" size="25" type="password" required="true" value="<?php echo $this->valores['password']; ?>"/>
                 </div>
 
                 <div class="form-group">
