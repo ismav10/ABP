@@ -12,22 +12,23 @@ class TABLA_ADD
     }
 	function render()
 	{
+		include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
 		echo '<div class="container">
 				<form method="POST" action="../Controllers/TABLA_Controller.php?accion=insertar">
 				<div class="form-group row">
-				  <label for="example-text-input" class="col-2 col-form-label">Nombre Tabla</label>
+				  <label for="example-text-input" class="col-2 col-form-label">'.$strings['tablaname'].'</label>
 				  <div class="col-10">
 					<input class="form-control" type="text" name="nombreTabla" id="example-text-input" required>
 				  </div>
 				</div>
 				<div class="form-group row">
-				  <label for="example-text-input" class="col-2 col-form-label">Descripcion Tabla</label>
+				  <label for="example-text-input" class="col-2 col-form-label">'.$strings['tabladesc'].'</label>
 				  <div class="col-10">
 					<input class="form-control" type="text" name="descripcionTabla" id="example-text-input" required>
 				  </div>
 				</div>
 
-				<button type="submit" class="btn btn-primary">Guardar</button>
+				<button type="submit" class="btn btn-primary">'.$strings['savetabla'].'</button>
 				</form>
 			</div>';
 		include 'footer.php';

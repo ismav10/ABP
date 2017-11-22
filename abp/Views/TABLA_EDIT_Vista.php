@@ -19,19 +19,19 @@ class TABLA_Edit
 		echo '<div class="container">
 				<form method="POST" action="../Controllers/TABLA_Controller.php?accion=guardarmod&id='.$this->datos['idTabla'].'">
 				<div class="form-group row">
-				  <label for="example-text-input" class="col-2 col-form-label">Nombre Tabla</label>
+				  <label for="example-text-input" class="col-2 col-form-label">'.$strings['tablaname'].'</label>
 				  <div class="col-10">
 					<input class="form-control" type="text" name="nombreTabla" value="'.$this->datos['nombreTabla'].'" id="example-text-input" required>
 				  </div>
 				</div>
 				<div class="form-group row">
-				  <label for="example-text-input" class="col-2 col-form-label">Descripcion Tabla</label>
+				  <label for="example-text-input" class="col-2 col-form-label">'.$strings['tabladesc'].'</label>
 				  <div class="col-10">
 					<input class="form-control" type="text" name="descripcionTabla" value="'.$this->datos['descripcionTabla'].'" id="example-text-input" required>
 				  </div>
 				</div>
 
-				<button type="submit" class="btn btn-primary">Guardar</button>
+				<button type="submit" class="btn btn-primary">'.$strings['savetabla'].'</button>
 				</form>
 			</div>';
 

@@ -17,14 +17,14 @@ class TABLA_ShowCurrent
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
    
 		echo '<div class="container">
-				<h4>Nombre Tabla: '.$this->datos['tabla']['nombreTabla'].'</h4>
-				<h5>Descripcion: '.$this->datos['tabla']['descripcionTabla'].'</</h5>';
+				<h4>'.$strings['tablaname'].': '.$this->datos['tabla']['nombreTabla'].'</h4>
+				<h5>'.$strings['tabladesc'].': '.$this->datos['tabla']['descripcionTabla'].'</</h5>';
 		echo'<table class="table">
 			  <thead class="thead-dark">
 				<tr>
-				  <th scope="col">Nombre</th>
-				  <th scope="col">Descripcion</th>
-				  <th scope="col">Ejecución</th>
+				  <th scope="col">'.$strings['ejercicionametabla'].'</th>
+				  <th scope="col">'.$strings['ejerciciodesctabla'].'</th>
+				  <th scope="col">'.$strings['ejerciciogiftabla'].'</th>
 				</tr>
 			  </thead><tbody>';
 		foreach($this->datos['ejercicios'] as $valor)
