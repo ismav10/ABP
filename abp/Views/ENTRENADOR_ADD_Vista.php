@@ -13,8 +13,7 @@ class ENTRENADOR_Insertar {
     }
 
     function render() {
-        ?> <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
-         <script type="text/javascript" src="../js/validate.js"></script>
+        ?> <script type="text/javascript" src="../js/validate.js"></script>
 
         <?php include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php'; ?>
 

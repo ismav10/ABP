@@ -85,7 +85,6 @@ function validarFechaMenorActual(date) {
 }
 
 
-//Nombramos la función
 function valida_envia_USUARIO() {
     if (document.form.userName.value.length == 0) {
         alert("Introduzca un valor para el usuario");
@@ -193,10 +192,129 @@ function valida_envia_USUARIO() {
         return false;
     }
 
-
     if (document.form.cuentaBanc.value.length == 0 || !validaCCC(document.form.cuentaBanc.value)) {
         alert("Introduzca un valor correcto para el numero de CCC(sin espacios)");
         document.form.cuentaBanc.focus();
+        return false;
+    }
+
+
+
+    return true;
+
+}
+
+
+function valida_envia_DEPOR() {
+    if (document.form.userName.value.length == 0) {
+        alert("Introduzca un valor para el usuario");
+        document.form.userName.focus();
+        return false;
+    }
+    if (document.form.userName.value.length < 2) {
+        alert("Nombre de usuario demasiado corto (mínimo 2 caracteres)");
+        document.form.userName.focus();
+        return false;
+    }
+    if (document.form.userName.value.length > 25) {
+        alert("Nombre de usuario demasiado largo (máximo 25 caracteres)");
+        document.form.userName.focus();
+        return false;
+    }
+
+    if (document.form.password.value.length == 0) {
+        alert("Introduzca un valor para la contraseña");
+        document.form.password.focus();
+        return false;
+    }
+
+    if (document.form.password.value.length < 2) {
+        alert("Contraseña demasiado corta (mínimo 2 caracteres)");
+        document.form.password.focus();
+        return false;
+    }
+
+    if (document.form.password.value.length > 32) {
+        alert("Contraseña demasiado larga (máximo 32 caracteres)");
+        document.form.password.focus();
+        return false;
+    }
+
+    if (document.form.nombre.value.length == 0) {
+        alert("Introduzca un valor para el nombre");
+        document.form.nombre.focus();
+        return false;
+    }
+    if (document.form.nombre.value.length < 2) {
+        alert("Nombre demasiado corto (mínimo 2 caracteres)");
+        document.form.nombre.focus();
+        return false;
+    }
+    if (document.form.nombre.value.length > 25) {
+        alert("Nombre demasiado largo (máximo 25 caracteres)");
+        document.form.nombre.focus();
+        return false;
+    }
+
+
+    if (document.form.apellidos.value.length == 0) {
+        alert("Introduzca un valor para el apellido");
+        document.form.apellidos.focus();
+        return false;
+    }
+    if (document.form.apellidos.value.length < 2) {
+        alert("Apellido demasiado corto (mínimo 2 caracteres)");
+        document.form.apellidos.focus();
+        return false;
+    }
+    if (document.form.apellidos.value.length > 50) {
+        alert("Apellido demasiado largo (máximo 50 caracteres)");
+        document.form.apellidos.focus();
+        return false;
+    }
+
+
+
+    if (!nif(document.form.dni.value)) {
+        document.form.dni.focus();
+        return false;
+    }
+
+    if (document.form.fechaNac.value == false) {
+        alert("Introduzca un valor  para la fecha de nacimiento");
+        document.form.fechaNac.focus();
+        return false;
+    }
+
+    if (!validarFechaMenorActual(document.form.fechaNac.value)) {
+        alert("¿Viene del futuro? Introduzca una fecha válida");
+        document.form.fechaNac.focus();
+        return false;
+    }
+
+    if (document.form.direccion.value.length == 0) {
+        alert("Introduzca dirección");
+        document.form.direccion.focus();
+        return false;
+    }
+
+
+    if (((document.form.email.value.length == 0) || !validarEmail(document.form.email.value))) {
+        alert("Introduzca una dirección de email válida");
+        document.form.email.focus();
+        return false;
+    }
+
+    valor = document.form.telefono.value;
+    if (!(/^\d{9}$/.test(valor))) {
+        alert("Tiene que escribir un teléfono de 9 dígitos");
+        document.form.telefono.focus();
+        return false;
+    }
+
+    if (document.form.metodoPago.value.length != 12) {
+        alert("Introduzca un valor correcto para el numero de tarjeta de crédito");
+        document.form.metodoPago.focus();
         return false;
     }
 

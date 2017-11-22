@@ -21,9 +21,8 @@ class ENTRENADOR_Show {
             ?>
 
             <div class="container">
-                <div class="col-lg-12">
-                    <a href='ENTRENADOR_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><img src="../img/useradd.png" width="50px" height="50px"></a>
-        <!--                    <button type="button" class="btn btn-default btn-lg"><a href='ENTRENADOR_Controller.php?accion=<?php echo $strings['Consultar']; ?>'><?php echo $strings['Consultar'] ?></a></button>-->
+                     <div align='right'>
+                         <a href='ENTRENADOR_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><img src="../img/useradd.png" width="50px" height="50px"></a>
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>

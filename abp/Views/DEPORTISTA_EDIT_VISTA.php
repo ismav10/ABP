@@ -14,7 +14,7 @@ class DEPORTISTA_Modificar {
     }
 
     function render() {
-        ?> <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
+        ?> <script type="text/javascript" src="../js/validate.js"></script>
 
         <?php include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php'; ?>
 
@@ -56,7 +56,7 @@ class DEPORTISTA_Modificar {
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['nombre']; ?></label><br>
-                    <input class="form" id="nombre" name="nombre" size="50" type="text" required="true" value="<?php echo $this->valores['nombre']; ?>">
+                    <input class="form" id="nombre" name="nombre" size="25" type="text" required="true" value="<?php echo $this->valores['nombre']; ?>">
                 </div>
 
                 <div class="form-group">
@@ -87,7 +87,7 @@ class DEPORTISTA_Modificar {
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['telefono']; ?></label><br>
-                    <input class="form" id="telefono" name="telefono" size="15" type="numeric" required="true" value="<?php echo $this->valores['telefono']; ?>">
+                    <input class="form" id="telefono" name="telefono" size="9" type="numeric" required="true" value="<?php echo $this->valores['telefono']; ?>">
                 </div>
 
 
@@ -108,11 +108,11 @@ class DEPORTISTA_Modificar {
 
                 <div class = "form-group">
                     <label class = "control-label" ><?php echo $strings['metodoPago']; ?></label><br>
-                    <input class="form" id="metodoPago" name="metodoPago" size="30" type="text" required="true" value="<?php echo $this->valores['metodoPago']; ?>">
+                    <input class="form" id="metodoPago" name="metodoPago" size="12" type="text" required="true" value="<?php echo $this->valores['metodoPago']; ?>">
                 </div>
                 <br>
 
-                <input type = 'submit' name = 'accion' value = '<?php echo $strings['Modificar'] ?>'  onclick="return valida_envia_USUARIO()" >
+                <input type = 'submit' onclick="return valida_envia_DEPOR()" name = 'accion' value = '<?php echo $strings['Modificar'] ?>'  onclick="return valida_envia_USUARIO()" >
                 <a class="form-link" href='<?php echo $this->volver ?> '><?php echo $strings['Volver']; ?> </a>
             </form>
         </div>

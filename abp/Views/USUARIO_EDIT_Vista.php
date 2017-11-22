@@ -13,7 +13,8 @@ class USUARIO_Modificar {
     }
 
     function render() {
-
+        ?><script type="text/javascript" src="../js/validate.js"></script>
+        <?php
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
         ?>
 
@@ -37,9 +38,9 @@ class USUARIO_Modificar {
                     <label class="control-label" ><?php echo $strings['password']; ?></label><br>
                     <input class="form" id="password" name="password" size="25" type="password" required="true" readonly='true' value="<?php echo $this->valores['password']; ?>"/>
                 </div>
-                
-                 <div class="form-group">
-                     <label class="control-label" ><?php echo $strings['newPassword']; ?></label><br>
+
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['newPassword']; ?></label><br>
                     <input class="form" id="newPassword" name="newPassword" size="25" type="password"/>
                 </div>
 
@@ -90,7 +91,7 @@ class USUARIO_Modificar {
 
                 <br>
 
-                <input type = 'submit' name = 'accion' value = '<?php echo $strings['Modificar'] ?>'  onclick="return valida_envia_USUARIO()" >
+                <input type = 'submit'  onclick="return valida_envia_USUARIO()" name = 'accion' value = '<?php echo $strings['Modificar'] ?>'  onclick="return valida_envia_USUARIO()" >
                 <a class="form-link" href='<?php echo $this->volver ?> '><?php echo $strings['Volver']; ?> </a>
             </form>
 

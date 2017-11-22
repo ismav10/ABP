@@ -13,8 +13,7 @@ class DEPORTISTA_Insertar {
     }
 
     function render() {
-        ?> <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
-        <script type="text/javascript" src="../js/validate.js"></script>
+        ?> <script type="text/javascript" src="../js/validate.js"></script>
 
         <?php include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php'; ?>
 
@@ -88,18 +87,16 @@ class DEPORTISTA_Insertar {
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['metodoPago']; ?></label><br>
-                    <input class="form" id="metodoPago" name="metodoPago" size="30" type="numeric" required="true"/>
+                    <input class="form" id="metodoPago" name="metodoPago" size="12" type="numeric" required="true"/>
                 </div>
 
                 <br>
 
-                <input type='submit' onclick="return valida_envia_USUARIO()" name='accion'  value="<?php echo $strings['Insertar']; ?>">
+                <input type='submit' onclick="return valida_envia_DEPOR()" name='accion'  value="<?php echo $strings['Insertar']; ?>">
                 <a class="form-link" href="<?php echo $this->volver ?>"><?php echo $strings['Volver']; ?></a>
             </form>
         </div>
-
-
-
+        
         <?php
         include '../Views/footer.php';
     }

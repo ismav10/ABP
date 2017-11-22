@@ -14,7 +14,7 @@ class ENTRENADOR_Modificar {
     }
 
     function render() {
-        ?> <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
+        ?> <script type="text/javascript" src="../js/validate.js"></script>
 
         <?php include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php'; ?>
 
@@ -95,7 +95,7 @@ class ENTRENADOR_Modificar {
                 </div>
                 <br>
 
-                <input type = 'submit' name = 'accion' value = '<?php echo $strings['Modificar'] ?>'  onclick="return valida_envia_USUARIO()" >
+                <input type = 'submit' onclick="return valida_envia_USUARIO()" name = 'accion' value = '<?php echo $strings['Modificar'] ?>'  onclick="return valida_envia_USUARIO()" >
                 <a class="form-link" href='<?php echo $this->volver ?> '><?php echo $strings['Volver']; ?> </a>
             </form>
         </div>

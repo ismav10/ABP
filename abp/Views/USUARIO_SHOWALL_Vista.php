@@ -22,7 +22,7 @@ class USUARIO_Show {
             <div class="container">
                 <div align='right'>
                      <a href='USUARIO_Controller.php?accion=<?php echo $strings['Seleccionar']; ?>'><img src="../img/useradd.png" width="50px" height="50px"></a>
-                    <a href='USUARIO_Controller.php?accion=<?php echo $strings['Consultar']; ?>'><img src="../img/buscar.png" width="50px" height="50px"></a>
+         
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
