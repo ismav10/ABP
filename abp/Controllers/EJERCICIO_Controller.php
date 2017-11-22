@@ -44,40 +44,60 @@ if ( !isset($_REQUEST['accion']) )
 switch ($_REQUEST['accion']) { //Actúa según la acción elegida
     
 	case 'vistainsertar':
-		require_once '../Views/EJERCICIO_ADD_Vista.php';
-		$datos = "";
-        new EJERCICIO_ADD($datos, '../Views/EJERCICIO_EDIT_Vista.php');
+		if (!tienePermisos('EJERCICIO_ADD')) {
+				new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+        } else {
+				require_once '../Views/EJERCICIO_ADD_Vista.php';
+				$datos = "";
+				new EJERCICIO_ADD($datos, '../Views/EJERCICIO_EDIT_Vista.php');
+		}
 	break;
 	
 	case 'insertar':
-		$ejercicio = get_data_form();
-		$ejercicio->insertarEjercicio();
-		header("Location: ../Controllers/EJERCICIO_Controller.php");
+		if (!tienePermisos('EJERCICIO_ADD')) {
+				new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+        } else {
+				$ejercicio = get_data_form();
+				$ejercicio->insertarEjercicio();
+				header("Location: ../Controllers/EJERCICIO_Controller.php");
+		}
     break;
 
 
 
 
     case 'modificar':
-		$ejercicio = get_data_form();
-		$datos = $ejercicio->getEjercicio( $_REQUEST['id'] );
-		require_once '../Views/EJERCICIO_EDIT_Vista.php';
-        new EJERCICIO_EDIT($datos, '../Views/EJERCICIO_EDIT_Vista.php');
+		if (!tienePermisos('EJERCICIO_EDIT')) {
+				new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+        } else {
+				$ejercicio = get_data_form();
+				$datos = $ejercicio->getEjercicio( $_REQUEST['id'] );
+				require_once '../Views/EJERCICIO_EDIT_Vista.php';
+				new EJERCICIO_EDIT($datos, '../Views/EJERCICIO_EDIT_Vista.php');
+		}
     break;
 	
 	case 'guardarmod':
-		$ejercicio = get_data_form();
-		$datos = $ejercicio->modificarEjercicio( $_REQUEST['id'] );
-		header("Location: ../Controllers/EJERCICIO_Controller.php");
+		if (!tienePermisos('EJERCICIO_EDIT')) {
+				new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+        } else {
+				$ejercicio = get_data_form();
+				$datos = $ejercicio->modificarEjercicio( $_REQUEST['id'] );
+				header("Location: ../Controllers/EJERCICIO_Controller.php");
+		}
     break;
 
 
     case 'eliminar':
-        $ejercicio = get_data_form();
-		$datos = $ejercicio->eliminarEjercicio( $_REQUEST['id'] );
-		$datos = $ejercicio->obtenerEjercicios();
-		require_once '../Views/EJERCICIO_SHOWALL_Vista.php';
-        new EJERCICIO_Show($datos, '../Views/EJERCICIO_SHOWALL_Vista.php');
+		if (!tienePermisos('EJERCICIO_Delete')) {
+					new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+        } else {
+					$ejercicio = get_data_form();
+					$datos = $ejercicio->eliminarEjercicio( $_REQUEST['id'] );
+					$datos = $ejercicio->obtenerEjercicios();
+					require_once '../Views/EJERCICIO_SHOWALL_Vista.php';
+					new EJERCICIO_Show($datos, '../Views/EJERCICIO_SHOWALL_Vista.php');
+		}
     break;
     
     default: //Por defecto se realiza el show all
@@ -85,12 +105,12 @@ switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 	    $ejercicio = get_data_form();
         $datos = $ejercicio->obtenerEjercicios();
 	
-        //if (!tienePermisos('EJERCICIO_Show')) {
-            //new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
-        //} else {
+        if (!tienePermisos('EJERCICIO_Show')) {
+            new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+        } else {
 			require_once '../Views/EJERCICIO_SHOWALL_Vista.php';
             new EJERCICIO_Show($datos, '../Views/EJERCICIO_SHOWALL_Vista.php');
-        //}
+        }
 }
 
 
