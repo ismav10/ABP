@@ -213,7 +213,8 @@ INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categori
 (300, 'Alta sesion', 'Gestion Sesiones'),
 (301, 'Consultar sesion', 'Gestion Sesiones'),
 (302, 'Modificar sesion', 'Gestion Sesiones'),
-(303, 'Filtrar sesion', 'Gestion Sesiones');
+(303, 'Filtrar sesion', 'Gestion Sesiones'),
+(304, 'Consulta sesion', 'Gestion Sesiones');
 
 -- --------------------------------------------------------
 
@@ -264,7 +265,8 @@ INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
 (300, 300),
 (301, 301),
 (302, 302),
-(303, 303);
+(303, 303),
+(304,304);
 
 -- --------------------------------------------------------
 
@@ -334,7 +336,8 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (300, 3),
 (301, 3),
 (302, 3),
-(303, 3);
+(303, 3),
+(304, 3);
 
 -- --------------------------------------------------------
 
@@ -430,7 +433,8 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 (300, '../Views/SESSION_ADD_Vista.php', 'SESSION ADD'),
 (301, '../Views/SESSION_SHOWALL_Vista.php', 'SESSION SHOWALL'),
 (302, '../Views/SESSION_EDIT_Vista.php', 'SESSION EDIT'),
-(303, '../Views/SESSION_SHOW_Vista.php', 'SESSION SHOW');
+(303, '../Views/SESSION_SHOW_Vista.php', 'SESSION SHOW'),
+(304, '../Views/SESSION_SHOWCURRENT_Vista.php', 'SESSION SHOWCURRENT');
 
 -- --------------------------------------------------------
 
