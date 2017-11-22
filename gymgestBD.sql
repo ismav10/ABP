@@ -214,7 +214,13 @@ INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categori
 (301, 'Consultar sesion', 'Gestion Sesiones'),
 (302, 'Modificar sesion', 'Gestion Sesiones'),
 (303, 'Filtrar sesion', 'Gestion Sesiones'),
-(304, 'Consulta sesion', 'Gestion Sesiones');
+(304, 'Consulta sesion', 'Gestion Sesiones'),
+(400, 'Insertar Actividad Grupal', 'Gestion Actividad Grupal'),
+(401, 'Borrar Actividad Grupal', 'Gestion Actividad Grupal'),
+(402, 'Modificar Actividad Grupal', 'Gestion Actividad Grupal'),
+(403, 'Consultar Actividades Grupales', 'Gestion Actividad Grupal'),
+(404, 'Listar Actividades Grupales', 'Gestion Actividad Grupal'),
+(405, 'Ver Actividad Grupal', 'Gestion Actividad Grupal');
 
 -- --------------------------------------------------------
 
@@ -266,7 +272,13 @@ INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
 (301, 301),
 (302, 302),
 (303, 303),
-(304,304);
+(304,304),
+(400, 400),
+(401, 401),
+(402, 402),
+(403, 403),
+(404, 404),
+(405, 405);
 
 -- --------------------------------------------------------
 
@@ -337,7 +349,19 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (301, 3),
 (302, 3),
 (303, 3),
-(304, 3);
+(304, 3),
+(400, 1),
+(401, 1),
+(402, 1),
+(403, 1),
+(403, 2),
+(403, 3),
+(404, 1),
+(404, 2),
+(404, 3),
+(405, 1),
+(405, 2),
+(405, 3);
 
 -- --------------------------------------------------------
 
@@ -434,7 +458,14 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 (301, '../Views/SESSION_SHOWALL_Vista.php', 'SESSION SHOWALL'),
 (302, '../Views/SESSION_EDIT_Vista.php', 'SESSION EDIT'),
 (303, '../Views/SESSION_SHOW_Vista.php', 'SESSION SHOW'),
-(304, '../Views/SESSION_SHOWCURRENT_Vista.php', 'SESSION SHOWCURRENT');
+(304, '../Views/SESSION_SHOWCURRENT_Vista.php', 'SESSION SHOWCURRENT'),
+(400, '../Views/ACTIVIDAD_GRUPAL_ADD_Vista.php', 'ACTIVIDAD GRUPAL ADD'),
+(401, '../Views/ACTIVIDAD_GRUPAL_DELETE_Vista.php', 'ACTIVIDAD GRUPAL DELETE'),
+(402, '../Views/ACTIVIDAD_GRUPAL_EDIT_Vista.php', 'ACTIVIDAD GRUPAL EDIT'),
+(403, '../Views/ACTIVIDAD_GRUPAL_SHOWCURRENT_Vista.php', 'ACTIVIDAD GRUPAL SHOWCURRENT'),
+(404, '../Views/ACTIVIDAD_GRUPAL_SHOWALL_Vista.php', 'ACTIVIDAD GRUPAL SHOWALL'),
+(405, '../Views/ACTIVIDAD_GRUPAL_SHOW_Vista.php', 'ACTIVIDAD GRUPAL SHOW');
+
 
 -- --------------------------------------------------------
 

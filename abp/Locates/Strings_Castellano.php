@@ -32,12 +32,14 @@ $strings = array(
 'Gestión de Entrenadores' => 'Entrenadores',
 'Gestión de Deportistas' => 'Deportistas',
 'Gestión de Instalaciones' => 'Instalaciones',
-'Gestión de Actividades Grupales' => 'Actividades Grupales',
 'Gestión de notificaciones' => 'Notificaciones',
 'Gestión de sesiones' => 'Sesiones',
 'Gestión de Inscripciones' => 'Inscripciones',
 'Gestión de ejercicios' => 'Ejercicios',
 'Gestión de tablas' => 'Tablas',
+'Gestion de Actividades' => 'Actividades',
+'Gestion de Actividades Grupales' => 'Grupales',
+'Gestion de Actividades Individuales' => 'Individuales',
 
 
 
@@ -131,7 +133,24 @@ $strings = array(
 'fechaSesion' => 'Fecha',
 'horaInicio' => 'Inicio',
 'horaFin' => 'Fin',
-'Modificar sesion' => 'Modificar Sesión'
+'Modificar sesion' => 'Modificar Sesión',
+
+ //ACTIVIDADES GRUPALES
+
+'nombreActividadGrupal' => 'Nombre',
+'descripcionActividadGrupal' =>'Descripcion',
+'numPlazasActividadGrupal' =>'Numero Plazas',
+'idActividadGrupal' => 'ID',
+'username' => 'Profesor',
+'idInstalacion' => 'Instalacion',
+'Modificar Actividad Grupal' => 'Modificar Actividad Grupal',
+'Insertar Actividad Grupal' => 'Insertar Actividad Grupal',
+'Borrar Actividad Grupal' => 'Borrar Actividad Grupal',
+'Consultar Actividades Grupales' => 'Consultar Actividades Grupales',
+'Ver Actividad Grupal' => 'Ver Actividad Grupal',
+'Añadida con exito' => 'Añadida con exito'
+'La actividad grupal fue borrada con éxito.' => 'La actividad grupal fue borrada con éxito.'
+
     
         
 
