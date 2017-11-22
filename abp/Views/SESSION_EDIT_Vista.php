@@ -41,18 +41,18 @@ class SESION_Editar {
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['horaInicio']; ?></label><br>
-                    <input class="form" id="horaInicio" name="horaInicio" size="6" type="text" required="true" value="<?php echo $this->datos['horaInicio']; ?>">
+                    <input class="form" id="horaInicio" name="horaInicio" size="6" type="text" required="true" readonly="true" value="<?php echo $this->datos['horaInicio']; ?>">
                 </div>
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['horaFin']; ?></label><br>
-                    <input class="form" id="horaFin" name="horaFin" size="6" type="text" required="true" value="<?php echo $this->datos['horaFin']; ?>">
+                    <input class="form" id="horaFin" name="horaFin" size="6" type="text" required="true" readonly="true" value="<?php echo $this->datos['horaFin']; ?>">
                 </div>
 
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['comentarioSesion']; ?></label><br>
-                    <textarea rows="10" cols="50" name="comentarioSesion" readonly="true"><?php echo $this->datos['comentarioSesion']; ?></textarea>
+                    <textarea rows="10" cols="50" name="comentarioSesion" ><?php echo $this->datos['comentarioSesion']; ?></textarea>
 
                 </div>
 

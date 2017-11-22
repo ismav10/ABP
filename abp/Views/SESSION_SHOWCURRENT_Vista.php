@@ -64,8 +64,16 @@ class SESION_Consulta {
                                      */
 
 
-                                    include '../Views/footer.php';
+                                    
                                 }
+                                ?>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+                                <?php
+                                include '../Views/footer.php';
 
 //fin metodo render
                             }

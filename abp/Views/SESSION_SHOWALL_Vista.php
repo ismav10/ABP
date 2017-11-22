@@ -19,13 +19,14 @@ class SESION_Listar {
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
         ?>
         <?php
-        $lista = array('idTabla', 'idActividadIndividual', 'comentarioSesion', 'fechaSesion', 'horaInicio', 'horaFin');
+        $lista = array('idTabla', 'comentarioSesion', 'idActividadIndividual', 'fechaSesion', 'horaInicio', 'horaFin');
         ?>
         <br><br>
 
         <div class="container">
             <div class="col-lg-12">
                 <button type="button" class="btn btn-default btn-lg"><a href='SESION_Controller.php?accion=<?php echo $strings['Consultar']; ?>'><?php echo $strings['Consultar'] ?></a></button>
+                <button type="button" class="btn btn-default btn-lg"><a href='SESION_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><?php echo $strings['Insertar'] ?></a></button>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -52,13 +53,14 @@ class SESION_Listar {
                                 ?>
                                 <td><button type="button" class="btn btn-info"><a href='SESION_Controller.php?idSesion=<?php echo $this->datos[$j]['idSesion'] . '&accion=' . $strings['Modificar']; ?>'><?php echo $strings['Modificar']; ?></a></button></td>
 
-                    </table>
+            <?php
+        }
+        ?>
+             </table>
                 </div>
             </div>
 
-            <?php
-        }
-
+        <?php
         /*
           for($i=0;$i<count($this->datos);$i++)
           {

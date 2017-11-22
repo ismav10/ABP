@@ -13,57 +13,25 @@ class SESION_Consultar {
         <?php
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
         ?>
-        <div class="container">
-            <?php
-            $lista = array('idTabla', 'idActividadIndividual', 'comentarioSesion', 'fechaSesion', 'horaInicio', 'horaFin');
-            ?>
-            <br><br>
+         <div class="container" >
+            <form  id="form" name="form" action='SESION_Controller.php'  method='post'   enctype="multipart/form-data">
+                <div class="form-group" >
+                    <label class="control-label" ><?php echo $strings['Consultar sesiones por fecha']; ?></label><br>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['fechaSesion']; ?></label><br>
+                    <input class="form" id="fechaSesion" name="fechaSesion" size="25" type="date"/>
+                </div>
+                <br>
+                    <input type='submit' onclick="return valida_envia_USUARIO()" name='accion'  value="<?php echo $strings['Consultar']; ?>">
+                <a class="form-link" href="SESION_Controller.php"><?php echo $strings['Volver']; ?>
+            </form>
+        </div>
+                <?php
 
-            <div class="container">
-                <div class="col-lg-12">
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <?php
-                                foreach ($lista as $titulo) {
-                                    echo "<th>";
-                                    echo $strings[$titulo];
-                                    echo "</th>";
-                                }
-                                echo "</tr>";
-                                echo "</thead>";
-                                echo "<tbody>";
-                                for ($j = 0; $j < count($this->datos); $j++) {
-                                    echo "<tr>";
-                                    foreach ($this->datos [$j] as $clave => $valor) {
-                                        for ($i = 0; $i < count($lista); $i++) {
-                                            if ($clave === $lista[$i]) {
-                                                echo "<td>";
-                                                echo $valor;
-                                                echo "</td>";
-                                            }
-                                        }
-                                    }
-
-                                    /*
-                                      for($i=0;$i<count($this->datos);$i++)
-                                      {
-                                      echo $this->datos[$i]['idTabla'];
-                                      echo $this->datos[$i]['idActividadIndividual'];
-                                      echo $this->datos[$i]['comentarioSesion'];
-                                      echo $this->datos[$i]['fechaSesion'];
-                                      echo $this->datos[$i]['horaInicio'];
-                                      echo $this->datos[$i]['horaFin'];
-                                      }
-                                      ?>
-                                     */
-
-
-                                    include '../Views/footer.php';
+        include '../Views/footer.php';
                                 }
 
 //fin metodo render
                             }
-
-                        }
                         ?>

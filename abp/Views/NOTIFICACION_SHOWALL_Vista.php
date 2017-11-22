@@ -5,9 +5,11 @@ class NOTIFICACION_Listar {
 
     private $datos;
     private $volver;
+    private $tipoUsuario;
 
-    function __construct($datos, $volver) {
+    function __construct($datos, $tipoUsuario, $volver) {
         $this->datos = $datos;
+        $this->tipoUsuario = $tipoUsuario;
         $this->volver = $volver;
         $this->render();
     }
@@ -21,8 +23,25 @@ class NOTIFICACION_Listar {
             ?>
             <br><br>
 
+
             <div class="container">
                 <div class="col-lg-12">
+                    <?php
+            if($this->tipoUsuario == 1)
+            {
+                ?>
+              <button type="button" class="btn btn-default btn-lg"><a href='NOTIFICACION_Controller.php?accion=<?php echo $strings['Consultar']; ?>'><?php echo $strings['Consultar'] ?></a></button>
+                <button type="button" class="btn btn-default btn-lg"><a href='NOTIFICACION_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><?php echo $strings['Insertar'] ?></a></button>
+                <?php
+
+            }
+            else if($this->tipoUsuario == 2)
+            {?>
+                <button type="button" class="btn btn-default btn-lg"><a href='NOTIFICACION_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><?php echo $strings['Insertar'] ?></a></button>  
+                <?php
+            }
+            ?>
+    
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>

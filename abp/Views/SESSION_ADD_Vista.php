@@ -1,81 +1,74 @@
 <?php
 
 //VISTA PARA LA INSERCIÓN DE USUARIOS
-class SESSION_Insertar {
+class SESION_Insertar {
 
-    function __construct() {
-        $this->render();
+//private $tablas;
+//private $actividades;
+    private $volver;
+
+    function __construct($tablas,$actividades,$idTablas, $idActividades,$volver) {
+        $this->volver = $volver;
+        //$this->$tablas = $tablas;
+        //$this->$actividades = $actividades;
+        $this->render($tablas,$actividades,$idTablas, $idActividades);
     }
 
-    function render() {
+    function render($tablas,$actividades,$idTablas, $idActividades) {
+        
+        
+        $hoy = getDate();
+        $hoy1 = localTime(time(),true);
         ?> <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
 
         <?php
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php'; ?>
 
         <div class="container" >
-            <form  id="form" name="form" action='USUARIO_Controller.php?user=admin'  method='post'   enctype="multipart/form-data">
+            <form  id="form" name="form" action='SESION_Controller.php'  method='post'   enctype="multipart/form-data">
                 <div class="form-group" >
-                    <label class="control-label" ><?php echo $strings['Insertar Administrador']; ?></label><br>
+                    <label class="control-label" ><?php echo $strings['Iniciar sesion']; ?></label><br>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['userName']; ?></label><br>
-                    <input class="form" id="userName" name="userName" size="25" type="text" required="true"/>
+                    <label class="control-label" ><?php echo $strings['fechaSesion']; ?></label><br>
+                    <input class="form" id="fechaSesion" name="fechaSesion" size="25" type="text" required="true" readonly="true" value=<?php echo $hoy['year']."/".$hoy1['tm_mon']."/".$hoy1['tm_mday']?> />
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['password']; ?></label><br>
-                    <input class="form" id="password" name="password" size="25" type="password" required="true"/>
+                    <label class="control-label" ><?php echo $strings['horaInicio']; ?></label><br>
+                    <input class="form" id="horaInicio" name="horaInicio" size="25" type="text" required="true" readonly="true" value=<?php echo $hoy['hours'].":".$hoy['minutes'].""?> />
                 </div>
-                
+
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['idTabla']; ?></label><br>
+                    <?php
+                    for($i=0;$i<count($tablas);$i++)
+                    {
+                       echo '<label class="control-label" >'.$tablas[$i]['idTabla'].'</label><br>';
+                       echo '<input class="form" id="idTabla" name="idTabla" size="50" type="radio" value='.$idTablas[$i]['idTabla']. 'required="true"/><br>';
+                       echo '<br>';
+                    }
+                    ?>            
+                </div>
+
                  <div class="form-group">
-                    <input type="hidden" id="tipoUsuario" name="tipoUsuario" size="25" type="tipoUsuario" required="true" value='Administrador'/>
+                    <label class="control-label" ><?php echo $strings['idActividadIndividual']; ?></label><br>
+                    <?php
+                    for($i=0;$i<count($actividades);$i++)
+                    {
+                       echo '<label class="control-label" >'.$actividades[$i]['idActividadIndividual'].'</label><br>';
+                       echo '<input class="form" id="idActividadIndividual" name="idActividadIndividual" size="50" type="radio" value='.$idActividades[$i]['idActividadIndividual']. 'required="true"/><br>';
+                       echo '<br>';
+                    }
+                    ?>            
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['nombre']; ?></label><br>
-                    <input class="form" id="nombre" name="nombre" size="50" type="text" required="true"/>
+                    <label class="control-label" ><?php echo $strings['comentarioSesion']; ?></label><br>
+                    <input class="form" id="comentarioSesion" name="comentarioSesion" type="textarea" rows="10" cols="40" />
                 </div>
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['apellidos']; ?></label><br>
-                    <input class="form" id="apellidos" name="apellidos" size="50" type="text" required="true"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['dni']; ?></label><br>
-                    <input class="form" id="dni" name="dni" size="9" type="text" required="true"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['fechaNac']; ?></label><br>
-                    <input class="form" id="fechaNac" name="fechaNac" type="date" required="true"/>
-                </div>
-
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['direccion']; ?></label><br>
-                    <input class="form" id="direccion" name="direccion" size="50" type="text" required="true"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['email']; ?></label><br>
-                    <input class="form" id="email" name="email" size="50" type="email" required="true"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['telefono']; ?></label><br>
-                    <input class="form" id="telefono" name="telefono" size="15" type="numeric" required="true"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['foto']; ?></label><br>
-                    <input type="file" name="foto" accept="image/*">
-                </div>
-                <br>
-
-                <input type='submit' onclick="return valida_envia_USUARIO()" name='accion'  value="<?php echo $strings['Insertar']; ?>">
-                <a class="form-link" href=..\Controllers\USUARIO_Controller.php?accion=Seleccionar><?php echo $strings['Volver']; ?>
+                <input type='submit' onclick="" name='accion'  value="<?php echo $strings['Insertar']; ?>">
+                <a class="form-link" href=..\Controllers\SESION_Controller.php?accion=Insertar><?php echo $strings['Volver']; ?>
             </form>
         </div>
         <?php
@@ -85,4 +78,4 @@ class SESSION_Insertar {
 //fin metodo render
 }
 
-
+?>
