@@ -19,7 +19,25 @@ class TABLA_Model {
             echo "Fallo al conectar a MySQL: (" . $this->mysqli->connect_errno . ") " . $this->mysqli->connect_error;
         }
     }
-
+	function obtenerTablasUsuario($username)
+	{
+        $this->ConectarBD();
+        $sql = "SELECT t2.idTabla,t2.nombreTabla, t2.descripcionTabla
+FROM `deportista_asignar_tabla` as t1, tabla as t2
+WHERE (t1.username='".$username."') AND
+(t1.idTabla=t2.idTabla) GROUP BY t2.idTabla";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            return $toret;
+        }
+    }
     function obtenerTablas() {
         $this->ConectarBD();
         $sql = "SELECT * FROM tabla";
