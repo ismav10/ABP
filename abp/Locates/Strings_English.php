@@ -128,7 +128,36 @@ $strings = array(
 'fechaSesion' => 'Date',
 'horaInicio' => 'Start',
 'horaFin' => 'Edn',
-'Modificar sesion' => 'Modify Session'
+'Modificar sesion' => 'Modify Session',
+
+
+//GESTION DE EJERCICIOS
+'ejercicioname' => 'Work Name',
+'ejerciciodescription' => 'Work Description',
+'gifejercicio' => 'URL for Work´s GIF image',
+'previsualizacion' => 'GIF Previsualization',
+'howtoprev' => 'To load the GIF image, insert the url and Intro',
+'saveform' => 'Save',
+'newejercicio' => 'Insert Work',
+'ejercicionametabla' => 'Name',
+'ejerciciodesctabla' => 'Description',
+'ejerciciogiftabla' => 'Execution',
+'ejerciciomodificar' => 'Modify',
+'ejercicioeliminar' => 'Delete',
+
+//GESTION DE TABLAS
+'tablaname' => 'Table Name',
+'tabladesc' => 'Table Description',
+'savetabla' => 'Save',
+'newtabla' => 'Insert Table',
+'asignartabla' => 'Assign Works to Table',
+'seleccionaejercicios' => 'Select Works (ctrl for multiselect)',
+'closetabla' => 'Close',
+'tablaname2' => 'Name',
+'tabladesc2' => 'Description',  
+'tablaasignar' => 'Assign Works',
+'tablamodificar' => 'Modify',
+'tablaeliminar' => 'Delete',
 
 
 

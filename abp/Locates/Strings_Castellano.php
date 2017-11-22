@@ -148,12 +148,38 @@ $strings = array(
 'Borrar Actividad Grupal' => 'Borrar Actividad Grupal',
 'Consultar Actividades Grupales' => 'Consultar Actividades Grupales',
 'Ver Actividad Grupal' => 'Ver Actividad Grupal',
-'Añadida con exito' => 'Añadida con exito'
-'La actividad grupal fue borrada con éxito.' => 'La actividad grupal fue borrada con éxito.'
-
-    
-        
+'Añadida con exito' => 'Añadida con exito',
+'La actividad grupal fue borrada con éxito.' => 'La actividad grupal fue borrada con éxito.',
 
 
-)
+//GESTION DE EJERCICIOS
+'ejercicioname' => 'Nombre del Ejercicio',
+'ejerciciodescription' => 'Descripción del Ejercicio',
+'gifejercicio' => 'URL para la imágen GIF del Ejercicio',
+'previsualizacion' => 'Previsualización del GIF',
+'howtoprev' => 'Para previsualizar el GIF, inserte el enlace y pulse Intro',
+'saveform' => 'Guardar',
+'newejercicio' => 'Insertar Ejercicio',
+'ejercicionametabla' => 'Nombre',
+'ejerciciodesctabla' => 'Descripción',
+'ejerciciogiftabla' => 'Ejecución',
+'ejerciciomodificar' => 'Modificar',
+'ejercicioeliminar' => 'Eliminar',
+
+//GESTION DE TABLAS
+'tablaname' => 'Nombre de la tabla',
+'tabladesc' => 'Descripción de la tabla',
+'savetabla' => 'Guardar',
+'newtabla' => 'Insertar Tabla',
+'asignartabla' => 'Asignar Ejercicios a Tabla',
+'seleccionaejercicios' => 'Selecciona Ejercicios (ctrl para varios)',
+'closetabla' => 'Cerrar',
+'tablaname2' => 'Nombre',
+'tabladesc2' => 'Descripción',  
+'tablaasignar' => 'Asignar Ejercicios',
+'tablamodificar' => 'Modificar',
+'tablaeliminar' => 'Eliminar',  
+
+
+);
 ?>

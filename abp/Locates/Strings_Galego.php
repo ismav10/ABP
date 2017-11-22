@@ -126,7 +126,35 @@ $strings = array(
 'fechaSesion' => 'Data',
 'horaInicio' => 'Inicio',
 'horaFin' => 'Fin',
-'Modificar sesion' => 'Modificar Sesión'
+'Modificar sesion' => 'Modificar Sesión',
+
+//GESTION DE EJERCICIOS
+'ejercicioname' => 'Nome do Exercicio',
+'ejerciciodescription' => 'Descripción do Exercicio',
+'gifejercicio' => 'URL para a imaxen GIF do Exercicio',
+'previsualizacion' => 'Previsualización do GIF',
+'howtoprev' => 'Para previsualizar o GIF, inserte o enlace e pulse Intro',
+'saveform' => 'Gardar',
+'newejercicio' => 'Insertar Exercicio',
+'ejercicionametabla' => 'Nome',
+'ejerciciodesctabla' => 'Descripción',
+'ejerciciogiftabla' => 'Execución',
+'ejerciciomodificar' => 'Modificar',
+'ejercicioeliminar' => 'Eliminar',
+
+//GESTION DE TABLAS
+'tablaname' => 'Nome da taboa',
+'tabladesc' => 'Descripción da taboa',
+'savetabla' => 'Gardar',
+'newtabla' => 'Insertar Taboa',
+'asignartabla' => 'Asignar Exercicios a Taboa',
+'seleccionaejercicios' => 'Selecciona Exercicios (ctrl para varios)',
+'closetabla' => 'Pechar',
+'tablaname2' => 'Nome',
+'tabladesc2' => 'Descripción',  
+'tablaasignar' => 'Asignar Exercicios',
+'tablamodificar' => 'Modificar',
+'tablaeliminar' => 'Eliminar',
 
 
 )
