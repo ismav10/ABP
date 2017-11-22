@@ -19,24 +19,24 @@ class EJERCICIO_EDIT
 		echo '<div class="container">
 				<form method="POST" action="../Controllers/EJERCICIO_Controller.php?accion=guardarmod&id='.$this->datos['idEjercicio'].'">
 				<div class="form-group row">
-				  <label for="example-text-input" class="col-2 col-form-label">Nombre ejercicio</label>
+				  <label for="example-text-input" class="col-2 col-form-label">'.$strings['ejercicioname'].'</label>
 				  <div class="col-10">
 					<input class="form-control" type="text" name="nombreEjercicio" value="'.$this->datos['nombreEjercicio'].'" id="example-text-input" required>
 				  </div>
 				</div>
 				<div class="form-group row">
-				  <label for="example-text-input" class="col-2 col-form-label">Descripcion ejercicio</label>
+				  <label for="example-text-input" class="col-2 col-form-label">'.$strings['ejerciciodescription'].'</label>
 				  <div class="col-10">
 					<input class="form-control" type="text" name="descripcionEjercicio" value="'.$this->datos['descripcionEjercicio'].'" id="example-text-input" required>
 				  </div>
 				</div>
 				<div class="form-group row">
-				  <label for="example-text-input" class="col-2 col-form-label">GIF Ejercicio</label>
+				  <label for="example-text-input" class="col-2 col-form-label">'.$strings['gifejercicio'].'</label>
 				  <div class="col-10">
 					<input class="form-control" type="text" name="gifEjercicio" value="'.$this->datos['giftEjercicio'].'" id="example-text-input" required>
 				  </div>
 				</div>
-				<button type="submit" class="btn btn-primary">Guardar</button>
+				<button type="submit" class="btn btn-primary">'.$strings['saveform'].'</button>
 				</form>
 			</div>';
 
