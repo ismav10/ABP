@@ -42,11 +42,43 @@ class NOTIFICACION_Model {
         //En el caso de las notificaciones no hace falta hacer comprobacion de si existe el id puesto que este es incremental
         $sql = "SELECT * FROM NOTIFICACION";
         if (!$result = $this->mysqli->query($sql)) {
-            return 'No se ha podido conectar con la base de datos';
+            return 'No se ha podido conectar con la base de datos.';
         } else {
-            $sql = "INSERT INTO NOTIFICACION VALUES ('','" . $this->remitente . "','"
-                    . $this->destinatario . "','','" . $this->asunto . "','" . $this->mensaje . "','" . $this->username . "')";
+            $sql = "INSERT INTO NOTIFICACION VALUES ('".$this->MaximoID()."','" . $this->ConsultarMailUsuario($this->userName) . "','"
+                    . $this->destinatarioNotificacion . "','','" . $this->asuntoNotificacion . "','" . $this->mensajeNotificacion . "','" . $this->userName . "')";
             $this->mysqli->query($sql);
+        }
+    }
+
+    function ConsultarMailUsuario($username)
+    {
+    	$this->ConectarBD();
+    	$sql = "SELECT email FROM USUARIO WHERE username ='".$this->userName."'";
+    	if(!($resultado=$this->mysqli->query($sql)))
+    	{
+    		return 'No se ha podido conectar con la base de datos.';
+    	}
+    	else
+    	{
+    		$result = $resultado->fetch_array();
+    		return $result['email'];
+    	}
+    }
+
+    //Como el autoincremental de la base de datos no esta funcionando creo esta funcion auxiliar que devuelve el maximo valor en los ids de la tabla,
+    //De esta forma en el insertar inserto con el siguiente valor a ese
+    function MaximoID()
+    {
+        $this->ConectarBD();
+        $sql = "SELECT MAX(idNotificacion) as Maximo FROM NOTIFICACION";
+        if(!($resultado = $this->mysqli->query($sql)))
+        {
+            return 'No se ha podido conectar con la base de datos.';
+        }
+        else
+        {
+            $result = $resultado->fetch_array();
+            return $result['Maximo']+1;
         }
     }
 

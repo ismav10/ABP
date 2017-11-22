@@ -43,83 +43,57 @@ class SESION_Model {
         if (!$resultado = $this->mysqli->query($sql)) {
             return 'No se ha podido conectar con la base de datos.';
         } else {
-            $sql = "INSERT INTO SESION VALUES ('" . $this->idSesion . "','" . $this->username . "','" . $this->idTabla . "','" . $this->comentarioSesion . "','" . $this->idActividadIndividual . "','" . $this->fecha . "','" . $this->horaInicio . "','" . $this->horaFin . "');";
+            $sql = "INSERT INTO SESION VALUES('".$this->MaximoID()."','".$this->userName."','".$this->idTabla."','".$this->fecha."','".$this->horaInicio."','".$this->horaFin."','".$this->comentarioSesion."','".$this->idActividadIndividual."')";
             $this->mysqli->query($sql);
-            return 'La sesion se ha insertado con éxito.';
+            return 'Se ha insertado con éxito';
+        }
+    }
+
+    //Como el autoincremental de la base de datos no esta funcionando creo esta funcion auxiliar que devuelve el maximo valor en los ids de la tabla,
+    //De esta forma en el insertar inserto con el siguiente valor a ese
+    function MaximoID()
+    {
+        $this->ConectarBD();
+        $sql = "SELECT MAX(idSesion) as Maximo FROM SESION";
+        if(!($resultado = $this->mysqli->query($sql)))
+        {
+            return 'No se ha podido conectar con la base de datos.';
+        }
+        else
+        {
+            $result = $resultado->fetch_array();
+            return $result['Maximo']+1;
         }
     }
 
     function Consultar() {
-        $this->ConectarBD();
-        if ($this->comentarioSesion == '' && $this->fechaSesion == '') {
-            $sql = "SELECT idTabla, comentarioSesion, idActividadIndividual, fechaSesion, horaInicio, horaFin FROM SESION WHERE username='" . $this->username . "'";
-            if (!($resultado = $this->mysqli->query($sql))) {
-                return 'Error en la consulta sobre la base de datos';
-            } else {
-                $toret = array();
-                $i = 0;
-                while ($fila = $resultado->fetch_array()) {
-                    $toret[$i] = $fila;
-                    $i++;
-                }
-                for ($i = 0; $i < count($toret); $i++) {
-                    $toret[$i]['idTabla'] = ConsultarNombreTabla($toret[$i]['idTabla']);
-                    $toret[$i]['idActividadIndividual'] = ConsultarNombreActividadIndividual($toret[$i]['idActividadIndividual']);
-                }
-                return $toret;
+         $this->ConectarBD();
+         if($this->fecha=='')
+         {
+            $sql = "SELECT idSesion, idTabla, comentarioSesion, idActividadIndividual,fechaSesion, horaInicio, horaFin FROM SESION WHERE username ='" . $this->userName . "'";
+         }
+         else if($this->fecha!='')
+         {
+            $sql = "SELECT idSesion, idTabla, comentarioSesion, idActividadIndividual,fechaSesion, horaInicio, horaFin FROM SESION WHERE username ='" . $this->userName . "' AND fechaSesion ='".$this->fecha."'";
+         }
+         if(!($resultado = $this->mysqli->query($sql)))
+         {
+            return 'No se ha podido conectar con la base de datos';
+         }
+         else
+         {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
             }
-        } else if ($this->comentarioSesion == '' && $this->fechaSesion != '') {
-            $sql = "SELECT idTabla, comentarioSesion, idActividadIndividual, fechaSesion, horaInicio, horaFin FROM SESION WHERE username= '" . $this->username . "' AND fechaSesion='" . $this->fecha . "'";
-            if (!($resultado = $this->mysqli->query($sql))) {
-                return 'Error en la consulta sobre la base de datos';
-            } else {
-                $toret = array();
-                $i = 0;
-                while ($fila = $resultado->fetch_array()) {
-                    $toret[$i] = $fila;
-                    $i++;
-                }
-                for ($i = 0; $i < count($toret); $i++) {
-                    $toret[$i]['idTabla'] = ConsultarNombreTabla($toret[$i]['idTabla']);
-                    $toret[$i]['idActividadIndividual'] = ConsultarNombreActividadIndividual($toret[$i]['idActividadIndividual']);
-                }
-                return $toret;
+            for ($i = 0; $i < count($toret); $i++) {
+                $toret[$i]['idTabla'] = $this->ConsultarNombreTabla($toret[$i]['idTabla']);
+                $toret[$i]['idActividadIndividual'] = $this->ConsultarNombreActividadIndividual($toret[$i]['idActividadIndividual']);
             }
-        } else if ($this->comentarioSesion != '' && $this->fechaSesion == '') {
-            $sql = "SELECT idTabla, comentarioSesion, idActividadIndividual, fechaSesion, horaInicio, horaFin FROM SESION WHERE username= '" . $this->username . "' AND comentarioSesion='" . $this->comentarioSesion . "'";
-            if (!($resultado = $this->mysqli->query($sql))) {
-                return 'Error en la consulta sobre la base de datos';
-            } else {
-                $toret = array();
-                $i = 0;
-                while ($fila = $resultado->fetch_array()) {
-                    $toret[$i] = $fila;
-                    $i++;
-                }
-                for ($i = 0; $i < count($toret); $i++) {
-                    $toret[$i]['idTabla'] = ConsultarNombreTabla($toret[$i]['idTabla']);
-                    $toret[$i]['idActividadIndividual'] = ConsultarNombreActividadIndividual($toret[$i]['idActividadIndividual']);
-                }
-                return $toret;
-            }
-        } else if ($this->comentarioSesion != '' && $this->fechaSesion != '') {
-            $sql = "SELECT idTabla, comentarioSesion, idActividadIndividual, fechaSesion, horaInicio, horaFin FROM SESION WHERE username= '" . $this->username . "' AND comentarioSesion='" . $this->comentarioSesion . "' AND fechaSesion='" . $this->fechaSesion . "'";
-            if (!($resultado = $this->mysqli->query($sql))) {
-                return 'Error en la consulta sobre la base de datos';
-            } else {
-                $toret = array();
-                $i = 0;
-                while ($fila = $resultado->fetch_array()) {
-                    $toret[$i] = $fila;
-                    $i++;
-                }
-                for ($i = 0; $i < count($toret); $i++) {
-                    $toret[$i]['idTabla'] = ConsultarNombreTabla($toret[$i]['idTabla']);
-                    $toret[$i]['idActividadIndividual'] = ConsultarNombreActividadIndividual($toret[$i]['idActividadIndividual']);
-                }
-                return $toret;
-            }
-        }
+            return $toret; 
+         }
     }
 
     //Devuelve la información de todas las sesiones que estan asociadas a un usuario, 
@@ -165,6 +139,84 @@ class SESION_Model {
             $result = $resultado->fetch_array();
             return $result['nombreActividadIndividual'];
         }
+    }
+
+    function ConsultarIdTablas()
+    {
+        $this->ConectarBD();
+        $sql = "SELECT idTabla FROM deportista_asignar_tabla WHERE username ='" . $this->userName . "'";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            return $toret;
+        }
+    }
+
+    function ConsultarIdActividadesIndividuales()
+    {
+        $this->ConectarBD();
+        $sql = "SELECT idActividadIndividual FROM actividadindividual";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            return $toret;
+        }
+    }
+
+    function ConsultarTablas()
+    {
+        $this->ConectarBD();
+        $sql = "SELECT idTabla FROM deportista_asignar_tabla WHERE username ='" . $this->userName . "'";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            for ($i = 0; $i < count($toret); $i++) {
+                $toret[$i]['idTabla'] = $this->ConsultarNombreTabla($toret[$i]['idTabla']);
+            }
+            return $toret;
+        }
+    }
+
+    function ConsultarActividades()
+    {
+        $this->ConectarBD();
+        $sql = "SELECT idActividadIndividual FROM actividadindividual";
+        if(!($resultado = $this->mysqli->query($sql)))
+        {
+            return 'Error en la consulta sobre la base de datos.';
+        }
+        else
+        {
+            $toret = array();
+            $i = 0;
+            while($fila = $resultado->fetch_array())
+            {
+                $toret[$i] = $fila;
+                $i++;   
+            }
+            for ($i = 0; $i < count($toret); $i++) {
+                $toret[$i]['idActividadIndividual'] = $this->ConsultarNombreActividadIndividual($toret[$i]['idActividadIndividual']);
+                }
+            return $toret;
+        }   
     }
 
     //Devuelve los valores almacenados para un determinado usuario para posteriormente rellenar un formulario
