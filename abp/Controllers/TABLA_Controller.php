@@ -39,99 +39,98 @@ if (!isset($_REQUEST['accion'])) {
 
 switch ($_REQUEST['accion']) { //Actúa según la acción elegida
     case 'vistainsertar':
-		if (!tienePermisos('TABLA_ADD')) {
-				new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+        if (!tienePermisos('TABLA_ADD')) {
+            new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
-				require_once '../Views/TABLA_ADD_Vista.php';
-				$datos = "";
-				new TABLA_ADD($datos, '../Views/TABLA_SHOWALL_Vista.php');
-		}
+            require_once '../Views/TABLA_ADD_Vista.php';
+            $datos = "";
+            new TABLA_ADD($datos, '../Views/TABLA_SHOWALL_Vista.php');
+        }
         break;
 
     case 'ver':
-		if (!tienePermisos('TABLA_SHOWCURRENT')) {
-				new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+        if (!tienePermisos('TABLA_SHOWCURRENT')) {
+            new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
-				$tabla = get_data_form();
-				$datos['tabla'] = $tabla->obtenerTablaDetalle($_REQUEST['id']);
-				$datos['ejercicios'] = $tabla->obtenerRelacion_TablaEjercicios($_REQUEST['id']);
+            $tabla = get_data_form();
+            $datos['tabla'] = $tabla->obtenerTablaDetalle($_REQUEST['id']);
+            $datos['ejercicios'] = $tabla->obtenerRelacion_TablaEjercicios($_REQUEST['id']);
 
-				require_once '../Views/TABLA_SHOWCURRENT_Vista.php';
-				new TABLA_ShowCurrent($datos, '../Views/EJERCICIO_SHOWALL_Vista.php');
-		}
+            require_once '../Views/TABLA_SHOWCURRENT_Vista.php';
+            new TABLA_ShowCurrent($datos, '../Views/EJERCICIO_SHOWALL_Vista.php');
+        }
         break;
 
     case 'asignar':
-		if (!tienePermisos('TABLA_ASSIGN')) {
-				new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+        if (!tienePermisos('TABLA_ASSIGN')) {
+            new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
-				$tabla = get_data_form();
-				$tabla->asignarEjercicios($_REQUEST['id'], $_POST['asignacionEjercicios']);
-				header("Location: ../Controllers/TABLA_Controller.php");
-		}
+            $tabla = get_data_form();
+            $tabla->asignarEjercicios($_REQUEST['id'], $_POST['asignacionEjercicios']);
+            header("Location: ../Controllers/TABLA_Controller.php");
+        }
         break;
 
     case 'insertar':
-		if (!tienePermisos('TABLA_ADD')) {
-				new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+        if (!tienePermisos('TABLA_ADD')) {
+            new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
-				$tabla = get_data_form();
-				$tabla->insertarTabla();
-				header("Location: ../Controllers/TABLA_Controller.php");
-		}
+            $tabla = get_data_form();
+            $tabla->insertarTabla();
+            header("Location: ../Controllers/TABLA_Controller.php");
+        }
         break;
 
 
     case 'modificar':
-		if (!tienePermisos('TABLA_EDIT')) {
-				new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+        if (!tienePermisos('TABLA_EDIT')) {
+            new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
-				$tabla = get_data_form();
-				$datos = $tabla->obtenerTablaDetalle($_REQUEST['id']);
-				require_once '../Views/TABLA_EDIT_Vista.php';
-				new TABLA_Edit($datos, '../Views/EJERCICIO_SHOWALL_Vista.php');
-		}
+            $tabla = get_data_form();
+            $datos = $tabla->obtenerTablaDetalle($_REQUEST['id']);
+            require_once '../Views/TABLA_EDIT_Vista.php';
+            new TABLA_Edit($datos, '../Views/EJERCICIO_SHOWALL_Vista.php');
+        }
         break;
 
     case 'guardarmod':
-		if (!tienePermisos('TABLA_EDIT')) {
-				new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+        if (!tienePermisos('TABLA_EDIT')) {
+            new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
-				$tabla = get_data_form();
-				$datos = $tabla->modificarTabla($_REQUEST['id']);
-				header("Location: ../Controllers/TABLA_Controller.php");
-		}
+            $tabla = get_data_form();
+            $datos = $tabla->modificarTabla($_REQUEST['id']);
+            header("Location: ../Controllers/TABLA_Controller.php");
+        }
         break;
 
 
     case 'eliminar':
-		if (!tienePermisos('TABLA_DELETE')) {
-				new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+        if (!tienePermisos('TABLA_DELETE')) {
+            new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
-				$tabla = get_data_form();
-				$tabla->eliminarTabla($_REQUEST['id']);
-				header("Location: ../Controllers/TABLA_Controller.php");
-		}
+            $tabla = get_data_form();
+            $tabla->eliminarTabla($_REQUEST['id']);
+            header("Location: ../Controllers/TABLA_Controller.php");
+        }
         break;
 
     default: //Si el usuario es administrador o entrenador ve todo
-		if(ConsultarTipoUsuario($_SESSION['login']) != 3)
-		{
-			$tabla = get_data_form();
-			$datos['tablas'] = $tabla->obtenerTablas();
+        if (ConsultarTipoUsuario($_SESSION['login']) != 3) {
+            $tabla = get_data_form();
+            $datos['tablas'] = $tabla->obtenerTablas();
 
-			$ejercicios = new EJERCICIO_Model("", "", "");
-			$datos['ejercicios'] = $ejercicios->obtenerEjercicios();
-		   
-			require_once '../Views/TABLA_SHOWALL_Vista.php';
-			new TABLA_Show($datos, '../Views/EJERCICIO_SHOWALL_Vista.php');
-		}else{
-			//Si no, cargaría una vista exactamente igual pero solo vería sus tablas asignadas
-			$tabla = get_data_form();
-			$datos['tablas'] = $tabla->obtenerTablasUsuario( $_SESSION['login'] );
-		   
-			require_once '../Views/TABLA_SHOWALL_Vista.php';
-			new TABLA_Show($datos, '../Views/EJERCICIO_SHOWALL_Vista.php');
-		}
+            $ejercicios = new EJERCICIO_Model("", "", "");
+            $datos['ejercicios'] = $ejercicios->obtenerEjercicios();
+
+            require_once '../Views/TABLA_SHOWALL_Vista.php';
+            new TABLA_Show($datos, '../Views/EJERCICIO_SHOWALL_Vista.php');
+        } else {
+            //Si no, cargaría una vista exactamente igual pero solo vería sus tablas asignadas
+            $tabla = get_data_form();
+            $datos['tablas'] = $tabla->obtenerTablasUsuario($_SESSION['login']);
+
+            require_once '../Views/TABLA_SHOWALL_Vista.php';
+            new TABLA_Show($datos, '../Views/EJERCICIO_SHOWALL_Vista.php');
+        }
 }
 ?>

@@ -199,8 +199,16 @@ function añadirFuncionalidades($NOM) {
                     <?php
                     break;
 
-                case "Gestion Actividades Grupales":
-                    ?><li role="presentation"><a href="" class="m1"><?php echo $strings['Gestión de Actividades Grupales']; ?></a></li> <?php
+               case "Gestion Actividad Grupal":
+                    ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Actividades'] ?> </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="../Controllers/ACTIVIDAD_GRUPAL_Controller.php"><?php echo $strings['Gestión de Actividades Grupales']; ?></a>
+                            <a class="dropdown-item" href="../Controllers/ACTIVIDAD_INDIVIDUAL_Controller.php?"><?php echo $strings['Gestión de Actividades Individuales']; ?></a>
+                        </div>
+                    </li>
+                    <?php
                     break;
 
                   case "Gestion Ejercicios":

@@ -223,6 +223,9 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
       }
       break;
      */
+        
+    
+         case $strings['Asignar']:
 
     default: //Por defecto se realiza el show all
         if (!isset($_REQUEST['userName'])) {

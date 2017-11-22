@@ -37,9 +37,9 @@ $strings = array(
 'Gestión de Inscripciones' => 'Inscripciones',
 'Gestión de ejercicios' => 'Ejercicios',
 'Gestión de tablas' => 'Tablas',
-'Gestion de Actividades' => 'Actividades',
-'Gestion de Actividades Grupales' => 'Grupales',
-'Gestion de Actividades Individuales' => 'Individuales',
+'Gestión de Actividades' => 'Actividades',
+'Gestión de Actividades Grupales' => 'Grupales',
+'Gestión de Actividades Individuales' => 'Individuales',
 
 
 
