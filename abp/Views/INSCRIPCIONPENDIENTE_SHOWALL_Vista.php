@@ -4,10 +4,12 @@ class INSCRIPCIONPENDIENTE_Show {
 
 //VISTA PARA LISTAR TODOS LOS USUARIOS
     private $datos;
+    private $actividad;
     private $volver;
 
-    function __construct($array, $volver) {
+    function __construct($array, $actividad, $volver) {
         $this->datos = $array;
+        $this->actividad = $actividad;
         $this->volver = $volver;
         $this->render();
     }
@@ -17,7 +19,11 @@ class INSCRIPCIONPENDIENTE_Show {
         ?> 
         <div class="container">
             <?php
-            $lista = array('userName', 'idActividadGrupal', 'estado', 'plazasDisponibles');
+            if ($this->actividad == 'grupal') {
+                $lista = array('userName', 'idActividadGrupal', 'estado', 'plazasDisponibles');
+            } else {
+                $lista = array('userName', 'idActividadIndividual', 'estado');
+            }
             ?>
 
             <div class="container">
@@ -29,6 +35,9 @@ class INSCRIPCIONPENDIENTE_Show {
                                 foreach ($lista as $titulo) {
                                     echo "<th>";
                                     if ($titulo == 'idActividadGrupal') {
+                                        $titulo = 'nombreActividadGrupal';
+                                        echo $strings[$titulo];
+                                    } else if ($titulo == 'idActividadIndividual') {
                                         $titulo = 'nombreActividadGrupal';
                                         echo $strings[$titulo];
                                     } else {
@@ -47,7 +56,11 @@ class INSCRIPCIONPENDIENTE_Show {
                                                 echo "<td>";
                                                 if (($clave === 'idActividadGrupal')) {
                                                     echo ConsultarNombreActividadGrupal($valor);
-
+                                                    break;
+                                                }
+                                                
+                                                  if (($clave === 'idActividadIndividual')) {
+                                                    echo ConsultarNombreActividadIndividual($valor);
                                                     break;
                                                 }
 
@@ -61,11 +74,16 @@ class INSCRIPCIONPENDIENTE_Show {
                                             }
                                         }
                                     }
-                                    ?>
 
-                                    <td><button type="button" class="btn btn-success"><a href='INSCRIPCION_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&actividad=' . $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Aceptar']; ?>'><?php echo $strings['Aceptar']; ?></a></button></td>
-                                    <td><button type="button" class="btn btn-danger"> <a href='INSCRIPCION_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&actividad=' . $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Rechazar']; ?>'><?php echo $strings['Rechazar']; ?></a></button></td>
-                                            <?php
+                                    if ($this->actividad == 'grupal') {
+                                        ?>                                     
+                                        <td><button type="button" class="btn btn-success"><a href='INSCRIPCION_Controller.php?act=<?php echo $this->actividad . '&userName=' . $this->datos[$j]['userName'] . '&actividad=' . $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Aceptar']; ?>'><?php echo $strings['Aceptar']; ?></a></button></td>
+                                        <td><button type="button" class="btn btn-danger"> <a href='INSCRIPCION_Controller.php?act=<?php echo $this->actividad . '&userName=' . $this->datos[$j]['userName'] . '&actividad=' . $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Rechazar']; ?>'><?php echo $strings['Rechazar']; ?></a></button></td>
+            <?php } else { ?>
+                                        <td><button type="button" class="btn btn-success"><a href='INSCRIPCION_Controller.php?act=<?php echo $this->actividad . '&userName=' . $this->datos[$j]['userName'] . '&actividad=' . $this->datos[$j]['idActividadIndividual'] . '&accion=' . $strings['Aceptar']; ?>'><?php echo $strings['Aceptar']; ?></a></button></td>
+                                        <td><button type="button" class="btn btn-danger"> <a href='INSCRIPCION_Controller.php?act=<?php echo $this->actividad . '&userName=' . $this->datos[$j]['userName'] . '&actividad=' . $this->datos[$j]['idActividadIndividual'] . '&accion=' . $strings['Rechazar']; ?>'><?php echo $strings['Rechazar']; ?></a></button></td>
+                                                <?php
+                                            }
                                         }
                                         ?>
                                 </tbody>

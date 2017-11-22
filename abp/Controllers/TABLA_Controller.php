@@ -3,6 +3,7 @@
 //Controlador para la gestión de ejercicios
 include '../Models/TABLA_Model.php';
 include '../Models/EJERCICIO_Model.php';
+include '../Views/MENSAJE_Vista.php';
 
 
 if (!IsAuthenticated()) {
@@ -62,13 +63,10 @@ switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         break;
 
     case 'asignar':
-        if (!tienePermisos('TABLA_ASSIGN')) {
-            new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
-        } else {
             $tabla = get_data_form();
             $tabla->asignarEjercicios($_REQUEST['id'], $_POST['asignacionEjercicios']);
             header("Location: ../Controllers/TABLA_Controller.php");
-        }
+        
         break;
 
     case 'insertar':
@@ -105,7 +103,7 @@ switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 
 
     case 'eliminar':
-        if (!tienePermisos('TABLA_DELETE')) {
+        if (!tienePermisos('TABLA_EDIT')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
             $tabla = get_data_form();

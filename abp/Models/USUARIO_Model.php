@@ -244,6 +244,45 @@ class USUARIO_Modelo {
             return $toret;
         }
     }
+    
+    
+    function consultarTablas() {
+        $this->ConectarBD();
+        $sql = "SELECT * FROM deportista_asignar_tabla WHERE username = '". $this->userName. "'";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            return $toret;
+        }
+    }
+    
+    
+
+    function asignarTablas($userName, $listaTablas) {
+        $this->ConectarBD();
+
+        foreach ($listaTablas as $tablaByName) {
+            $sqlAux = "SELECT COUNT(*) FROM deportista_asignar_tabla WHERE username = '" . $userName . "'";
+            $resultAux = $this->mysqli->query($sqlAux)->fetch_array();
+            if ($resultAux['COUNT(*)'] >= 5) {
+                return 'Ya han sido asignadas 5 tablas para este deportista';
+            } else {
+                $sql = "INSERT INTO DEPORTISTA_ASIGNAR_TABLA VALUES ('" . $userName . "',(SELECT idTabla FROM TABLA WHERE nombreTabla='" . $tablaByName . "'))";
+                if (!($resultado = $this->mysqli->query($sql))) {
+                    return 'La tabla ya ha sido asignada a este usuario';
+                } else {
+                    return 'La tabla se ha asignado correctamente';
+                }
+            }
+        }
+    }
+
 
 }
 

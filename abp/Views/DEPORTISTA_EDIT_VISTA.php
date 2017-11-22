@@ -113,7 +113,9 @@ class DEPORTISTA_Modificar {
                 <br>
 
                 <input type = 'submit' onclick="return valida_envia_DEPOR()" name = 'accion' value = '<?php echo $strings['Modificar'] ?>'  onclick="return valida_envia_USUARIO()" >
+                  <?php if (ConsultarTipoUsuarioLogin() == 1) { ?>
                 <a class="form-link" href='<?php echo $this->volver ?> '><?php echo $strings['Volver']; ?> </a>
+                  <?php } ?>
             </form>
         </div>
 

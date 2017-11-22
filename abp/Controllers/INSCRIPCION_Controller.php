@@ -42,37 +42,57 @@ if (!isset($_REQUEST['accion'])) {
 Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
     case $strings['Aceptar']:
 
-        $inscripcion = new INSCRIPCION_Model($_REQUEST['userName'], $_REQUEST['actividad'], '', '');
-        $respuesta = $inscripcion->Aceptar();
-        new Mensaje($respuesta, 'INSCRIPCION_Controller.php');
+        if ($_REQUEST['act'] == 'grupal') {
+            $inscripcion = new INSCRIPCION_Model($_REQUEST['userName'], $_REQUEST['actividad'], '', '');
+            $respuesta = $inscripcion->AceptarGrupal();
+            new Mensaje($respuesta, 'INSCRIPCION_Controller.php?act=grupal');
+        } else {
+            $inscripcion = new INSCRIPCION_Model($_REQUEST['userName'], $_REQUEST['actividad'], '', '');
+            $respuesta = $inscripcion->AceptarIndividual();
+            new Mensaje($respuesta, 'INSCRIPCION_Controller.php?act=individual');
+        }
 
         break;
 
 
     case $strings['Rechazar']:
 
-
-        $inscripcion = new INSCRIPCION_Model($_REQUEST['userName'], $_REQUEST['actividad'], '', '');
-        $respuesta = $inscripcion->Rechazar();
-        new Mensaje($respuesta, 'INSCRIPCION_Controller.php');
-
+        if ($_REQUEST['act'] == 'grupal') {
+            $inscripcion = new INSCRIPCION_Model($_REQUEST['userName'], $_REQUEST['actividad'], '', '');
+            $respuesta = $inscripcion->RechazarGrupal();
+            new Mensaje($respuesta, 'INSCRIPCION_Controller.php?act=grupal');
+        } else {
+            $inscripcion = new INSCRIPCION_Model($_REQUEST['userName'], $_REQUEST['actividad'], '', '');
+            $respuesta = $inscripcion->RechazarIndividual();
+            new Mensaje($respuesta, 'INSCRIPCION_Controller.php?act=individual');
+        }
 
         break;
 
 
     default: //Por defecto se realiza el show all
-        if (!isset($_REQUEST['idInscripcion'])) {
-            $inscripcion = new INSCRIPCION_Model('', '', '', '');
+
+        if ($_REQUEST['act'] == 'grupal') {
+            if (!isset($_REQUEST['idInscripcion'])) {
+                $inscripcion = new INSCRIPCION_Model('', '', '', '');
+            } else {
+                $inscripcion = get_data_form();
+            }
+
+            $datos = $inscripcion->ConsultarTodoGrupales();
         } else {
-            $inscripcion = get_data_form();
+            if (!isset($_REQUEST['idInscripcion'])) {
+                $inscripcion = new INSCRIPCION_Model('', '', '', '');
+            } else {
+                $inscripcion = get_data_form();
+            }
+
+            $datos = $inscripcion->ConsultarTodoIndividuales();
         }
-
-        $datos = $inscripcion->ConsultarTodo();
-
         if (!tienePermisos('INSCRIPCIONPENDIENTE_Show')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
-            new INSCRIPCIONPENDIENTE_Show($datos, '../Views/DEFAULT_Vista.php');
+            new INSCRIPCIONPENDIENTE_Show($datos, $_REQUEST['act'], '../Views/DEFAULT_Vista.php');
         }
 }
 ?>

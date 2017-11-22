@@ -31,13 +31,13 @@ class DEPORTISTA_Show {
             <br><br>
 
             <div class="container">
-                <div align='right'>
+                <div align='left'>
                     <a href='DEPORTISTA_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><img src="../img/useradd.png" width="50px" height="50px"></a>
                 </div>
 
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <form id="frmAsignar" method="POST" action="?accion=asignar&userName=">
+                    <form id="frmAsignar" method="POST" action="?accion=<?php echo $strings['Asignar']; ?>&userName=">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -119,7 +119,7 @@ class DEPORTISTA_Show {
                                                                                                                                 <!--<td><button type="button" class="btn btn-success"><a href='USUARIO_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Ver']; ?>'><?php echo $strings['Ver']; ?></a></button></td>   -->          
                         <td><button type="button" class="btn btn-info"><a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Modificar']; ?>'><?php echo $strings['Modificar']; ?></a></button></td>
                         <td><button type="button" class="btn btn-danger"><a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Borrar']; ?>'><?php echo $strings['Borrar']; ?></a></button></td>
-                        <td><a data-toggle="modal" href="#myModal" onclick="changeIdAction('<?php echo $this->datos[$j]['userName'] ?>')"><button type="button" class="btn btn-success">Asignar</button></a></td>';
+                        <td><a data-toggle="modal" href="#myModal" onclick="changeIdAction('<?php echo $this->datos[$j]['userName'] ?>')"><button type="button" class="btn btn-success"><?php echo $strings['Asignar']; ?></button></a></td>
                                 <?php
                             }
                             ?>

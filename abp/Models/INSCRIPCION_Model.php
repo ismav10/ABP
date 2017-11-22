@@ -27,7 +27,7 @@ class INSCRIPCION_Model {
         }
     }
 
-    function Aceptar() {
+    function AceptarGrupal() {
 
         $this->ConectarBD();
         $sql = "SELECT plazasDisponibles FROM DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL where userName = '" . $this->userName . "' AND idActividadGrupal = '" . $this->idActividadGrupal . "'";
@@ -49,7 +49,15 @@ class INSCRIPCION_Model {
         }
     }
 
-    function Rechazar() {
+    function AceptarIndividual() {
+        $this->ConectarBD();
+        $sql = "UPDATE DEPORTISTA_INSCRIBIR_ACTIVIDADINDIVIDUAL SET estado = 1 WHERE userName= '" . $this->userName . "' AND idActividadIndividual = '" . $this->idActividadGrupal . "'";
+        $result = $this->mysqli->query($sql);
+        return "Solicitud aceptada";
+        
+    }
+
+    function RechazarGrupal() {
 
         $this->ConectarBD();
         $sql = "SELECT * FROM DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL where userName = '" . $this->userName . "' AND idActividadGrupal = '" . $this->idActividadGrupal . "'";
@@ -64,9 +72,43 @@ class INSCRIPCION_Model {
         }
     }
 
-    function ConsultarTodo() {
+    
+    
+    function RechazarIndividual() {
+
+        $this->ConectarBD();
+        $sql = "SELECT * FROM DEPORTISTA_INSCRIBIR_ACTIVIDADINDIVIDUAL where userName = '" . $this->userName . "' AND idActividadIndividual = '" . $this->idActividadGrupal . "'";
+        $result = $this->mysqli->query($sql);
+
+        if ($result->num_rows == 1) {
+            $sql1 = "DELETE FROM DEPORTISTA_INSCRIBIR_ACTIVIDADINDIVIDUAL where userName = '" . $this->userName . "' AND idActividadIndividual = '" . $this->idActividadGrupal . "'";
+            $this->mysqli->query($sql1);
+            return "Solicitud rechazada";
+        } else {
+            return "No existe la inscripcion";
+        }
+    }
+    
+    
+    function ConsultarTodoGrupales() {
         $this->ConectarBD();
         $sql = "SELECT * FROM DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL WHERE estado = 0";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            return $toret;
+        }
+    }
+    
+    function ConsultarTodoIndividuales() {
+        $this->ConectarBD();
+        $sql = "SELECT * FROM DEPORTISTA_INSCRIBIR_ACTIVIDADINDIVIDUAL WHERE estado = 0";
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
         } else {

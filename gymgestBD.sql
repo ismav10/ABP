@@ -63,6 +63,13 @@ CREATE TABLE IF NOT EXISTS `actividadindividual` (
   `descripcionActividadIndividual` text COLLATE utf8_spanish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `actividadindividual`
+--
+
+INSERT INTO `actividadindividual` (`idActividadIndividual`, `nombreActividadIndividual`, `descripcionActividadIndividual`) VALUES
+(1, 'Fittness', 'Realización de diferentes ejercicios físicos en una sala acondicionada para ello');
+
 -- --------------------------------------------------------
 
 --
@@ -72,19 +79,18 @@ CREATE TABLE IF NOT EXISTS `actividadindividual` (
 CREATE TABLE IF NOT EXISTS `deportista` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `tipoDeportista` char(3) COLLATE utf8_spanish_ci NOT NULL,
-  `metodoPago` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
-  `idActividadIndividual` int(10) DEFAULT NULL
+  `metodoPago` varchar(45) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `deportista`
 --
 
-INSERT INTO `deportista` (`userName`, `tipoDeportista`, `metodoPago`, `idActividadIndividual`) VALUES
-('deportista1', 'PEF', '1234567898765432', NULL),
-('deportista2', 'TDU', '5406282043000000', NULL),
-('deportista3', 'PEF', '5489067823456543', NULL),
-('deportista4', 'TDU', '5467876523459876', NULL);
+INSERT INTO `deportista` (`userName`, `tipoDeportista`, `metodoPago`) VALUES
+('deportista1', 'PEF', '1234567898765432'),
+('deportista2', 'TDU', '5406282043000000'),
+('deportista3', 'PEF', '5489067823456543'),
+('deportista4', 'TDU', '5467876523459876');
 
 -- --------------------------------------------------------
 
@@ -96,6 +102,15 @@ CREATE TABLE IF NOT EXISTS `deportista_asignar_tabla` (
   `username` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `idTabla` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+
+--
+-- Volcado de datos para la tabla `deportista_asignar_tabla`
+--
+
+INSERT INTO `deportista_asignar_tabla` (`userName`, `idTabla`) VALUES
+('deportista1', 1),
+('deportista1', 2);
 
 -- --------------------------------------------------------
 
@@ -130,6 +145,24 @@ INSERT INTO `deportista_inscribir_actividadgrupal` (`userName`, `idActividadGrup
 ('deportista1', 1, 0, 25),
 ('deportista2', 1, 0, 25);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `deportista_inscribir_actividadgrupal`
+--
+
+CREATE TABLE IF NOT EXISTS `deportista_inscribir_actividadindividual` (
+  `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `idActividadIndividual` int(10) NOT NULL,
+  `estado` tinyint(1) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `deportista_inscribir_actividadgrupal`
+--
+INSERT INTO `deportista_inscribir_actividadindividual` (`userName`, `idActividadIndividual`, `estado`) VALUES
+('deportista1', 1, 0),
+('deportista2', 1, 0);
 -- --------------------------------------------------------
 
 --
@@ -205,6 +238,7 @@ INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categori
 (150, 'Listar Tablas', 'Gestion Tablas'),
 (151, 'Añadir Tabla', 'Gestion Tablas'),
 (152, 'Editar Tabla', 'Gestion Tablas'),
+(153, 'Ver Tabla', 'Gestion Tablas'),
 (200, 'Listar Notificaciones', 'Gestion Notificaciones'),
 (201, 'Consultar Notificaciones', 'Gestion Notificaciones'),
 (202, 'Ver Notificacion', 'Gestion Notificaciones'),
@@ -263,6 +297,7 @@ INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
 (150, 150),
 (151, 151),
 (152, 152),
+(153, 153),
 (200, 200),
 (201, 201),
 (202, 202),
@@ -335,6 +370,9 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (151, 2),
 (152, 2),
 (150, 3),
+(153, 1),
+(153, 2),
+(153, 3),
 (200, 1),
 (200, 2),
 (200, 3),
@@ -449,6 +487,7 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 (150, '../Views/TABLA_SHOWALL_Vista.php', 'TABLA SHOW ALL'),
 (151, '../Views/TABLA_ADD_Vista.php', 'TABLA ADD'),
 (152, '../Views/TABLA_EDIT_Vista.php', 'TABLA EDIT'),
+(153, '../Views/TABLA_SHOWCURRENT_Vista.php', 'TABLA SHOW'),
 (200, '../Views/NOTIFICACION_SHOWALL_Vista.php', 'NOTIFICACION SHOW ALL'),
 (201, '../Views/NOTIFICACION_SHOWCURRENT_Vista.php', 'NOTIFICACION SHOW CURRENT'),
 (202, '../Views/NOTIFICACION_SELECT_Vista.php', 'NOTIFICACION SELECT'),
@@ -612,8 +651,7 @@ ALTER TABLE `actividadindividual`
 -- Indices de la tabla `deportista`
 --
 ALTER TABLE `deportista`
-  ADD PRIMARY KEY (`userName`),
-  ADD KEY `idActividadIndividual` (`idActividadIndividual`);
+  ADD PRIMARY KEY (`userName`);
 
 --
 -- Indices de la tabla `deportista_asignar_tabla`
@@ -636,6 +674,12 @@ ALTER TABLE `deportista_inscribir_actividadgrupal`
   ADD PRIMARY KEY (`userName`,`idActividadGrupal`),
   ADD KEY `idActividadGrupal` (`idActividadGrupal`);
 
+--
+-- Indices de la tabla `deportista_asistir_actividadindividual`
+--
+ALTER TABLE `deportista_inscribir_actividadindividual`
+  ADD PRIMARY KEY (`userName`,`idActividadIndividual`),
+  ADD KEY `idActividadIndividual` (`idActividadIndividual`);
 --
 -- Indices de la tabla `ejercicio`
 --
@@ -806,8 +850,7 @@ ALTER TABLE `actividadgrupal`
 -- Filtros para la tabla `deportista`
 --
 ALTER TABLE `deportista`
-  ADD CONSTRAINT `deportista_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `usuario` (`userName`),
-  ADD CONSTRAINT `deportista_ibfk_2` FOREIGN KEY (`idActividadIndividual`) REFERENCES `actividadindividual` (`idActividadIndividual`);
+  ADD CONSTRAINT `deportista_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `usuario` (`userName`);
 
 --
 -- Filtros para la tabla `deportista_asignar_tabla`
@@ -829,6 +872,13 @@ ALTER TABLE `deportista_asistir_actividadgrupal`
 ALTER TABLE `deportista_inscribir_actividadgrupal`
   ADD CONSTRAINT `deportista_inscribir_actividadgrupal_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `deportista` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `deportista_inscribir_actividadgrupal_ibfk_2` FOREIGN KEY (`idActividadGrupal`) REFERENCES `actividadgrupal` (`idActividadGrupal`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `deportista_inscribir_actividadindividual`
+--
+ALTER TABLE `deportista_inscribir_actividadindividual`
+  ADD CONSTRAINT `deportista_inscribir_actividadindividual_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `deportista` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `deportista_inscribir_actividadindividual_ibfk_2` FOREIGN KEY (`idActividadIndividual`) REFERENCES `actividadindividual` (`idActividadIndividual`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `entrenador`

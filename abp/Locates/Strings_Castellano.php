@@ -34,12 +34,13 @@ $strings = array(
 'Gestión de Instalaciones' => 'Instalaciones',
 'Gestión de notificaciones' => 'Notificaciones',
 'Gestión de sesiones' => 'Sesiones',
-'Gestión de Inscripciones' => 'Inscripciones',
+'Gestión de Inscripciones' => 'Solicitudes',
 'Gestión de ejercicios' => 'Ejercicios',
 'Gestión de tablas' => 'Tablas',
 'Gestión de Actividades' => 'Actividades',
 'Gestión de Actividades Grupales' => 'Grupales',
 'Gestión de Actividades Individuales' => 'Individuales',
+'Entrenamiento' => 'Entrenamiento',
 
 
 
@@ -57,6 +58,7 @@ $strings = array(
 'AsignarTablaDeportista' => 'Asignar Tablas a un Deportista',
 'Cerrar' => 'Cerrar',
 'Guardar' => 'Guardar',
+'Asignar' => 'Asignar',
 
 //USUARIOS
 'userName' => 'Usuario',
@@ -99,10 +101,15 @@ $strings = array(
 'Modificar deportista' => 'Modificar Deportista',
 'Eliminar Deportista' => 'Eliminar Deportista',
 'Ver Deportista' => 'Ver Deportista',
+'VerTablas' => 'Tablas Asignadas',
+'La tabla ya ha sido asignada a este usuario' => 'La tabla ya ha sido asignada a este deportista',
+'La tabla se ha asignado correctamente' => 'La tabla se ha asignado correctamente',
+'Ya han sido asignadas 5 tablas para este deportista' => 'Ya han sido asignadas 5 tablas para este deportista',
     
 
 //INSCRIPCIONES
-'Pendientes' => 'Pendientes',
+'GrupalesPendientes' => 'Pendientes Actividades Grupales',
+'IndividualesPendientes' => 'Pendientes Actividades Individuales',
 'nombreActividadGrupal'=> 'Actividad',
 0 => 'Solicitud Pendiente',
 1 => 'Solicitud Aceptada',
@@ -110,6 +117,7 @@ $strings = array(
 'estado' => 'Estado',
 'Aceptar' => 'Aceptar',
 'Rechazar' => 'Rechazar',
+'Error al acepar la inscripcion' => 'Error al acepar la inscripcion',
   
     
     
@@ -137,7 +145,7 @@ $strings = array(
 
  //ACTIVIDADES GRUPALES
 
-'nombreActividadGrupal' => 'Nombre',
+'nombreActividadGrupal' => 'Nombre Actividad',
 'descripcionActividadGrupal' =>'Descripcion',
 'numPlazasActividadGrupal' =>'Numero Plazas',
 'idActividadGrupal' => 'ID',

@@ -28,7 +28,7 @@
                         <div class="container-fluid">
                             <div class="navbar-header">
                                 <div class="navbar-brand">
-                                    <br><a href="../index.php"><img src="../img/logo.png" width="325" height="80"></a>
+                                    <br><a href="../index.php"><img src="../img/logo.png" width="290" height="80"></a>
                                 </div>
                             </div>
                             <div class="menu">

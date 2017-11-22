@@ -1,13 +1,22 @@
+<script type="text/javascript">
+    function changeIdAction(id)
+    {
+        document.getElementById("frmAsignar").action += id;
+    }
+</script>
+    
 <?php
 
 class DEPORTISTA_SELECT_SHOW {
 
     private $valores;
+    private $datos;
     private $volver;
 
 //VISTA PARA LA MODIFICACIÓN DE USUARIOS
-    function __construct($valores, $volver) {
+    function __construct($valores, $datos, $volver) {
         $this->valores = $valores;
+        $this->datos = $datos;
         $this->volver = $volver;
         $this->render();
     }
@@ -18,6 +27,41 @@ class DEPORTISTA_SELECT_SHOW {
         ?>
 
         <div class="container" >
+            
+               <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <form id="frmAsignar" method="POST" action="?accion=<?php echo $strings['Ver']; ?>&userName=">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"><?php echo $strings['VerTablas']; ?></h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <select multiple class="form-control" id="sel2" name="asignacionTablas[]">
+                                            <?php
+                                            foreach ($this->datos['tablas'] as $valor) {
+                                                echo '<option>' . ConsultarNombreTabla($valor['1']) . '</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                    </div> 
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $strings['Cerrar']; ?></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            
+            
+            
+            
             <form  id="form" name="form" action='DEPORTISTA_Controller.php'  method='post'   enctype="multipart/form-data">
                 <div class="form-group" >
                     <label class="control-label" ><?php echo $strings['Ver Deportista']; ?></label><br>
@@ -83,6 +127,9 @@ class DEPORTISTA_SELECT_SHOW {
                     <input class="form" id="metodoPago" name="metodoPago" size="30" type="text" readonly="true" value="<?php echo $this->valores['metodoPago']; ?>">
                 </div>
                 
+                <br>
+                <td><a data-toggle="modal" href="#myModal" ><button type="button" class="btn btn-success"><?php echo $strings['VerTablas']; ?></button></a>
+                <br>
                 <br>
 
                 <a class="form-link" href='<?php echo $this->volver ?> '><?php echo $strings['Volver']; ?> </a>

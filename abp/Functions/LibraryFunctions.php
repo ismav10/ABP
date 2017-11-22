@@ -39,7 +39,6 @@ function AñadirTipos($array) {
     return $array;
 }
 
-
 //Añade al formulario de definicion las entradas correspondientes a las paginas disponibles
 function AñadirPaginas($array) {
     $mysqli = new mysqli("localhost", "root", "", "gymgest");
@@ -158,6 +157,19 @@ function ConsultarNOMRol($idRol) {
     $result = $mysqli->query($sql)->fetch_array();
     return $result['nombreRol'];
 }
+
+
+function ConsultarNombreTabla($idTabla) {
+    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT nombreTabla FROM Tabla WHERE idTabla='" . $idTabla . "'";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['nombreTabla'];
+}
+
+
 function ConsultarNombreActividadGrupal($idActividadGrupal) {
     $mysqli = new mysqli("localhost", "root", "", "gymgest");
     if ($mysqli->connect_errno) {
@@ -167,6 +179,17 @@ function ConsultarNombreActividadGrupal($idActividadGrupal) {
     $result = $mysqli->query($sql)->fetch_array();
     return $result['nombreActividadGrupal'];
 }
+
+function ConsultarNombreActividadIndividual($idActividadGrupal) {
+    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT nombreActividadIndividual FROM ACTIVIDADINDIVIDUAL WHERE idActividadIndividual='" . $idActividadGrupal . "'";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['nombreActividadIndividual'];
+}
+
 
 //añade a la pagina default los enlaces correspondientes a las funcionalidades
 function añadirFuncionalidades($NOM) {
@@ -189,7 +212,7 @@ function añadirFuncionalidades($NOM) {
                 case "Gestion Usuarios":
                     ?>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios'] ?> </a>
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><?php echo $strings['Gestión de Usuarios'] ?> </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="../Controllers/ENTRENADOR_Controller.php?user=entrenador"><?php echo $strings['Gestión de Entrenadores']; ?></a>
                             <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?user=deportista"><?php echo $strings['Gestión de Deportistas']; ?></a>
@@ -199,39 +222,44 @@ function añadirFuncionalidades($NOM) {
                     <?php
                     break;
 
-               case "Gestion Actividad Grupal":
+                case "Gestion Actividad Grupal":
                     ?>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Actividades'] ?> </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="../Controllers/ACTIVIDAD_GRUPAL_Controller.php"><?php echo $strings['Gestión de Actividades Grupales']; ?></a>
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $strings['Gestión de Actividades'] ?> </a>
+                        <div align='center' class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="../Controllers/ACTIVIDAD_INDIVIDUAL_Controller.php?"><?php echo $strings['Gestión de Actividades Individuales']; ?></a>
+                            <a class="dropdown-item" href="../Controllers/ACTIVIDAD_GRUPAL_Controller.php"><?php echo $strings['Gestión de Actividades Grupales']; ?></a>
                         </div>
                     </li>
-                    <?php
+                   
+ <?php
                     break;
 
-                  case "Gestion Ejercicios":
-                        ?><li><a style="font-size:15;" href='../Controllers/EJERCICIO_Controller.php'><?php echo $strings['Gestión de ejercicios']; ?></a></li><?php
-                        break;
-                    
-                     case "Gestion Tablas":
-                        ?><li><a style="font-size:15;" href='../Controllers/TABLA_Controller.php'><?php echo $strings['Gestión de tablas']; ?></a></li><?php
-                        break;
+                case "Gestion Ejercicios":
+                    ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><?php echo $strings['Entrenamiento'] ?> </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="../Controllers/TABLA_Controller.php"><?php echo $strings['Gestión de tablas']; ?></a><br>
+                            <a class="dropdown-item" href="../Controllers/EJERCICIO_Controller.php?"><?php echo $strings['Gestión de ejercicios']; ?></a><br>
+                             <a class="dropdown-item" href='../Controllers/SESION_Controller.php'><?php echo $strings['Gestión de sesiones']; ?></a>
+                        </div>
+                    </li>
+                   
+ <?php
+                    break;
+            
 
-                case "Gestion Notificaciones":
-                    ?><li><a style="font-size:15px;" href='../Controllers/NOTIFICACION_Controller.php'><?php echo $strings['Gestión de notificaciones']; ?></a></li> <?php
-                        break;
-
-                    case "Gestion Sesiones":
-                        ?><li><a style="font-size:15;" href='../Controllers/SESION_Controller.php'><?php echo $strings['Gestión de sesiones']; ?></a></li><?php
+                    case "Gestion Notificaciones":
+                        ?><li><a style="font-size:15px;" href='../Controllers/NOTIFICACION_Controller.php'><?php echo $strings['Gestión de notificaciones']; ?></a></li> <?php
                         break;
 
                     case "Gestion Inscripciones":
                         ?><li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $strings['Gestión de Inscripciones'] ?> </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="../Controllers/INSCRIPCION_Controller.php"><?php echo $strings['Pendientes']; ?></a>
+                            <a class="dropdown-item" href="../Controllers/INSCRIPCION_Controller.php?act=grupal"><?php echo $strings['Gestión de Actividades Grupales']; ?></a>
+                            <a class="dropdown-item" href="../Controllers/INSCRIPCION_Controller.php?act=individual"><?php echo $strings['Gestión de Actividades Individuales']; ?></a>
                         </div>
                     </li>
                     <?php
