@@ -18,7 +18,9 @@ class TABLA_ShowCurrent
    
 		echo '<div class="container">
 				<h4>'.$strings['tablaname'].': '.$this->datos['tabla']['nombreTabla'].'</h4>
-				<h5>'.$strings['tabladesc'].': '.$this->datos['tabla']['descripcionTabla'].'</</h5>';
+                                <h5>'.$strings['tablaTipo'].': '.$this->datos['tabla']['tipo'].'</h5>
+				<h6>'.$strings['tabladesc'].': '.$this->datos['tabla']['descripcionTabla'].'</</h6>';
+                echo '<br><br><br><br>';
 		echo'<table class="table">
 			  <thead class="thead-dark">
 				<tr>
@@ -37,7 +39,7 @@ class TABLA_ShowCurrent
 		}			
 	
 		echo '</tbody>
-			</table>;
+			</table>
 			 </div>';
 
         include '../Views/footer.php';

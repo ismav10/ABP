@@ -574,9 +574,10 @@ CREATE TABLE IF NOT EXISTS `sesion` (
 -- Estructura de tabla para la tabla `tabla`
 --
 
-CREATE TABLE `tabla` (
+CREATE TABLE IF NOT EXISTS `tabla` (
   `idTabla` int(10) NOT NULL,
   `nombreTabla` varchar(50) NOT NULL,
+  `tipo` varchar(20) NOT NULL,
   `descripcionTabla` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -584,12 +585,12 @@ CREATE TABLE `tabla` (
 -- Volcado de datos para la tabla `tabla`
 --
 
-INSERT INTO `tabla` (`idTabla`, `nombreTabla`, `descripcionTabla`) VALUES
-(1, 'Tabla Estandar - Pecho/Biceps', 'Tabla Intensa'),
-(2, 'Tabla Estandar - Hombro/Espalda','Tabla Intensidad Media'),
-(3, 'Tabla Estandar - Abdominal','Tabla Intensidad Baja'),
-(4, 'Tabla Personalizada - Hombro/Espalda','Tabla Intensidad Media'),
-(5, 'Tabla Personalizada - Abdominal','Tabla Intensidad Baja');
+INSERT INTO `tabla` (`idTabla`, `nombreTabla`, `tipo`, `descripcionTabla`) VALUES
+(1, 'Tabla Pecho/Biceps 1', 'Estandar', 'Tabla Intensa'),
+(2, 'Tabla Hombro/Espalda 1', ' Estandar', 'Tabla Intensidad Media'),
+(3, 'Tabla Abdominal 1', 'Estandar' ,'Tabla Intensidad Baja'),
+(4, 'Tabla Hombro/Espalda 2', 'Personalizada', 'Tabla Intensidad Media'),
+(5, 'Tabla Abdominal 2', 'Personalizada', 'Tabla Intensidad Baja');
 
 -- --------------------------------------------------------
 
@@ -598,7 +599,7 @@ INSERT INTO `tabla` (`idTabla`, `nombreTabla`, `descripcionTabla`) VALUES
 -- Estructura de tabla para la tabla `tabla_con_ejercicio`
 --
 
-CREATE TABLE `tabla_con_ejercicio` (
+CREATE TABLE IF NOT EXISTS `tabla_con_ejercicio` (
   `idTabla` int(10) NOT NULL,
   `idEjercicio` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;

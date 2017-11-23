@@ -24,13 +24,20 @@ function get_data_form() {
     } else {
         $nombreTabla = "";
     }
+    
+    if (isset($_REQUEST['tablaTipo'])) {
+        $tablaTipo = $_REQUEST['tablaTipo'];
+    } else {
+        $tablaTipo = "";
+    }
+    
     if (isset($_REQUEST['descripcionTabla'])) {
         $descripcionTabla = $_REQUEST['descripcionTabla'];
     } else {
         $descripcionTabla = "";
     }
 
-    $tabla = new TABLA_Model($nombreTabla, $descripcionTabla);
+    $tabla = new TABLA_Model($nombreTabla, $tablaTipo, $descripcionTabla);
     return $tabla;
 }
 

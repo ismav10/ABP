@@ -189,7 +189,10 @@ $strings = array(
 'tabladesc2' => 'Descripción',  
 'tablaasignar' => 'Asignar Ejercicios',
 'tablamodificar' => 'Modificar',
-'tablaeliminar' => 'Eliminar',  
+'tablaeliminar' => 'Eliminar', 
+'Personalizado' => 'Personalizado',
+'Estandar' => 'Estandar',
+'tablaTipo' => 'Tipo de Tabla'
 
 
 );

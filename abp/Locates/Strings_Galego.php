@@ -172,6 +172,9 @@ $strings = array(
 'tablaasignar' => 'Asignar Exercicios',
 'tablamodificar' => 'Modificar',
 'tablaeliminar' => 'Eliminar',
+'Personalizado' => 'Personaliazdo',
+'Estandar' => 'Estandar',
+'tablaTipo' => 'Tipo de Táboa',
 
 
  //ACTIVIDADES GRUPALES

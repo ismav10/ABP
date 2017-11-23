@@ -67,6 +67,7 @@ class TABLA_Show
 			  <thead class="thead-dark">
 				<tr>
 				  <th scope="col">'.$strings['tablaname2'].'</th>
+                                  <th scope="col">'.$strings['tablaTipo'].'</th>
 				  <th scope="col">'.$strings['tabladesc2'].'</th>
 				  <th scope="col"></th>
 				  <th scope="col"></th>
@@ -79,6 +80,7 @@ class TABLA_Show
 			echo '<tr>';
 			echo '<th><a href="?accion=ver&id='.$valor['0'].'">'.$valor['1'].'</a></th>';
 			echo '<td>'.$valor['2'].'</td>';
+                        echo '<td>'.$valor['3'].'</td>';
 			if(ConsultarTipoUsuario($_SESSION['login']) != 3)
 			{
 				echo '<td><a data-toggle="modal" href="#myModal" onclick="changeIdAction('.$valor[0].')"><button type="button" class="btn btn-success">'.$strings['tablaasignar'].'</button></a></td>';

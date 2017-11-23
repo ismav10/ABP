@@ -135,6 +135,18 @@ function ConsultarNumPlazas($idActividadGrupal) {
     return $result['numPlazasActividadGrupal'];
 }
 
+function ConsultarTipoDeportista($userName) {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT tipoDeportista FROM DEPORTISTA WHERE userName='" . $userName . "'";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['tipoDeportista'];
+}
+
+
+
 //Devuelve el id de un rol a partir del userName del usuario
 function ConsultarTipoUsuario($userName) {
     $mysqli = new mysqli("localhost", "root", "", "muevet");

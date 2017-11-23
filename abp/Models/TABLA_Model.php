@@ -5,10 +5,12 @@ include '../Functions/LibraryFunctions.php';
 class TABLA_Model {
 
     var $nombreTabla;
+    var $tablaTipo;
     var $descripcionTabla;
 
-    function __construct($nombre, $descripcion) {
+    function __construct($nombre, $tablaTipo, $descripcion) {
         $this->nombreTabla = $nombre;
+        $this->tablaTipo = $tablaTipo;
         $this->descripcionTabla = $descripcion;
     }
 
@@ -66,7 +68,7 @@ WHERE (t1.username='".$username."') AND
 
     function insertarTabla() {
         $this->ConectarBD();
-        $sql = "INSERT INTO `tabla`(`nombreTabla`, `descripcionTabla`) VALUES ('" . $this->nombreTabla . "','" . $this->descripcionTabla . "')";
+        $sql = "INSERT INTO `tabla`(`nombreTabla`, `tipo` , `descripcionTabla`) VALUES ('" . $this->nombreTabla . "','" . $this->tablaTipo . "','" . $this->descripcionTabla . "')";
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
         } else {
@@ -86,7 +88,7 @@ WHERE (t1.username='".$username."') AND
 
     function modificarTabla($id) {
         $this->ConectarBD();
-        $sql = "UPDATE `tabla` SET nombreTabla='" . $this->nombreTabla . "',descripcionTabla='" . $this->descripcionTabla . "' WHERE idTabla='" . $id . "'";
+        $sql = "UPDATE `tabla` SET nombreTabla='" . $this->nombreTabla . "',descripcionTabla='" . $this->descripcionTabla . "', tipo= '" . $this->tablaTipo. "' WHERE idTabla='" . $id . "'";
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
         } else {

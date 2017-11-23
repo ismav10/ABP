@@ -174,12 +174,13 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 
         $datos = $usuario->ConsultarTodo($_REQUEST['user']);
 
-        $tablas['tablas'] = $usuario->obtenerTablas();
+        $tablasEstandar['tablas'] = $usuario->obtenerTablasEstandar();
+        $tablasPersonalizadas['tablas'] = $usuario->obtenerTablasPersonalizadas();
 
         if (!tienePermisos('DEPORTISTA_Show')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
-            new DEPORTISTA_Show($datos, $tablas, '../Views/DEFAULT_Vista.php');
+            new DEPORTISTA_Show($datos, $tablasEstandar, $tablasPersonalizadas, '../Views/DEFAULT_Vista.php');
         }
 }
 ?>

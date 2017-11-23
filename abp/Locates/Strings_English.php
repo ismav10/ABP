@@ -175,6 +175,9 @@ $strings = array(
 'tablaasignar' => 'Assign Works',
 'tablamodificar' => 'Modify',
 'tablaeliminar' => 'Delete',
+'Personalizado' => 'Personalized',
+'Estandar' => 'Standard',
+'tablaTipo' => 'Type of Table',
 
     
 //ACTIVIDADES GRUPALES

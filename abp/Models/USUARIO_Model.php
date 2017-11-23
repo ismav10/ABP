@@ -229,9 +229,9 @@ class USUARIO_Modelo {
         }
     }
 
-    function obtenerTablas() {
+    function obtenerTablasEstandar() {
         $this->ConectarBD();
-        $sql = "SELECT * FROM tabla";
+        $sql = "SELECT * FROM tabla WHERE tipo = 'Estandar'";
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
         } else {
@@ -244,11 +244,26 @@ class USUARIO_Modelo {
             return $toret;
         }
     }
-    
-    
+
+    function obtenerTablasPersonalizadas() {
+        $this->ConectarBD();
+        $sql = "SELECT * FROM tabla WHERE tipo = 'Personalizada'";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            return $toret;
+        }
+    }
+
     function consultarTablas() {
         $this->ConectarBD();
-        $sql = "SELECT * FROM deportista_asignar_tabla WHERE username = '". $this->userName. "'";
+        $sql = "SELECT * FROM deportista_asignar_tabla WHERE username = '" . $this->userName . "'";
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
         } else {
@@ -261,10 +276,10 @@ class USUARIO_Modelo {
             return $toret;
         }
     }
-    
-     function consultarActividades() {
+
+    function consultarActividades() {
         $this->ConectarBD();
-        $sql = "SELECT * FROM ACTIVIDADGRUPAL WHERE username = '". $this->userName. "'";
+        $sql = "SELECT * FROM ACTIVIDADGRUPAL WHERE username = '" . $this->userName . "'";
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
         } else {
@@ -277,8 +292,6 @@ class USUARIO_Modelo {
             return $toret;
         }
     }
-    
-    
 
     function asignarTablas($userName, $listaTablas) {
         $this->ConectarBD();
@@ -298,7 +311,6 @@ class USUARIO_Modelo {
             }
         }
     }
-
 
 }
 
