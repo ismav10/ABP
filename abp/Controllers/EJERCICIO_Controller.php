@@ -1,6 +1,7 @@
 <?php
 //Controlador para la gestión de ejercicios
 include '../Models/EJERCICIO_Model.php';
+include '../Views/MENSAJE_Vista.php';
 
 
 
@@ -91,7 +92,7 @@ switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 
 
     case 'eliminar':
-		if (!tienePermisos('EJERCICIO_Delete')) {
+		if (!tienePermisos('EJERCICIO_EDIT')) {
 					new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
 					$ejercicio = get_data_form();
