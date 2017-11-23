@@ -49,7 +49,10 @@ CREATE TABLE IF NOT EXISTS `actividadgrupal` (
 --
 
 INSERT INTO `actividadgrupal` (`idActividadGrupal`, `nombreActividadGrupal`, `descripcionActividadGrupal`, `numPlazasActividadGrupal`, `username`, `idInstalacion`) VALUES
-(1, 'Yoga', 'El yoga se refiere a una tradicional disciplina física, mental y espiritual que se originó en la India. La palabra se asocia con prácticas de meditación en el hinduismo, el budismo y el jainismo.', 25, 'entrenador', 1);
+(1, 'Yoga', 'AdÃ©ntrate en el mundo del fittness y aprende a conectar todos tus sentidos con tu cuerpo', 25, 'entrenador', 1),
+(2, 'Spinning', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'entrenador2', 1),
+(3, 'Boxeo', 'Deporte en que dos adversarios luchan con los puÃ±os enfundados en guantes especiales, para golpear al contrario por encima de la cintura.', 10, 'entrenador2', 1),
+(4, 'Body Pumb', 'Programa de entrenamiento Les Mills con barras y discos que fortalece, tonifica y define la musculatura de todo el cuerpo', 10, 'entrenador3', 1);
 
 -- --------------------------------------------------------
 
@@ -110,7 +113,10 @@ CREATE TABLE IF NOT EXISTS `deportista_asignar_tabla` (
 
 INSERT INTO `deportista_asignar_tabla` (`userName`, `idTabla`) VALUES
 ('deportista1', 1),
-('deportista1', 2);
+('deportista1', 2),
+('deportista1', 3),
+('deportista2', 4),
+('deportista2', 5);
 
 -- --------------------------------------------------------
 
@@ -143,7 +149,15 @@ CREATE TABLE IF NOT EXISTS `deportista_inscribir_actividadgrupal` (
 
 INSERT INTO `deportista_inscribir_actividadgrupal` (`userName`, `idActividadGrupal`, `estado`, `plazasDisponibles`) VALUES
 ('deportista1', 1, 0, 25),
-('deportista2', 1, 0, 25);
+('deportista2', 1, 0, 25),
+('deportista3', 1, 0, 25),
+('deportista1', 2, 1, 19),
+('deportista2', 3, 1, 9),
+('deportista3', 3, 0, 9),
+('deportista1', 4, 1, 8),
+('deportista2', 4, 1, 8),
+('deportista3', 4, 0, 8);
+
 
 -- --------------------------------------------------------
 
@@ -560,9 +574,11 @@ CREATE TABLE `tabla` (
 --
 
 INSERT INTO `tabla` (`idTabla`, `nombreTabla`, `descripcionTabla`) VALUES
-(1, 'Tabla PET', 'Tabla Intensa'),
-(2, 'Tabla PET 2','Tabla Intensidad Media'),
-(3, 'Tabla PET 3','Tabla Intensidad Baja');
+(1, 'Tabla Estandar - Pecho/Biceps', 'Tabla Intensa'),
+(2, 'Tabla Estandar - Hombro/Espalda','Tabla Intensidad Media'),
+(3, 'Tabla Estandar - Abdominal','Tabla Intensidad Baja'),
+(4, 'Tabla Personalizada - Hombro/Espalda','Tabla Intensidad Media'),
+(5, 'Tabla Personalizada - Abdominal','Tabla Intensidad Baja');
 
 -- --------------------------------------------------------
 

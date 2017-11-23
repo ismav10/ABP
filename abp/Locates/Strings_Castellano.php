@@ -96,7 +96,7 @@ $strings = array(
 'Modificar entrenador' => 'Modificar Entrenador',
 'Eliminar Entrenador' => 'Eliminar Entrenador',
 'Ver Entrenador' => 'Ver Entrenador',
-'VerActividadesImpartidas' =>'Actividades Impartidas',    
+    
     
 //DEPORTISTA
 'metodoPago' =>'Tarjeta de Crédito',
@@ -107,7 +107,6 @@ $strings = array(
 'Modificar deportista' => 'Modificar Deportista',
 'Eliminar Deportista' => 'Eliminar Deportista',
 'Ver Deportista' => 'Ver Deportista',
-
     
 
 //INSCRIPCIONES
@@ -169,7 +168,7 @@ $strings = array(
 'ejerciciodescription' => 'Descripción del Ejercicio',
 'gifejercicio' => 'URL para la imágen GIF del Ejercicio',
 'previsualizacion' => 'Previsualización del GIF',
-'howtoprev' => 'Para previsualizar el GIF, inserte el enlace y pulse Intro',
+'howtoprev' => 'Para previsualizar el GIF, inserte el enlace y pulse Tab',
 'saveform' => 'Guardar',
 'newejercicio' => 'Insertar Ejercicio',
 'ejercicionametabla' => 'Nombre',
