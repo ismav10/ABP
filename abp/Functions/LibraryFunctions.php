@@ -125,6 +125,16 @@ function ConsultarIDRol($nombreRol) {
     return $result['idRol'];
 }
 
+function ConsultarNumPlazas($idActividadGrupal) {
+    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT numPlazasActividadGrupal FROM ACTIVIDADGRUPAL WHERE idActividadGrupal='" . $idActividadGrupal . "'";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['numPlazasActividadGrupal'];
+}
+
 //Devuelve el id de un rol a partir del userName del usuario
 function ConsultarTipoUsuario($userName) {
     $mysqli = new mysqli("localhost", "root", "", "gymgest");
@@ -158,7 +168,6 @@ function ConsultarNOMRol($idRol) {
     return $result['nombreRol'];
 }
 
-
 function ConsultarNombreTabla($idTabla) {
     $mysqli = new mysqli("localhost", "root", "", "gymgest");
     if ($mysqli->connect_errno) {
@@ -168,7 +177,6 @@ function ConsultarNombreTabla($idTabla) {
     $result = $mysqli->query($sql)->fetch_array();
     return $result['nombreTabla'];
 }
-
 
 function ConsultarNombreActividadGrupal($idActividadGrupal) {
     $mysqli = new mysqli("localhost", "root", "", "gymgest");
@@ -189,7 +197,6 @@ function ConsultarNombreActividadIndividual($idActividadGrupal) {
     $result = $mysqli->query($sql)->fetch_array();
     return $result['nombreActividadIndividual'];
 }
-
 
 //añade a la pagina default los enlaces correspondientes a las funcionalidades
 function añadirFuncionalidades($NOM) {
@@ -231,8 +238,8 @@ function añadirFuncionalidades($NOM) {
                             <a class="dropdown-item" href="../Controllers/ACTIVIDAD_GRUPAL_Controller.php"><?php echo $strings['Gestión de Actividades Grupales']; ?></a>
                         </div>
                     </li>
-                   
- <?php
+
+                    <?php
                     break;
 
                 case "Gestion Ejercicios":
@@ -242,20 +249,22 @@ function añadirFuncionalidades($NOM) {
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="../Controllers/TABLA_Controller.php"><?php echo $strings['Gestión de tablas']; ?></a><br>
                             <a class="dropdown-item" href="../Controllers/EJERCICIO_Controller.php?"><?php echo $strings['Gestión de ejercicios']; ?></a><br>
-                             <a class="dropdown-item" href='../Controllers/SESION_Controller.php'><?php echo $strings['Gestión de sesiones']; ?></a>
+                            <?php if (ConsultarTipoUsuarioLogin() == 3) { ?>
+                                <a class="dropdown-item" href='../Controllers/SESION_Controller.php'><?php echo $strings['Gestión de sesiones']; ?></a>
+                            <?php } ?>
                         </div>
                     </li>
-                   
- <?php
+
+                    <?php
                     break;
-            
 
-                    case "Gestion Notificaciones":
-                        ?><li><a style="font-size:15px;" href='../Controllers/NOTIFICACION_Controller.php'><?php echo $strings['Gestión de notificaciones']; ?></a></li> <?php
-                        break;
 
-                    case "Gestion Inscripciones":
-                        ?><li class="nav-item dropdown">
+                case "Gestion Notificaciones":
+                    ?><li><a style="font-size:15px;" href='../Controllers/NOTIFICACION_Controller.php'><?php echo $strings['Gestión de notificaciones']; ?></a></li> <?php
+                    break;
+
+                case "Gestion Inscripciones":
+                    ?><li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $strings['Gestión de Inscripciones'] ?> </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="../Controllers/INSCRIPCION_Controller.php?act=grupal"><?php echo $strings['Gestión de Actividades Grupales']; ?></a>

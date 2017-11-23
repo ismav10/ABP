@@ -12,7 +12,7 @@ class ACTIVIDAD_GRUPAL_Model {
     var $numPlazasActividadGrupal;
     var $username;
     var $idInstalacion;
-	var $mysqli;
+    var $mysqli;
 
     function __construct($idActividadGrupal, $nombreActividadGrupal, $descripcionActividadGrupal, $numPlazasActividadGrupal, $username, $idInstalacion) {
         $this->idActividadGrupal = $idActividadGrupal;
@@ -35,49 +35,43 @@ class ACTIVIDAD_GRUPAL_Model {
 //Insertar Actividad Grupal
     function Insertar() {
         $this->ConectarBD();
-		$sql = "SELECT * FROM actividadgrupal WHERE idActividadGrupal = '". $this->idActividadGrupal ."'";
-		$result = $this->mysqli->query($sql);
-		if($result->num_rows == 1){
-				return 'La actividad grupal ya existe en la base de datos';
-		}else{
-			if ($result->num_rows == 0){
-				$sql = "INSERT INTO actividadgrupal(nombreActividadGrupal, descripcionActividadGrupal, numPlazasActividadGrupal, username, idInstalacion) VALUES ('". $this->nombreActividadGrupal ."','". $this->descripcionActividadGrupal ."','". $this->numPlazasActividadGrupal ."','". $this->username ."','". $this->idInstalacion ."')";
-				$this->mysqli->query($sql);
-				return 'Añadida con exito';
-			}
-			
-		}
-	}
-	
-	function guardarCambios($id)
-	{
-		$this->ConectarBD();
-		$sql = "UPDATE actividadgrupal SET nombreActividadGrupal ='". $this->nombreActividadGrupal ."', descripcionActividadGrupal ='". $this->descripcionActividadGrupal ."', numPlazasActividadGrupal ='". $this->numPlazasActividadGrupal ."', username ='". $this->username ."', idInstalacion ='". $this->idInstalacion ."' WHERE idActividadGrupal = '" . $id . "'";
-		$result = $this->mysqli->query($sql);
-		return true;
-	}
-	
-	function Modificar()
-	{
-		$this->ConectarBD();
-		$sql = "SELECT * FROM actividadgrupal WHERE idActividadGrupal = '" . $this->idActividadGrupal . "'";
-		$result = $this->mysqli->query($sql);
-		if ($result->num_rows == 1)
-		{
-           
-			$sql = "UPDATE actividadgrupal SET nombreActividadGrupal ='". $this->nombreActividadGrupal ."', descripcionActividadGrupal ='". $this->descripcionActividadGrupal ."', numPlazasActividadGrupal ='". $this->numPlazasActividadGrupal ."', username ='". $this->username ."', idInstalacion ='". $this->idInstalacion ."' WHERE idActividadGrupal = '" . $this->idActividadGrupal . "'";
-			if (!($resultado = $this->mysqli->query($sql))){
-				return "Error en la consulta sobre la base de datos";
-			}
-			else{
-				return "La actividad grupal se ha modificado con exito";
-			}
-		}
-		else
-			return "La actividad no existe";
-	}
-	
-	//Funcion para dar de baja una actividad grupal en el sistema.
+        $sql = "SELECT * FROM actividadgrupal WHERE idActividadGrupal = '" . $this->idActividadGrupal . "'";
+        $result = $this->mysqli->query($sql);
+        if ($result->num_rows == 1) {
+            return 'La actividad grupal ya existe en la base de datos';
+        } else {
+            if ($result->num_rows == 0) {
+                $sql = "INSERT INTO actividadgrupal(nombreActividadGrupal, descripcionActividadGrupal, numPlazasActividadGrupal, username, idInstalacion) VALUES ('" . $this->nombreActividadGrupal . "','" . $this->descripcionActividadGrupal . "','" . $this->numPlazasActividadGrupal . "','" . $this->username . "','" . $this->idInstalacion . "')";
+                $this->mysqli->query($sql);
+                return 'Añadida con exito';
+            }
+        }
+    }
+
+    function guardarCambios($id) {
+        $this->ConectarBD();
+        $sql = "UPDATE actividadgrupal SET nombreActividadGrupal ='" . $this->nombreActividadGrupal . "', descripcionActividadGrupal ='" . $this->descripcionActividadGrupal . "', numPlazasActividadGrupal ='" . $this->numPlazasActividadGrupal . "', username ='" . $this->username . "', idInstalacion ='" . $this->idInstalacion . "' WHERE idActividadGrupal = '" . $id . "'";
+        $result = $this->mysqli->query($sql);
+        return true;
+    }
+
+    function Modificar() {
+        $this->ConectarBD();
+        $sql = "SELECT * FROM actividadgrupal WHERE idActividadGrupal = '" . $this->idActividadGrupal . "'";
+        $result = $this->mysqli->query($sql);
+        if ($result->num_rows == 1) {
+
+            $sql = "UPDATE actividadgrupal SET nombreActividadGrupal ='" . $this->nombreActividadGrupal . "', descripcionActividadGrupal ='" . $this->descripcionActividadGrupal . "', numPlazasActividadGrupal ='" . $this->numPlazasActividadGrupal . "', username ='" . $this->username . "', idInstalacion ='" . $this->idInstalacion . "' WHERE idActividadGrupal = '" . $this->idActividadGrupal . "'";
+            if (!($resultado = $this->mysqli->query($sql))) {
+                return "Error en la consulta sobre la base de datos";
+            } else {
+                return "La actividad grupal se ha modificado con exito";
+            }
+        } else
+            return "La actividad no existe";
+    }
+
+    //Funcion para dar de baja una actividad grupal en el sistema.
     function Borrar() {
         $this->ConectarBD();
         $sql = "SELECT * FROM actividadgrupal WHERE idActividadGrupal = '" . $this->idActividadGrupal . "'";
@@ -92,7 +86,6 @@ class ACTIVIDAD_GRUPAL_Model {
             return "La actividad grupal fue borrada con éxito.";
         }
     }
-    
 
     function Consultar() {
         $this->ConectarBD();
@@ -143,25 +136,24 @@ class ACTIVIDAD_GRUPAL_Model {
             return $toret;
         }
     }
-	
-	function Listar() {
-        
-            $this->ConectarBD();
-            $sql = "SELECT idActividadGrupal, nombreActividadGrupal, numPlazasActividadGrupal, username, idInstalacion FROM actividadGrupal";
-            if (!($resultado = $this->mysqli->query($sql))) {
-                return 'Error en la consulta sobre la base de datos.';
-            } else {
-                $toret = array();
-                $i = 0;
-                while ($fila = $resultado->fetch_array()) {
-                    $toret[$i] = $fila;
-                    $i++;
-                }
-                return $toret;
-            }        
+
+    function Listar() {
+
+        $this->ConectarBD();
+        $sql = "SELECT idActividadGrupal, nombreActividadGrupal, numPlazasActividadGrupal, username, idInstalacion FROM actividadGrupal";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            return $toret;
+        }
     }
 
-   
     //Funcion para ver una actividad grupal en detalle, es decir, con todos los campos.
     function VerDetalle() {
         $this->ConectarBD();
@@ -174,8 +166,7 @@ class ACTIVIDAD_GRUPAL_Model {
         }
     }
 
-	
-	//Devuelve los valores almacenados para una determinada actividad grupal para posteriormente rellenar un formulario
+    //Devuelve los valores almacenados para una determinada actividad grupal para posteriormente rellenar un formulario
     function RellenaDatos() {
         $this->ConectarBD();
         $sql = "SELECT nombreActividadGrupal, numPlazasActividadGrupal, descripcionActividadGrupal, username, idInstalacion FROM actividadgrupal WHERE actividadgrupal.idActividadGrupal = '" . $this->idActividadGrupal . "'";
@@ -185,6 +176,26 @@ class ACTIVIDAD_GRUPAL_Model {
         } else {
             $result = $resultado->fetch_array();
             return $result;
+        }
+    }
+
+    //Devuelve los valores almacenados para una determinada actividad grupal para posteriormente rellenar un formulario
+    function SolicitarInscripcion() {
+        $this->ConectarBD();
+        $sql = "SELECT * FROM DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL WHERE idActividadGrupal = '" . $this->idActividadGrupal . "' AND userName = '" . $this->username . "'";
+        $resultado = $this->mysqli->query($sql);
+        if ($resultado->num_rows == 0) {
+            $sql1 = "SELECT plazasDisponibles FROM DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL where idActividadGrupal = '" . $this->idActividadGrupal . "'";
+            $result = $this->mysqli->query($sql1);
+            $resultado = $result->fetch_array();
+            if ($resultado['plazasDisponibles'] != '') {
+                $this->numPlazasActividadGrupal = $resultado['plazasDisponibles'];
+            }
+            $sql2 = "INSERT INTO DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL VALUES ( '" . $this->username . "', '" . $this->idActividadGrupal . "', 0, '" . $this->numPlazasActividadGrupal . "')";
+            $result = $this->mysqli->query($sql2);
+            return 'Exito';
+        } else {
+            return 'Error en la consulta sobre la base de datos';
         }
     }
 

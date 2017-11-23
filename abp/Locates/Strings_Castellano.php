@@ -118,6 +118,7 @@ $strings = array(
 'Aceptar' => 'Aceptar',
 'Rechazar' => 'Rechazar',
 'Error al acepar la inscripcion' => 'Error al acepar la inscripcion',
+'MandarSolicitud' => 'Solicitar',
   
     
     

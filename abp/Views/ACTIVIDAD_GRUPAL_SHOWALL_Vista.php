@@ -61,7 +61,9 @@ class ACTIVIDAD_GRUPAL_Listar {
                                 <td><button type="button" class="btn btn-info"><a href='ACTIVIDAD_GRUPAL_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Modificar']; ?>'><?php echo $strings['Modificar']; ?></a></button></td>
                                 <td><button type="button" class="btn btn-danger"><a href='ACTIVIDAD_GRUPAL_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Borrar']; ?>'><?php echo $strings['Borrar']; ?></a></button></td>
                                         <?php
-                                    }
+                                    } else if (ConsultarTipoUsuarioLogin() == 3) { ?>
+                                        <td><button type="button" class="btn btn-success"><a href='ACTIVIDAD_GRUPAL_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Asignar'] . '&userName=' . $_SESSION['login']; ?>'><?php echo $strings['MandarSolicitud']; ?></a></button></td>
+                                    <?php }
                                 }
                                 ?>
                         </tbody>
