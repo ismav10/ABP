@@ -25,7 +25,13 @@ $strings = array(
 'La tabla se ha asignado correctamente' => 'The table has been assigned correctly',
 'Ya han sido asignadas 5 tablas para este deportista' => '5 tables have already been assigned for this athlete',
 'Error al acepar la inscripcion' => 'Error accepting the registration',
-'MandarSolicitud' => 'Apply for',    
+'MandarSolicitud' => 'Apply for',  
+'No se ha podido conectar con la base de datos.' => 'Unable to connect database' , 
+'Error en la consulta sobre la base de datos.' => 'Unable to connect database',
+'La sesion se ha modificado con éxito' => 'Session has been modified successfully',
+'No se puede borrar porque no existe esa notificacion.' => 'The notification doesnt exist',
+'La notificacion fue borrada con éxito.' => 'Notification has been deleted',
+ 
        
     
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)
@@ -132,6 +138,7 @@ $strings = array(
 'asuntoNotificacion' => 'Affair',
 'mensajeNotificacion' => 'Message',
 'Ver Notificacion' => 'See Notification',
+'Insertar Notificacion' => 'Insert notification',
 
 
 
@@ -146,7 +153,7 @@ $strings = array(
 'horaInicio' => 'Start',
 'horaFin' => 'Edn',
 'Modificar sesion' => 'Modify Session',
-
+'Consultar sesiones por fecha' => 'Consult sessions by date',
 
 //GESTION DE EJERCICIOS
 'ejercicioname' => 'Work Name',
