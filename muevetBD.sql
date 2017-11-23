@@ -279,7 +279,7 @@ INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categori
 (403, 'Consultar Actividades Grupales', 'Gestion Actividad Grupal'),
 (404, 'Listar Actividades Grupales', 'Gestion Actividad Grupal'),
 (405, 'Ver Actividad Grupal', 'Gestion Actividad Grupal'),
-(406, 'Ver Actividad Grupal User', 'Gestion Actividad Grupal'),
+/*(406, 'Ver Actividad Grupal User', 'Gestion Actividad Grupal'), */
 (450, 'Insertar Actividad Individual', 'Gestion Actividad Individual'),
 (451, 'Borrar Actividad Individual', 'Gestion Actividad Individual'),
 (452, 'Modificar Actividad Individual', 'Gestion Actividad Individual'),
@@ -345,7 +345,7 @@ INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
 (403, 403),
 (404, 404),
 (405, 405),
-(406, 406),
+/*(406, 406),*/
 (450, 450),
 (451, 451),
 (452, 452),
@@ -439,7 +439,7 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (405, 1),
 (405, 2),
 (405, 3),
-(406, 3),
+/*(406, 3), */
 (450, 1),
 (451, 1),
 (452, 1),
@@ -556,7 +556,7 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 (403, '../Views/ACTIVIDAD_GRUPAL_SHOWCURRENT_Vista.php', 'ACTIVIDAD GRUPAL SHOWCURRENT'),
 (404, '../Views/ACTIVIDAD_GRUPAL_SHOWALL_Vista.php', 'ACTIVIDAD GRUPAL SHOWALL'),
 (405, '../Views/ACTIVIDAD_GRUPAL_SHOW_Vista.php', 'ACTIVIDAD GRUPAL SHOW'),
-(406, '../Views/ACTIVIDAD_GRUPAL_SHOW_SELECT_DEPORTISTA_Vista.php', 'ACTIVIDAD GRUPAL SELECT USER SHOW'),
+/*(406, '../Views/ACTIVIDAD_GRUPAL_SHOW_SELECT_DEPORTISTA_Vista.php', 'ACTIVIDAD GRUPAL SELECT USER SHOW'), */
 (450, '../Views/ACTIVIDAD_INDIVIDUAL_ADD_Vista.php', 'ACTIVIDAD INDIVIDUAL ADD'),
 (451, '../Views/ACTIVIDAD_INDIVIDUAL_DELETE_Vista.php', 'ACTIVIDAD INDIVIDUAL DELETE'),
 (452, '../Views/ACTIVIDAD_INDIVIDUAL_EDIT_Vista.php', 'ACTIVIDAD INDIVIDUAL EDIT'),

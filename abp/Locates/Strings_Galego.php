@@ -120,6 +120,7 @@ $strings = array(
 'Aceptar' => 'Aceptar',
 'Rechazar' => 'Rechazar', 
 'Solicitud tramitada' => 'Solicitude tramitada con éxito',
+'Ya existe esta solicitud' => 'Xa existe esta solicitude',
     
     
     

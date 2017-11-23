@@ -195,7 +195,7 @@ class ACTIVIDAD_GRUPAL_Model {
             $result = $this->mysqli->query($sql2);
             return 'Solicitud tramitada';
         } else {
-            return 'Error en la consulta sobre la base de datos';
+            return 'Ya existe esta solicitud';
         }
     }
     

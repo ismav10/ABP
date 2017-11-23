@@ -196,7 +196,6 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 
         if (isset($_REQUEST['idActividadGrupal'])) {
             $numPlazasActividadGrupal = ConsultarNumPlazas($_REQUEST['idActividadGrupal']);
-            echo $numPlazasActividadGrupal;
             $actividadGrupal = new ACTIVIDAD_GRUPAL_Model($_REQUEST['idActividadGrupal'], '', '', $numPlazasActividadGrupal, $_REQUEST['userName'], '');
             $respuesta = $actividadGrupal->SolicitarInscripcion();
             new Mensaje($respuesta, '../Controllers/ACTIVIDAD_GRUPAL_Controller.php');
