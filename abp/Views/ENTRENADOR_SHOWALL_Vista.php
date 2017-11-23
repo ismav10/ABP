@@ -21,7 +21,7 @@ class ENTRENADOR_Show {
             ?>
 
             <div class="container">
-                     <div align='right'>
+                     <div align='left'>
                          <a href='ENTRENADOR_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><img src="../img/useradd.png" width="50px" height="50px"></a>
                     <table class="table">
                         <thead class="thead-dark">

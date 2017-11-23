@@ -19,7 +19,7 @@ class ACTIVIDAD_GRUPAL_Insertar {
         <?php include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php'; ?>
 
         <div class="container" >
-            <form  id="form" name="form" action='<?php echo $this->cont; ?>'  method='post'   enctype="multipart/form-data">
+            <form  id="form" name="form" action='ACTIVIDAD_GRUPAL_Controller.php'  method='post'   enctype="multipart/form-data">
                 <div class="form-group" >
                     <label class="control-label" ><?php echo $strings['Insertar Actividad Grupal']; ?></label><br>
                 </div>

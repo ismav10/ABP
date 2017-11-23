@@ -20,7 +20,7 @@ class USUARIO_Show {
             $lista = array('foto', 'userName', 'tipoUsuario', 'nombre', 'apellidos', 'dni', 'fechaNac', 'direccion', 'telefono', 'email');
             ?>
             <div class="container">
-                <div align='right'>
+                <div align='left'>
                      <a href='USUARIO_Controller.php?accion=<?php echo $strings['Seleccionar']; ?>'><img src="../img/useradd.png" width="50px" height="50px"></a>
          
                     <table class="table">

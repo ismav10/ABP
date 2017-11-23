@@ -42,7 +42,9 @@ class DEPORTISTA_Show {
 
             <div class="container">
                 <div align='left'>
+                    <?php if(ConsultarTipoUsuarioLogin() == 1){ ?>
                     <a href='DEPORTISTA_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><img src="../img/useradd.png" width="50px" height="50px"></a>
+                    <?php } ?>
                 </div>
 
                 <!-- Modal -->
@@ -163,9 +165,10 @@ class DEPORTISTA_Show {
             }
                             ?>
 
-                                                                                                                                                        <!--<td><button type="button" class="btn btn-success"><a href='USUARIO_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Ver']; ?>'><?php echo $strings['Ver']; ?></a></button></td>   -->          
+                         <?php if(ConsultarTipoUsuarioLogin() == 1){ ?>
                         <td><button type="button" class="btn btn-info"><a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Modificar']; ?>'><?php echo $strings['Modificar']; ?></a></button></td>
                         <td><button type="button" class="btn btn-danger"><a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Borrar']; ?>'><?php echo $strings['Borrar']; ?></a></button></td>
+                         <?php } ?>
                         <?php if (ConsultarTipoDeportista($this->datos[$j]['userName']) == 'TDU') { ?>
                             <td><a data-toggle="modal" href="#myModal" onclick="changeIdAction('<?php echo $this->datos[$j]['userName'] ?>')"><button type="button" class="btn btn-success"><?php echo $strings['Asignar']; ?></button></a></td>
                         <?php } else { ?>
