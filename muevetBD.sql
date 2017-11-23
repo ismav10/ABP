@@ -253,7 +253,7 @@ INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categori
 (14, 'Ver Usuario', 'Gestion Usuarios'),
 (15, 'Ver Deportista', 'Gestion Deportistas'),
 (16, 'Ver Entrenador', 'Gestion Entrenadores'),
-(17, 'Ver Actividad Grupal User', 'Gestion Deportistas'),
+(17, 'Ver Mis Actividades', 'Gestion Deportistas'),
 (50, 'Listar Solicitudes de Inscripcion', 'Gestion Inscripciones'),
 (100, 'Listar Ejercicios', 'Gestion Ejercicios'),
 (101, 'Añadir Ejercicio', 'Gestion Ejercicios'),
@@ -704,9 +704,13 @@ CREATE TABLE IF NOT EXISTS `usuario_rol` (
 
 INSERT INTO `usuario_rol` (`userName`, `idRol`) VALUES
 ('admin', 1),
-('entrenador', 2),
 ('deportista1', 3),
-('deportista2', 3);
+('deportista2', 3),
+('deportista3', 3),
+('deportista4', 3),
+('entrenador', 2),
+('entrenador2', 2),
+('entrenador3', 2);
 
 
 --

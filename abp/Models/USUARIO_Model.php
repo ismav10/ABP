@@ -153,20 +153,21 @@ class USUARIO_Modelo {
             if ($this->tipoUsuario == 1) {
                 $sql = "DELETE FROM USUARIO WHERE userName = '" . $this->userName . "'";
                 $this->mysqli->query($sql);
-                return "El usuario ha sido borrado correctamente";
             } else if ($this->tipoUsuario == 2) {
                 $sql = "DELETE FROM ENTRENADOR WHERE userName = '" . $this->userName . "'";
                 $this->mysqli->query($sql);
                 $sql2 = "DELETE FROM USUARIO WHERE userName= '" . $this->userName . "'";
                 $this->mysqli->query($sql2);
-                return "El usuario ha sido borrado correctamente";
             } else if ($this->tipoUsuario == 3) {
                 $sql = "DELETE FROM DEPORTISTA WHERE userName = '" . $this->userName . "'";
                 $this->mysqli->query($sql);
                 $sql3 = "DELETE FROM USUARIO WHERE userName= '" . $this->userName . "'";
                 $this->mysqli->query($sql3);
-                return "El usuario ha sido borrado correctamente";
             }
+
+            $sql4 = "DELETE FROM USUARIO_ROL WHERE userName= '" . $this->userName . "'";
+            $this->mysqli->query($sql4);
+            return "El usuario ha sido borrado correctamente";
         } else
             return "El usuario no existe";
     }
@@ -311,13 +312,11 @@ class USUARIO_Modelo {
             }
         }
     }
-    
-    
-    
-     function ConsultarGrupalesDeportista() {
+
+    function ConsultarGrupalesDeportista() {
 
         $this->ConectarBD();
-        $sql = "SELECT * FROM actividadGrupal, DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL WHERE ACTIVIDADGRUPAL.idActividadGrupal = DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.idActividadGrupal AND DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.estado = 1 AND DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.userName = '". $this->username. "'";
+        $sql = "SELECT * FROM actividadGrupal, DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL WHERE ACTIVIDADGRUPAL.idActividadGrupal = DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.idActividadGrupal AND DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.estado = 1 AND DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.userName = '" . $this->userName . "'";
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
         } else {
@@ -330,8 +329,6 @@ class USUARIO_Modelo {
             return $toret;
         }
     }
-    
-    
 
 }
 
