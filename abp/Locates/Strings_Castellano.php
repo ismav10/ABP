@@ -24,8 +24,13 @@ $strings = array(
 'La tabla ya ha sido asignada a este usuario' => 'La tabla ya ha sido asignada a este deportista',
 'La tabla se ha asignado correctamente' => 'La tabla se ha asignado correctamente',
 'Ya han sido asignadas 5 tablas para este deportista' => 'Ya han sido asignadas 5 tablas para este deportista',
-'Error al acepar la inscripcion' => 'Error al acepar la inscripcion',
+'Error al aceptar la inscripcion' => 'Error al aceptar la inscripcion',
 'MandarSolicitud' => 'Solicitar',    
+'No se ha podido conectar con la base de datos.' => 'No se ha podido conectar con la base de datos.' , 
+'Error en la consulta sobre la base de datos.' => 'Error en la consulta sobre la base de datos.',
+'La sesion se ha modificado con éxito' => 'La sesion se ha modificado con éxito',
+'No se puede borrar porque no existe esa notificacion.' => 'No se puede borrar porque no existe esa notificacion.',
+'La notificacion fue borrada con éxito.' => 'La notificacion fue borrada con éxito.',
     
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)
 'Iniciar Sesion' => 'Iniciar Sesion',
@@ -133,6 +138,7 @@ $strings = array(
 'asuntoNotificacion' => 'Asunto',
 'mensajeNotificacion' => 'Mensaje',
 'Ver Notificacion' => 'Ver Notificación',
+'Insertar Notificacion' => 'Insertar Notificacion',
 
  
  //SESIONES
@@ -146,6 +152,7 @@ $strings = array(
 'horaInicio' => 'Inicio',
 'horaFin' => 'Fin',
 'Modificar sesion' => 'Modificar Sesión',
+ 'Consultar sesiones por fecha' = 'Consultar sesiones por fecha',
 
  //ACTIVIDADES GRUPALES
 
