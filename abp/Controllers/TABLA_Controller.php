@@ -65,7 +65,8 @@ switch ($_REQUEST['accion']) { //Actúa según la acción elegida
     case 'asignar':
             $tabla = get_data_form();
             $tabla->asignarEjercicios($_REQUEST['id'], $_POST['asignacionEjercicios']);
-            header("Location: ../Controllers/TABLA_Controller.php");
+			echo '<script> location.replace("../Controllers/TABLA_Controller.php"); </script>';
+			exit(0);
         
         break;
 
@@ -75,7 +76,8 @@ switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         } else {
             $tabla = get_data_form();
             $tabla->insertarTabla();
-            header("Location: ../Controllers/TABLA_Controller.php");
+            echo '<script> location.replace("../Controllers/TABLA_Controller.php"); </script>';
+			exit(0);
         }
         break;
 
@@ -97,7 +99,8 @@ switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         } else {
             $tabla = get_data_form();
             $datos = $tabla->modificarTabla($_REQUEST['id']);
-            header("Location: ../Controllers/TABLA_Controller.php");
+            echo '<script> location.replace("../Controllers/TABLA_Controller.php"); </script>';
+			exit(0);
         }
         break;
 
@@ -108,7 +111,8 @@ switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         } else {
             $tabla = get_data_form();
             $tabla->eliminarTabla($_REQUEST['id']);
-            header("Location: ../Controllers/TABLA_Controller.php");
+            echo '<script> location.replace("../Controllers/TABLA_Controller.php"); </script>';
+			exit(0);
         }
         break;
 

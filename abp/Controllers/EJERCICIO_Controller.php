@@ -59,7 +59,8 @@ switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         } else {
 				$ejercicio = get_data_form();
 				$ejercicio->insertarEjercicio();
-				header("Location: ../Controllers/EJERCICIO_Controller.php");
+				echo '<script> location.replace("../Controllers/EJERCICIO_Controller.php"); </script>';
+				exit(0);
 		}
     break;
 
@@ -83,7 +84,8 @@ switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         } else {
 				$ejercicio = get_data_form();
 				$datos = $ejercicio->modificarEjercicio( $_REQUEST['id'] );
-				header("Location: ../Controllers/EJERCICIO_Controller.php");
+				echo '<script> location.replace("../Controllers/EJERCICIO_Controller.php"); </script>';
+				exit(0);
 		}
     break;
 
