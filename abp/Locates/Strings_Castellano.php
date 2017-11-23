@@ -168,7 +168,8 @@ $strings = array(
 'Consultar Actividades Grupales' => 'Consultar Actividades Grupales',
 'Ver Actividad Grupal' => 'Ver Actividad Grupal',
 'Añadida con exito' => 'Añadida con exito',
-'La actividad grupal fue borrada con éxito.' => 'La actividad grupal fue borrada con éxito.',
+'La actividad grupal fue borrada con exito' => 'La actividad grupal fue borrada con éxito.',
+'No se puede borrar porque no existe esa actividad grupal' => 'No se puede borrar porque no existe esa actividad grupal',
 
 
 //GESTION DE EJERCICIOS

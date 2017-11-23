@@ -25,7 +25,7 @@ $strings = array(
 'La tabla se ha asignado correctamente' => 'The table has been assigned correctly',
 'Ya han sido asignadas 5 tablas para este deportista' => '5 tables have already been assigned for this athlete',
 'Error al acepar la inscripcion' => 'Error accepting the registration',
-'MandarSolicitud' => 'Apply for',  
+'MandarSolicitud' => 'Request',  
 'No se ha podido conectar con la base de datos.' => 'Unable to connect database' , 
 'Error en la consulta sobre la base de datos.' => 'Unable to connect database',
 'La sesion se ha modificado con éxito' => 'Session has been modified successfully',
@@ -201,7 +201,8 @@ $strings = array(
 'Consultar Actividades Grupales' => 'Consult Group Activity',
 'Ver Actividad Grupal' => 'See Group Activity',
 'Añadida con exito' => 'Successfully added',
-'La actividad grupal fue borrada con éxito.' => 'Deleted successfully',
+'La actividad grupal fue borrada con éxito' => 'Deleted successfully',
+ 'No se puede borrar porque no existe esa actividad grupal' => 'There is no group activity',
 
 //ACTIVIDADES INDIVIDUALES
 

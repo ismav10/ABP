@@ -237,8 +237,8 @@ function añadirFuncionalidades($NOM) {
                                 <?php if (ConsultarTipoUsuarioLogin() == 1) { ?>
                                     <a class = "dropdown-item" href = "../Controllers/ENTRENADOR_Controller.php?user=entrenador"><?php echo $strings['Gestión de Entrenadores'];
                                     ?></a>
-                                <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?user=deportista"><?php echo $strings['Gestión de Deportistas']; ?></a>
-                                <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios']; ?></a>
+                                <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?user=deportista"><?php echo $strings['Gestión de Deportistas']; ?></a><br>
+                                <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios']; ?></a><br>
                             <?php } else if (ConsultarTipoUsuarioLogin() == 2) { ?>
                                 <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?user=deportista"><?php echo $strings['Gestión de Deportistas']; ?></a>
                         <?php } ?>
@@ -253,7 +253,7 @@ function añadirFuncionalidades($NOM) {
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $strings['Gestión de Actividades'] ?> </a>
                         <div align='center' class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="../Controllers/ACTIVIDAD_INDIVIDUAL_Controller.php"><?php echo $strings['Gestión de Actividades Individuales']; ?></a>
+                            <a class="dropdown-item" href="../Controllers/ACTIVIDAD_INDIVIDUAL_Controller.php"><?php echo $strings['Gestión de Actividades Individuales']; ?></a><br>
                             <a class="dropdown-item" href="../Controllers/ACTIVIDAD_GRUPAL_Controller.php"><?php echo $strings['Gestión de Actividades Grupales']; ?></a>
                         </div>
                     </li>
@@ -286,8 +286,8 @@ function añadirFuncionalidades($NOM) {
                     ?><li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $strings['Gestión de Inscripciones'] ?> </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="../Controllers/INSCRIPCION_Controller.php?act=grupal"><?php echo $strings['Gestión de Actividades Grupales']; ?></a>
-                            <a class="dropdown-item" href="../Controllers/INSCRIPCION_Controller.php?act=individual"><?php echo $strings['Gestión de Actividades Individuales']; ?></a>
+                            <a class="dropdown-item" href="../Controllers/INSCRIPCION_Controller.php?act=grupal"><?php echo $strings['Gestión de Actividades Grupales']; ?></a><br>
+                            <a class="dropdown-item" href="../Controllers/INSCRIPCION_Controller.php?act=individual"><?php echo $strings['Gestión de Actividades Individuales']; ?></a><br>
                         </div>
                     </li>
                     <?php

@@ -69,7 +69,7 @@ $strings = array(
 'AsignarTablaDeportista' => 'Asinar táboas a un deportista',
 'Cerrar' => 'Cerrar',
 'Guardar' => 'Gardar',
-'Asinar' => 'Asinar',
+'Asignar' => 'Asinar',
 
 //USUARIOS
 'userName' => 'Usuario',
@@ -199,7 +199,8 @@ $strings = array(
 'Consultar Actividades Grupales' => 'Consultar Actividades Grupais',
 'Ver Actividad Grupal' => 'Ver Actividad Grupal',
 'Añadida con exito' => 'Añadida con éxito',
-'La actividad grupal fue borrada con éxito.' => 'A actividade grupal borrouse con éxito.',
+'La actividad grupal fue borrada con éxito' => 'A actividade grupal borrouse con éxito.',
+'No se puede borrar porque no existe esa actividad grupal' => 'Esa actividade grupal non existe',
 
     //ACTIVIDADES INDIVIDUALES
 

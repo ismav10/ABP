@@ -48,6 +48,13 @@ class ACTIVIDAD_GRUPAL_Model {
         }
     }
 
+    function añadir($user, $instalacion) {
+        $this->ConectarBD();
+        $sql = "INSERT INTO actividadgrupal(nombreActividadGrupal, descripcionActividadGrupal, numPlazasActividadGrupal, username, idInstalacion) VALUES ('" . $this->nombreActividadGrupal . "','" . $this->descripcionActividadGrupal . "','" . $this->numPlazasActividadGrupal . "','" . $user . "','" . $instalacion . "')";
+        $result = $this->mysqli->query($sql);
+        return true;
+    }
+
     function guardarCambios($id) {
         $this->ConectarBD();
         $sql = "UPDATE actividadgrupal SET nombreActividadGrupal ='" . $this->nombreActividadGrupal . "', descripcionActividadGrupal ='" . $this->descripcionActividadGrupal . "', numPlazasActividadGrupal ='" . $this->numPlazasActividadGrupal . "', username ='" . $this->username . "', idInstalacion ='" . $this->idInstalacion . "' WHERE idActividadGrupal = '" . $id . "'";
@@ -77,13 +84,13 @@ class ACTIVIDAD_GRUPAL_Model {
         $sql = "SELECT * FROM actividadgrupal WHERE idActividadGrupal = '" . $this->idActividadGrupal . "'";
 
         if (!($resultado = $this->mysqli->query($sql))) {
-            return 'Error en la consulta sobre la base de datos.';
+            return 'Error en la consulta sobre la base de datos';
         } else if ($resultado->num_rows == 0) {
-            return 'No se puede borrar porque no existe esa actividad grupal.';
+            return 'No se puede borrar porque no existe esa actividad grupal';
         } else {
             $sql = "DELETE FROM actividadgrupal WHERE idActividadGrupal='" . $this->idActividadGrupal . "'";
             $this->mysqli->query($sql);
-            return "La actividad grupal fue borrada con éxito.";
+            return "La actividad grupal fue borrada con exito";
         }
     }
 
@@ -198,12 +205,11 @@ class ACTIVIDAD_GRUPAL_Model {
             return 'Ya existe esta solicitud';
         }
     }
-    
-    
+
     function ConsultarActividadesUser() {
 
         $this->ConectarBD();
-        $sql = "SELECT * FROM actividadGrupal, DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL WHERE ACTIVIDADGRUPAL.idActividadGrupal = DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.idActividadGrupal AND DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.estado = 1 AND DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.userName = '". $this->username. "'";
+        $sql = "SELECT * FROM actividadGrupal, DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL WHERE ACTIVIDADGRUPAL.idActividadGrupal = DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.idActividadGrupal AND DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.estado = 1 AND DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.userName = '" . $this->username . "'";
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
         } else {
@@ -216,8 +222,6 @@ class ACTIVIDAD_GRUPAL_Model {
             return $toret;
         }
     }
-    
-    
 
 }
 
