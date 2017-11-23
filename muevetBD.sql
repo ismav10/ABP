@@ -253,7 +253,7 @@ INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categori
 (14, 'Ver Usuario', 'Gestion Usuarios'),
 (15, 'Ver Deportista', 'Gestion Deportistas'),
 (16, 'Ver Entrenador', 'Gestion Entrenadores'),
-(17, 'Ver Mis Actividades', 'Gestion Deportistas'),
+(17, 'Ver Actividades Entrenador', 'Gestion Deportistas'),
 (50, 'Listar Solicitudes de Inscripcion', 'Gestion Inscripciones'),
 (100, 'Listar Ejercicios', 'Gestion Ejercicios'),
 (101, 'Añadir Ejercicio', 'Gestion Ejercicios'),
@@ -346,6 +346,7 @@ INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
 (403, 403),
 (404, 404),
 (405, 405),
+/*(406, 406),*/
 (450, 450),
 (451, 451),
 (452, 452),
@@ -440,7 +441,7 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (405, 1),
 (405, 2),
 (405, 3),
-(406, 3),
+/*(406, 3), */
 (450, 1),
 (451, 1),
 (452, 1),
@@ -531,7 +532,7 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 (14, '../Views/USUARIO_SHOW_Vista.php', 'USUARIO SHOW'),
 (15, '../Views/DEPORTISTA_SHOW_Vista.php', 'DEPORTISTA SHOW'),
 (16, '../Views/ENTRENADOR_SHOW_Vista.php', 'ENTRENADOR SHOW'),
-(17, '../Views/DEPORTISTA_SHOW_GRUPALES_Vista.php', 'ACTIVIDAD GRUPAL SELECT USER SHOW'),
+(17, '..Views/DEPORTISTA_SHOW_GRUPALES_Vista.php', 'DEPORTISTA SHOW ACTIVIDADES'),
 (50, '../Views/INSCRIPCIONPENDIENTE_SHOWALL_Vista.php', 'INSCRIPCIONES PENDIENTES SHOW ALL'),
 (100, '../Views/EJERCICIO_SHOWALL_Vista.php', 'EJERCICIO SHOWALL'),
 (101, '../Views/EJERCICIO_ADD_Vista.php', 'EJERCICIO ADD'),
@@ -558,6 +559,7 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 (403, '../Views/ACTIVIDAD_GRUPAL_SHOWCURRENT_Vista.php', 'ACTIVIDAD GRUPAL SHOWCURRENT'),
 (404, '../Views/ACTIVIDAD_GRUPAL_SHOWALL_Vista.php', 'ACTIVIDAD GRUPAL SHOWALL'),
 (405, '../Views/ACTIVIDAD_GRUPAL_SHOW_Vista.php', 'ACTIVIDAD GRUPAL SHOW'),
+/*(406, '../Views/ACTIVIDAD_GRUPAL_SHOW_SELECT_DEPORTISTA_Vista.php', 'ACTIVIDAD GRUPAL SELECT USER SHOW'), */
 (450, '../Views/ACTIVIDAD_INDIVIDUAL_ADD_Vista.php', 'ACTIVIDAD INDIVIDUAL ADD'),
 (451, '../Views/ACTIVIDAD_INDIVIDUAL_DELETE_Vista.php', 'ACTIVIDAD INDIVIDUAL DELETE'),
 (452, '../Views/ACTIVIDAD_INDIVIDUAL_EDIT_Vista.php', 'ACTIVIDAD INDIVIDUAL EDIT'),
@@ -701,7 +703,6 @@ CREATE TABLE IF NOT EXISTS `usuario_rol` (
 --
 -- Volcado de datos para la tabla `usuario_rol`
 --
-
 INSERT INTO `usuario_rol` (`userName`, `idRol`) VALUES
 ('admin', 1),
 ('deportista1', 3),
@@ -711,7 +712,6 @@ INSERT INTO `usuario_rol` (`userName`, `idRol`) VALUES
 ('entrenador', 2),
 ('entrenador2', 2),
 ('entrenador3', 2);
-
 
 --
 -- Indices de la tabla `actividadgrupal`
