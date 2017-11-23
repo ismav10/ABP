@@ -190,6 +190,16 @@ CREATE TABLE IF NOT EXISTS `ejercicio` (
   `giftEjercicio` varchar(500) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `ejercicio`
+--
+
+INSERT INTO `ejercicio` (`idEjercicio`, `nombreEjercicio`, `descripcionEjercicio`, `giftEjercicio`) VALUES
+(1, 'Press Banca', '10 SERIES de 10 REPETICIONES con Mancuernas de 10KG', 'https://medellinfit-medellinfit.netdna-ssl.com/wp-content/uploads/2016/03/Press-de-banca-con-mancuernas.gif'),
+(2, 'Press Banca 2', '40 SERIES de 10 REPETICIONES con Mancuernas de 15KG', 'https://medellinfit-medellinfit.netdna-ssl.com/wp-content/uploads/2016/03/Press-de-banca-con-mancuernas.gif'),
+(3, 'Abdominal PET', '10 SERIES de 10 REPETICIONES con Descanso', 'https://thumbs.gfycat.com/OrderlyAstonishingCow-max-1mb.gif'),
+(4, 'Abdominal Extreme', '100 SERIES de 15 REPETICIONES sin Descanso', 'https://thumbs.gfycat.com/OrderlyAstonishingCow-max-1mb.gif');
+
 -- --------------------------------------------------------
 
 --
@@ -360,6 +370,7 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (11, 1),
 (12, 1),
 (13, 1),
+(13, 2),
 (14, 1),
 (15, 1),
 (15, 2),
@@ -591,6 +602,19 @@ CREATE TABLE `tabla_con_ejercicio` (
   `idTabla` int(10) NOT NULL,
   `idEjercicio` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tabla_con_ejercicio`
+--
+
+INSERT INTO `tabla_con_ejercicio` (`idTabla`, `idEjercicio`) VALUES
+(1, 1),
+(1, 2),
+(2, 2),
+(2, 3),
+(3, 3),
+(5, 3),
+(5, 4);
 
 -- --------------------------------------------------------
 

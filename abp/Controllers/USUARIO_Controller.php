@@ -237,7 +237,11 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
                     move_uploaded_file($_FILES['foto']['tmp_name'], $carpetaFoto . $_FILES['foto']['name']);
                 }
                 $respuesta = $entrenador->Modificar();
-                new Mensaje($respuesta, 'USUARIO_Controller.php');
+                if (ConsultarTipoUsuarioLogin() == 2) {
+                    new Mensaje($respuesta, '../Views/DEFAULT_Vista.php');
+                } else {
+                    new Mensaje($respuesta, 'USUARIO_Controller.php');
+                }
             }
         } else if (ConsultarTipoUsuario($_REQUEST['userName']) == 3) {
             if (!isset($_REQUEST['dni'])) {
@@ -262,7 +266,12 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
                     move_uploaded_file($_FILES['foto']['tmp_name'], $carpetaFoto . $_FILES['foto']['name']);
                 }
                 $respuesta = $deportista->Modificar();
-                new Mensaje($respuesta, 'USUARIO_Controller.php');
+
+                if (ConsultarTipoUsuarioLogin() == 3) {
+                    new Mensaje($respuesta, '../Views/DEFAULT_Vista.php');
+                } else {
+                    new Mensaje($respuesta, 'USUARIO_Controller.php');
+                }
             }
         }
         break;
