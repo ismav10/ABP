@@ -20,7 +20,12 @@ $strings = array(
 'Ya existe un Usuario con ese userName' => 'Ya existe un Usuario con ese User',
 'Ya existe un Usuario con ese DNI' => 'Ya existe un Usuario con ese DNI',
 'Ya existe un Usuario con ese E-mail' =>'Ya existe un Usuario con ese E-mail',
-    
+'VerTablas' => 'Tablas Asignadas',
+'La tabla ya ha sido asignada a este usuario' => 'La tabla ya ha sido asignada a este deportista',
+'La tabla se ha asignado correctamente' => 'La tabla se ha asignado correctamente',
+'Ya han sido asignadas 5 tablas para este deportista' => 'Ya han sido asignadas 5 tablas para este deportista',
+'Error al acepar la inscripcion' => 'Error al acepar la inscripcion',
+'MandarSolicitud' => 'Solicitar',    
     
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)
 'Iniciar Sesion' => 'Iniciar Sesion',
@@ -41,6 +46,7 @@ $strings = array(
 'Gestión de Actividades Grupales' => 'Grupales',
 'Gestión de Actividades Individuales' => 'Individuales',
 'Entrenamiento' => 'Entrenamiento',
+'MisActividades' => 'Mis Actividades',
 
 
 
@@ -54,8 +60,8 @@ $strings = array(
 'Consultar' => 'Consultar',
 'Seleccionar'=> 'Seleccionar',
 'AsignarT' => 'Asignar Tabla',
-'SeleccionaTabla' => 'Selecciona las Tablas',
-'AsignarTablaDeportista' => 'Asignar Tablas a un Deportista',
+'SeleccionaTabla' => 'Selecciona las tablas',
+'AsignarTablaDeportista' => 'Asignar tablas a un deportista',
 'Cerrar' => 'Cerrar',
 'Guardar' => 'Guardar',
 'Asignar' => 'Asignar',
@@ -101,11 +107,7 @@ $strings = array(
 'Modificar deportista' => 'Modificar Deportista',
 'Eliminar Deportista' => 'Eliminar Deportista',
 'Ver Deportista' => 'Ver Deportista',
-'VerTablas' => 'Tablas Asignadas',
-'La tabla ya ha sido asignada a este usuario' => 'La tabla ya ha sido asignada a este deportista',
-'La tabla se ha asignado correctamente' => 'La tabla se ha asignado correctamente',
-'Ya han sido asignadas 5 tablas para este deportista' => 'Ya han sido asignadas 5 tablas para este deportista',
-'MisActividades' => 'Mis Actividades',
+
     
 
 //INSCRIPCIONES
@@ -118,8 +120,8 @@ $strings = array(
 'estado' => 'Estado',
 'Aceptar' => 'Aceptar',
 'Rechazar' => 'Rechazar',
-'Error al acepar la inscripcion' => 'Error al acepar la inscripcion',
-'MandarSolicitud' => 'Solicitar',
+'Solicitud tramitada' => 'Solicitud tramitada con éxito',
+
   
     
     

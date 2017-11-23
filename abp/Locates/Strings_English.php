@@ -20,7 +20,13 @@ $strings = array(
 'Ya existe un Usuario con ese userName' => 'A user with that username already exists',
 'Ya existe un Usuario con ese DNI' => 'A user with that NID already exists',
 'Ya existe un Usuario con ese E-mail' =>'A user with that E-mail already exists',
-    
+'VerTablas' => 'Assigned Tables',
+'La tabla ya ha sido asignada a este usuario' => 'The table has already been assigned to this athlete',
+'La tabla se ha asignado correctamente' => 'The table has been assigned correctly',
+'Ya han sido asignadas 5 tablas para este deportista' => '5 tables have already been assigned for this athlete',
+'Error al acepar la inscripcion' => 'Error accepting the registration',
+'MandarSolicitud' => 'Apply for',    
+       
     
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)
 'Iniciar Sesion' => 'Sign In',
@@ -37,7 +43,11 @@ $strings = array(
 'Gestión de Inscripciones' => 'Inscription',
 'Gestión de ejercicios' => 'Exercise ',
 'Gestión de tablas' => 'Boards',
-
+'Gestión de Actividades' => 'Activities',
+'Gestión de Actividades Grupales' => 'Group',
+'Gestión de Actividades Individuales' => 'Individuals',
+'Entrenamiento' => 'Training',
+'MisActividades' => 'My Activities',
 
 
 //Acciones
@@ -49,6 +59,12 @@ $strings = array(
 'Seleccionar'=> 'Select',
 'Ver'=>'See',
 'Consultar' => 'Consult',
+'AsignarT' => 'Assign Table',
+'SeleccionaTabla' => 'Select Tables',
+'AsignarTablaDeportista' => 'Assign Table to an Athlete',
+'Cerrar' => 'Close',
+'Guardar' => 'Save',
+'Asignar' => 'Assign',
 
 
 //USUARIOS
@@ -81,7 +97,7 @@ $strings = array(
 'Modificar entrenador' => 'Edit Coach',
 'Eliminar Entrenador' => 'Delete Coach',
 'Ver Entrenador' => 'See Coach',
-    
+'VerActividadesImpartidas' =>'Imparted Activities', 
     
 //DEPORTISTA
 'metodoPago' =>'Credit Card',
@@ -96,15 +112,16 @@ $strings = array(
     
     
 //INSCRIPCIONES
-'Pendientes' => 'Pending',
- 'nombreActividadGrupal'=> 'Activity',
+'GrupalesPendientes' => 'Group Activities Earrings',
+'IndividualesPendientes' => 'Individuals Activities Earrings',
+'nombreActividadGrupal'=> 'Activity',
 0 => 'Pending Request',
 1 => 'Pending request',
 'plazasDisponibles' => 'Sites',
 'estado' => 'State',
 'Aceptar' => 'Accept',
 'Rechazar' => 'Reject',   
-    
+ 'Solicitud tramitada'  => 'Application processed successfully',
       
     
 //NOTIFICACION
@@ -158,6 +175,23 @@ $strings = array(
 'tablaasignar' => 'Assign Works',
 'tablamodificar' => 'Modify',
 'tablaeliminar' => 'Delete',
+
+    
+//ACTIVIDADES GRUPALES
+
+'nombreActividadGrupal' => 'Activity Name',
+'descripcionActividadGrupal' =>'Description',
+'numPlazasActividadGrupal' =>'Places',
+'idActividadGrupal' => 'ID',
+'username' => 'Teacher',
+'idInstalacion' => 'Installation',
+'Modificar Actividad Grupal' => 'Modify Individual Activity',
+'Insertar Actividad Grupal' => 'Add Group Activity',
+'Borrar Actividad Grupal' => 'Delete Group Activity',
+'Consultar Actividades Grupales' => 'Consult Group Activity',
+'Ver Actividad Grupal' => 'See Group Activity',
+'Añadida con exito' => 'Successfully added',
+'La actividad grupal fue borrada con éxito.' => 'Deleted successfully',
 
 
 

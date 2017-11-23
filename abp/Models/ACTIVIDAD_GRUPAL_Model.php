@@ -193,7 +193,7 @@ class ACTIVIDAD_GRUPAL_Model {
             }
             $sql2 = "INSERT INTO DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL VALUES ( '" . $this->username . "', '" . $this->idActividadGrupal . "', 0, '" . $this->numPlazasActividadGrupal . "')";
             $result = $this->mysqli->query($sql2);
-            return 'Exito';
+            return 'Solicitud tramitada';
         } else {
             return 'Error en la consulta sobre la base de datos';
         }

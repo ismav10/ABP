@@ -13,13 +13,18 @@ $strings = array(
 'Error en la consulta sobre la base de datos' => 'Error na consulta sobre a base de datos',
 'El usuario se ha modificado con éxito'=>'O usuario modificouse con éxito',
 'El usuario ha sido borrado correctamente' => 'O usuario foi borrado correctamente',
- 'Solicitud aceptada' => 'Solicitude aceptada',
- 'Solicitud rechazada' => 'Solicitude rechazada',
- 'No hay plazas para esa actividad' => 'Non hay prazas para dita actividade',
- 'No existe la inscripcion' => 'Non existe a solicitude',
+'Solicitud aceptada' => 'Solicitude aceptada',
+'Solicitud rechazada' => 'Solicitude rechazada',
+'No hay plazas para esa actividad' => 'Non hay prazas para dita actividade',
+'No existe la inscripcion' => 'Non existe a solicitude',
 'Ya existe un Usuario con ese userName' => 'Xa existe un Usuario con ise User',
 'Ya existe un Usuario con ese DNI' => 'Xa existe un Usuario con ise DNI',
 'Ya existe un Usuario con ese E-mail' =>'Xa existe un Usuario con ise E-mail',
+ 'La tabla ya ha sido asignada a este usuario' => 'A táboa xa foi asinada a este deportista',
+'La tabla se ha asignado correctamente' => 'A táboa asinouse correctamente',
+'Ya han sido asignadas 5 tablas para este deportista' => 'Xa foron asinadas 5 táboas para este deportista',
+'Error al acepar la inscripcion' => 'Erro ao acepar a inscripcion',
+'MandarSolicitud' => 'Solicitar',   
     
     
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)
@@ -32,12 +37,16 @@ $strings = array(
 'Gestión de Entrenadores' => 'Adestradores',
 'Gestión de Deportistas' => 'Deportistas',
 'Gestión de Instalaciones' => 'Instalacións',
-'Gestión de Actividades Grupales' => 'Actividades Grupais',
 'Gestión de notificaciones' => 'Notificacións',
 'Gestión de sesiones' => 'Sesións',
 'Gestión de Inscripciones' => 'Inscripcións',
 'Gestión de ejercicios' => 'Exercicios',
 'Gestión de tablas' => 'Táboas',
+'Gestión de Actividades' => 'Actividades',
+'Gestión de Actividades Grupales' => 'Grupais',
+'Gestión de Actividades Individuales' => 'Individuais',
+'Entrenamiento' => 'Adestramento',
+'MisActividades' => 'Miñas Actividades',
 
 
 
@@ -50,6 +59,12 @@ $strings = array(
 'Ver'=>'Ver',
 'Consultar' => 'Consultar',
 'Seleccionar'=> 'Seleccionar',
+'AsignarT' => 'Asignar Táboa',
+'SeleccionaTabla' => 'Selecciona as Táboas',
+'AsignarTablaDeportista' => 'Asinar táboas a un deportista',
+'Cerrar' => 'Cerrar',
+'Guardar' => 'Gardar',
+'Asinar' => 'Asinar',
 
 //USUARIOS
 'userName' => 'Usuario',
@@ -81,7 +96,7 @@ $strings = array(
 'Modificar entrenador' => 'Modificar Adestrador',
 'Eliminar Entrenador' => 'Eliminar Adestrador',
 'Ver Entrenador' => 'Ver Adestrador',
-    
+'VerActividadesImpartidas' =>'Actividades Impartidas',   
     
 //DEPORTISTA
 'metodoPago' =>'Tarxeta de Crédito',
@@ -91,8 +106,9 @@ $strings = array(
 'Insertar deportista' => 'Insertar Deportista',
 'Modificar deportista' => 'Modificar Deportista',
 'Eliminar Deportista' => 'Eliminar Deportista',
- 'Ver Deportista' => 'Ver Deportista',
-    
+'Ver Deportista' => 'Ver Deportista',
+'VerTablas' => 'Táboas asignadas',
+ 
 
 //INSCRIPCIONES
 'Pendientes' => 'Pendientes',
@@ -102,7 +118,8 @@ $strings = array(
 'plazasDisponibles' => 'Prazas',
 'estado' => 'Estado',
 'Aceptar' => 'Aceptar',
-'Rechazar' => 'Rechazar',   
+'Rechazar' => 'Rechazar', 
+'Solicitud tramitada' => 'Solicitude tramitada con éxito',
     
     
     
@@ -156,6 +173,24 @@ $strings = array(
 'tablamodificar' => 'Modificar',
 'tablaeliminar' => 'Eliminar',
 
+
+ //ACTIVIDADES GRUPALES
+
+'nombreActividadGrupal' => 'Nome Actividade',
+'descripcionActividadGrupal' =>'Descripcion',
+'numPlazasActividadGrupal' =>'Numero Plazas',
+'idActividadGrupal' => 'ID',
+'username' => 'Profesor',
+'idInstalacion' => 'Instalacion',
+'Modificar Actividad Grupal' => 'Modificar Actividade Grupal',
+'Insertar Actividad Grupal' => 'Insertar Actividade Grupal',
+'Borrar Actividad Grupal' => 'Borrar Actividade Grupal',
+'Consultar Actividades Grupales' => 'Consultar Actividades Grupais',
+'Ver Actividad Grupal' => 'Ver Actividad Grupal',
+'Añadida con exito' => 'Añadida con éxito',
+'La actividad grupal fue borrada con éxito.' => 'A actividade grupal borrouse con éxito.',
+
+    
 
 )
 ?>
