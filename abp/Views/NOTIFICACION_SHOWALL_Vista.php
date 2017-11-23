@@ -30,7 +30,6 @@ class NOTIFICACION_Listar {
             if($this->tipoUsuario == 1)
             {
                 ?>
-              <button type="button" class="btn btn-default btn-lg"><a href='NOTIFICACION_Controller.php?accion=<?php echo $strings['Consultar']; ?>'><?php echo $strings['Consultar'] ?></a></button>
                 <button type="button" class="btn btn-default btn-lg"><a href='NOTIFICACION_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><?php echo $strings['Insertar'] ?></a></button>
                 <?php
 
