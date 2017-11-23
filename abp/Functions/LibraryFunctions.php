@@ -216,21 +216,24 @@ function añadirFuncionalidades($NOM) {
 
             switch ($funcionalidad) {
 
-                case "Gestion Usuarios":
-                    ?>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><?php echo $strings['Gestión de Usuarios'] ?> </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <?php if(ConsultarTipoUsuarioLogin() == 1){ ?>
-                            <a class="dropdown-item" href="../Controllers/ENTRENADOR_Controller.php?user=entrenador"><?php echo $strings['Gestión de Entrenadores']; ?></a>
-                            <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?user=deportista"><?php echo $strings['Gestión de Deportistas']; ?></a>
-                            <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios']; ?></a>
+                case "Gestion Entrenadores":
+                    if (ConsultarTipoUsuarioLogin() != 3) {
+                        ?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><?php echo $strings['Gestión de Usuarios'] ?> </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <?php if (ConsultarTipoUsuarioLogin() == 1) { ?>
+                                    <a class = "dropdown-item" href = "../Controllers/ENTRENADOR_Controller.php?user=entrenador"><?php echo $strings['Gestión de Entrenadores'];
+                                    ?></a>
+                                <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?user=deportista"><?php echo $strings['Gestión de Deportistas']; ?></a>
+                                <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios']; ?></a>
                             <?php } else if (ConsultarTipoUsuarioLogin() == 2) { ?>
-                             <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?user=deportista"><?php echo $strings['Gestión de Deportistas']; ?></a>
-                            <?php } ?>
-                        </div>
+                                <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?user=deportista"><?php echo $strings['Gestión de Deportistas']; ?></a>
+                        <?php } ?>
+                   
+                    </div>
                     </li>
-                    <?php
+                    <?php }
                     break;
 
                 case "Gestion Actividad Grupal":
@@ -255,7 +258,7 @@ function añadirFuncionalidades($NOM) {
                             <a class="dropdown-item" href="../Controllers/EJERCICIO_Controller.php?"><?php echo $strings['Gestión de ejercicios']; ?></a><br>
                             <?php if (ConsultarTipoUsuarioLogin() == 3) { ?>
                                 <a class="dropdown-item" href='../Controllers/SESION_Controller.php'><?php echo $strings['Gestión de sesiones']; ?></a>
-                            <?php } ?>
+                    <?php } ?>
                         </div>
                     </li>
 
@@ -322,13 +325,13 @@ function showNavbar() {
         ?>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <?php echo $strings['Cuenta'] ?>
+        <?php echo $strings['Cuenta'] ?>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['Modificar']; ?>"><?php echo $strings['Mi Perfil'] ?></a><br>
-               <?php if(ConsultarTipoUsuarioLogin() == 3) { ?>
-                <a class="dropdown-item" href="../Controllers/ACTIVIDAD_GRUPAL_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['MisActividades']; ?>"><?php echo $strings['MisActividades'] ?></a><br>
-               <?php } ?>
+                <?php if (ConsultarTipoUsuarioLogin() == 3) { ?>
+                    <a class="dropdown-item" href="../Controllers/ACTIVIDAD_GRUPAL_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['MisActividades']; ?>"><?php echo $strings['MisActividades'] ?></a><br>
+        <?php } ?>
                 <a class="dropdown-item" href="../Functions/Desconectar.php"><?php echo $strings['Cerrar Sesión'] ?></a> <br>
             </div>
         </li> 
