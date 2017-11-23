@@ -192,7 +192,22 @@ $strings = array(
 'tablaeliminar' => 'Eliminar', 
 'Personalizado' => 'Personalizado',
 'Estandar' => 'Estandar',
-'tablaTipo' => 'Tipo de Tabla'
+'tablaTipo' => 'Tipo de Tabla',
+    
+//ACTIVIDADES INDIVIDUALES
+
+'nombreActividadIndividual' => 'Nombre',
+'descripcionActividadIndividual' =>'Descripcion',
+'Modificar Actividad Individual' => 'Modificar Actividad Individual',
+'Insertar Actividad Individual' => 'Insertar Actividad Individual',
+'Borrar Actividad Individual' => 'Borrar Actividad Individual',
+'Consultar Actividades Individuales' => 'Consultar Actividades Individuales',
+'Ver Actividad Individual' => 'Ver Actividad Individual',
+'La actividad individual fue borrada con exito' => 'La actividad individual fue borrada con exito',
+'La actividad individual ya existe en la base de datos' => 'La actividad individual ya existe en la base de datos',
+'No se puede borrar porque no existe esa actividad individual' => 'No se puede borrar porque no existe esa actividad individual',
+'La actividad individual se ha modificado con exito' => 'La actividad individual se ha modificado con exito'
+    
 
 
 );

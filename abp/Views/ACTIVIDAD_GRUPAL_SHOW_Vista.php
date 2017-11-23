@@ -30,22 +30,22 @@ class ACTIVIDAD_GRUPAL_VerDetalle {
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['descripcionActividadGrupal']; ?></label><br>
-                    <textarea rows="10" cols="60" name="descripcionActividadGrupal" readonly="true"><?php echo $this->valores['descripcionActividadGrupal'];?></textarea>
+                    <textarea name="descripcionActividadGrupal" rows="10" cols="100" readonly="true"><?php echo $this->valores['nombreActividadGrupal']; ?></textarea>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['numPlazasActividadGrupal']; ?></label><br>
-                    <input class="form" id="numPlazasActividadGrupal" name="numPlazasActividadGrupal" size="10" type="int" readonly="true" value="<?php echo $this->valores['numPlazasActividadGrupal']; ?>">
+                    <input class="form-control" id="numPlazasActividadGrupal" name="numPlazasActividadGrupal" size="10" type="int" readonly="true" value="<?php echo $this->valores['numPlazasActividadGrupal']; ?>">
                 </div>
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['username']; ?></label><br>
-                    <input class="form" id="username" name="username" size="25" type="text" readonly="true" value="<?php echo $this->valores['username']; ?>">
+                    <input class="form-control" id="username" name="username" size="25" type="text" readonly="true" value="<?php echo $this->valores['username']; ?>">
                 </div>
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['idInstalacion']; ?></label><br>
-                    <input class="form" id="idInstalacion" name="idInstalacion" size="10" type="int" readonly="true" value="<?php echo $this->valores['idInstalacion']; ?>">
+                    <input class="form-control" id="idInstalacion" name="idInstalacion" size="10" type="int" readonly="true" value="<?php echo $this->valores['idInstalacion']; ?>">
                 </div>
 
 				<button type="button" class="btn btn-info"><a href='ACTIVIDAD_GRUPAL_Controller.php'>Volver</a></button>

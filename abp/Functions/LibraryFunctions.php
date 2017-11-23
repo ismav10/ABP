@@ -253,7 +253,7 @@ function añadirFuncionalidades($NOM) {
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $strings['Gestión de Actividades'] ?> </a>
                         <div align='center' class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="../Controllers/ACTIVIDAD_INDIVIDUAL_Controller.php?"><?php echo $strings['Gestión de Actividades Individuales']; ?></a>
+                            <a class="dropdown-item" href="../Controllers/ACTIVIDAD_INDIVIDUAL_Controller.php"><?php echo $strings['Gestión de Actividades Individuales']; ?></a>
                             <a class="dropdown-item" href="../Controllers/ACTIVIDAD_GRUPAL_Controller.php"><?php echo $strings['Gestión de Actividades Grupales']; ?></a>
                         </div>
                     </li>
@@ -349,6 +349,37 @@ function showNavbar() {
         </li> 
         <?php
     }
+}
+
+
+function ListarEntrenadores() {
+
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT username FROM entrenador ";
+    if (!($resultado = $mysqli->query($sql))) {
+        echo 'Error en la consulta sobre la base de datos';
+    } else {
+        $toret = $resultado->fetch_all();
+    }
+    return $toret;
+}
+	
+function ListarInstalaciones() {
+    
+	$mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT idInstalacion FROM instalacion ";
+    if (!($resultado = $mysqli->query($sql))) {
+        echo 'Error en la consulta sobre la base de datos';
+    } else {
+        $toret = $resultado->fetch_all();
+    }
+    return $toret;
 }
 ?>
 

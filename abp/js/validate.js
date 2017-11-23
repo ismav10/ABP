@@ -317,8 +317,101 @@ function valida_envia_DEPOR() {
         document.form.metodoPago.focus();
         return false;
     }
+    return true;
+}
 
 
+
+
+
+function valida_envia_ACTIVIDAD_GRUPAL() {
+    if (document.form.nombreActividadGrupal.value.length == 0) {
+        alert("Introduzca un valor para el nombre");
+        document.form.nombreActividadGrupal.focus();
+        return false;
+    }
+    if (document.form.nombreActividadGrupal.value.length < 2) {
+        alert("Nombre de actividad demasiado corto (mínimo 2 caracteres)");
+        document.form.nombreActividadGrupal.focus();
+        return false;
+    }
+    if (document.form.nombreActividadGrupal.value.length > 25) {
+        alert("Nombre de actividad demasiado largo (máximo 25 caracteres)");
+        document.form.nombreActividadGrupal.focus();
+        return false;
+    }
+
+    if (document.form.descripcionActividadGrupal.value.length > 300) {
+        alert("Descripcion demasiado larga (máximo 300 caracteres)");
+        document.form.descripcionActividadGrupal.focus();
+        return false;
+    }
+
+    if (document.form.numPlazasActividadGrupal.value.length == 0) {
+        alert("Introduzca un valor para el numero de plazas");
+        document.form.numPlazasActividadGrupal.focus();
+        return false;
+    }
+    if (document.form.numPlazasActividadGrupal.value.length > 3) {
+        alert("Numero demasiado grande (máximo 3 caracteres)");
+        document.form.numPlazasActividadGrupal.focus();
+        return false;
+    }
+
+
+    if (document.form.username.value.length == 0) {
+        alert("Introduzca un valor para el profesor");
+        document.form.username.focus();
+        return false;
+    }
+    if (document.form.username.value.length < 2) {
+        alert("Nombre profesor demasiado corto (mínimo 2 caracteres)");
+        document.form.username.focus();
+        return false;
+    }
+    if (document.form.username.value.length > 25) {
+        alert("Nombre profesor demasiado largo (máximo 25 caracteres)");
+        document.form.username.focus();
+        return false;
+    }
+	
+	if (document.form.idInstalacion.value.length == 0) {
+        alert("Introduzca un valor para el id instalacion");
+        document.form.idInstalacion.focus();
+        return false;
+    }
+    if (document.form.idInstalacion.value.length > 3) {
+        alert("Numero de id de instalacion demasiado grande (máximo 3 caracteres)");
+        document.form.idInstalacion.focus();
+        return false;
+    }
+
+    return true;
+
+}
+
+function valida_envia_ACTIVIDAD_INDIVIDUAL() {
+    if (document.form.nombreActividadIndividual.value.length == 0) {
+        alert("Introduzca un valor para el nombre");
+        document.form.nombreActividadIndividual.focus();
+        return false;
+    }
+    if (document.form.nombreActividadIndividual.value.length < 2) {
+        alert("Nombre de actividad demasiado corto (mínimo 2 caracteres)");
+        document.form.nombreActividadIndividual.focus();
+        return false;
+    }
+    if (document.form.nombreActividadIndividual.value.length > 25) {
+        alert("Nombre de actividad demasiado largo (máximo 25 caracteres)");
+        document.form.nombreActividadIndividual.focus();
+        return false;
+    }
+
+    if (document.form.descripcionActividadIndividual.value.length > 300) {
+        alert("Descripcion demasiado larga (máximo 300 caracteres)");
+        document.form.descripcionActividadIndividual.focus();
+        return false;
+    }
 
     return true;
 

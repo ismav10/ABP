@@ -193,6 +193,20 @@ $strings = array(
 'Añadida con exito' => 'Añadida con éxito',
 'La actividad grupal fue borrada con éxito.' => 'A actividade grupal borrouse con éxito.',
 
+    //ACTIVIDADES INDIVIDUALES
+
+'nombreActividadIndividual' => 'Nome',
+'descripcionActividadIndividual' =>'Descricion',
+'Modificar Actividad Individual' => 'Modificar Actividade Individual',
+'Insertar Actividad Individual' => 'Insertar Actividade Individual',
+'Borrar Actividad Individual' => 'Borrar Actividade Individual',
+'Consultar Actividades Individuales' => 'Consultar Actividades Individuais',
+'Ver Actividad Individual' => 'Ver Actividade Individual',
+'La actividad individual fue borrada con exito' => 'A actividade individual foi borrada con exito',
+'La actividad individual ya existe en la base de datos' => 'A actividade individual xa existe na base de datos',
+'No se puede borrar porque no existe esa actividad individual' => 'Non se pode borrar porque non existe tal actividade individual',
+'La actividad individual se ha modificado con exito' => 'A actividade individual modificouse con exito'
+  
     
 
 )
