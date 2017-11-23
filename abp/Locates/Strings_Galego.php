@@ -151,7 +151,7 @@ $strings = array(
 'horaInicio' => 'Inicio',
 'horaFin' => 'Fin',
 'Modificar sesion' => 'Modificar Sesión',
- 'Consultar sesiones por fecha' = 'Consultar sesiones por fecha',
+ 'Consultar sesiones por fecha' => 'Consultar sesiones por fecha',
 
 //GESTION DE EJERCICIOS
 'ejercicioname' => 'Nome do Exercicio',
