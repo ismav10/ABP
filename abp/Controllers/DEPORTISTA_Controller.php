@@ -164,6 +164,20 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         
 
         break;
+    
+    
+    
+    case $strings['MisActividades']:
+            
+            $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $datos = $usuario->consultarGrupalesDeportista();
+             if (!tienePermisos('DEPORTISTA_SHOW_GRUPALES')) {
+                new Mensaje('No tienes los permisos necesarios', 'DEPORTISTA_Controller.php');
+            } else {
+                new DEPORTISTA_SHOW_GRUPALES($datos, '../Views/DEFAULT_Vista.php');
+            }
+        break;
+    
 
     default: //Por defecto se realiza el show all
         if (!isset($_REQUEST['userName'])) {

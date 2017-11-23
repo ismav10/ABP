@@ -311,6 +311,27 @@ class USUARIO_Modelo {
             }
         }
     }
+    
+    
+    
+     function ConsultarGrupalesDeportista() {
+
+        $this->ConectarBD();
+        $sql = "SELECT * FROM actividadGrupal, DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL WHERE ACTIVIDADGRUPAL.idActividadGrupal = DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.idActividadGrupal AND DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.estado = 1 AND DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.userName = '". $this->username. "'";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            return $toret;
+        }
+    }
+    
+    
 
 }
 

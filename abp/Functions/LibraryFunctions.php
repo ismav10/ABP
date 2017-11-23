@@ -342,7 +342,7 @@ function showNavbar() {
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['Modificar']; ?>"><?php echo $strings['Mi Perfil'] ?></a><br>
                 <?php if (ConsultarTipoUsuarioLogin() == 3) { ?>
-                    <a class="dropdown-item" href="../Controllers/ACTIVIDAD_GRUPAL_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['MisActividades']; ?>"><?php echo $strings['MisActividades'] ?></a><br>
+                    <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['MisActividades']; ?>"><?php echo $strings['MisActividades'] ?></a><br>
         <?php } ?>
                 <a class="dropdown-item" href="../Functions/Desconectar.php"><?php echo $strings['Cerrar Sesión'] ?></a> <br>
             </div>

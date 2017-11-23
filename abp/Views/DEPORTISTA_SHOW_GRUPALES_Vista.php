@@ -1,6 +1,6 @@
 <?php
 
-class ACTIVIDAD_GRUPAL_Listar_User {
+class DEPORTISTA_SHOW_GRUPALES {
 
 //VISTA PARA LISTAR TODAS LAS ACTIVIDADES GRUPALES
     private $datos;
