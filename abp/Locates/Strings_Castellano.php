@@ -152,7 +152,7 @@ $strings = array(
 'horaInicio' => 'Inicio',
 'horaFin' => 'Fin',
 'Modificar sesion' => 'Modificar Sesión',
- 'Consultar sesiones por fecha' = 'Consultar sesiones por fecha',
+ 'Consultar sesiones por fecha' => 'Consultar sesiones por fecha',
 
  //ACTIVIDADES GRUPALES
 
