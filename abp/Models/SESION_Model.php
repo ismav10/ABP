@@ -29,7 +29,7 @@ class SESION_Model {
 
 //Función para conectarnos a la Base de datos
     function ConectarBD() {
-        $this->mysqli = new mysqli("localhost", "root", "", "gymgest");
+        $this->mysqli = new mysqli("localhost", "root", "", "muevet");
 
         if ($this->mysqli->connect_errno) {
             echo "Fallo al conectar a MySQL: (" . $this->mysqli->connect_errno . ") " . $this->mysqli->connect_error;

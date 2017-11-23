@@ -1,7 +1,7 @@
 ﻿
-DROP DATABASE IF EXISTS `gymgest`;
-CREATE DATABASE IF NOT EXISTS `gymgest` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
-USE `gymgest`;
+DROP DATABASE IF EXISTS `muevet`;
+CREATE DATABASE IF NOT EXISTS `muevet` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+USE `muevet`;
 GRANT ALL PRIVILEGES ON * . * TO 'root'@'localhost';
 FLUSH PRIVILEGES;
 
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `gymgest`
+-- Base de datos: `muevet`
 --
 
 -- --------------------------------------------------------

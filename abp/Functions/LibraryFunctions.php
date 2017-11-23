@@ -15,7 +15,7 @@ function IsAuthenticated() {
 
 //Añade los roles al desplegable de tipos
 function AñadirTipos($array) {
-    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
@@ -41,7 +41,7 @@ function AñadirTipos($array) {
 
 //Añade al formulario de definicion las entradas correspondientes a las paginas disponibles
 function AñadirPaginas($array) {
-    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
@@ -63,7 +63,7 @@ function AñadirPaginas($array) {
 
 //Añade al array de definición de formulario las entradas correspondientes a las funcionalidades añadidas
 function AñadirFunciones($array) {
-    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
@@ -105,7 +105,7 @@ function GenerarLinkPagina($PAGINA_NOM) {
 
 //Devuelve el nombre de una funcionalidad a partir de su id
 function ConsultarNombreFuncionalidad($idFuncionalidad) {
-    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
@@ -116,7 +116,7 @@ function ConsultarNombreFuncionalidad($idFuncionalidad) {
 
 //Devuelve el nombre de un rol a partir de su id
 function ConsultarIDRol($nombreRol) {
-    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
@@ -126,7 +126,7 @@ function ConsultarIDRol($nombreRol) {
 }
 
 function ConsultarNumPlazas($idActividadGrupal) {
-    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
@@ -137,7 +137,7 @@ function ConsultarNumPlazas($idActividadGrupal) {
 
 //Devuelve el id de un rol a partir del userName del usuario
 function ConsultarTipoUsuario($userName) {
-    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
@@ -148,7 +148,7 @@ function ConsultarTipoUsuario($userName) {
 
 //Devuelve el id de un rol a partir del userName del usuario
 function ConsultarTipoUsuarioLogin() {
-    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
@@ -159,7 +159,7 @@ function ConsultarTipoUsuarioLogin() {
 
 //Devuelve el nombre de rol a partir del id de rol
 function ConsultarNOMRol($idRol) {
-    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
@@ -169,7 +169,7 @@ function ConsultarNOMRol($idRol) {
 }
 
 function ConsultarNombreTabla($idTabla) {
-    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
@@ -179,7 +179,7 @@ function ConsultarNombreTabla($idTabla) {
 }
 
 function ConsultarNombreActividadGrupal($idActividadGrupal) {
-    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
@@ -189,7 +189,7 @@ function ConsultarNombreActividadGrupal($idActividadGrupal) {
 }
 
 function ConsultarNombreActividadIndividual($idActividadGrupal) {
-    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
@@ -201,7 +201,7 @@ function ConsultarNombreActividadIndividual($idActividadGrupal) {
 //añade a la pagina default los enlaces correspondientes a las funcionalidades
 function añadirFuncionalidades($NOM) {
     include '../Locates/Strings_' . $NOM['IDIOMA'] . '.php';
-    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
@@ -293,7 +293,7 @@ function tienePermisos($string) {
 //Genera los includes correspondientes a las paginas a las que se tiene acceso
 function generarIncludes() {
     $toret = array();
-    $mysqli = new mysqli("localhost", "root", "", "gymgest");
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
