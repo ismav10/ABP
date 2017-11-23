@@ -159,6 +159,23 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         break;
         
         
+        
+    case $strings['MisActividades']:
+
+        if (isset($_REQUEST['userName'])) {
+            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model('', '', '', '', $_REQUEST['userName'], '');
+            $datos = $actividadGrupal->ConsultarActividadesUser();
+            if (!tienePermisos('ACTIVIDAD_GRUPAL_Listar')) {
+                new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+            } else {
+                new ACTIVIDAD_GRUPAL_Listar($datos, '../Views/DEFAULT_Vista.php');
+            }
+        }
+
+        break;
+        
+        
+        
         case $strings['Asignar']:
 
         if (isset($_REQUEST['idActividadGrupal'])) {

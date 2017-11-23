@@ -90,7 +90,7 @@ $strings = array(
 'Modificar entrenador' => 'Modificar Entrenador',
 'Eliminar Entrenador' => 'Eliminar Entrenador',
 'Ver Entrenador' => 'Ver Entrenador',
-    
+'VerActividadesImpartidas' =>'Actividades Impartidas',    
     
 //DEPORTISTA
 'metodoPago' =>'Tarjeta de Crédito',
@@ -105,6 +105,7 @@ $strings = array(
 'La tabla ya ha sido asignada a este usuario' => 'La tabla ya ha sido asignada a este deportista',
 'La tabla se ha asignado correctamente' => 'La tabla se ha asignado correctamente',
 'Ya han sido asignadas 5 tablas para este deportista' => 'Ya han sido asignadas 5 tablas para este deportista',
+'MisActividades' => 'Mis Actividades',
     
 
 //INSCRIPCIONES

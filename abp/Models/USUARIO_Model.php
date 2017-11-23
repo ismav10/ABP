@@ -262,6 +262,22 @@ class USUARIO_Modelo {
         }
     }
     
+     function consultarActividades() {
+        $this->ConectarBD();
+        $sql = "SELECT * FROM ACTIVIDADGRUPAL WHERE username = '". $this->userName. "'";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            return $toret;
+        }
+    }
+    
     
 
     function asignarTablas($userName, $listaTablas) {
