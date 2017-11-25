@@ -68,7 +68,7 @@ class SESION_Insertar {
                     <input class="form" id="comentarioSesion" name="comentarioSesion" type="textarea" rows="10" cols="40" />
                 </div>
                 <input type='submit' onclick="" name='accion'  value="<?php echo $strings['Insertar']; ?>">
-                <a class="form-link" href=..\Controllers\SESION_Controller.php?accion=Insertar><?php echo $strings['Volver']; ?>
+                <a class="form-link" href="<?php echo $this->volver?>"><?php echo $strings['Volver']; ?>
             </form>
         </div>
         <?php

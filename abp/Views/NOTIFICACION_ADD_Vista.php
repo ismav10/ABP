@@ -2,8 +2,10 @@
 
 //VISTA PARA LA INSERCIÓN DE USUARIOS
 class NOTIFICACION_Insertar {
+    private $volver;
 
-    function __construct() {
+    function __construct($volver) {
+        $this->volver = $volver;
         $this->render();
     }
 
@@ -38,7 +40,7 @@ class NOTIFICACION_Insertar {
                 </div>
 
                 <input type='submit' onclick="" name='accion'  value="<?php echo $strings['Insertar']; ?>">
-                <a class="form-link" href=..\Controllers\NOTIFICACION_Controller.php?accion=Insertar><?php echo $strings['Volver']; ?>
+                <a class="form-link" href="<?php echo $this->volver?>"><?php echo $strings['Volver']; ?>
             </form>
         </div>
         <?php
