@@ -153,6 +153,8 @@ $strings = array(
 'horaFin' => 'Fin',
 'Modificar sesion' => 'Modificar Sesión',
  'Consultar sesiones por fecha' => 'Consultar sesiones por fecha',
+ 'Se ha insertado con éxito' => 'Se ha insertado con éxito',
+ 'Iniciar sesion' => 'Iniciar sesión',
 
  //ACTIVIDADES GRUPALES
 
