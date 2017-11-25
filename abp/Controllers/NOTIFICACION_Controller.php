@@ -41,11 +41,11 @@ switch ($_REQUEST['accion']) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
             if (!isset($_REQUEST['username'])) {
-                new NOTIFICACION_Insertar();
+                new NOTIFICACION_Insertar('NOTIFICACION_Controller.php');
             } else {
                 $notificacion = new NOTIFICACION_Model('', '', $_REQUEST['destinatarioNotificacion'], '', $_REQUEST['asuntoNotificacion'], $_REQUEST['mensajeNotificacion'], $_SESSION['login']);
                 $respuesta = $notificacion->Insertar();
-                new Mensaje($respuesta, '../Views/DEFAULT_Vista.php');
+                new Mensaje($respuesta, '../Views/NOTIFICACION_SHOWALL_Vista.php');
             }
         }
         break;
@@ -62,7 +62,7 @@ switch ($_REQUEST['accion']) {
         } else {
             $notificacion = new NOTIFICACION_Model($_REQUEST['identificador'], '', '', '', '', '', '');
             $respuesta = $notificacion->Borrar();
-            new Mensaje($respuesta, '../Views/DEFAULT_Vista.php');
+            new Mensaje($respuesta, '../Views/NOTIFICACION_SHOWALL_Vista.php');
         }
         break;
 
@@ -71,12 +71,12 @@ switch ($_REQUEST['accion']) {
             if (!tienePermisos('NOTIFICACION_Consultar')) {
                 new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
             } else {
-                new NOTIFICACION_Consultar('../Views/DEFAULT_Vista.php');
+                new NOTIFICACION_Consultar('../Views/NOTIFICACION_SHOWALL_Vista.php');
             }
         } else {
             $notificacion = new NOTIFICACION_Model('', $_REQUEST['remitente'], $_REQUEST['destinatario'], $_REQUEST['fechaHoraNotificacion'], $_REQUEST['asunto'], '', $_REQUEST['username']);
             $datos = $notificacion->Consultar();
-            new NOTIFICACION_Consulta($datos, '../Views/DEFAULT_Vista.php');
+            new NOTIFICACION_Consulta($datos, '../Views/NOTIFICACION_SHOWALL_Vista.php');
         }
 
     //En el caso de que quiera consultar una notificacion en concreto creo la notificacion solo con el id que va a venir de la vista,
@@ -91,7 +91,7 @@ switch ($_REQUEST['accion']) {
                 $idNotificacion = $_REQUEST['idNotificacion'];
                 $notificacion = new NOTIFICACION_Model($idNotificacion, '', '', '', '', '', '');
                 $resultado = $notificacion->RellenaDatos();
-                new NOTIFICACION_Seleccionar($resultado, 'NOTIFICACION_Controller.php');
+                new NOTIFICACION_Seleccionar($resultado, '../Views/NOTIFICACION_SHOWALL_Vista.php');
             }
         }
         break;
@@ -105,7 +105,7 @@ switch ($_REQUEST['accion']) {
             $notificacion = new NOTIFICACION_Model('', '', '', '', '', '', $_SESSION['login']);
             $datos = $notificacion->Listar();
             $tipoUsuario = ConsultarTipoUsuario($_SESSION['login']);
-            new NOTIFICACION_Listar($datos, $tipoUsuario, '../Views/DEFAULT_Vista.php');
+            new NOTIFICACION_Listar($datos, $tipoUsuario, '../Views/NOTIFICACION_SHOWALL_Vista.php');
         }
 }
 ?>

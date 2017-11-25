@@ -30,13 +30,13 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
                 $idActividadesIndividuales = $sesion->ConsultarIdActividadesIndividuales();
                 $tablas = $sesion->ConsultarTablas();
                 $actividadesIndividuales = $sesion->ConsultarActividades();
-                new SESION_Insertar($tablas, $actividadesIndividuales,$idTablas,$idActividadesIndividuales,'../Views/SESION_SHOWALL_Vista.php');
+                new SESION_Insertar($tablas, $actividadesIndividuales,$idTablas,$idActividadesIndividuales,'SESION_Controller.php');
             } else {
                 $hoy = getDate();
                 $horaFin = $hoy['hours'].":".$hoy['minutes'];
                 $sesion = new SESION_Model($_SESSION['login'], '', $_REQUEST['idTabla'], $_REQUEST['comentarioSesion'], $_REQUEST['idActividadIndividual'], $_REQUEST['fechaSesion'], $_REQUEST['horaInicio'], $horaFin);
                 $respuesta = $sesion->Insertar();
-                new Mensaje($respuesta, '../Views/SESION_SHOWALL_Vista.php');
+                new Mensaje($respuesta, 'SESION_Controller.php');
             }
         }
         break;
@@ -51,7 +51,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
             } else {
                 $sesion = new SESION_Model($_SESSION['login'], '', '', '', '', $_REQUEST['fechaSesion'], '', '');
                 $datos = $sesion->Consultar();
-                new SESION_Consulta($datos, '../Views/DEFAULT_Vista.php');
+                new SESION_Consulta($datos, 'SESION_Controller.php');
             }
         }
         break;
@@ -67,7 +67,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
             } else {
                 $sesion = new SESION_Model('', $_REQUEST['idSesion'], '', $_REQUEST['comentarioSesion'], '', '', '', '');
                 $respuesta = $sesion->Modificar();
-                new Mensaje($respuesta, '../Views/DEFAULT_Vista.php');
+                new Mensaje($respuesta, 'SESION_Controller.php');
             }
         }
         break;
@@ -77,7 +77,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         } else {
             $sesion = new SESION_Model($_SESSION['login'], '', '', '', '', '', '', '');
             $datos = $sesion->Listar();
-            new SESION_Listar($datos, '../Views/DEFAULT_Vista.php');
+            new SESION_Listar($datos, 'SESION_Controller.php');
         }
 }
 ?>
