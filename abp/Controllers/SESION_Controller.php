@@ -36,7 +36,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
                 $horaFin = $hoy['hours'].":".$hoy['minutes'];
                 $sesion = new SESION_Model($_SESSION['login'], '', $_REQUEST['idTabla'], $_REQUEST['comentarioSesion'], $_REQUEST['idActividadIndividual'], $_REQUEST['fechaSesion'], $_REQUEST['horaInicio'], $horaFin);
                 $respuesta = $sesion->Insertar();
-                new Mensaje($_SESSION['login'], '../Views/SESION_SHOWALL_Vista.php');
+                new Mensaje($respuesta, '../Views/SESION_SHOWALL_Vista.php');
             }
         }
         break;
