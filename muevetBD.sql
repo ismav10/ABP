@@ -40,6 +40,11 @@ CREATE TABLE IF NOT EXISTS `actividadgrupal` (
   `nombreActividadGrupal` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
   `descripcionActividadGrupal` text COLLATE utf8_spanish_ci,
   `numPlazasActividadGrupal` int(10) NOT NULL,
+  `diaActividadGrupal` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `horaInicioActividadGrupal` time NOT NULL,
+  `horaFinActividadGrupal` time NOT NULL,
+  `fechaInicioActividadGrupal` date NOT NULL,
+  `fechaFinActividadGrupal` date NOT NULL,
   `username` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `idInstalacion` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -48,11 +53,19 @@ CREATE TABLE IF NOT EXISTS `actividadgrupal` (
 -- Volcado de datos para la tabla `deportista`
 --
 
-INSERT INTO `actividadgrupal` (`idActividadGrupal`, `nombreActividadGrupal`, `descripcionActividadGrupal`, `numPlazasActividadGrupal`, `username`, `idInstalacion`) VALUES
-(1, 'Yoga', 'AdÃ©ntrate en el mundo del fittness y aprende a conectar todos tus sentidos con tu cuerpo', 25, 'entrenador', 1),
-(2, 'Spinning', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'entrenador2', 1),
-(3, 'Boxeo', 'Deporte en que dos adversarios luchan con los puÃ±os enfundados en guantes especiales, para golpear al contrario por encima de la cintura.', 10, 'entrenador2', 1),
-(4, 'Body Pumb', 'Programa de entrenamiento Les Mills con barras y discos que fortalece, tonifica y define la musculatura de todo el cuerpo', 10, 'entrenador3', 1);
+INSERT INTO `actividadgrupal` (`idActividadGrupal`, `nombreActividadGrupal`, `descripcionActividadGrupal`, `numPlazasActividadGrupal`, `diaActividadGrupal`, `horaInicioActividadGrupal`, `horaFinActividadGrupal`, `fechaInicioActividadGrupal`, `fechaFinActividadGrupal`, `username`, `idInstalacion`) VALUES
+(1, 'Yoga A', 'AdÃ©ntrate en el mundo del fittness y aprende a conectar todos tus sentidos con tu cuerpo', 25, 'Lunes', '18:00:00', '19:30:00','2018-01-01','2018-01-31','entrenador', 1),
+(2, 'Yoga B', 'AdÃ©ntrate en el mundo del fittness y aprende a conectar todos tus sentidos con tu cuerpo', 25, 'MiÃ©rcoles', '18:00:00', '19:30:00','2018-01-01','2018-01-31','entrenador', 1),
+(3, 'Yoga C', 'AdÃ©ntrate en el mundo del fittness y aprende a conectar todos tus sentidos con tu cuerpo', 25, 'Jueves', '18:00:00', '19:30:00','2018-01-01','2018-01-31','entrenador', 1),
+(4, 'Yoga D', 'AdÃ©ntrate en el mundo del fittness y aprende a conectar todos tus sentidos con tu cuerpo', 25, 'Viernes', '18:00:00', '19:30:00','2018-01-01','2018-01-31','entrenador', 1),
+(5, 'Spinning A', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'Lunes', '16:00:00', '18:00:00', '2018-01-15','2018-02-15','entrenador2', 1),
+(6, 'Spinning B', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'MiÃ©rcoles', '16:00:00', '18:00:00', '2018-01-15','2018-02-15','entrenador2', 1),
+(7, 'Spinning C', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'Viernes', '16:00:00', '18:00:00', '2018-01-15','2018-02-15','entrenador2', 1),
+(8, 'Boxeo A', 'Deporte en que dos adversarios luchan con los puÃ±os enfundados en guantes especiales, para golpear al contrario por encima de la cintura.', 10, 'Martes', '19:30:00', '21:00:00', '2018-01-01','2018-02-01', 'entrenador2', 1),
+(9, 'Boxeo B', 'Deporte en que dos adversarios luchan con los puÃ±os enfundados en guantes especiales, para golpear al contrario por encima de la cintura.', 10, 'Jueves', '19:30:00', '21:00:00', '2018-01-01','2018-02-01', 'entrenador2', 1),
+(10, 'Body Pumb A', 'Programa de entrenamiento Les Mills con barras y discos que fortalece, tonifica y define la musculatura de todo el cuerpo', 10, 'Martes', '19:30:00', '21:00:00', '2018-01-10','2018-02-10', 'entrenador3', 2),
+(11, 'Body Pumb B', 'Programa de entrenamiento Les Mills con barras y discos que fortalece, tonifica y define la musculatura de todo el cuerpo', 10, 'MiÃ©rcoles', '19:30:00', '21:00:00', '2018-01-10','2018-02-10', 'entrenador3', 2),
+(12, 'Body Pumb C', 'Programa de entrenamiento Les Mills con barras y discos que fortalece, tonifica y define la musculatura de todo el cuerpo', 10, 'Jueves', '19:30:00', '21:00:00', '2018-01-10','2018-02-10', 'entrenador3', 2);
 
 -- --------------------------------------------------------
 
@@ -167,16 +180,17 @@ INSERT INTO `deportista_inscribir_actividadgrupal` (`userName`, `idActividadGrup
 
 CREATE TABLE IF NOT EXISTS `deportista_inscribir_actividadindividual` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
-  `idActividadIndividual` int(10) NOT NULL,
-  `estado` tinyint(1) DEFAULT '0'
+  `idActividadIndividual` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `deportista_inscribir_actividadgrupal`
 --
-INSERT INTO `deportista_inscribir_actividadindividual` (`userName`, `idActividadIndividual`, `estado`) VALUES
-('deportista1', 1, 0),
-('deportista2', 1, 0);
+INSERT INTO `deportista_inscribir_actividadindividual` (`userName`, `idActividadIndividual`) VALUES
+('deportista1', 1),
+('deportista2', 1),
+('deportista3', 1),
+('deportista4', 1);
 -- --------------------------------------------------------
 
 --
@@ -473,7 +487,8 @@ CREATE TABLE IF NOT EXISTS `instalacion` (
 --
 
 INSERT INTO `instalacion` (`idInstalacion`, `nombreInstalacion`, `descipcionInstalacion`, `aforoIntalacion`) VALUES
-(1, 'Sala Multiusos', NULL, 50);
+(1, 'Sala Multiusos A', NULL, 50),
+(2, 'Sala Multiusos B', NULL, 50);
 
 -- --------------------------------------------------------
 

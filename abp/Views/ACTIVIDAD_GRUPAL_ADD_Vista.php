@@ -25,17 +25,42 @@ class ACTIVIDAD_GRUPAL_Insertar {
                 </div>
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['nombreActividadGrupal']; ?></label><br>
-                    <input class="form-control" id="nombreActividadGrupal" name="nombreActividadGrupal" size="80" type="text" required="true"/>
+                    <input class="form" id="nombreActividadGrupal" name="nombreActividadGrupal" size="80" type="text" required="true"/>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['descripcionActividadGrupal']; ?></label><br>
-                    <input class="form" id="descripcionActividadGrupal" name="descripcionActividadGrupal" size="160" type="text" >
+                    <input class="form" id="descripcionActividadGrupal" name="descripcionActividadGrupal" size="100" type="text" >
                 </div>
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['numPlazasActividadGrupal']; ?></label><br>
-                    <input class="form-control" id="numPlazasActividadGrupal" name="numPlazasActividadGrupal" size="10" type="int" required="true"/>
+                    <input class="form" id="numPlazasActividadGrupal" name="numPlazasActividadGrupal" size="10" type="int" required="true"/>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['diaActividadGrupal']; ?></label><br>
+                    <input class="form" id="diaActividadGrupal" name="diaActividadGrupal" size="15" type="text" required="true"/>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['horaInicioActividadGrupal']; ?></label><br>
+                    <input class="form" id="horaInicioActividadGrupal" name="horaInicioActividadGrupal" size="15" type="time" required="true"/>
+                </div>
+                
+                   <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['horaFinActividadGrupal']; ?></label><br>
+                    <input class="form" id="horaFinActividadGrupal" name="horaFinActividadGrupal" type="time" required="true"/>
+                </div>
+                
+                   <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['fechaInicioActividadGrupal']; ?></label><br>
+                    <input class="form" id="fechaInicioActividadGrupal" name="fechaInicioActividadGrupal" size="15" type="date" required="true"/>
+                </div>
+                
+                   <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['fechaFinActividadGrupal']; ?></label><br>
+                    <input class="form" id="fechaFinActividadGrupal" name="fechaFinActividadGrupal" size="15" type="date" required="true"/>
                 </div>
 
                 <div class="form-group">
@@ -75,8 +100,8 @@ class ACTIVIDAD_GRUPAL_Insertar {
                 </div>
 
 
-                <input type = 'submit' name = 'accion' value = '<?php echo $strings['Insertar'] ?>'  onclick="return valida_envia_ACTIVIDAD_GRUPAL()" >
-                <button type="button" class="btn btn-info"><a href='ACTIVIDAD_GRUPAL_Controller.php'>Volver</a></button>
+                <input type = 'submit' onclick="return valida_envia_ACTIVIDAD_GRUPAL()" name = 'accion' value = '<?php echo $strings['Insertar'] ?>'>
+                <a class="form-link" href='ACTIVIDAD_GRUPAL_Controller.php'>Volver</a>
             </form>
         </div>
 

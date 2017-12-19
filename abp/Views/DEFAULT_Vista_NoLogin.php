@@ -3,7 +3,7 @@
 <?php
 include '../Functions/LibraryFunctions.php';
 include '../Locates/Strings_Castellano.php';
-include './header.php';
+include '../css/header.php';
 ?>
 
 <?php

@@ -29,10 +29,15 @@ function get_data_form() {
     $nombreActividadGrupal = $_REQUEST['nombreActividadGrupal'];
     $descripcionActividadGrupal = $_REQUEST['descripcionActividadGrupal'];
     $numPlazasActividadGrupal = $_REQUEST['numPlazasActividadGrupal'];
+    $diaActividadGrupal = $_REQUEST['diaActividadGrupal'];
+    $horaInicioActividadGrupal = $_REQUEST['horaInicioActividadGrupal'];
+    $horaFinActividadGrupal = $_REQUEST['horaFinActividadGrupal'];
+    $fechaInicioActividadGrupal = $_REQUEST['fechaInicioActividadGrupal'];
+    $fechaFinActividadGrupal = $_REQUEST['fechaFinActividadGrupal'];
     $username = $_REQUEST['username'];
     $idInstalacion = $_REQUEST['idInstalacion'];
 
-    $actividadGrupal = new ACTIVIDAD_GRUPAL_Model($idActividadGrupal, $nombreActividadGrupal, $descripcionActividadGrupal, $numPlazasActividadGrupal, $username, $idInstalacion);
+    $actividadGrupal = new ACTIVIDAD_GRUPAL_Model($idActividadGrupal, $nombreActividadGrupal, $descripcionActividadGrupal, $numPlazasActividadGrupal, $diaActividadGrupal, $horaInicioActividadGrupal, $horaFinActividadGrupal, $fechaInicioActividadGrupal, $fechaFinActividadGrupal, $username, $idInstalacion);
 
     return $actividadGrupal;
 }
@@ -52,15 +57,6 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 
         break;
 
-    case 'añadir':
-        print_r($_POST);
-        exit(0);
-        $user = $_REQUEST['username'];
-        $instalacion = $_REQUEST['idInstalacion'];
-        $actividad = get_data_form();
-        $actividad->añadir($user, $instalacion);
-
-        break;
 
     case $strings['Insertar']:
 
@@ -73,7 +69,6 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
             $username = $_REQUEST['username'];
             $idInstalacion = $_REQUEST['idInstalacion'];
             $actividadGrupal = get_data_form();
-            $actividadGrupal->añadir($username, $idInstalacion);
             $respuesta = $actividadGrupal->Insertar();
             new Mensaje($respuesta, '../Controllers/ACTIVIDAD_GRUPAL_Controller.php');
         }break;
@@ -85,7 +80,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
             if (!isset($_REQUEST['nombreActividadGrupal'])) {
-                $actividadGrupal = new ACTIVIDAD_GRUPAL_Model($_REQUEST['idActividadGrupal'], '', '', '', '', '');
+                $actividadGrupal = new ACTIVIDAD_GRUPAL_Model($_REQUEST['idActividadGrupal'], '', '', '', '', '', '', '', '', '', '');
                 $datos = $actividadGrupal->RellenaDatos();
                 $entrenadores = ListarEntrenadores();
                 $instalaciones = ListarInstalaciones();
@@ -105,7 +100,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
     case $strings['Borrar']:
 
         if (!isset($_REQUEST['idActividadGrupal'])) {
-            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model($_REQUEST['idActividadGrupal'], '', '', '', '', '');
+            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model($_REQUEST['idActividadGrupal'], '', '', '', '', '', '', '', '', '', '');
             $valores = $actividadGrupal->RellenaDatos();
             if (!tienePermisos('ACTIVIDAD_GRUPAL_Borrar')) {
                 new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
@@ -113,7 +108,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
                 new ACTIVIDAD_GRUPAL_Borrar($valores, 'ACTIVIDAD_GRUPAL_Controller.php');
             }
         } else {
-            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model($_REQUEST['idActividadGrupal'], '', '', '', '', '');
+            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model($_REQUEST['idActividadGrupal'], '', '', '', '', '', '', '', '', '', '');
             $respuesta = $actividadGrupal->Borrar();
             new Mensaje($respuesta, '../Controllers/ACTIVIDAD_GRUPAL_Controller.php');
         }
@@ -142,6 +137,37 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
                 $numPlazasActividadGrupal = $_REQUEST['numPlazasActividadGrupal'];
             }
 
+            
+            if (!isset($_REQUEST['$diaActividadGrupal'])) {
+                $diaActividadGrupal = '';
+            } else {
+                $diaActividadGrupal = $_REQUEST['$diaActividadGrupal'];
+            }
+            
+            if (!isset($_REQUEST['$horaInicioActividadGrupal'])) {
+                $horaInicioActividadGrupal = '';
+            } else {
+                $horaInicioActividadGrupal = $_REQUEST['$horaInicioActividadGrupal'];
+            }
+            
+             if (!isset($_REQUEST['$horaFinActividadGrupal'])) {
+                $horaFinActividadGrupal = '';
+            } else {
+                $horaFinActividadGrupal = $_REQUEST['$horaFinActividadGrupal'];
+            }
+            
+            if (!isset($_REQUEST['$fechaInicioActividadGrupal'])) {
+                $fechaInicioActividadGrupal = '';
+            } else {
+                $fechaInicioActividadGrupal = $_REQUEST['$fechaInicioActividadGrupal'];
+            }
+            
+             if (!isset($_REQUEST['$fechaFinActividadGrupal'])) {
+                $fechaFinActividadGrupal = '';
+            } else {
+                $fechaFinActividadGrupal = $_REQUEST['$fechaFinActividadGrupal'];
+            }
+            
             if (!isset($_REQUEST['username'])) {
                 $username = '';
             } else {
@@ -154,7 +180,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
                 $idInstalacion = $_REQUEST['idInstalacion'];
             }
 
-            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model('', $nombreActividadGrupal, '', $numPlazasActividadGrupal, $username, $idInstalacion);
+            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model('', $nombreActividadGrupal, '', $numPlazasActividadGrupal, $diaActividadGrupal, $horaInicioActividadGrupal, $horaFinActividadGrupal, $fechaInicioActividadGrupal, $fechaFinActividadGrupal, $username, $idInstalacion);
             $datos = $actividadGrupal->Consultar();
             new ACTIVIDAD_GRUPAL_Listar($datos, '../Controllers/ACTIVIDAD_GRUPAL_Controller.php');
         }
@@ -164,7 +190,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
     case $strings['Ver']:
 
         if (isset($_REQUEST['idActividadGrupal'])) {
-            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model($_REQUEST['idActividadGrupal'], '', '', '', '', '');
+            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model($_REQUEST['idActividadGrupal'], '', '', '', '', '','', '', '', '', '');
             $datos = $actividadGrupal->RellenaDatos();
             if (!tienePermisos('ACTIVIDAD_GRUPAL_VerDetalle')) {
                 new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
@@ -179,7 +205,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
     case $strings['MisActividades']:
 
         if (isset($_REQUEST['userName'])) {
-            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model('', '', '', '', $_REQUEST['userName'], '');
+            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model('', '', '', '','', '', '', '', '', $_REQUEST['userName'], '');
             $datos = $actividadGrupal->ConsultarActividadesUser();
             if (!tienePermisos('ACTIVIDAD_GRUPAL_Listar_User')) {
                 new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
@@ -196,7 +222,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 
         if (isset($_REQUEST['idActividadGrupal'])) {
             $numPlazasActividadGrupal = ConsultarNumPlazas($_REQUEST['idActividadGrupal']);
-            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model($_REQUEST['idActividadGrupal'], '', '', $numPlazasActividadGrupal, $_REQUEST['userName'], '');
+            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model($_REQUEST['idActividadGrupal'], '', '', $numPlazasActividadGrupal, '', '', '', '', '', $_REQUEST['userName'], '');
             $respuesta = $actividadGrupal->SolicitarInscripcion();
             new Mensaje($respuesta, '../Controllers/ACTIVIDAD_GRUPAL_Controller.php');
         }
@@ -210,7 +236,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         if (!tienePermisos('ACTIVIDAD_GRUPAL_Listar')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
-            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model('', '', '', '', '', '');
+            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model('', '', '', '', '', '','', '', '', '', '');
             $datos = $actividadGrupal->Listar();
             new ACTIVIDAD_GRUPAL_Listar($datos, '../Views/DEFAULT_Vista.php');
         }

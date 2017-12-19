@@ -32,9 +32,6 @@
                                 </div>
                             </div>
                             <div>
-                                <?php if (ConsultarTipoUsuarioLogin() != 1) { ?>
-                                    <br>
-                                <?php } ?>
                                 <div class="menu">
                                     <ul class="nav nav-tabs" role="tablist">
 
@@ -46,9 +43,6 @@
 
                             </div>			
                     </nav>
-                    <?php if (ConsultarTipoUsuarioLogin() != 1) { ?>
-                                    <br>
-                                <?php } ?>
                 </div>
             </div>
         </header>

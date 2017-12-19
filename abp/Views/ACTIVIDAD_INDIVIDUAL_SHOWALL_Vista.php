@@ -19,7 +19,7 @@ class ACTIVIDAD_INDIVIDUAL_Listar {
             <?php
             $lista = array('nombreActividadIndividual', 'descripcionActividadIndividual');
             ?>
-            <br>
+            <br><br>
 
             <div class="container">
                 <div class="col-lg-12">
@@ -65,11 +65,7 @@ class ACTIVIDAD_INDIVIDUAL_Listar {
                             <?php if (ConsultarTipoUsuario($_SESSION['login']) == 1) { ?>	
                                 <td><button type="button" class="btn btn-info"><a href='ACTIVIDAD_INDIVIDUAL_Controller.php?idActividadIndividual=<?php echo $this->datos[$j]['idActividadIndividual'] . '&accion=' . $strings['Modificar']; ?>'><?php echo $strings['Modificar']; ?></a></button></td>
                                 <td><button type="button" class="btn btn-danger"><a href='ACTIVIDAD_INDIVIDUAL_Controller.php?idActividadIndividual=<?php echo $this->datos[$j]['idActividadIndividual'] . '&accion=' . $strings['Borrar']; ?>'><?php echo $strings['Borrar']; ?></a></button></td>
-                                <?php } else if (ConsultarTipoUsuario($_SESSION['login']) == 3) {
-                                ?>
-                                <td><button type = "button" class = "btn btn-success"><a href = 'ACTIVIDAD_INDIVIDUAL_Controller.php?idActividadIndividual=<?php echo $this->datos[$j]['idActividadIndividual'] . '&accion=' . $strings['Asignar'] . '&userName=' . $_SESSION['login']; ?>'><?php echo $strings['MandarSolicitud']; ?></a></button></td>
-                                    <?php
-                                    }
+                                <?php } 
                                 }
                                 ?>
                         </tbody>

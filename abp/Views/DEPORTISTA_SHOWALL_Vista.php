@@ -170,11 +170,14 @@ class DEPORTISTA_Show {
                         <td><button type="button" class="btn btn-danger"><a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Borrar']; ?>'><?php echo $strings['Borrar']; ?></a></button></td>
                          <?php } ?>
                         <?php if (ConsultarTipoDeportista($this->datos[$j]['userName']) == 'TDU') { ?>
-                            <td><a data-toggle="modal" href="#myModal" onclick="changeIdAction('<?php echo $this->datos[$j]['userName'] ?>')"><button type="button" class="btn btn-success"><?php echo $strings['Asignar']; ?></button></a></td>
+                            <td><a data-toggle="modal" href="#myModal" onclick="changeIdAction('<?php echo $this->datos[$j]['userName'] ?>')"><button type="button" class="btn btn-success"><?php echo $strings['AsignarT']; ?></button></a></td>
                         <?php } else { ?>
-                            <td><a data-toggle="modal" href="#myModal1" onclick="changeIdAction1('<?php echo $this->datos[$j]['userName'] ?>')"><button type="button" class="btn btn-success"><?php echo $strings['Asignar']; ?></button></a></td>
+                            <td><a data-toggle="modal" href="#myModal1" onclick="changeIdAction1('<?php echo $this->datos[$j]['userName'] ?>')"><button type="button" class="btn btn-success"><?php echo $strings['AsignarT']; ?></button></a></td>
                                     <?php
                                 }
+                                ?>
+                                 <td><button type="button" class="btn btn"><a href='ESTADISTICA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['VerEstadisticas']; ?>'><?php echo $strings['VerEstadisticas']; ?></a></button></td>
+                                <?php
                             }
                             ?>
                     </tbody>

@@ -140,19 +140,6 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         break;
 
 
-
-    case $strings['Asignar']:
-
-        if (isset($_REQUEST['idActividadIndividual'])) {
-            $actividadIndividual = new ACTIVIDAD_INDIVIDUAL_Model($_REQUEST['idActividadIndividual'], '', '');
-            $respuesta = $actividadIndividual->SolicitarInscripcion($_REQUEST['userName']);
-            new Mensaje($respuesta, '../Controllers/ACTIVIDAD_INDIVIDUAL_Controller.php');
-        }
-
-        break;
-
-
-
     default: //Por defecto se realiza el show all
         if (!tienePermisos('ACTIVIDAD_INDIVIDUAL_Listar')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');

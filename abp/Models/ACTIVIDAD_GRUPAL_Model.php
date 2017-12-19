@@ -10,15 +10,25 @@ class ACTIVIDAD_GRUPAL_Model {
     var $nombreActividadGrupal;
     var $descripcionActividadGrupal;
     var $numPlazasActividadGrupal;
+    var $diaActividadGrupal;
+    var $horaInicioActividadGrupal;
+    var $horaFinActividadGrupal;
+    var $fechaInicioActividadGrupal;
+    var $fechaFinActividadGrupal;
     var $username;
     var $idInstalacion;
     var $mysqli;
 
-    function __construct($idActividadGrupal, $nombreActividadGrupal, $descripcionActividadGrupal, $numPlazasActividadGrupal, $username, $idInstalacion) {
+    function __construct($idActividadGrupal, $nombreActividadGrupal, $descripcionActividadGrupal, $numPlazasActividadGrupal, $diaActividadGrupal, $horaInicioActividadGrupal, $horaFinActividadGrupal, $fechaInicioActividadGrupal, $fechaFinActividadGrupal, $username, $idInstalacion) {
         $this->idActividadGrupal = $idActividadGrupal;
         $this->nombreActividadGrupal = $nombreActividadGrupal;
         $this->descripcionActividadGrupal = $descripcionActividadGrupal;
         $this->numPlazasActividadGrupal = $numPlazasActividadGrupal;
+        $this->diaActividadGrupal = $diaActividadGrupal;
+        $this->horaInicioActividadGrupal = $horaInicioActividadGrupal;
+        $this->horaFinActividadGrupal = $horaFinActividadGrupal;
+        $this->fechaInicioActividadGrupal = $fechaInicioActividadGrupal;
+        $this->fechaFinActividadGrupal = $fechaFinActividadGrupal;
         $this->username = $username;
         $this->idInstalacion = $idInstalacion;
     }
@@ -41,23 +51,23 @@ class ACTIVIDAD_GRUPAL_Model {
             return 'La actividad grupal ya existe en la base de datos';
         } else {
             if ($result->num_rows == 0) {
-                $sql = "INSERT INTO actividadgrupal(nombreActividadGrupal, descripcionActividadGrupal, numPlazasActividadGrupal, username, idInstalacion) VALUES ('" . $this->nombreActividadGrupal . "','" . $this->descripcionActividadGrupal . "','" . $this->numPlazasActividadGrupal . "','" . $this->username . "','" . $this->idInstalacion . "')";
+                $sql = "INSERT INTO actividadgrupal (nombreActividadGrupal, descripcionActividadGrupal, numPlazasActividadGrupal, diaActividadGrupal, horaInicioActividadGrupal, horaFinActividadGrupal, fechaInicioActividadGrupal, fechaFinActividadGrupal, username, idInstalacion) VALUES ('" . $this->nombreActividadGrupal . "','" . $this->descripcionActividadGrupal . "','" . $this->numPlazasActividadGrupal . "','" . $this->diaActividadGrupal . "','" . $this->horaInicioActividadGrupal . "','" . $this->horaFinActividadGrupal . "','" . $this->fechaInicioActividadGrupal . "','" . $this->fechaFinActividadGrupal . "','" . $this->username . "','" . $this->idInstalacion . "')";
                 $this->mysqli->query($sql);
                 return 'Añadida con exito';
             }
         }
     }
 
-    function añadir($user, $instalacion) {
-        $this->ConectarBD();
-        $sql = "INSERT INTO actividadgrupal(nombreActividadGrupal, descripcionActividadGrupal, numPlazasActividadGrupal, username, idInstalacion) VALUES ('" . $this->nombreActividadGrupal . "','" . $this->descripcionActividadGrupal . "','" . $this->numPlazasActividadGrupal . "','" . $user . "','" . $instalacion . "')";
-        $result = $this->mysqli->query($sql);
-        return true;
-    }
+//    function añadir($user, $instalacion) {
+//        $this->ConectarBD();
+//        $sql = "INSERT INTO actividadgrupal VALUES ('" . $this->nombreActividadGrupal . "','" . $this->descripcionActividadGrupal . "','" . $this->numPlazasActividadGrupal . "','" . $this->diaActividadGrupal . "','" . $this->horaInicioActividadGrupal . "','" . $this->horaFinActividadGrupal . "','" . $this->fechaInicioActividadGrupal . "','" . $this->fechaFinActividadGrupal . "','" . $user . "','" . $instalacion . "')";
+//        $result = $this->mysqli->query($sql);
+//        return true;
+//    }
 
     function guardarCambios($id) {
         $this->ConectarBD();
-        $sql = "UPDATE actividadgrupal SET nombreActividadGrupal ='" . $this->nombreActividadGrupal . "', descripcionActividadGrupal ='" . $this->descripcionActividadGrupal . "', numPlazasActividadGrupal ='" . $this->numPlazasActividadGrupal . "', username ='" . $this->username . "', idInstalacion ='" . $this->idInstalacion . "' WHERE idActividadGrupal = '" . $id . "'";
+        $sql = "UPDATE actividadgrupal SET nombreActividadGrupal ='" . $this->nombreActividadGrupal . "', descripcionActividadGrupal ='" . $this->descripcionActividadGrupal . "', numPlazasActividadGrupal ='" . $this->numPlazasActividadGrupal . "', diaActividadGrupal ='" . $this->diaActividadGrupal . "',hpraInicioActividadGruapl ='" . $this->horaInicioActividadGrupal . "', horaFinActividadGrupal ='" . $this->horaFinActividadGrupal . "',fechaInicioActividadGrupal'" . $this->fechaInicioActividadGrupal . "',fechaFinActividadGrupal'" . $this->fechaFinActividadGrupal . "',username='" . $this->username . "', idInstalacion ='" . $this->idInstalacion . "' WHERE idActividadGrupal = '" . $id . "'";
         $result = $this->mysqli->query($sql);
         return true;
     }
@@ -147,7 +157,7 @@ class ACTIVIDAD_GRUPAL_Model {
     function Listar() {
 
         $this->ConectarBD();
-        $sql = "SELECT idActividadGrupal, nombreActividadGrupal, numPlazasActividadGrupal, username, idInstalacion FROM actividadGrupal";
+        $sql = "SELECT * FROM actividadGrupal";
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
         } else {
@@ -176,7 +186,7 @@ class ACTIVIDAD_GRUPAL_Model {
     //Devuelve los valores almacenados para una determinada actividad grupal para posteriormente rellenar un formulario
     function RellenaDatos() {
         $this->ConectarBD();
-        $sql = "SELECT nombreActividadGrupal, numPlazasActividadGrupal, descripcionActividadGrupal, username, idInstalacion FROM actividadgrupal WHERE actividadgrupal.idActividadGrupal = '" . $this->idActividadGrupal . "'";
+        $sql = "SELECT * FROM actividadgrupal WHERE actividadgrupal.idActividadGrupal = '" . $this->idActividadGrupal . "'";
 
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos';

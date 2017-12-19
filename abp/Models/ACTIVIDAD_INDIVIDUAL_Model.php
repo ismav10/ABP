@@ -145,23 +145,6 @@ class ACTIVIDAD_INDIVIDUAL_Model {
         }
     }
     
-    
-     //Devuelve los valores almacenados para una determinada actividad grupal para posteriormente rellenar un formulario
-    function SolicitarInscripcion($userName) {
-        $this->ConectarBD();
-        $sql = "SELECT * FROM DEPORTISTA_INSCRIBIR_ACTIVIDADINDIVIDUAL WHERE userName = '" . $userName . "'";
-        $resultado = $this->mysqli->query($sql);
-        if ($resultado->num_rows == 0) {
-            $sql2 = "INSERT INTO DEPORTISTA_INSCRIBIR_ACTIVIDADINDIVIDUAL VALUES ( '" . $this->username . "', '" . $this->idActividadIndividual . "', 0')";
-            $result = $this->mysqli->query($sql2);
-            return 'Solicitud tramitada';
-        } else {
-            return 'Ya existe esta solicitud';
-        }
-    }
-    
-    
-    
 
 }
 

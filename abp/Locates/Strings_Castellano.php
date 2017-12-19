@@ -24,8 +24,7 @@ $strings = array(
 'La tabla ya ha sido asignada a este usuario' => 'La tabla ya ha sido asignada a este deportista',
 'La tabla se ha asignado correctamente' => 'La tabla se ha asignado correctamente',
 'Ya han sido asignadas 5 tablas para este deportista' => 'Ya han sido asignadas 5 tablas para este deportista',
-'Error al aceptar la inscripcion' => 'Error al aceptar la inscripcion',
-'MandarSolicitud' => 'Solicitar',    
+'Error al aceptar la inscripcion' => 'Error al aceptar la inscripcion',  
 'No se ha podido conectar con la base de datos.' => 'No se ha podido conectar con la base de datos.' , 
 'Error en la consulta sobre la base de datos.' => 'Error en la consulta sobre la base de datos.',
 'La sesion se ha modificado con éxito' => 'La sesion se ha modificado con éxito',
@@ -158,12 +157,12 @@ $strings = array(
 
  //ACTIVIDADES GRUPALES
 
-'nombreActividadGrupal' => 'Nombre Actividad',
+'nombreActividadGrupal' => 'Actividad',
 'descripcionActividadGrupal' =>'Descripcion',
-'numPlazasActividadGrupal' =>'Numero Plazas',
+'numPlazasActividadGrupal' =>'Plazas',
 'idActividadGrupal' => 'ID',
-'username' => 'Profesor',
-'idInstalacion' => 'Instalacion',
+'username' => 'Monitor',
+'idInstalacion' => 'Instalación',
 'Modificar Actividad Grupal' => 'Modificar Actividad Grupal',
 'Insertar Actividad Grupal' => 'Insertar Actividad Grupal',
 'Borrar Actividad Grupal' => 'Borrar Actividad Grupal',
@@ -217,9 +216,40 @@ $strings = array(
 'La actividad individual fue borrada con exito' => 'La actividad individual fue borrada con exito',
 'La actividad individual ya existe en la base de datos' => 'La actividad individual ya existe en la base de datos',
 'No se puede borrar porque no existe esa actividad individual' => 'No se puede borrar porque no existe esa actividad individual',
-'La actividad individual se ha modificado con exito' => 'La actividad individual se ha modificado con exito'
+'La actividad individual se ha modificado con exito' => 'La actividad individual se ha modificado con exito',
     
 
 
+ 
+    
+    
+/*
+    #Nuevos Strings para la version final
+*/
+    
+ 
+  //Solicitudes
+  'MandarSolicitud' => 'Solicitar',
+  'EnTramite' => 'En trámite',
+  'YaInscrito' => 'Ya Inscrito',
+    
+    
+  //Deportistas
+  'VerEstadisticas' =>'Estadísticas',
+  'AsignarT' => 'Asignar Tabla',
+    
+    
+  //Actividades Grupales
+  'diaActividadGrupal' => 'Día',
+  'horaInicioActividadGrupal' => 'Hora Inicio',
+  'horaFinActividadGrupal' =>'Hora Fin',
+  'fechaInicioActividadGrupal' => 'Fecha Inicio',
+  'fechaFinActividadGrupal' =>'Fecha Fin'
+    
+    
+    
+    
+    
+    
 );
 ?>

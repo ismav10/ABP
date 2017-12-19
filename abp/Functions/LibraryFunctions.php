@@ -210,6 +210,52 @@ function ConsultarNombreActividadIndividual($idActividadGrupal) {
     return $result['nombreActividadIndividual'];
 }
 
+function ConsultarSolicitudGrupal($idActividadGrupal) {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT estado FROM DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL WHERE idActividadGrupal='" . $idActividadGrupal . "' AND userName='". $_SESSION['login'] . "'";
+    $result = $mysqli->query($sql);
+    if ($result->num_rows == 0) {
+        return 3;
+    }
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['estado'];
+}
+
+
+function CambiarFormatoTiempoHoraInicio($idActividadGrupal){
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT DATE_FORMAT(horaInicioActividadGrupal, '%H:%i') FROM actividadgrupal WHERE idActividadGrupal = '". $idActividadGrupal ."' ";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result[0];
+}
+
+function CambiarFormatoTiempoHoraFin($idActividadGrupal){
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT DATE_FORMAT(horaFinActividadGrupal, '%H:%i') FROM actividadgrupal WHERE idActividadGrupal = '". $idActividadGrupal ."' ";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result[0];
+}
+
+
+function ConsultarNombreInstalacion($idInstalacion) {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT nombreInstalacion FROM Instalacion WHERE idInstalacion='" . $idInstalacion . "'";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['nombreInstalacion'];
+}
+
 //añade a la pagina default los enlaces correspondientes a las funcionalidades
 function añadirFuncionalidades($NOM) {
     include '../Locates/Strings_' . $NOM['IDIOMA'] . '.php';
@@ -287,7 +333,7 @@ function añadirFuncionalidades($NOM) {
                         <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $strings['Gestión de Inscripciones'] ?> </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="../Controllers/INSCRIPCION_Controller.php?act=grupal"><?php echo $strings['Gestión de Actividades Grupales']; ?></a><br>
-                            <a class="dropdown-item" href="../Controllers/INSCRIPCION_Controller.php?act=individual"><?php echo $strings['Gestión de Actividades Individuales']; ?></a><br>
+<!--                            <a class="dropdown-item" href="../Controllers/INSCRIPCION_Controller.php?act=individual"><?php echo $strings['Gestión de Actividades Individuales']; ?></a><br>-->
                         </div>
                     </li>
                     <?php

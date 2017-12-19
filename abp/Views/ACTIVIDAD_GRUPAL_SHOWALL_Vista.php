@@ -17,10 +17,9 @@ class ACTIVIDAD_GRUPAL_Listar {
         ?> 
         <div class="container">	
             <?php
-            $lista = array('nombreActividadGrupal', 'numPlazasActividadGrupal', 'username', 'idInstalacion');
+            $lista = array('nombreActividadGrupal', 'numPlazasActividadGrupal', 'diaActividadGrupal', 'horaInicioActividadGrupal', 'horaFinActividadGrupal', 'fechaInicioActividadGrupal', 'fechaFinActividadGrupal' ,'username', 'idInstalacion');
             ?>
-            <br><br>
-
+            
             <div class="container">
                 <div class="col-lg-12">
                     <button type="button" class="btn btn-default btn-lg"><a href='ACTIVIDAD_GRUPAL_Controller.php?accion=<?php echo $strings['Consultar']; ?>'><?php echo $strings['Consultar'] ?></a></button>
@@ -48,7 +47,13 @@ class ACTIVIDAD_GRUPAL_Listar {
                                                 if ($clave === 'nombreActividadGrupal') {
                                                     ?>
                                             <a href='ACTIVIDAD_GRUPAL_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Ver']; ?>'><font color="#088A4B"><?php echo $valor; ?></font></a> <?php
-                                        } else {
+                                        } else if($clave === 'horaInicioActividadGrupal'){
+                                            echo CambiarFormatoTiempoHoraInicio($this->datos[$j]['idActividadGrupal']);
+                                        }else if($clave === 'horaFinActividadGrupal'){
+                                            echo CambiarFormatoTiempoHoraFin($this->datos[$j]['idActividadGrupal']);
+                                        }else if($clave === 'idInstalacion'){
+                                            echo ConsultarNombreInstalacion($this->datos[$j]['idInstalacion']);
+                                        }else {
                                             echo $valor;
                                         }
 
@@ -60,20 +65,30 @@ class ACTIVIDAD_GRUPAL_Listar {
                                 ?>
                                 <td><button type="button" class="btn btn-info"><a href='ACTIVIDAD_GRUPAL_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Modificar']; ?>'><?php echo $strings['Modificar']; ?></a></button></td>
                                 <td><button type="button" class="btn btn-danger"><a href='ACTIVIDAD_GRUPAL_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Borrar']; ?>'><?php echo $strings['Borrar']; ?></a></button></td>
-                                        <?php
-                                    } else if (ConsultarTipoUsuarioLogin() == 3) { ?>
-                                        <td><button type="button" class="btn btn-success"><a href='ACTIVIDAD_GRUPAL_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Asignar'] . '&userName=' . $_SESSION['login']; ?>'><?php echo $strings['MandarSolicitud']; ?></a></button></td>
-                                    <?php }
-                                }
-                                ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+                                <?php
+                            } if (ConsultarTipoUsuarioLogin() == 3) {
+                                if (ConsultarSolicitudGrupal($this->datos[$j]['idActividadGrupal']) == 0) {
+                                    ?>
+                                    <td><button type="button" class="btn btn-warning"><a href='ACTIVIDAD_GRUPAL_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Asignar'] . '&userName=' . $_SESSION['login']; ?>'><?php echo $strings['EnTramite']; ?></a></button></td>
+                                <?php } else if (ConsultarSolicitudGrupal($this->datos[$j]['idActividadGrupal']) == 1) {
+                                    ?>
+                                    <td><button type="button" class="btn btn-info"><a href='ACTIVIDAD_GRUPAL_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Asignar'] . '&userName=' . $_SESSION['login']; ?>'><?php echo $strings['YaInscrito']; ?></a></button></td>
+                                <?php } else if (ConsultarSolicitudGrupal($this->datos[$j]['idActividadGrupal']) != 1 || ConsultarSolicitudGrupal($this->datos[$j]['idActividadGrupal']) != 0) {
+                                    ?>
+                                    <td><button type="button" class="btn btn-success"><a href='ACTIVIDAD_GRUPAL_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Asignar'] . '&userName=' . $_SESSION['login']; ?>'><?php echo $strings['MandarSolicitud']; ?></a></button></td>
+                                            <?php
+                                            }
+                                            }
+                                            }
+                                            ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 
-        <?php
-        include '../Views/footer.php';
-    }
-
-}
+                    <?php
+                    include '../Views/footer.php';
+                }
+            }
+            

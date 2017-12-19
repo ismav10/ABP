@@ -98,6 +98,9 @@ class USUARIO_Modelo {
                         if ($this->tipoUsuario == 3) {
                             $sql = "INSERT INTO DEPORTISTA (userName, tipoDeportista, metodoPago) VALUES ( '" . $this->userName . "', '" . $this->tipoDeportista . "', '" . $this->medotoPago . "');";
                             $this->mysqli->query($sql);
+                            
+                            $sqlAux = "INSERT INTO DEPORTISTA_INSCRIBIR_ACTIVIDADINDIVIDUAL  VALUES ( '" . $this->userName . "', 1);";
+                            $this->mysqli->query($sqlAux);
                         }
 
                         $sql = "INSERT INTO USUARIO_ROL (userName, idRol) VALUES('" . $this->userName . "'," . $this->tipoUsuario . ")";
