@@ -48,16 +48,7 @@ if (!isset($_REQUEST['accion'])) {
 
 
 Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
-    case 'guardar':
-        print_r($_POST);
-        exit(0);
-        $idActividad = $_REQUEST['idActividadGrupal'];
-        $actividad = get_data_form();
-        $actividad->guardarCambios($idActividad);
-
-        break;
-
-
+   
     case $strings['Insertar']:
 
         if (!isset($_REQUEST['nombreActividadGrupal'])) { //Si no se ha introducido ningun valor, mostramos la vista con el formulario
@@ -88,9 +79,9 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
             } else {
                 $idActividadGrupal = $_REQUEST['idActividadGrupal'];
                 $actividadGrupal = get_data_form();
-                $actividadGrupal->guardarCambios($idActividadGrupal);
-                $datos = $actividadGrupal->Listar();
-                new ACTIVIDAD_GRUPAL_Listar($datos, '../Controllers/ACTIVIDAD_GRUPAL_Controller.php');
+                $respuesta = $actividadGrupal->Modificar();
+                new Mensaje($respuesta, '../Controllers/ACTIVIDAD_GRUPAL_Controller.php');
+          
             }
         }
         break;

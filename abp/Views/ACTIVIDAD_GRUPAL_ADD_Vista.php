@@ -91,7 +91,7 @@ class ACTIVIDAD_GRUPAL_Insertar {
                             foreach ($this->instalaciones [$j] as $clave => $valor) {
                                 echo "<td>";
                                 ?>
-                                <option><?php echo $valor; ?></option>
+                                <option><?php echo ConsultarNombreInstalacion($valor); ?></option>
                                 <?php
                             }
                         }

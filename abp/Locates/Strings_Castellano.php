@@ -140,7 +140,7 @@ $strings = array(
 'Insertar Notificacion' => 'Insertar Notificacion',
 
  
- //SESIONES
+//SESIONES
 
 'nombreTabla' => 'Tabla',
 'nombreActividadIndividual' =>'Actividad',
@@ -168,7 +168,7 @@ $strings = array(
 'Borrar Actividad Grupal' => 'Borrar Actividad Grupal',
 'Consultar Actividades Grupales' => 'Consultar Actividades Grupales',
 'Ver Actividad Grupal' => 'Ver Actividad Grupal',
-'Añadida con exito' => 'Añadida con exito',
+'Actividad Grupal añadida con exito' => 'Actividad grupal añadida con exito',
 'La actividad grupal fue borrada con exito' => 'La actividad grupal fue borrada con éxito.',
 'No se puede borrar porque no existe esa actividad grupal' => 'No se puede borrar porque no existe esa actividad grupal',
 
@@ -238,13 +238,19 @@ $strings = array(
   'VerEstadisticas' =>'Estadísticas',
   'AsignarT' => 'Asignar Tabla',
     
+  //Entrenadores
+  'VerActividadesImpartidas' => 'Actividades Impartidas',
+    
     
   //Actividades Grupales
+  'VerMonitor' => 'VerMonitor',
   'diaActividadGrupal' => 'Día',
   'horaInicioActividadGrupal' => 'Hora Inicio',
   'horaFinActividadGrupal' =>'Hora Fin',
   'fechaInicioActividadGrupal' => 'Fecha Inicio',
-  'fechaFinActividadGrupal' =>'Fecha Fin'
+  'fechaFinActividadGrupal' =>'Fecha Fin',
+  'La actividad grupal se ha modificado con exito' => 'La actividad grupal se ha modificado con éxito',
+  'Ya existe una actividad en esta fecha, instalacion y horario o el monitor esta ocupado' => 'Ya existe una actividad en esta fecha, instalación y horario o el monitor está ocupado'
     
     
     

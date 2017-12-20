@@ -51,9 +51,19 @@ class ACTIVIDAD_GRUPAL_Model {
             return 'La actividad grupal ya existe en la base de datos';
         } else {
             if ($result->num_rows == 0) {
-                $sql = "INSERT INTO actividadgrupal (nombreActividadGrupal, descripcionActividadGrupal, numPlazasActividadGrupal, diaActividadGrupal, horaInicioActividadGrupal, horaFinActividadGrupal, fechaInicioActividadGrupal, fechaFinActividadGrupal, username, idInstalacion) VALUES ('" . $this->nombreActividadGrupal . "','" . $this->descripcionActividadGrupal . "','" . $this->numPlazasActividadGrupal . "','" . $this->diaActividadGrupal . "','" . $this->horaInicioActividadGrupal . "','" . $this->horaFinActividadGrupal . "','" . $this->fechaInicioActividadGrupal . "','" . $this->fechaFinActividadGrupal . "','" . $this->username . "','" . $this->idInstalacion . "')";
-                $this->mysqli->query($sql);
-                return 'Añadida con exito';
+
+                //Consultar si para esas fechas,horario y dia la sala esta libre
+                $sql1 = "SELECT * FROM actividadgrupal WHERE fechaInicioActividadGrupal BETWEEN '" . $this->fechaInicioActividadGrupal . "' AND '" . $this->fechaFinActividadGrupal . "' AND horaInicioActividadGrupal BETWEEN '" . $this->horaInicioActividadGrupal . "' AND '" . $this->horaFinActividadGrupal . "' AND idInstalacion = '" . $this->idInstalacion . "' AND diaActividadGrupal = '" . $this->diaActividadGrupal . "' AND username = '" . $this->username . "' ";
+                $result1 = $this->mysqli->query($sql1);
+                if ($result1->num_rows >= 1) {
+                    return 'Ya existe una actividad en esta fecha, instalacion y horario o el monitor esta ocupado';
+                } else {
+                    if ($result1->num_rows == 0) {
+                        $sql2 = "INSERT INTO actividadgrupal (nombreActividadGrupal, descripcionActividadGrupal, numPlazasActividadGrupal, diaActividadGrupal, horaInicioActividadGrupal, horaFinActividadGrupal, fechaInicioActividadGrupal, fechaFinActividadGrupal, username, idInstalacion) VALUES ('" . $this->nombreActividadGrupal . "','" . $this->descripcionActividadGrupal . "','" . $this->numPlazasActividadGrupal . "','" . $this->diaActividadGrupal . "','" . $this->horaInicioActividadGrupal . "','" . $this->horaFinActividadGrupal . "','" . $this->fechaInicioActividadGrupal . "','" . $this->fechaFinActividadGrupal . "','" . $this->username . "','" . $this->idInstalacion . "')";
+                        $this->mysqli->query($sql2);
+                        return 'Actividad Grupal añadida con exito';
+                    }
+                }
             }
         }
     }
@@ -64,21 +74,19 @@ class ACTIVIDAD_GRUPAL_Model {
 //        $result = $this->mysqli->query($sql);
 //        return true;
 //    }
-
-    function guardarCambios($id) {
-        $this->ConectarBD();
-        $sql = "UPDATE actividadgrupal SET nombreActividadGrupal ='" . $this->nombreActividadGrupal . "', descripcionActividadGrupal ='" . $this->descripcionActividadGrupal . "', numPlazasActividadGrupal ='" . $this->numPlazasActividadGrupal . "', diaActividadGrupal ='" . $this->diaActividadGrupal . "',hpraInicioActividadGruapl ='" . $this->horaInicioActividadGrupal . "', horaFinActividadGrupal ='" . $this->horaFinActividadGrupal . "',fechaInicioActividadGrupal'" . $this->fechaInicioActividadGrupal . "',fechaFinActividadGrupal'" . $this->fechaFinActividadGrupal . "',username='" . $this->username . "', idInstalacion ='" . $this->idInstalacion . "' WHERE idActividadGrupal = '" . $id . "'";
-        $result = $this->mysqli->query($sql);
-        return true;
-    }
+//    function guardarCambios($id) {
+//        $this->ConectarBD();
+//        $sql = "UPDATE actividadgrupal SET nombreActividadGrupal ='" . $this->nombreActividadGrupal . "', descripcionActividadGrupal ='" . $this->descripcionActividadGrupal . "', numPlazasActividadGrupal ='" . $this->numPlazasActividadGrupal . "', diaActividadGrupal ='" . $this->diaActividadGrupal . "',hpraInicioActividadGruapl ='" . $this->horaInicioActividadGrupal . "', horaFinActividadGrupal ='" . $this->horaFinActividadGrupal . "',fechaInicioActividadGrupal'" . $this->fechaInicioActividadGrupal . "',fechaFinActividadGrupal'" . $this->fechaFinActividadGrupal . "',username='" . $this->username . "', idInstalacion ='" . $this->idInstalacion . "' WHERE idActividadGrupal = '" . $id . "'";
+//        $result = $this->mysqli->query($sql);
+//        return true;
+//    }
 
     function Modificar() {
         $this->ConectarBD();
         $sql = "SELECT * FROM actividadgrupal WHERE idActividadGrupal = '" . $this->idActividadGrupal . "'";
         $result = $this->mysqli->query($sql);
         if ($result->num_rows == 1) {
-
-            $sql = "UPDATE actividadgrupal SET nombreActividadGrupal ='" . $this->nombreActividadGrupal . "', descripcionActividadGrupal ='" . $this->descripcionActividadGrupal . "', numPlazasActividadGrupal ='" . $this->numPlazasActividadGrupal . "', username ='" . $this->username . "', idInstalacion ='" . $this->idInstalacion . "' WHERE idActividadGrupal = '" . $this->idActividadGrupal . "'";
+            $sql = "UPDATE actividadgrupal SET nombreActividadGrupal = '" . $this->nombreActividadGrupal . "', descripcionActividadGrupal = '" . $this->descripcionActividadGrupal . "', numPlazasActividadGrupal = '" . $this->numPlazasActividadGrupal . "', diaActividadGrupal = '" . $this->diaActividadGrupal . "',horaInicioActividadGrupal = '" . $this->horaInicioActividadGrupal . "', horaFinActividadGrupal = '" . $this->horaFinActividadGrupal . "',fechaInicioActividadGrupal ='" . $this->fechaInicioActividadGrupal . "',fechaFinActividadGrupal = '" . $this->fechaFinActividadGrupal . "',username='" . $this->username . "', idInstalacion ='" . $this->idInstalacion . "' WHERE idActividadGrupal = '" . $this->idActividadGrupal . "'";
             if (!($resultado = $this->mysqli->query($sql))) {
                 return "Error en la consulta sobre la base de datos";
             } else {

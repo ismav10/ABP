@@ -150,11 +150,23 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
                 
                 new ENTRENADOR_SELECT_SHOW($valores, $datos, 'ENTRENADOR_Controller.php');
             }
-        } else {
-            $_REQUEST['password'] = '';
-            $entrenador = get_data_form_Entrenador();
-            $respuesta = $entrenador->Borrar();
-            new Mensaje($respuesta, 'ENTRENADOR_Controller.php');
+        }
+
+        break;
+        
+        
+        case $strings['VerMonitor']:
+        if (!isset($_REQUEST['nombre'])) {
+            //Crea un usuario solo con el user para rellenar posteriormente sus datos y mostrarlos en el formulario
+            $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '', '');
+            $valores = $usuario->RellenaDatos();
+           $datos['actividades'] = $usuario->ConsultarActividades();
+            if (!tienePermisos('ENTRENADOR_SELECT_SHOW')) {
+                new Mensaje('No tienes los permisos necesarios', 'ACTIVIDAD_GRUPAL_Controller.php');
+            } else {
+                
+                new ENTRENADOR_SELECT_SHOW($valores, $datos, 'ACTIVIDAD_GRUPAL_Controller.php');
+            }
         }
 
         break;

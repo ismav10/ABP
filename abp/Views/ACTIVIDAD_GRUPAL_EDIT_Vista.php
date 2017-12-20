@@ -29,7 +29,7 @@ class ACTIVIDAD_GRUPAL_Modificar {
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['nombreActividadGrupal']; ?></label><br>
-                    <input class="form-control" id="nombreActividadGrupal" name="nombreActividadGrupal" size="80" type="text" required="true" value="<?php echo $this->valores['nombreActividadGrupal']; ?>">
+                    <input class="form" id="nombreActividadGrupal" name="nombreActividadGrupal" size="80" type="text" required="true" value="<?php echo $this->valores['nombreActividadGrupal']; ?>">
                 </div>
 
                 <div class="form-group">
@@ -39,9 +39,35 @@ class ACTIVIDAD_GRUPAL_Modificar {
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['numPlazasActividadGrupal']; ?></label><br>
-                    <input class="form-control" id="numPlazasActividadGrupal" name="numPlazasActividadGrupal" size="10" type="int" required="true" value="<?php echo $this->valores['numPlazasActividadGrupal']; ?>">
+                    <input class="form" id="numPlazasActividadGrupal" name="numPlazasActividadGrupal" size="10" type="int" required="true" value="<?php echo $this->valores['numPlazasActividadGrupal']; ?>">
                 </div>
 
+                
+                  <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['diaActividadGrupal']; ?></label><br>
+                    <input class="form" id="diaActividadGrupal" name="diaActividadGrupal" size="15" type="text" required="true" value="<?php echo $this->valores['diaActividadGrupal']; ?>">
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['horaInicioActividadGrupal']; ?></label><br>
+                    <input class="form" id="horaInicioActividadGrupal" name="horaInicioActividadGrupal" size="15" type="time" required="true" value="<?php echo $this->valores['horaInicioActividadGrupal']; ?>">
+                </div>
+                
+                   <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['horaFinActividadGrupal']; ?></label><br>
+                    <input class="form" id="horaFinActividadGrupal" name="horaFinActividadGrupal" type="time" required="true" value="<?php echo $this->valores['horaFinActividadGrupal']; ?>">
+                </div>
+                
+                   <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['fechaInicioActividadGrupal']; ?></label><br>
+                    <input class="form" id="fechaInicioActividadGrupal" name="fechaInicioActividadGrupal" size="15" type="date" required="true" value="<?php echo $this->valores['fechaInicioActividadGrupal']; ?>">
+                </div>
+                
+                   <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['fechaFinActividadGrupal']; ?></label><br>
+                    <input class="form" id="fechaFinActividadGrupal" name="fechaFinActividadGrupal" size="15" type="date" required="true" value="<?php echo $this->valores['fechaFinActividadGrupal']; ?>">
+                </div>
+                
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['username']; ?></label><br>
                     <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="username" name="username" required="true"> 
@@ -63,24 +89,25 @@ class ACTIVIDAD_GRUPAL_Modificar {
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['idInstalacion']; ?></label><br>
                     <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="idInstalacion" name="idInstalacion" required="true"> 
-                        <option selected><?php echo $this->valores['idInstalacion']; ?></option>
+                        <option selected><?php echo ConsultarNombreInstalacion($this->valores['idInstalacion']); ?></option>
                         <?php
                         for ($j = 0; $j < count($this->instalaciones); $j++) {
                             echo "<tr>";
                             foreach ($this->instalaciones [$j] as $clave => $valor) {
                                 echo "<td>";
                                 ?>
-                                <option><?php echo $valor; ?></option>
+                                <option><?php echo ConsultarNombreInstalacion($valor); ?></option>
                                 <?php
                             }
                         }
-                        ?>				 
+                        ?>					 
                     </select>
                 </div>
-
+                
+                
 
                 <input type = 'submit' name = 'accion' value = '<?php echo $strings['Modificar'] ?>'  onclick="return valida_envia_ACTIVIDAD_GRUPAL()" >
-                <button type="button" class="btn btn-info"><a href='ACTIVIDAD_GRUPAL_Controller.php'>Volver</a></button>
+                <a class="form-link" href='ACTIVIDAD_GRUPAL_Controller.php'>Volver</a>
             </form>
         </div>
 

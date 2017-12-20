@@ -47,7 +47,10 @@ class ACTIVIDAD_GRUPAL_Listar {
                                                 if ($clave === 'nombreActividadGrupal') {
                                                     ?>
                                             <a href='ACTIVIDAD_GRUPAL_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Ver']; ?>'><font color="#088A4B"><?php echo $valor; ?></font></a> <?php
-                                        } else if($clave === 'horaInicioActividadGrupal'){
+                                        } else if ($clave === 'username') {
+                                                ?>
+                                            <a href='ENTRENADOR_Controller.php?userName=<?php echo $this->datos[$j]['username'] . '&accion=' . $strings['VerMonitor']; ?>'><font color="#088A4B"><?php echo $valor; ?></font></a> <?php
+                                            } else if($clave === 'horaInicioActividadGrupal'){
                                             echo CambiarFormatoTiempoHoraInicio($this->datos[$j]['idActividadGrupal']);
                                         }else if($clave === 'horaFinActividadGrupal'){
                                             echo CambiarFormatoTiempoHoraFin($this->datos[$j]['idActividadGrupal']);
