@@ -27,6 +27,10 @@ class TABLA_ShowCurrent
 				  <th scope="col">'.$strings['ejercicionametabla'].'</th>
 				  <th scope="col">'.$strings['ejerciciodesctabla'].'</th>
 				  <th scope="col">'.$strings['ejerciciogiftabla'].'</th>
+				  <th scope="col">Repeticiones</th>
+				  <th scope="col">Series</th>
+				  <th scope="col">Duracion</th>
+				  <th scope="col"></th>
 				</tr>
 			  </thead><tbody>';
 		foreach($this->datos['ejercicios'] as $valor)
@@ -35,6 +39,10 @@ class TABLA_ShowCurrent
 			echo '<th>'.$valor['nombreEjercicio'].'</th>';
 			echo '<td>'.$valor['descripcionEjercicio'].'</td>';
 			echo '<td><img width="100" height="100" src="'.$valor['giftEjercicio'].'"/></td>';
+			echo '<td>'.$valor['numrepeticiones'].'</td>';
+			echo '<td>'.$valor['numseries'].'</td>';
+			echo '<td>'.$valor['duracion'].'</td>';
+			echo '<td><a href="?accion=desasignar&idtabla='.$_GET["id"].'&idejercicio='.$valor['idEjercicio'].'"><button type="button" class="btn btn-danger btn-sm">Desasignar</button></a></td>';
 			echo '</tr>';
 		}			
 	
