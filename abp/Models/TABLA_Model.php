@@ -96,16 +96,22 @@ WHERE (t1.username='".$username."') AND
         }
     }
 
-    function asignarEjercicios($idTabla, $listaEjercicios) {
+    function asignarEjercicios($idTabla, $listaEjercicio) {
         $this->ConectarBD();
 
-        foreach ($listaEjercicios as $ejercicioByName) {
-            $sql = "INSERT INTO `tabla_con_ejercicio`(`idTabla`, `idEjercicio`) VALUES ('" . $idTabla . "',(SELECT idEjercicio FROM ejercicio WHERE nombreEjercicio='" . $ejercicioByName . "'))";
-            if (!($resultado = $this->mysqli->query($sql))) {
-                return 'Error en la consulta sobre la base de datos.';
-            }
-        }
+		 $sql = "INSERT INTO `tabla_con_ejercicio`(`idTabla`, `idEjercicio`, `numrepeticiones`, `numseries`, `duracion`) VALUES (".$idTabla.",(SELECT idEjercicio FROM ejercicio WHERE nombreEjercicio='". $listaEjercicio[0] ."'),'".$listaEjercicio[1]."','".$listaEjercicio[2]."','".$listaEjercicio[3]."')";
+		 if (!($resultado = $this->mysqli->query($sql))) {
+				return 'Error en la consulta sobre la base de datos.';
+			}
     }
+	function desasignarEjercicio($idTabla, $idEjercicio)
+	{
+		$this->ConectarBD();
+		$sql = "DELETE FROM tabla_con_ejercicio WHERE idTabla='".$idTabla."' AND idEjercicio=".$idEjercicio."";
+		 if (!($resultado = $this->mysqli->query($sql))) {
+				return 'Error en la consulta sobre la base de datos.';
+			}
+	}
 
     function obtenerRelacion_TablaEjercicios($idTabla) {
         $this->ConectarBD();
