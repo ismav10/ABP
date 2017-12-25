@@ -1,18 +1,30 @@
-﻿
+
+
+
 DROP DATABASE IF EXISTS `muevet`;
 CREATE DATABASE IF NOT EXISTS `muevet` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 USE `muevet`;
 GRANT ALL PRIVILEGES ON * . * TO 'root'@'localhost';
 FLUSH PRIVILEGES;
 
+
+--
+-- Base de datos: `muevet`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `actividadgrupal`
+--
 -- phpMyAdmin SQL Dump
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2017 a las 21:19:21
--- Versión del servidor: 10.1.25-MariaDB
--- Versión de PHP: 5.6.31
+-- Tiempo de generación: 25-12-2017 a las 19:58:55
+-- Versión del servidor: 10.1.22-MariaDB
+-- Versión de PHP: 7.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -35,7 +47,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `actividadgrupal`
 --
 
-CREATE TABLE IF NOT EXISTS `actividadgrupal` (
+CREATE TABLE `actividadgrupal` (
   `idActividadGrupal` int(10) NOT NULL,
   `nombreActividadGrupal` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
   `descripcionActividadGrupal` text COLLATE utf8_spanish_ci,
@@ -50,22 +62,22 @@ CREATE TABLE IF NOT EXISTS `actividadgrupal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `deportista`
+-- Volcado de datos para la tabla `actividadgrupal`
 --
 
 INSERT INTO `actividadgrupal` (`idActividadGrupal`, `nombreActividadGrupal`, `descripcionActividadGrupal`, `numPlazasActividadGrupal`, `diaActividadGrupal`, `horaInicioActividadGrupal`, `horaFinActividadGrupal`, `fechaInicioActividadGrupal`, `fechaFinActividadGrupal`, `username`, `idInstalacion`) VALUES
-(1, 'Yoga A', 'AdÃ©ntrate en el mundo del fittness y aprende a conectar todos tus sentidos con tu cuerpo', 25, 'Lunes', '18:00:00', '19:30:00','2018-01-01','2018-01-31','entrenador', 1),
-(2, 'Yoga B', 'AdÃ©ntrate en el mundo del fittness y aprende a conectar todos tus sentidos con tu cuerpo', 25, 'MiÃ©rcoles', '18:00:00', '19:30:00','2018-01-01','2018-01-31','entrenador', 1),
-(3, 'Yoga C', 'AdÃ©ntrate en el mundo del fittness y aprende a conectar todos tus sentidos con tu cuerpo', 25, 'Jueves', '18:00:00', '19:30:00','2018-01-01','2018-01-31','entrenador', 1),
-(4, 'Yoga D', 'AdÃ©ntrate en el mundo del fittness y aprende a conectar todos tus sentidos con tu cuerpo', 25, 'Viernes', '18:00:00', '19:30:00','2018-01-01','2018-01-31','entrenador', 1),
-(5, 'Spinning A', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'Lunes', '16:00:00', '18:00:00', '2018-01-15','2018-02-15','entrenador2', 1),
-(6, 'Spinning B', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'MiÃ©rcoles', '16:00:00', '18:00:00', '2018-01-15','2018-02-15','entrenador2', 1),
-(7, 'Spinning C', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'Viernes', '16:00:00', '18:00:00', '2018-01-15','2018-02-15','entrenador2', 1),
-(8, 'Boxeo A', 'Deporte en que dos adversarios luchan con los puÃ±os enfundados en guantes especiales, para golpear al contrario por encima de la cintura.', 10, 'Martes', '19:30:00', '21:00:00', '2018-01-01','2018-02-01', 'entrenador2', 1),
-(9, 'Boxeo B', 'Deporte en que dos adversarios luchan con los puÃ±os enfundados en guantes especiales, para golpear al contrario por encima de la cintura.', 10, 'Jueves', '19:30:00', '21:00:00', '2018-01-01','2018-02-01', 'entrenador2', 1),
-(10, 'Body Pumb A', 'Programa de entrenamiento Les Mills con barras y discos que fortalece, tonifica y define la musculatura de todo el cuerpo', 10, 'Martes', '19:30:00', '21:00:00', '2018-01-10','2018-02-10', 'entrenador3', 2),
-(11, 'Body Pumb B', 'Programa de entrenamiento Les Mills con barras y discos que fortalece, tonifica y define la musculatura de todo el cuerpo', 10, 'MiÃ©rcoles', '19:30:00', '21:00:00', '2018-01-10','2018-02-10', 'entrenador3', 2),
-(12, 'Body Pumb C', 'Programa de entrenamiento Les Mills con barras y discos que fortalece, tonifica y define la musculatura de todo el cuerpo', 10, 'Jueves', '19:30:00', '21:00:00', '2018-01-10','2018-02-10', 'entrenador3', 2);
+(1, 'Yoga A', 'AdÃ©ntrate en el mundo del fittness y aprende a conectar todos tus sentidos con tu cuerpo', 25, 'Lunes', '18:00:00', '19:30:00', '2018-01-01', '2018-01-31', 'entrenador', 1),
+(2, 'Yoga B', 'AdÃ©ntrate en el mundo del fittness y aprende a conectar todos tus sentidos con tu cuerpo', 25, 'MiÃ©rcoles', '18:00:00', '19:30:00', '2018-01-01', '2018-01-31', 'entrenador', 1),
+(3, 'Yoga C', 'AdÃ©ntrate en el mundo del fittness y aprende a conectar todos tus sentidos con tu cuerpo', 25, 'Jueves', '18:00:00', '19:30:00', '2018-01-01', '2018-01-31', 'entrenador', 1),
+(4, 'Yoga D', 'AdÃ©ntrate en el mundo del fittness y aprende a conectar todos tus sentidos con tu cuerpo', 25, 'Viernes', '18:00:00', '19:30:00', '2018-01-01', '2018-01-31', 'entrenador', 1),
+(5, 'Spinning A', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'Lunes', '16:00:00', '18:00:00', '2018-01-15', '2018-02-15', 'entrenador2', 1),
+(6, 'Spinning B', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'MiÃ©rcoles', '16:00:00', '18:00:00', '2018-01-15', '2018-02-15', 'entrenador2', 1),
+(7, 'Spinning C', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'Viernes', '16:00:00', '18:00:00', '2018-01-15', '2018-02-15', 'entrenador2', 1),
+(8, 'Boxeo A', 'Deporte en que dos adversarios luchan con los puÃ±os enfundados en guantes especiales, para golpear al contrario por encima de la cintura.', 10, 'Martes', '19:30:00', '21:00:00', '2018-01-01', '2018-02-01', 'entrenador2', 1),
+(9, 'Boxeo B', 'Deporte en que dos adversarios luchan con los puÃ±os enfundados en guantes especiales, para golpear al contrario por encima de la cintura.', 10, 'Jueves', '19:30:00', '21:00:00', '2018-01-01', '2018-02-01', 'entrenador2', 1),
+(10, 'Body Pumb A', 'Programa de entrenamiento Les Mills con barras y discos que fortalece, tonifica y define la musculatura de todo el cuerpo', 10, 'Martes', '19:30:00', '21:00:00', '2018-01-10', '2018-02-10', 'entrenador3', 2),
+(11, 'Body Pumb B', 'Programa de entrenamiento Les Mills con barras y discos que fortalece, tonifica y define la musculatura de todo el cuerpo', 10, 'MiÃ©rcoles', '19:30:00', '21:00:00', '2018-01-10', '2018-02-10', 'entrenador3', 2),
+(12, 'Body Pumb C', 'Programa de entrenamiento Les Mills con barras y discos que fortalece, tonifica y define la musculatura de todo el cuerpo', 10, 'Jueves', '19:30:00', '21:00:00', '2018-01-10', '2018-02-10', 'entrenador3', 2);
 
 -- --------------------------------------------------------
 
@@ -73,7 +85,7 @@ INSERT INTO `actividadgrupal` (`idActividadGrupal`, `nombreActividadGrupal`, `de
 -- Estructura de tabla para la tabla `actividadindividual`
 --
 
-CREATE TABLE IF NOT EXISTS `actividadindividual` (
+CREATE TABLE `actividadindividual` (
   `idActividadIndividual` int(10) NOT NULL,
   `nombreActividadIndividual` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `descripcionActividadIndividual` text COLLATE utf8_spanish_ci
@@ -92,7 +104,7 @@ INSERT INTO `actividadindividual` (`idActividadIndividual`, `nombreActividadIndi
 -- Estructura de tabla para la tabla `deportista`
 --
 
-CREATE TABLE IF NOT EXISTS `deportista` (
+CREATE TABLE `deportista` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `tipoDeportista` char(3) COLLATE utf8_spanish_ci NOT NULL,
   `metodoPago` varchar(45) COLLATE utf8_spanish_ci NOT NULL
@@ -114,17 +126,16 @@ INSERT INTO `deportista` (`userName`, `tipoDeportista`, `metodoPago`) VALUES
 -- Estructura de tabla para la tabla `deportista_asignar_tabla`
 --
 
-CREATE TABLE IF NOT EXISTS `deportista_asignar_tabla` (
+CREATE TABLE `deportista_asignar_tabla` (
   `username` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `idTabla` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
 
 --
 -- Volcado de datos para la tabla `deportista_asignar_tabla`
 --
 
-INSERT INTO `deportista_asignar_tabla` (`userName`, `idTabla`) VALUES
+INSERT INTO `deportista_asignar_tabla` (`username`, `idTabla`) VALUES
 ('deportista1', 1),
 ('deportista1', 2),
 ('deportista1', 3),
@@ -137,7 +148,7 @@ INSERT INTO `deportista_asignar_tabla` (`userName`, `idTabla`) VALUES
 -- Estructura de tabla para la tabla `deportista_asistir_actividadgrupal`
 --
 
-CREATE TABLE IF NOT EXISTS `deportista_asistir_actividadgrupal` (
+CREATE TABLE `deportista_asistir_actividadgrupal` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `idActividadGrupal` int(10) NOT NULL,
   `fechaAsistencia` date NOT NULL
@@ -149,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `deportista_asistir_actividadgrupal` (
 -- Estructura de tabla para la tabla `deportista_inscribir_actividadgrupal`
 --
 
-CREATE TABLE IF NOT EXISTS `deportista_inscribir_actividadgrupal` (
+CREATE TABLE `deportista_inscribir_actividadgrupal` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `idActividadGrupal` int(10) NOT NULL,
   `estado` tinyint(1) DEFAULT '0',
@@ -162,42 +173,43 @@ CREATE TABLE IF NOT EXISTS `deportista_inscribir_actividadgrupal` (
 
 INSERT INTO `deportista_inscribir_actividadgrupal` (`userName`, `idActividadGrupal`, `estado`, `plazasDisponibles`) VALUES
 ('deportista1', 1, 0, 25),
-('deportista2', 1, 0, 25),
-('deportista3', 1, 0, 25),
 ('deportista1', 2, 1, 19),
-('deportista2', 3, 1, 9),
-('deportista3', 3, 0, 9),
 ('deportista1', 4, 1, 8),
+('deportista2', 1, 0, 25),
+('deportista2', 3, 1, 9),
 ('deportista2', 4, 1, 8),
+('deportista3', 1, 0, 25),
+('deportista3', 3, 0, 9),
 ('deportista3', 4, 0, 8);
-
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `deportista_inscribir_actividadgrupal`
+-- Estructura de tabla para la tabla `deportista_inscribir_actividadindividual`
 --
 
-CREATE TABLE IF NOT EXISTS `deportista_inscribir_actividadindividual` (
+CREATE TABLE `deportista_inscribir_actividadindividual` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `idActividadIndividual` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `deportista_inscribir_actividadgrupal`
+-- Volcado de datos para la tabla `deportista_inscribir_actividadindividual`
 --
+
 INSERT INTO `deportista_inscribir_actividadindividual` (`userName`, `idActividadIndividual`) VALUES
 ('deportista1', 1),
 ('deportista2', 1),
 ('deportista3', 1),
 ('deportista4', 1);
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `ejercicio`
 --
 
-CREATE TABLE IF NOT EXISTS `ejercicio` (
+CREATE TABLE `ejercicio` (
   `idEjercicio` int(10) NOT NULL,
   `nombreEjercicio` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `descripcionEjercicio` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
@@ -220,7 +232,7 @@ INSERT INTO `ejercicio` (`idEjercicio`, `nombreEjercicio`, `descripcionEjercicio
 -- Estructura de tabla para la tabla `entrenador`
 --
 
-CREATE TABLE IF NOT EXISTS `entrenador` (
+CREATE TABLE `entrenador` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `cuentaBanc` varchar(20) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -240,7 +252,7 @@ INSERT INTO `entrenador` (`userName`, `cuentaBanc`) VALUES
 -- Estructura de tabla para la tabla `funcionalidad`
 --
 
-CREATE TABLE IF NOT EXISTS `funcionalidad` (
+CREATE TABLE `funcionalidad` (
   `idFuncionalidad` int(10) NOT NULL,
   `nombreFuncionalidad` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `categoriaFuncionalidad` varchar(45) COLLATE utf8_spanish_ci NOT NULL
@@ -307,7 +319,7 @@ INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categori
 -- Estructura de tabla para la tabla `funcionalidad_pagina`
 --
 
-CREATE TABLE IF NOT EXISTS `funcionalidad_pagina` (
+CREATE TABLE `funcionalidad_pagina` (
   `idFuncionalidad` int(10) NOT NULL,
   `idPagina` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -353,14 +365,13 @@ INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
 (301, 301),
 (302, 302),
 (303, 303),
-(304,304),
+(304, 304),
 (400, 400),
 (401, 401),
 (402, 402),
 (403, 403),
 (404, 404),
 (405, 405),
-/*(406, 406),*/
 (450, 450),
 (451, 451),
 (452, 452),
@@ -374,7 +385,7 @@ INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
 -- Estructura de tabla para la tabla `funcionalidad_rol`
 --
 
-CREATE TABLE IF NOT EXISTS `funcionalidad_rol` (
+CREATE TABLE `funcionalidad_rol` (
   `idFuncionalidad` int(10) NOT NULL,
   `idRol` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -419,12 +430,12 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (104, 1),
 (104, 2),
 (150, 1),
-(151, 1),
-(152, 1),
 (150, 2),
-(151, 2),
-(152, 2),
 (150, 3),
+(151, 1),
+(151, 2),
+(152, 1),
+(152, 2),
 (153, 1),
 (153, 2),
 (153, 3),
@@ -455,7 +466,6 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (405, 1),
 (405, 2),
 (405, 3),
-/*(406, 3), */
 (450, 1),
 (451, 1),
 (452, 1),
@@ -475,7 +485,7 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 -- Estructura de tabla para la tabla `instalacion`
 --
 
-CREATE TABLE IF NOT EXISTS `instalacion` (
+CREATE TABLE `instalacion` (
   `idInstalacion` int(10) NOT NULL,
   `nombreInstalacion` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `descipcionInstalacion` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -496,7 +506,7 @@ INSERT INTO `instalacion` (`idInstalacion`, `nombreInstalacion`, `descipcionInst
 -- Estructura de tabla para la tabla `notificacion`
 --
 
-CREATE TABLE IF NOT EXISTS `notificacion` (
+CREATE TABLE `notificacion` (
   `idNotificacion` int(100) NOT NULL,
   `remitenteNotificacion` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `destinatarioNotificacion` text COLLATE utf8_spanish_ci NOT NULL,
@@ -520,7 +530,7 @@ INSERT INTO `notificacion` (`idNotificacion`, `remitenteNotificacion`, `destinat
 -- Estructura de tabla para la tabla `pagina`
 --
 
-CREATE TABLE IF NOT EXISTS `pagina` (
+CREATE TABLE `pagina` (
   `idPagina` int(10) NOT NULL,
   `linkPagina` varchar(55) COLLATE utf8_spanish_ci NOT NULL,
   `nombrePagina` varchar(80) COLLATE utf8_spanish_ci NOT NULL
@@ -574,7 +584,6 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 (403, '../Views/ACTIVIDAD_GRUPAL_SHOWCURRENT_Vista.php', 'ACTIVIDAD GRUPAL SHOWCURRENT'),
 (404, '../Views/ACTIVIDAD_GRUPAL_SHOWALL_Vista.php', 'ACTIVIDAD GRUPAL SHOWALL'),
 (405, '../Views/ACTIVIDAD_GRUPAL_SHOW_Vista.php', 'ACTIVIDAD GRUPAL SHOW'),
-/*(406, '../Views/ACTIVIDAD_GRUPAL_SHOW_SELECT_DEPORTISTA_Vista.php', 'ACTIVIDAD GRUPAL SELECT USER SHOW'), */
 (450, '../Views/ACTIVIDAD_INDIVIDUAL_ADD_Vista.php', 'ACTIVIDAD INDIVIDUAL ADD'),
 (451, '../Views/ACTIVIDAD_INDIVIDUAL_DELETE_Vista.php', 'ACTIVIDAD INDIVIDUAL DELETE'),
 (452, '../Views/ACTIVIDAD_INDIVIDUAL_EDIT_Vista.php', 'ACTIVIDAD INDIVIDUAL EDIT'),
@@ -582,14 +591,13 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 (454, '../Views/ACTIVIDAD_INDIVIDUAL_SHOWALL_Vista.php', 'ACTIVIDAD INDIVIDUAL SHOWALL'),
 (455, '../Views/ACTIVIDAD_INDIVIDUAL_SHOW_Vista.php', 'ACTIVIDAD INDIVIDUAL SHOW');
 
-
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `rol`
 --
 
-CREATE TABLE IF NOT EXISTS `rol` (
+CREATE TABLE `rol` (
   `idRol` int(10) NOT NULL,
   `nombreRol` varchar(45) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -609,16 +617,24 @@ INSERT INTO `rol` (`idRol`, `nombreRol`) VALUES
 -- Estructura de tabla para la tabla `sesion`
 --
 
-CREATE TABLE IF NOT EXISTS `sesion` (
+CREATE TABLE `sesion` (
   `idSesion` int(10) NOT NULL,
   `username` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `idTabla` int(10) NOT NULL,
   `fechaSesion` date NOT NULL,
-  `horaInicio` varchar(5) NOT NULL,
-  `horaFin` varchar(5) NOT NULL,
+  `horaInicio` varchar(5) COLLATE utf8_spanish_ci NOT NULL,
+  `horaFin` varchar(5) COLLATE utf8_spanish_ci NOT NULL,
   `comentarioSesion` text COLLATE utf8_spanish_ci,
   `idActividadIndividual` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `sesion`
+--
+
+INSERT INTO `sesion` (`idSesion`, `username`, `idTabla`, `fechaSesion`, `horaInicio`, `horaFin`, `comentarioSesion`, `idActividadIndividual`) VALUES
+(1, 'deportista1', 3, '2017-12-18', '18:00', '18:45', 'Okey', 1),
+(2, 'deportista1', 2, '2017-12-25', '18:25', '19:10', 'Uff', 1);
 
 -- --------------------------------------------------------
 
@@ -626,10 +642,10 @@ CREATE TABLE IF NOT EXISTS `sesion` (
 -- Estructura de tabla para la tabla `tabla`
 --
 
-CREATE TABLE IF NOT EXISTS `tabla` (
+CREATE TABLE `tabla` (
   `idTabla` int(10) NOT NULL,
-  `nombreTabla` varchar(50) NOT NULL,
-  `tipo` varchar(20) NOT NULL,
+  `nombreTabla` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `tipo` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `descripcionTabla` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -640,34 +656,35 @@ CREATE TABLE IF NOT EXISTS `tabla` (
 INSERT INTO `tabla` (`idTabla`, `nombreTabla`, `tipo`, `descripcionTabla`) VALUES
 (1, 'Tabla Pecho/Biceps 1', 'Estandar', 'Tabla Intensa'),
 (2, 'Tabla Hombro/Espalda 1', ' Estandar', 'Tabla Intensidad Media'),
-(3, 'Tabla Abdominal 1', 'Estandar' ,'Tabla Intensidad Baja'),
+(3, 'Tabla Abdominal 1', 'Estandar', 'Tabla Intensidad Baja'),
 (4, 'Tabla Hombro/Espalda 2', 'Personalizada', 'Tabla Intensidad Media'),
 (5, 'Tabla Abdominal 2', 'Personalizada', 'Tabla Intensidad Baja');
 
 -- --------------------------------------------------------
 
-
 --
 -- Estructura de tabla para la tabla `tabla_con_ejercicio`
 --
 
-CREATE TABLE IF NOT EXISTS `tabla_con_ejercicio` (
+CREATE TABLE `tabla_con_ejercicio` (
   `idTabla` int(10) NOT NULL,
-  `idEjercicio` int(10) NOT NULL
+  `idEjercicio` int(10) NOT NULL,
+  `numrepeticiones` int(10) DEFAULT NULL,
+  `numseries` int(10) DEFAULT NULL,
+  `duracion` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `tabla_con_ejercicio`
 --
 
-INSERT INTO `tabla_con_ejercicio` (`idTabla`, `idEjercicio`) VALUES
-(1, 1),
-(1, 2),
-(2, 2),
-(2, 3),
-(3, 3),
-(5, 3),
-(5, 4);
+INSERT INTO `tabla_con_ejercicio` (`idTabla`, `idEjercicio`, `numrepeticiones`, `numseries`, `duracion`) VALUES
+(1, 1, 1, 2, 3),
+(2, 2, NULL, NULL, NULL),
+(2, 3, NULL, NULL, NULL),
+(3, 3, NULL, NULL, NULL),
+(5, 3, NULL, NULL, NULL),
+(5, 4, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -675,8 +692,7 @@ INSERT INTO `tabla_con_ejercicio` (`idTabla`, `idEjercicio`) VALUES
 -- Estructura de tabla para la tabla `usuario`
 --
 
-
-CREATE TABLE IF NOT EXISTS `usuario` (
+CREATE TABLE `usuario` (
   `foto` varchar(500) COLLATE utf8_spanish_ci DEFAULT '../img/user.jpg',
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(128) COLLATE utf8_spanish_ci NOT NULL,
@@ -710,7 +726,7 @@ INSERT INTO `usuario` (`foto`, `userName`, `password`, `tipoUsuario`, `nombre`, 
 -- Estructura de tabla para la tabla `usuario_rol`
 --
 
-CREATE TABLE IF NOT EXISTS `usuario_rol` (
+CREATE TABLE `usuario_rol` (
   `userName` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   `idRol` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -718,6 +734,7 @@ CREATE TABLE IF NOT EXISTS `usuario_rol` (
 --
 -- Volcado de datos para la tabla `usuario_rol`
 --
+
 INSERT INTO `usuario_rol` (`userName`, `idRol`) VALUES
 ('admin', 1),
 ('deportista1', 3),
@@ -727,6 +744,10 @@ INSERT INTO `usuario_rol` (`userName`, `idRol`) VALUES
 ('entrenador', 2),
 ('entrenador2', 2),
 ('entrenador3', 2);
+
+--
+-- Índices para tablas volcadas
+--
 
 --
 -- Indices de la tabla `actividadgrupal`
@@ -770,11 +791,12 @@ ALTER TABLE `deportista_inscribir_actividadgrupal`
   ADD KEY `idActividadGrupal` (`idActividadGrupal`);
 
 --
--- Indices de la tabla `deportista_asistir_actividadindividual`
+-- Indices de la tabla `deportista_inscribir_actividadindividual`
 --
 ALTER TABLE `deportista_inscribir_actividadindividual`
   ADD PRIMARY KEY (`userName`,`idActividadIndividual`),
   ADD KEY `idActividadIndividual` (`idActividadIndividual`);
+
 --
 -- Indices de la tabla `ejercicio`
 --
@@ -879,27 +901,27 @@ ALTER TABLE `usuario_rol`
 -- AUTO_INCREMENT de la tabla `actividadgrupal`
 --
 ALTER TABLE `actividadgrupal`
-  MODIFY `idActividadGrupal` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idActividadGrupal` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `actividadindividual`
 --
 ALTER TABLE `actividadindividual`
-  MODIFY `idActividadIndividual` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `idActividadIndividual` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `ejercicio`
 --
 ALTER TABLE `ejercicio`
-  MODIFY `idEjercicio` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `idEjercicio` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `funcionalidad`
 --
 ALTER TABLE `funcionalidad`
-  MODIFY `idFuncionalidad` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=303;
+  MODIFY `idFuncionalidad` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=456;
 --
 -- AUTO_INCREMENT de la tabla `instalacion`
 --
 ALTER TABLE `instalacion`
-  MODIFY `idInstalacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idInstalacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `notificacion`
 --
@@ -909,7 +931,7 @@ ALTER TABLE `notificacion`
 -- AUTO_INCREMENT de la tabla `pagina`
 --
 ALTER TABLE `pagina`
-  MODIFY `idPagina` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=303;
+  MODIFY `idPagina` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=456;
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
@@ -919,12 +941,12 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `sesion`
 --
 ALTER TABLE `sesion`
-  MODIFY `idSesion` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `idSesion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tabla`
 --
 ALTER TABLE `tabla`
-  MODIFY `idTabla` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTabla` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `usuario_rol`
 --
