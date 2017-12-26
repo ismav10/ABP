@@ -224,6 +224,15 @@ function ConsultarSolicitudGrupal($idActividadGrupal) {
     return $result['estado'];
 }
 
+function ConsultarIdInstalacion($nombreActividadGrupal) {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT idInstalacion FROM Instalacion WHERE nombreInstalacion='" . $nombreActividadGrupal . "'";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['idInstalacion'];
+}
 
 function CambiarFormatoTiempoHoraInicio($idActividadGrupal){
     $mysqli = new mysqli("localhost", "root", "", "muevet");

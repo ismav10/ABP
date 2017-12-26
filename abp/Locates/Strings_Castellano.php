@@ -250,8 +250,13 @@ $strings = array(
   'fechaInicioActividadGrupal' => 'Fecha Inicio',
   'fechaFinActividadGrupal' =>'Fecha Fin',
   'La actividad grupal se ha modificado con exito' => 'La actividad grupal se ha modificado con éxito',
-  'Ya existe una actividad en esta fecha, instalacion y horario o el monitor esta ocupado' => 'Ya existe una actividad en esta fecha, instalación y horario o el monitor está ocupado'
-    
+  'Ya existe una actividad en esta fecha, instalacion y horario o el monitor esta ocupado' => 'Ya existe una actividad en esta fecha, instalación y horario o el monitor está ocupado',
+  'Lunes' => 'Lunes',
+  'Martes' =>'Martes',
+  'Miércoles' => 'Miércoles',
+  'Jueves'=> 'Jueves',
+  'Viernes' => 'Viernes',
+    'Consultar2' =>'Consultar2'
     
     
     

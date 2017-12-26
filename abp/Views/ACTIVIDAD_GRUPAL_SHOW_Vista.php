@@ -30,7 +30,7 @@ class ACTIVIDAD_GRUPAL_VerDetalle {
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['descripcionActividadGrupal']; ?></label><br>
-                    <textarea name="descripcionActividadGrupal" rows="10" cols="100" readonly="true"><?php echo $this->valores['nombreActividadGrupal']; ?></textarea>
+                    <textarea name="descripcionActividadGrupal" rows="10" cols="100" readonly="true"><?php echo $this->valores['descripcionActividadGrupal']; ?></textarea>
                 </div>
 
                 <div class="form-group">

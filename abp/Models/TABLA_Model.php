@@ -21,13 +21,10 @@ class TABLA_Model {
             echo "Fallo al conectar a MySQL: (" . $this->mysqli->connect_errno . ") " . $this->mysqli->connect_error;
         }
     }
-	function obtenerTablasUsuario($username)
-	{
+
+    function obtenerTablasUsuario($username) {
         $this->ConectarBD();
-        $sql = "SELECT t2.idTabla,t2.nombreTabla, t2.descripcionTabla
-FROM `deportista_asignar_tabla` as t1, tabla as t2
-WHERE (t1.username='".$username."') AND
-(t1.idTabla=t2.idTabla) GROUP BY t2.idTabla";
+        $sql = "SELECT t2.idTabla,t2.nombreTabla, t2.tipo, t2.descripcionTabla FROM `deportista_asignar_tabla` as t1, tabla as t2 WHERE (t1.username='" . $username . "') AND (t1.idTabla=t2.idTabla) GROUP BY t2.idTabla";
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
         } else {
@@ -40,6 +37,7 @@ WHERE (t1.username='".$username."') AND
             return $toret;
         }
     }
+
     function obtenerTablas() {
         $this->ConectarBD();
         $sql = "SELECT * FROM tabla";
@@ -88,7 +86,7 @@ WHERE (t1.username='".$username."') AND
 
     function modificarTabla($id) {
         $this->ConectarBD();
-        $sql = "UPDATE `tabla` SET nombreTabla='" . $this->nombreTabla . "',descripcionTabla='" . $this->descripcionTabla . "', tipo= '" . $this->tablaTipo. "' WHERE idTabla='" . $id . "'";
+        $sql = "UPDATE `tabla` SET nombreTabla='" . $this->nombreTabla . "',descripcionTabla='" . $this->descripcionTabla . "', tipo= '" . $this->tablaTipo . "' WHERE idTabla='" . $id . "'";
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
         } else {
@@ -99,19 +97,19 @@ WHERE (t1.username='".$username."') AND
     function asignarEjercicios($idTabla, $listaEjercicio) {
         $this->ConectarBD();
 
-		 $sql = "INSERT INTO `tabla_con_ejercicio`(`idTabla`, `idEjercicio`, `numrepeticiones`, `numseries`, `duracion`) VALUES (".$idTabla.",(SELECT idEjercicio FROM ejercicio WHERE nombreEjercicio='". $listaEjercicio[0] ."'),'".$listaEjercicio[1]."','".$listaEjercicio[2]."','".$listaEjercicio[3]."')";
-		 if (!($resultado = $this->mysqli->query($sql))) {
-				return 'Error en la consulta sobre la base de datos.';
-			}
+        $sql = "INSERT INTO `tabla_con_ejercicio`(`idTabla`, `idEjercicio`, `numrepeticiones`, `numseries`, `duracion`) VALUES (" . $idTabla . ",(SELECT idEjercicio FROM ejercicio WHERE nombreEjercicio='" . $listaEjercicio[0] . "'),'" . $listaEjercicio[1] . "','" . $listaEjercicio[2] . "','" . $listaEjercicio[3] . "')";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        }
     }
-	function desasignarEjercicio($idTabla, $idEjercicio)
-	{
-		$this->ConectarBD();
-		$sql = "DELETE FROM tabla_con_ejercicio WHERE idTabla='".$idTabla."' AND idEjercicio=".$idEjercicio."";
-		 if (!($resultado = $this->mysqli->query($sql))) {
-				return 'Error en la consulta sobre la base de datos.';
-			}
-	}
+
+    function desasignarEjercicio($idTabla, $idEjercicio) {
+        $this->ConectarBD();
+        $sql = "DELETE FROM tabla_con_ejercicio WHERE idTabla='" . $idTabla . "' AND idEjercicio=" . $idEjercicio . "";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        }
+    }
 
     function obtenerRelacion_TablaEjercicios($idTabla) {
         $this->ConectarBD();
