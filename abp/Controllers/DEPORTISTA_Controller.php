@@ -2,6 +2,7 @@
 
 //Controlador para la gestión de usuarios
 include '../Models/USUARIO_Model.php';
+//include '../Models/TABLA_Model.php';
 include '../Views/MENSAJE_Vista.php';
 
 
@@ -139,6 +140,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         }
         break;
 
+
     case $strings['Ver']:
         if (!isset($_REQUEST['nombre'])) {
             //Crea un usuario solo con el user para rellenar posteriormente sus datos y mostrarlos en el formulario
@@ -156,28 +158,80 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 
 
 
-    case $strings['Asignar']:
-            
-            $usuario = new USUARIO_Modelo('', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
-            $respuesta = $usuario->asignarTablas($_REQUEST['userName'], $_POST['asignacionTablas']);
-            new Mensaje($respuesta, 'DEPORTISTA_Controller.php');
-        
+    case $strings['AsignarT']:
+        require_once '../Views/DEPORTISTA_ASIGNAR_TABLA_Vista.php';
+        $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+        if (ConsultarTipoDeportista($_REQUEST['userName']) == 'PEF') {
+            $tabla = $usuario->obtenerTablasEstandar();
+        } else {
+            $tabla = $usuario->obtenerTablasPersonalizadas();
+        }
+        $tablas = $usuario->consultarTablas2();
+        $datos['selectedTablas'] = "";
+        foreach ($tabla as &$valor) {
+            $datos['selectedTablas'] .= "<option>" . $valor['nombreTabla'] . "</option>";
+        }
+        new DEPORTISTA_ASIGNAR_TABLA($tablas, $datos, '../Views/DEPORTISTA_Controller.php');
+        break;
 
+
+    case $strings['Asignar']:
+
+        $asign_data = $_POST;
+        $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+        $asign_data_formated = array_chunk($asign_data, 1, false);
+        foreach ($asign_data_formated as $key => $value) {
+            $respuesta = $usuario->asignarTablas($value);
+        }
+        new Mensaje($respuesta, '../Controllers/DEPORTISTA_Controller.php?accion=' . $strings['AsignarT'] . '&userName=' . $_REQUEST['userName']);
         break;
-    
-    
-    
+
+
+
+    case $strings['Desasignar']:
+        $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+        $usuario->desasignarTabla($_REQUEST['idTabla']);
+        echo '<script> location.replace("../Controllers/DEPORTISTA_Controller.php?accion=' . $strings['AsignarT'] . '&userName=' . $_REQUEST['userName'] . '"); </script>';
+        exit(0);
+        break;
+
+
     case $strings['MisActividades']:
-            
-            $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', '', '', '', '', '', '', '', '', '', '', '', '', '');
-            $datos = $usuario->consultarGrupalesDeportista();
-             if (!tienePermisos('DEPORTISTA_SHOW_GRUPALES')) {
-                new Mensaje('No tienes los permisos necesarios', 'DEPORTISTA_Controller.php');
-            } else {
-                new DEPORTISTA_SHOW_GRUPALES($datos, '../Views/DEFAULT_Vista.php');
-            }
+
+        $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+        $datos = $usuario->consultarGrupalesDeportista();
+        if (!tienePermisos('DEPORTISTA_SHOW_GRUPALES')) {
+            new Mensaje('No tienes los permisos necesarios', 'DEPORTISTA_Controller.php');
+        } else {
+            new DEPORTISTA_SHOW_GRUPALES($datos, '../Views/DEFAULT_Vista.php');
+        }
         break;
-    
+
+
+    case $strings['ActividadesGrupales']:
+
+        $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+        $datos = $usuario->consultarGrupalesDeportista();
+        if (!tienePermisos('DEPORTISTA_INSCRIBIR_ACTIVIDAD')) {
+            new Mensaje('No tienes los permisos necesarios', 'DEPORTISTA_Controller.php');
+        } else {
+            new DEPORTISTA_INSCRIBIR_ACTIVIDAD($datos, '../Views/DEFAULT_Vista.php');
+        }
+        break;
+
+
+
+    case $strings['DesasignarActividad']:
+
+        $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+        $usuario->desasignarActividad($_REQUEST['idActividadGrupal']);
+        echo '<script> location.replace("../Controllers/DEPORTISTA_Controller.php?accion=' . $strings['ActividadesGrupales'] . '&userName=' . $_REQUEST['userName'] . '"); </script>';
+        exit(0);
+        break;
+
+
+
+
 
     default: //Por defecto se realiza el show all
         if (!isset($_REQUEST['userName'])) {

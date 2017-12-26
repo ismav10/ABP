@@ -69,6 +69,8 @@ $strings = array(
 'Cerrar' => 'Cerrar',
 'Guardar' => 'Guardar',
 'Asignar' => 'Asignar',
+'Desasignar' =>'Desasignar',
+'ver' =>'ver',
 
 //USUARIOS
 'userName' => 'Usuario',
@@ -200,8 +202,8 @@ $strings = array(
 'tablaasignar' => 'Asignar Ejercicios',
 'tablamodificar' => 'Modificar',
 'tablaeliminar' => 'Eliminar', 
-'Personalizado' => 'Personalizado',
-'Estandar' => 'Estandar',
+'Personalizada' => 'Personalizada',
+'Estandar' => 'Estándar',
 'tablaTipo' => 'Tipo de Tabla',
     
 //ACTIVIDADES INDIVIDUALES
@@ -236,13 +238,14 @@ $strings = array(
     
   //Deportistas
   'VerEstadisticas' =>'Estadísticas',
-  'AsignarT' => 'Asignar Tabla',
+  'AsignarT' => 'AsignarTabla',
     
   //Entrenadores
   'VerActividadesImpartidas' => 'Actividades Impartidas',
     
     
   //Actividades Grupales
+  'ActividadesGrupales' => 'Actividades',
   'VerMonitor' => 'VerMonitor',
   'diaActividadGrupal' => 'Día',
   'horaInicioActividadGrupal' => 'Hora Inicio',
@@ -256,11 +259,16 @@ $strings = array(
   'Miércoles' => 'Miércoles',
   'Jueves'=> 'Jueves',
   'Viernes' => 'Viernes',
-    'Consultar2' =>'Consultar2'
+  'DesasignarActividad' => 'Desasignar Actividad',
     
     
+//ESTADUSTUCAS    
+ 'Estadisticas' => 'Estadisticas de sesiones del usuario ',
     
-    
+//TABLAS
+'tipo' => 'Tipo',
+'Tablas' => 'Tablas',
+'descripcionTabla' =>'Descripción',
     
 );
 ?>

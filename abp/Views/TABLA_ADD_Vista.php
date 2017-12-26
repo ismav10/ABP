@@ -26,7 +26,7 @@ class TABLA_ADD {
 				  <div class="col-10">
 					<select name="tablaTipo" id="tablaTipo"> 
                                              <option value=Estandar selected>' . $strings['Estandar'] . '</option> 
-                                             <option value=Personalizado>' . $strings['Personalizado'] . '</option> 
+                                             <option value=Personalizada>' . $strings['Personalizada'] . '</option> 
                                         </select>
 				  </div>
                                   </div>

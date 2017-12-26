@@ -6,7 +6,7 @@ class TABLA_ASIGN {
     private $volver;
 
     function __construct($array, $volver) {
-		$this->datos = $array;
+        $this->datos = $array;
         $this->volver = $volver;
         $this->render();
 		

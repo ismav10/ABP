@@ -146,6 +146,17 @@ function ConsultarTipoDeportista($userName) {
 }
 
 
+function ConsultarIDTabla($nombreTabla) {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT idTabla FROM Tabla WHERE nombreTabla='" . $nombreTabla . "'";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['idTabla'];
+}
+
+
 
 //Devuelve el id de un rol a partir del userName del usuario
 function ConsultarTipoUsuario($userName) {

@@ -103,18 +103,18 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         }
         break;
 
-
-    case $strings['Consultar']:
-
-        if ((!isset($_REQUEST['nombreActividadGrupal'])) || (!isset($_REQUEST['diaActividadGrupal'])) || (!isset($_REQUEST['horaInicioActividadGrupal'])) || (!isset($_REQUEST['horaFinActividadGrupal'])) || (!isset($_REQUEST['fechaInicioActividadGrupal'])) || (!isset($_REQUEST['fechaFinActividadGrupal'])) ||  (!isset($_REQUEST['username'])) || (!isset($_REQUEST['idInstalacion']))) {
-
-            if (!tienePermisos('ACTIVIDAD_GRUPAL_Consultar')) {
-                new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
-            }
-            $entrenadores = ListarEntrenadores();
-            $instalaciones = ListarInstalaciones();
-            new ACTIVIDAD_GRUPAL_Consultar('../Controllers/ACTIVIDAD_GRUPAL_Controller.php',$entrenadores, $instalaciones);
-       } 
+//
+//    case $strings['Consultar']:
+//
+//        if ((!isset($_REQUEST['nombreActividadGrupal'])) || (!isset($_REQUEST['diaActividadGrupal'])) || (!isset($_REQUEST['horaInicioActividadGrupal'])) || (!isset($_REQUEST['horaFinActividadGrupal'])) || (!isset($_REQUEST['fechaInicioActividadGrupal'])) || (!isset($_REQUEST['fechaFinActividadGrupal'])) ||  (!isset($_REQUEST['username'])) || (!isset($_REQUEST['idInstalacion']))) {
+//
+//            if (!tienePermisos('ACTIVIDAD_GRUPAL_Consultar')) {
+//                new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+//            }
+//            $entrenadores = ListarEntrenadores();
+//            $instalaciones = ListarInstalaciones();
+//            new ACTIVIDAD_GRUPAL_Consultar('../Controllers/ACTIVIDAD_GRUPAL_Controller.php',$entrenadores, $instalaciones);
+//       } 
 //        else {
 //            
 //            
@@ -174,65 +174,8 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 //        $datos = $actividadGrupal->Consultar();
 //        new ACTIVIDAD_GRUPAL_Listar($datos, '../Controllers/ACTIVIDAD_GRUPAL_Controller.php');
 //        }
-        break;
+//        break;
 
-
-        
-    case $strings['Consultar2']:
-        
-            if (!isset($_REQUEST['nombreActividadGrupal'])) {
-                $nombreActividadGrupal = '';
-            } else {
-                $nombreActividadGrupal = $_REQUEST['nombreActividadGrupal'];
-            }
-  
-            if (!isset($_REQUEST['$diaActividadGrupal'])) {
-                $diaActividadGrupal = '';
-            } else {
-                $diaActividadGrupal = $_REQUEST['$diaActividadGrupal'];
-            }
-            
-            if (!isset($_REQUEST['$horaInicioActividadGrupal'])) {
-                $horaInicioActividadGrupal = '';
-            } else {
-                $horaInicioActividadGrupal = $_REQUEST['$horaInicioActividadGrupal'];
-            }
-            
-             if (!isset($_REQUEST['$horaFinActividadGrupal'])) {
-                $horaFinActividadGrupal = '';
-            } else {
-                $horaFinActividadGrupal = $_REQUEST['$horaFinActividadGrupal'];
-            }
-            
-            if (!isset($_REQUEST['$fechaInicioActividadGrupal'])) {
-                $fechaInicioActividadGrupal = '';
-            } else {
-                $fechaInicioActividadGrupal = $_REQUEST['$fechaInicioActividadGrupal'];
-            }
-            
-             if (!isset($_REQUEST['$fechaFinActividadGrupal'])) {
-                $fechaFinActividadGrupal = '';
-            } else {
-                $fechaFinActividadGrupal = $_REQUEST['$fechaFinActividadGrupal'];
-            }
-            
-            if (!isset($_REQUEST['username'])) {
-                $username = '';
-            } else {
-                $username = $_REQUEST['username'];
-            }
-
-            if (!isset($_REQUEST['idInstalacion'])) {
-                $idInstalacion = '';
-            } else {
-                $idInstalacion = $_REQUEST['idInstalacion'];
-            }
-
-        $actividadGrupal = new ACTIVIDAD_GRUPAL_Model('', $nombreActividadGrupal, '', '', $diaActividadGrupal, $horaInicioActividadGrupal, $horaFinActividadGrupal, $fechaInicioActividadGrupal, $fechaFinActividadGrupal, $username, $idInstalacion);
-        $datos = $actividadGrupal->Consultar();
-        new ACTIVIDAD_GRUPAL_Listar($datos, '../Controllers/ACTIVIDAD_GRUPAL_Controller.php');
-        
-        break;
         
     case $strings['Ver']:
 

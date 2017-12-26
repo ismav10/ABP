@@ -98,7 +98,7 @@ class USUARIO_Modelo {
                         if ($this->tipoUsuario == 3) {
                             $sql = "INSERT INTO DEPORTISTA (userName, tipoDeportista, metodoPago) VALUES ( '" . $this->userName . "', '" . $this->tipoDeportista . "', '" . $this->medotoPago . "');";
                             $this->mysqli->query($sql);
-                            
+
                             $sqlAux = "INSERT INTO DEPORTISTA_INSCRIBIR_ACTIVIDADINDIVIDUAL  VALUES ( '" . $this->userName . "', 1);";
                             $this->mysqli->query($sqlAux);
                         }
@@ -235,7 +235,7 @@ class USUARIO_Modelo {
 
     function obtenerTablasEstandar() {
         $this->ConectarBD();
-        $sql = "SELECT * FROM tabla WHERE tipo = 'Estandar'";
+        $sql = "SELECT DISTINCTROW * FROM Tabla WHERE idTabla NOT IN (SELECT idTabla FROM deportista_asignar_tabla WHERE username= '" . $this->userName . "') AND tipo='Estandar'";
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
         } else {
@@ -251,7 +251,7 @@ class USUARIO_Modelo {
 
     function obtenerTablasPersonalizadas() {
         $this->ConectarBD();
-        $sql = "SELECT * FROM tabla WHERE tipo = 'Personalizada'";
+        $sql = "SELECT DISTINCTROW * FROM Tabla WHERE idTabla NOT IN (SELECT idTabla FROM deportista_asignar_tabla WHERE username= '" . $this->userName . "') AND tipo='Personalizada'";
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
         } else {
@@ -281,6 +281,22 @@ class USUARIO_Modelo {
         }
     }
 
+    function consultarTablas2() {
+        $this->ConectarBD();
+        $sql = "SELECT Tabla.idTabla, Tabla.nombreTabla, Tabla.tipo, Tabla.descripcionTabla FROM Tabla, deportista_asignar_tabla WHERE Tabla.idTabla=deportista_asignar_tabla.idTabla AND deportista_asignar_tabla.username = '" . $this->userName . "'";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            return $toret;
+        }
+    }
+
     function consultarActividades() {
         $this->ConectarBD();
         $sql = "SELECT * FROM ACTIVIDADGRUPAL WHERE username = '" . $this->userName . "'";
@@ -297,24 +313,41 @@ class USUARIO_Modelo {
         }
     }
 
-    function asignarTablas($userName, $listaTablas) {
+    function asignarTablas($listaTablas) {
         $this->ConectarBD();
-
-        foreach ($listaTablas as $tablaByName) {
-            $sqlAux = "SELECT COUNT(*) FROM deportista_asignar_tabla WHERE username = '" . $userName . "'";
+        foreach ($listaTablas as $tabla) {
+            $sqlAux = "SELECT COUNT(*) FROM deportista_asignar_tabla WHERE username = '" . $this->userName . "'";
             $resultAux = $this->mysqli->query($sqlAux)->fetch_array();
             if ($resultAux['COUNT(*)'] >= 5) {
                 return 'Ya han sido asignadas 5 tablas para este deportista';
             } else {
-                $sql = "INSERT INTO DEPORTISTA_ASIGNAR_TABLA VALUES ('" . $userName . "',(SELECT idTabla FROM TABLA WHERE nombreTabla='" . $tablaByName . "'))";
-                if (!($resultado = $this->mysqli->query($sql))) {
-                    return 'La tabla ya ha sido asignada a este usuario';
-                } else {
-                    return 'La tabla se ha asignado correctamente';
-                }
+                $sql = "INSERT INTO DEPORTISTA_ASIGNAR_TABLA VALUES ('" . $this->userName . "',(SELECT idTabla FROM TABLA WHERE nombreTabla='" . $tabla . "'))";
+            }if (!($resultado = $this->mysqli->query($sql))) {
+                return 'La tabla ya ha sido asignada a este usuario';
+            } else {
+                return 'La tabla se ha asignado correctamente';
             }
         }
     }
+
+    function desasignarTabla($idTabla) {
+        $this->ConectarBD();
+        $sql = "DELETE FROM deportista_asignar_tabla WHERE idTabla='" . $idTabla . "' AND username= '" . $this->userName . "'";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        }
+    }
+    
+    
+    function desasignarActividad($idActividadGrupal) {
+        $this->ConectarBD();
+        $sql = "DELETE FROM deportista_inscribir_actividadgrupal WHERE idActividadGrupal='" . $idActividadGrupal . "' AND userName= '" . $this->userName . "'";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        }
+    }
+    
+    
 
     function ConsultarGrupalesDeportista() {
 

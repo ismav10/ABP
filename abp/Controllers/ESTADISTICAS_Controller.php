@@ -27,7 +27,7 @@ Switch ($_REQUEST['accion'])
         //if (!tienePermisos('SESION_Listar')) {
             //new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         //} else {
-            $sesion = new SESION_Model($_SESSION['login'], '', '', '', '', '', '', '');
+            $sesion = new SESION_Model($_REQUEST['userName'], '', '', '', '', '', '', '');
             $datos = "";
 			require_once '../Views/ESTADISTICAS_SHOWALL.php';
             new ESTADISTICAS_SHOWALL($datos, 'SESION_Controller.php');
