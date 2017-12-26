@@ -176,7 +176,7 @@ class DEPORTISTA_Show {
                                     <?php
                                 }
                                 ?>
-                                 <td><button type="button" class="btn btn"><a href='ESTADISTICA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['VerEstadisticas']; ?>'><?php echo $strings['VerEstadisticas']; ?></a></button></td>
+                                 <td><button type="button" class="btn btn"><a href='ESTADISTICAS_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['VerEstadisticas']; ?>'><?php echo $strings['VerEstadisticas']; ?></a></button></td>
                                 <?php
                             }
                             ?>
