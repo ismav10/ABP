@@ -97,7 +97,7 @@ class TABLA_Model {
     function asignarEjercicios($idTabla, $listaEjercicio) {
         $this->ConectarBD();
 
-        $sql = "INSERT INTO `tabla_con_ejercicio`(`idTabla`, `idEjercicio`, `numrepeticiones`, `numseries`, `duracion`) VALUES (" . $idTabla . ",(SELECT idEjercicio FROM ejercicio WHERE nombreEjercicio='" . $listaEjercicio[0] . "'),'" . $listaEjercicio[1] . "','" . $listaEjercicio[2] . "','" . $listaEjercicio[3] . "')";
+        $sql = "INSERT INTO `tabla_con_ejercicio`(`idTabla`, `idEjercicio`, `numseries`, `numrepeticiones`, `duracion`) VALUES (" . $idTabla . ",(SELECT idEjercicio FROM ejercicio WHERE nombreEjercicio='" . $listaEjercicio[0] . "'),'" . $listaEjercicio[1] . "','" . $listaEjercicio[2] . "','" . $listaEjercicio[3] . "')";
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
         }

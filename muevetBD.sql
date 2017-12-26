@@ -221,10 +221,39 @@ CREATE TABLE `ejercicio` (
 --
 
 INSERT INTO `ejercicio` (`idEjercicio`, `nombreEjercicio`, `descripcionEjercicio`, `giftEjercicio`) VALUES
-(1, 'Press Banca', '10 SERIES de 10 REPETICIONES con Mancuernas de 10KG', 'https://medellinfit-medellinfit.netdna-ssl.com/wp-content/uploads/2016/03/Press-de-banca-con-mancuernas.gif'),
-(2, 'Press Banca 2', '40 SERIES de 10 REPETICIONES con Mancuernas de 15KG', 'https://medellinfit-medellinfit.netdna-ssl.com/wp-content/uploads/2016/03/Press-de-banca-con-mancuernas.gif'),
-(3, 'Abdominal PET', '10 SERIES de 10 REPETICIONES con Descanso', 'https://thumbs.gfycat.com/OrderlyAstonishingCow-max-1mb.gif'),
-(4, 'Abdominal Extreme', '100 SERIES de 15 REPETICIONES sin Descanso', 'https://thumbs.gfycat.com/OrderlyAstonishingCow-max-1mb.gif');
+(1, 'Cinta de Correr', 'Trotar de menos a mÃ¡s', 'http://bicicletaeliptica.org/wp-content/uploads/2016/05/chica-corriendo-en-cinta-de-correr.jpg'),
+(2, 'Bicicleta EstÃ¡tica', 'Andar en la bicleta estÃ¡tica de menos a mÃ¡s.','https://images-na.ssl-images-amazon.com/images/I/71R2L1-eeOL._SL1500.jpg'),
+(3, 'Bicicleta ElÃ­ptica', 'Andar en la bicleta elÃ­ptica de menos a mÃ¡s.', 'https://www.decathlon.es/media/835/8358831/big_d3737dee-2c16-47ef-9d5c-9def26d4ec40.jpg'),
+(4, 'Prensa de Pecho en Banco', 'RecuÃ©state de espalda sobre un banco y sujeta 2 mancuernas al nivel del pecho, a los lados del cuerpo, con las palmas apuntando hacia tus pies', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/1.gif'),
+(5, 'Prensa de Pecho en Banco (EmpuÃ±adura Neutral', 'RecuÃ©state de espalda sobre un banco y sujeta 2 mancuernas al nivel del pecho, a los lados del cuerpo, con las palmas apuntando una hacia otra.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/2.gif'),
+(6, 'Prensa de Pecho en Banco - Inclinada', 'RecuÃ©state de espalda sobre un banco inclinado y sujeta 2 mancuernas al nivel del pecho, a los lados del cuerpo, con las palmas apuntando hacia adelante.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/3.gif'),
+(7, 'Prensa de Pecho en Banco - Declinada', 'RecuÃ©state de espalda sobre un banco declinado y sujeta 2 mancuernas al nivel del pecho, con las palmas apuntando hacia adelante.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/5.gif'),
+(8, 'Apertura - Inclinada', 'RecuÃ©state de espalda sobre un banco inclinado y coge una mancuerna con cada mano a la altura del cuerpo, con tus codos ligeramente arqueados.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/7.gif'),
+(9, 'Pullover - Brazos Rectos', 'RecuÃ©state de espalda sobre uno de los extremos del banco y sujeta una mancuerna con ambas manos por sobre el Ã¡rea de tu pecho, con los brazos extendidos.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/8.gif'),
+(10, 'Pullover - Brazos Flexionados', 'RecuÃ©state de espalda sobre uno de los extremos del banco y sujeta 2 mancuernas por debajo del nivel de tu cabeza, con los codos formando un Ã¡ngulo de 90 grados.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/9.gif'),
+(11, 'Prensa de Hombros', 'Ponte de pie y sujeta dos mancuernas cerca de tus hombros, con las palmas apuntando hacia adelante.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/hombros/images/5.gif'),
+(12, 'Vuelos Laterales', 'Ponte de pie y sujeta una mancuerna con cada mano frente a tus caderas, con las palmas apuntando una hacia otra.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/hombros/images/8.gif'),
+(13, 'Remo Vertical', 'Ponte de pie y sujeta una mancuerna en cada mano enfrente de tus muslos.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/hombros/images/15.gif'),
+(14, 'Vuelos Frontales', 'Ponte de pie y sujeta una mancuerna con cada mano frente a tus muslos, con las palmas apuntando hacia tu cuerpo.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/hombros/images/16.gif'),
+(15, 'Prensa Superior', 'Ponte de pie y sujeta dos mancuernas justo por encima de tus hombros, con las palmas apuntando una hacia otra, y las rodillas arqueadas.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/hombros/images/18.gif'),
+(16, 'Encogimiento de Hombros', 'Ponte de pie y sujeta una mancuerna con cada mano frente a tus muslos, con las palmas apuntando hacia tu cuerpo.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/hombros/images/17.gif'),
+(17, 'Flexiones de BÃ­ceps', 'Ponte de pie y sujeta una mancuerna con cada mano, a los costados de tu cuerpo, con las palmas apuntando una hacia otra.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/biceps/images/4.gif'),
+(18, 'Flexiones Martillo', 'Coge una mancuerna con cada mano, hacia los costados de tu cuerpo, con las palmas apuntando hacia tu cuerpo.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/biceps/images/5.gif'),
+(19, 'Flexiones de BÃ­ceps Inclinado', 'SiÃ©ntate sobre un banco inclinado y sujeta una mancuerna con cada mano, con las palmas de tu mano apuntando una hacia otra.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/biceps/images/9.gif'),
+(20, 'Flexiones de BÃ­ceps Supinadoras', 'RecuÃ©state de espalda sobre un banco y sujeta una mancuerna con cada mano hacia cada lado de tu cuerpo, por debajo de la altura del cuerpo, con las palmas apuntando hacia arriba.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/biceps/images/18.gif'),
+(21, 'Apertura de Espalda', 'RecuÃ©state sobre tu pecho en el banco y coge dos mancuernas con tus manos, con los codos formando Ã¡ngulos de 90 grados.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/espalda/images/9.gif'),
+(22, 'Peso Muerto', 'Ponte de pie y sujeta una mancuerna con cada una de tus manos.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/espalda/images/5.gif'),
+(23, 'Remo Arrodillado - A Un Brazo', 'ColÃ³cate en posiciÃ³n inclinada hacia adelante enfrente de un banco, mientras sostienes una mancuerna con una mano (con el brazo extendido).', 'http://www.ejercicios-con-mancuernas.com/ejercicios/espalda/images/4.gif'),
+(24, 'Flexiones al Pie Opuesto', 'Ponte de pie y estÃ­rate hacia abajo de modo de tomar dos mancuernas con ambas manos (las rodillas ligeramente flexionadas).', 'http://www.ejercicios-con-mancuernas.com/ejercicios/espalda/images/6.gif'),
+(25, 'Sentadillas', 'Ponte de pie y sujeta una mancuerna en cada mano a los costados de tu cuerpo, con las palmas apuntando hacia tu cuerpo.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/piernas/images/2.gif'),
+(26, 'Estocadas EstÃ¡ticas', 'Ponte de pie con un pie al frente, el otro atrÃ¡s y sujeta una mancuerna en cada mano a los costados de tu cuerpo, con las palmas apuntando una hacia la otra.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/piernas/images/3.gif'),
+(27, 'ElevaciÃ³n de Punta del Pie - A Una Pierna', 'PÃ¡rate en un pie sobre un pequeÃ±o escalÃ³n y sujeta una mancuerna con una mano contra el costado de tu cuerpo.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/piernas/images/8.gif'),
+(28, 'Peso Muerto - Piernas Rectas', 'Ponte de pie y sujeta una mancuerna en cada mano contra los costados de tu cuerpo, con las palmas apuntando una hacia la otra.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/piernas/images/6.gif'),
+(29, 'Encogimientos - Con Carga', 'RecuÃ©state de espalda sobre un banco y sujeta una mancuerna por encima de tu pecho.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/abdominales/images/1.gif'),
+(30, 'Elevaciones de Piernas - Con Carga', 'RecuÃ©state de espalda sobre el banco, con tus manos agarrando los costados del mismo y sujeta una mancuerna entre tus pies.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/abdominales/images/2.gif'),
+(31, 'Flexiones Laterales con Mancuernas', 'Sujeta una mancuerna con una mano, al costado de tu cuerpo.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/abdominales/images/3.gif'),
+(32, 'Navajas con Pelota', 'Coloca tus tobillos por encima de la pelota de ejercitaciÃ³n, las piernas extendidas, el pecho apuntando hacia el suelo y extiende tus brazos para levantarte del suelo.', 'http://www.ejercicios-con-pelotas.com/ejercicios/abdominales/images/ball-jacknife.gif'),
+(33, 'Plancha sobre Pelota', 'Ponte de rodillas, coloca tus antebrazos por encima de la pelota de ejercitaciÃ³n frente a ti, los codos con un Ã¡ngulo de 90 grados y la espalda recta.', 'http://www.ejercicios-con-pelotas.com/ejercicios/abdominales/images/ball-table-top.gif');
 
 -- --------------------------------------------------------
 
@@ -663,12 +692,15 @@ CREATE TABLE `tabla` (
 --
 
 INSERT INTO `tabla` (`idTabla`, `nombreTabla`, `tipo`, `descripcionTabla`) VALUES
-(1, 'Tabla Pecho/Biceps 1', 'Estandar', 'Tabla Intensa'),
-(2, 'Tabla Hombro/Espalda 1', ' Estandar', 'Tabla Intensidad Media'),
-(3, 'Tabla Abdominal 1', 'Estandar', 'Tabla Intensidad Baja'),
+(1, 'Tabla Pecho/Biceps 1', 'EstÃ¡ndar', 'Tabla Intensidad Alta'),
+(2, 'Tabla Hombro/Espalda 1', ' EstÃ¡ndar', 'Tabla Intensidad Media'),
+(3, 'Tabla Abdominal 1', 'EstÃ¡ndar', 'Tabla Intensidad Baja'),
 (4, 'Tabla Hombro/Espalda 2', 'Personalizada', 'Tabla Intensidad Media'),
-(5, 'Tabla Abdominal 2', 'Personalizada', 'Tabla Intensidad Baja');
-
+(5, 'Tabla Abdominal 2', 'Personalizada', 'Tabla Intensidad Baja'),
+(6, 'Tabla Pierna 1', 'Personalizada', 'Tabla Intensidad Baja'),
+(7, 'Tabla Pierna 2', 'Personalizada', 'Tabla Intensidad Media'),
+(8, 'Tabla Abdominal 3', 'EstÃ¡ndar', 'Tabla Intensidad Media'),
+(9, 'Tabla Pecho/Biceps 2', 'EstÃ¡ndar', 'Tabla Intensidad Alta');
 -- --------------------------------------------------------
 
 --
@@ -678,8 +710,8 @@ INSERT INTO `tabla` (`idTabla`, `nombreTabla`, `tipo`, `descripcionTabla`) VALUE
 CREATE TABLE `tabla_con_ejercicio` (
   `idTabla` int(10) NOT NULL,
   `idEjercicio` int(10) NOT NULL,
-  `numrepeticiones` int(10) DEFAULT NULL,
   `numseries` int(10) DEFAULT NULL,
+  `numrepeticiones` int(10) DEFAULT NULL,
   `duracion` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -687,13 +719,57 @@ CREATE TABLE `tabla_con_ejercicio` (
 -- Volcado de datos para la tabla `tabla_con_ejercicio`
 --
 
-INSERT INTO `tabla_con_ejercicio` (`idTabla`, `idEjercicio`, `numrepeticiones`, `numseries`, `duracion`) VALUES
-(1, 1, 1, 2, 3),
-(2, 2, NULL, NULL, NULL),
-(2, 3, NULL, NULL, NULL),
-(3, 3, NULL, NULL, NULL),
-(5, 3, NULL, NULL, NULL),
-(5, 4, NULL, NULL, NULL);
+INSERT INTO `tabla_con_ejercicio` (`idTabla`, `idEjercicio`, `numseries`, `numrepeticiones`, `duracion`) VALUES
+(1, 31, 3, 15, 0),
+(1, 32, 4, 12, 0),
+(1, 33, 4, 12, 0),
+(1, 4, 4, 12, 0),
+(1, 5, 4, 12, 0),
+(1, 1, 1, 0, 20),
+(1, 3, 2, 0, 15),
+(2, 8, 10, 3, 0),
+(2, 9, 12, 3, 0),
+(2, 10, 10, 4, 0),
+(2, 13, 15, 3, 0),
+(2, 31, 0, 2, 10),
+(3, 26, 0, 4, 1),
+(3, 27, 0, 4, 1),
+(3, 29, 0, 4, 1),
+(3, 30, 0, 4, 1),
+(3, 31, 0, 4, 1),
+(3, 1, 0, 2, 20),
+(3, 3, 0, 2, 20),
+(4, 9, 10, 4, 0),
+(4, 10, 10, 4, 0),
+(4, 13, 10, 4, 0),
+(4, 14, 10, 4, 0),
+(4, 15, 10, 4, 0),
+(4, 31, 30, 4, 0),
+(4, 1, 0, 2, 10),
+(4, 2, 0, 2, 10),
+(6, 21, 12, 4, 0),
+(6, 22, 12, 4, 0),
+(6, 23, 12, 4, 0),
+(6, 25, 12, 4, 0),
+(6, 1, 0, 1, 15),
+(6, 2, 0, 0, 20),
+(6, 3, 0, 2, 10),
+(7, 22, 15, 3, 0),
+(7, 23, 15, 3, 0),
+(7, 25, 15, 3, 0),
+(7, 26, 30, 4, 0),
+(7, 30, 30, 4, 0),
+(7, 31, 30, 4, 0),
+(7, 1, 0, 2, 20),
+(9, 6, 10, 4, 0),
+(9, 7, 10, 4, 0),
+(9, 8, 15, 4, 0),
+(9, 9, 10, 4, 0),
+(9, 10, 10, 4, 0),
+(9, 13, 25, 4, 0),
+(9, 19, 10, 4, 0),
+(9, 22, 10, 4, 0),
+(9, 29, 25, 4, 0);
 
 -- --------------------------------------------------------
 

@@ -229,10 +229,6 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         exit(0);
         break;
 
-
-
-
-
     default: //Por defecto se realiza el show all
         if (!isset($_REQUEST['userName'])) {
             $usuario = new USUARIO_Modelo('', '', '', '', '', '', '', '', '', '', '', '', '', '', '');

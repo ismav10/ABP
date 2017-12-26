@@ -24,8 +24,8 @@ class TABLA_ASIGN {
 					<tr>
 					  <th scope="col">#</th>
 					  <th scope="col">Ejercicio</th>
+                                          <th scope="col">Num. Series</th>
 					  <th scope="col">Num. Repeticiones</th>
-					  <th scope="col">Num. Series</th>
 					  <th scope="col">Duración</th>
 					  <th scope="col"></th>
 					</tr>
@@ -51,9 +51,9 @@ $(document).ready(function () {
 
         cols += '<td>'+counter+ '</td>';
         cols += '<td><select class="form-control" id="sel1" name="select'+counter+'"><?php echo $this->datos['selectejercicios']; ?></select></td>';
+        cols += '<td><input type="text" class="form-control" placeholder="Series" name="series' + counter + '"/></td>';
         cols += '<td><input type="text" class="form-control" placeholder="Repeticiones" name="repeticiones' + counter + '"/></td>';
-		cols += '<td><input type="text" class="form-control" placeholder="Series" name="series' + counter + '"/></td>';
-		cols += '<td><input type="text" class="form-control" placeholder="Duracion" name="duracion' + counter + '"/></td>';
+        cols += '<td><input type="text" class="form-control" placeholder="Duracion" name="duracion' + counter + '"/></td>';
 
         cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Eliminar fila"></td>';
 		newRow.append(cols);
