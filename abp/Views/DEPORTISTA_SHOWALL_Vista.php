@@ -1,16 +1,4 @@
-<script type="text/javascript">
-    function changeIdAction(id)
-    {
-        document.getElementById("frmAsignar").action += id;
-    }
-</script>
 
-<script type="text/javascript">
-    function changeIdAction1(id)
-    {
-        document.getElementById("frmAsignar1").action += id;
-    }
-</script>
 
 
 <?php
@@ -46,77 +34,6 @@ class DEPORTISTA_Show {
                     <a href='DEPORTISTA_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><img src="../img/useradd.png" width="50px" height="50px"></a>
                     <?php } ?>
                 </div>
-
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <form id="frmAsignar" method="POST" action="?accion=<?php echo $strings['Asignar']; ?>&userName=">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel"><?php echo $strings['AsignarTablaDeportista']; ?></h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="sel1"><?php echo $strings['SeleccionaTabla']; ?></label>
-                                        <select multiple class="form-control" id="sel2" name="asignacionTablas[]">
-                                            <?php
-                                            foreach ($this->tablasEstandar['tablas'] as $valor) {
-                                                echo '<option>' . ConsultarNombreTabla($valor['0']) .'</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </div> 
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $strings['Cerrar']; ?></button>
-                                    <button type="submit" class="btn btn-primary"><?php echo $strings['Guardar']; ?></button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                
-                
-                
-                <!-- Modal -->
-                <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <form id="frmAsignar1" method="POST" action="?accion=<?php echo $strings['Asignar']; ?>&userName=">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel1"><?php echo $strings['AsignarTablaDeportista']; ?></h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="sel1"><?php echo $strings['SeleccionaTabla']; ?></label>
-                                        <select multiple class="form-control" id="sel1" name="asignacionTablas[]">
-                                            <?php
-                                            foreach ($this->tablasPersonalizadas['tablas'] as $valor) {
-                                                echo '<option>'. ConsultarNombreTabla($valor['0']) . '</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </div> 
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $strings['Cerrar']; ?></button>
-                                    <button type="submit" class="btn btn-primary"><?php echo $strings['Guardar']; ?></button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                
-                
-
 
                 <table class="table">
                     <thead class="thead-dark">
@@ -170,7 +87,7 @@ class DEPORTISTA_Show {
                         <td><button type="button" class="btn btn-danger"><a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Borrar']; ?>'><?php echo $strings['Borrar']; ?></a></button></td>
                         <td><button type="button" class="btn btn-success"><a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['AsignarT']; ?>'><?php echo $strings['Tablas']; ?></a></button></td>
                         <td><button type="button" class="btn btn-primary"><a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['ActividadesGrupales']; ?>'><?php echo $strings['ActividadesGrupales']; ?></a></button></td>
-                        <td><button type="button" class="btn btn"><a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['VerEstadisticas']; ?>'><?php echo $strings['VerEstadisticas']; ?></a></button></td>
+                        <td><button type="button" class="btn btn"><a href='ESTADISTICAS_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['VerEstadisticas']; ?>'><?php echo $strings['VerEstadisticas']; ?></a></button></td>
                          <?php }
                          
                          

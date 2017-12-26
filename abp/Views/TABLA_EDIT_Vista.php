@@ -34,10 +34,10 @@ class TABLA_Edit {
 
         if ($this->datos['tipo'] == $strings['Estandar']) {
             ?>
-            <option value=Estandar selected><?php echo $strings['Estandar']; ?></option> 
+            <option value=Estándar selected><?php echo $strings['Estandar']; ?></option> 
             <option value=Personalizada><?php echo $strings['Personalizada']; ?></option> 
         <?php } else { ?>
-            <option value=Estandar> <?php echo $strings['Estandar']; ?></option> 
+            <option value=Estándar> <?php echo $strings['Estandar']; ?></option> 
             <option value=Personalizada selected><?php echo $strings['Personalizada']; ?></option> 
         <?php } ?>
         </select>

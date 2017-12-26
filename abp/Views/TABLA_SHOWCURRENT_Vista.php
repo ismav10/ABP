@@ -16,9 +16,9 @@ class TABLA_ShowCurrent {
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
 
         echo '<div class="container">
-				<h4>' . $strings['tablaname'] . ': ' . $this->datos['tabla']['nombreTabla'] . '</h4>
-                                <h5>' . $strings['tablaTipo'] . ': ' . $this->datos['tabla']['tipo'] . '</h5>
-				<h6>' . $strings['tabladesc'] . ': ' . $this->datos['tabla']['descripcionTabla'] . '</</h6>';
+				<h4><b>' . $strings['tablaname'] . ': </b>' . $this->datos['tabla']['nombreTabla'] . '</h4>
+                                <h5><b>' . $strings['tablaTipo'] . ': </b>' . $this->datos['tabla']['tipo'] . '</h5>
+				<h6><b>' . $strings['tabladesc'] . ': </b>' . $this->datos['tabla']['descripcionTabla'] . '</</h6>';
         echo '<br><br><br><br>';
         echo'<table class="table">
 			  <thead class="thead-dark">

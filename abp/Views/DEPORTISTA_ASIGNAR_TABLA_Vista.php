@@ -18,9 +18,9 @@ class DEPORTISTA_ASIGNAR_TABLA {
         ?>
         <form method="POST" action="?accion=<?php echo $strings['Asignar'] ?>&userName=<?php echo $_REQUEST['userName']?>" id="frmTableEjercicios">
             <div class="container">
-                <button id="savefrm" type="button" class="btn btn-primary btn-lg btn-block">Guardar</button>
+                <button id="savefrm" type="button" class="btn btn-primary btn-lg btn-block"><?php echo $strings['Guardar']; ?></button>
                 <br>
-                <button type="button" class="btn btn-success" id="addrow">Añadir fila</button> 
+                <button type="button" class="btn btn-success" id="addrow"><?php echo $strings['AñadirTabla']; ?></button> 
                 <?php
                 $lista = array('nombreTabla', 'tipo', 'descripcionTabla');
                 ?> 
@@ -87,7 +87,7 @@ class DEPORTISTA_ASIGNAR_TABLA {
                     //cols += '<td>' + counter + '</td>';
                     cols += '<td><select class="form-control" id="sel1" name="select' + counter + '"><?php echo $this->datos['selectedTablas']; ?></select></td>';
 
-                    cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Eliminar fila"></td>';
+                    cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="<?php echo $strings['EliminarTabla']; ?>"></td>';
                     newRow.append(cols);
                     $("#tblEjercicios").append(newRow);
                     counter++;

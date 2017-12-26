@@ -31,8 +31,19 @@ $strings = array(
 'La sesion se ha modificado con éxito' => 'Session has been modified successfully',
 'No se puede borrar porque no existe esa notificacion.' => 'The notification doesnt exist',
 'La notificacion fue borrada con éxito.' => 'Notification has been deleted',
- 
-       
+'La actividad grupal se ha modificado con exito' => 'The group activity has been modified successfully',
+'Ya existe una actividad en esta fecha, instalacion y horario o el monitor esta ocupado' => 'An activity already exists on this date, installation and schedule or the monitor is busy',
+'Solicitud tramitada'  => 'Application processed successfully', 
+'Añadida con exito' => 'Successfully added',
+'La actividad grupal fue borrada con éxito' => 'Deleted successfully',
+'No se puede borrar porque no existe esa actividad grupal' => 'There is no group activity',       
+'La actividad individual fue borrada con exito' => 'The individual activity was successfully erased',
+'La actividad individual ya existe en la base de datos' => 'The individual activity already exists in the database',
+'No se puede borrar porque no existe esa actividad individual' => 'It can not be deleted because there is no such individual activity',
+'La actividad individual se ha modificado con exito' => 'The individual activity has been modified successfully',
+'No tienes los permisos necesarios' => 'You do not have the necessary permits',
+    
+    
     
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)
 'Iniciar Sesion' => 'Sign In',
@@ -114,6 +125,8 @@ $strings = array(
 'Modificar deportista' => 'Edit Athlete',
 'Eliminar Deportista' => 'Delete Athlete',
 'Ver Deportista' => 'See Athlete',    
+'VerEstadisticas' =>'Statistics',
+'AsignarT' => 'AssignTable',
 
     
     
@@ -126,8 +139,10 @@ $strings = array(
 'plazasDisponibles' => 'Sites',
 'estado' => 'State',
 'Aceptar' => 'Accept',
-'Rechazar' => 'Reject',   
- 'Solicitud tramitada'  => 'Application processed successfully',
+'Rechazar' => 'Reject', 
+'MandarSolicitud' => 'Request',
+'EnTramite' => 'In process',
+'YaInscrito' => 'Already registered',
       
     
 //NOTIFICACION
@@ -182,9 +197,12 @@ $strings = array(
 'tablaasignar' => 'Assign Works',
 'tablamodificar' => 'Modify',
 'tablaeliminar' => 'Delete',
-'Personalizado' => 'Personalized',
+'Personalizada' => 'Personalized',
 'Estandar' => 'Standard',
 'tablaTipo' => 'Type of Table',
+'tipo' => 'Type',
+'Tablas' => 'Table',
+'descripcionTabla' =>'Description',
 
     
 //ACTIVIDADES GRUPALES
@@ -200,9 +218,19 @@ $strings = array(
 'Borrar Actividad Grupal' => 'Delete Group Activity',
 'Consultar Actividades Grupales' => 'Consult Group Activity',
 'Ver Actividad Grupal' => 'See Group Activity',
-'Añadida con exito' => 'Successfully added',
-'La actividad grupal fue borrada con éxito' => 'Deleted successfully',
- 'No se puede borrar porque no existe esa actividad grupal' => 'There is no group activity',
+'ActividadesGrupales' => 'Activities',
+'VerMonitor' => 'SeeMonitor',
+'diaActividadGrupal' => 'Day',
+'horaInicioActividadGrupal' => 'Start Time',
+'horaFinActividadGrupal' =>'End Time',
+'fechaInicioActividadGrupal' => 'Start Date',
+'fechaFinActividadGrupal' =>'End Date',
+'Lunes' => 'Monday',
+'Martes' =>'Tuesday',
+'Miércoles' => 'Wednesday',
+'Jueves'=> 'Thursday',
+'Viernes' => 'Friday',
+'DesasignarActividad' => 'Unassign Activity',
 
 //ACTIVIDADES INDIVIDUALES
 
@@ -213,11 +241,10 @@ $strings = array(
 'Borrar Actividad Individual' => 'Delete Individual Activity',
 'Consultar Actividades Individuales' => 'Consult Individual Activities',
 'Ver Actividad Individual' => 'See Individual Activity',
-'La actividad individual fue borrada con exito' => 'The individual activity was successfully erased',
-'La actividad individual ya existe en la base de datos' => 'The individual activity already exists in the database',
-'No se puede borrar porque no existe esa actividad individual' => 'It can not be deleted because there is no such individual activity',
-'La actividad individual se ha modificado con exito' => 'The individual activity has been modified successfully'
-    
+
+//ESTADISTICAS    
+ 'Estadisticas' => 'Statistics of user sessions ',    
+      
 
 )
 ?>

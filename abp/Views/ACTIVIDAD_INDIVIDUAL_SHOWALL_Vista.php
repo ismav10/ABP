@@ -19,11 +19,9 @@ class ACTIVIDAD_INDIVIDUAL_Listar {
             <?php
             $lista = array('nombreActividadIndividual', 'descripcionActividadIndividual');
             ?>
-            <br><br>
-
+            <br>
             <div class="container">
                 <div class="col-lg-12">
-                    <button type="button" class="btn btn-default btn-lg"><a href='ACTIVIDAD_INDIVIDUAL_Controller.php?accion=<?php echo $strings['Consultar']; ?>'><?php echo $strings['Consultar'] ?></a></button>
                     <?php
                     if (ConsultarTipoUsuario($_SESSION['login']) != 3) {
                         ?><a href='ACTIVIDAD_INDIVIDUAL_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><img src="../img/actividadadd.png" width="50px" height="50px"></a>

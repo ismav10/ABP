@@ -1,10 +1,3 @@
-<script type="text/javascript">
-    function changeIdAction(id)
-    {
-        document.getElementById("frmAsignar").action += id;
-    }
-</script>
-    
 <?php
 
 class DEPORTISTA_SELECT_SHOW {
@@ -27,50 +20,16 @@ class DEPORTISTA_SELECT_SHOW {
         ?>
 
         <div class="container" >
-            
-               <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <form id="frmAsignar" method="POST" action="?accion=<?php echo $strings['Ver']; ?>&userName=">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel"><?php echo $strings['VerTablas']; ?></h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <select multiple class="form-control" id="sel2" name="asignacionTablas[]">
-                                            <?php
-                                            foreach ($this->datos['tablas'] as $valor) {
-                                                echo '<option>' . ConsultarNombreTabla($valor['1']) . '</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </div> 
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $strings['Cerrar']; ?></button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
 
-            
-            
-            
-            
             <form  id="form" name="form" action='DEPORTISTA_Controller.php'  method='post'   enctype="multipart/form-data">
                 <div class="form-group" >
                     <label class="control-label" ><?php echo $strings['Ver Deportista']; ?></label><br>
                 </div>
-                
-                 <div class="form-group">
+
+                <div class="form-group">
                     <a target='_blank' href='<?php echo $this->valores['foto']; ?>'><img src='<?php echo $this->valores['foto']; ?>' width="250" height="250"></a>
                 </div>
-                
+
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['userName']; ?></label><br>
                     <input class="form" id="userName" name="userName" size="25" type="text" readonly="true" value="<?php echo $this->valores['userName']; ?>">
@@ -126,9 +85,9 @@ class DEPORTISTA_SELECT_SHOW {
                     <label class = "control-label" ><?php echo $strings['metodoPago']; ?></label><br>
                     <input class="form" id="metodoPago" name="metodoPago" size="30" type="text" readonly="true" value="<?php echo $this->valores['metodoPago']; ?>">
                 </div>
-                
+
                 <br>
-                <td><a data-toggle="modal" href="#myModal" ><button type="button" class="btn btn-success"><?php echo $strings['VerTablas']; ?></button></a>
+                <td><button type="button" class="btn btn-primary"><a href='DEPORTISTA_Controller.php?userName=<?php echo $this->valores['userName'] . '&accion=' . $strings['ActividadesGrupales']; ?>'><?php echo $strings['ActividadesGrupales']; ?></a></button></td>
                 <br>
                 <br>
 

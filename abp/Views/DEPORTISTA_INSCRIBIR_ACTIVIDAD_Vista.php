@@ -62,9 +62,13 @@ class DEPORTISTA_INSCRIBIR_ACTIVIDAD {
                                         }
                                     }
                                 }
-                                ?><td><button type="button" class="btn btn-danger"><a href='DEPORTISTA_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&userName=' . $_REQUEST['userName']. '&accion=' . $strings['DesasignarActividad']; ?>'><?php echo $strings['Desasignar']; ?></a></button></td>
-                           <?php }
-                            ?>
+                                if (ConsultarTipoUsuarioLogin() == 1) {
+                                    ?>
+                                    <td><button type="button" class="btn btn-danger"><a href='DEPORTISTA_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&userName=' . $_REQUEST['userName'] . '&accion=' . $strings['DesasignarActividad']; ?>'><?php echo $strings['Desasignar']; ?></a></button></td>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
                             </tbody>
                         </table>
                     </div>

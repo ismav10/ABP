@@ -19,7 +19,6 @@ class ACTIVIDAD_GRUPAL_Listar {
             <?php
             $lista = array('nombreActividadGrupal', 'numPlazasActividadGrupal', 'diaActividadGrupal', 'horaInicioActividadGrupal', 'horaFinActividadGrupal', 'fechaInicioActividadGrupal', 'fechaFinActividadGrupal' ,'username', 'idInstalacion');
             ?>
-            
             <div class="container">
                 <div class="col-lg-12">
                     <?php if (ConsultarTipoUsuarioLogin() == 1) { ?>

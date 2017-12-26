@@ -82,8 +82,10 @@ switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         foreach ($ejer as &$valor) {
             $datos['selectejercicios'] .= "<option>" . $valor['nombreEjercicio'] . "</option>";
         }
-
-        new TABLA_ASIGN($datos, '../Views/TABLA_SHOWALL_Vista.php');
+            $otros['tabla'] = $tabla->obtenerTablaDetalle($_REQUEST['id']);
+            $otros['ejercicios'] = $tabla->obtenerRelacion_TablaEjercicios($_REQUEST['id']);
+        
+        new TABLA_ASIGN($otros, $datos, '../Views/TABLA_SHOWALL_Vista.php');
         //}
         break;
 

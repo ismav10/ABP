@@ -25,7 +25,7 @@ class TABLA_ADD {
 				  <label for="example-text-input" class="col-2 col-form-label">' . $strings['tablaTipo'] . '</label>
 				  <div class="col-10">
 					<select name="tablaTipo" id="tablaTipo"> 
-                                             <option value=Estandar selected>' . $strings['Estandar'] . '</option> 
+                                             <option value=Estándar selected>' . $strings['Estandar'] . '</option> 
                                              <option value=Personalizada>' . $strings['Personalizada'] . '</option> 
                                         </select>
 				  </div>

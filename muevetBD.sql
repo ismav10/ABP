@@ -138,9 +138,20 @@ CREATE TABLE `deportista_asignar_tabla` (
 INSERT INTO `deportista_asignar_tabla` (`username`, `idTabla`) VALUES
 ('deportista1', 1),
 ('deportista1', 2),
-('deportista1', 3),
-('deportista2', 4),
-('deportista2', 5);
+('deportista1', 8),
+('deportista1', 9),
+('deportista1', 11),
+('deportista2', 5),
+('deportista2', 6),
+('deportista2', 12),
+('deportista3', 1),
+('deportista3', 3),
+('deportista3', 9),
+('deportista4', 4),
+('deportista4', 5),
+('deportista4', 7),
+('deportista4', 12),
+('deportista4', 13);
 
 -- --------------------------------------------------------
 
@@ -172,16 +183,22 @@ CREATE TABLE `deportista_inscribir_actividadgrupal` (
 --
 
 INSERT INTO `deportista_inscribir_actividadgrupal` (`userName`, `idActividadGrupal`, `estado`, `plazasDisponibles`) VALUES
-('deportista1', 1, 0, 25),
-('deportista1', 2, 1, 19),
-('deportista1', 4, 1, 8),
-('deportista2', 1, 0, 25),
-('deportista2', 3, 1, 9),
-('deportista2', 4, 1, 8),
-('deportista3', 1, 0, 25),
-('deportista3', 3, 0, 9),
-('deportista3', 4, 0, 8);
-
+('deportista1', 1, 0, 24),
+('deportista1', 5, 1, 19),
+('deportista1', 8, 1, 8),
+('deportista2', 8, 1, 8),
+('deportista2', 1, 1, 24),
+('deportista2', 4, 1, 24),
+('deportista2', 10, 0, 10),
+('deportista3', 8, 0, 7),
+('deportista3', 6, 0, 20),
+('deportista3', 5, 0, 19),
+('deportista3', 11, 0, 10),
+('deportista4', 3, 1, 24),
+('deportista4', 8, 1, 7),
+('deportista4', 2, 1, 19),
+('deportista4', 7, 1, 19),
+('deportista4', 12, 1, 9);
 -- --------------------------------------------------------
 
 --
@@ -453,6 +470,7 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (18, 1),
 (18, 2),
 (19, 1),
+(19, 2),
 (50, 1),
 (100, 1),
 (100, 2),
@@ -692,16 +710,19 @@ CREATE TABLE `tabla` (
 --
 
 INSERT INTO `tabla` (`idTabla`, `nombreTabla`, `tipo`, `descripcionTabla`) VALUES
-(1, 'Tabla Pecho/Biceps 1', 'EstÃ¡ndar', 'Tabla Intensidad Alta'),
-(2, 'Tabla Hombro/Espalda 1', ' EstÃ¡ndar', 'Tabla Intensidad Media'),
-(3, 'Tabla Abdominal 1', 'EstÃ¡ndar', 'Tabla Intensidad Baja'),
+(1, 'Tabla Pecho/Biceps 1', 'EstÃ¡ndar', ' Tabla Intensidad Alta'),
+(2, 'Tabla Hombro/Espalda 1', 'EstÃ¡ndar', '  Tabla Intensidad Media'),
+(3, 'Tabla Abdominal 1', 'EstÃ¡ndar', ' Tabla Intensidad Baja'),
 (4, 'Tabla Hombro/Espalda 2', 'Personalizada', 'Tabla Intensidad Media'),
 (5, 'Tabla Abdominal 2', 'Personalizada', 'Tabla Intensidad Baja'),
 (6, 'Tabla Pierna 1', 'Personalizada', 'Tabla Intensidad Baja'),
 (7, 'Tabla Pierna 2', 'Personalizada', 'Tabla Intensidad Media'),
-(8, 'Tabla Abdominal 3', 'EstÃ¡ndar', 'Tabla Intensidad Media'),
-(9, 'Tabla Pecho/Biceps 2', 'EstÃ¡ndar', 'Tabla Intensidad Alta');
--- --------------------------------------------------------
+(8, 'Tabla Abdominal 3', 'EstÃ¡ndar', ' Tabla Intensidad Media'),
+(9, 'Tabla Pecho/Biceps 2', 'EstÃ¡ndar', ' Tabla Intensidad Alta'),
+(10, 'Tabla Espalda 1', 'EstÃ¡ndar', ' Tabla Intensidad Media'),
+(11, 'Tabla Cardio/Abdominal 1', 'EstÃ¡ndar', ' Tabla Intensidad Baja'),
+(12, 'Tabla Mixta 1', 'Personalizada', ' Tabla Intensidad Baja'),
+(13, 'Tabla Mixta 2', 'Personalizada', ' Tabla Intensidad Baja');
 
 --
 -- Estructura de tabla para la tabla `tabla_con_ejercicio`
@@ -720,47 +741,47 @@ CREATE TABLE `tabla_con_ejercicio` (
 --
 
 INSERT INTO `tabla_con_ejercicio` (`idTabla`, `idEjercicio`, `numseries`, `numrepeticiones`, `duracion`) VALUES
+(1, 1, 1, 0, 20),
+(1, 3, 2, 0, 15),
+(1, 4, 4, 12, 0),
+(1, 5, 4, 12, 0),
 (1, 31, 3, 15, 0),
 (1, 32, 4, 12, 0),
 (1, 33, 4, 12, 0),
-(1, 4, 4, 12, 0),
-(1, 5, 4, 12, 0),
-(1, 1, 1, 0, 20),
-(1, 3, 2, 0, 15),
 (2, 8, 10, 3, 0),
 (2, 9, 12, 3, 0),
 (2, 10, 10, 4, 0),
 (2, 13, 15, 3, 0),
 (2, 31, 0, 2, 10),
+(3, 1, 0, 2, 20),
+(3, 3, 0, 2, 20),
 (3, 26, 0, 4, 1),
 (3, 27, 0, 4, 1),
 (3, 29, 0, 4, 1),
 (3, 30, 0, 4, 1),
 (3, 31, 0, 4, 1),
-(3, 1, 0, 2, 20),
-(3, 3, 0, 2, 20),
+(4, 1, 0, 2, 10),
+(4, 2, 0, 2, 10),
 (4, 9, 10, 4, 0),
 (4, 10, 10, 4, 0),
 (4, 13, 10, 4, 0),
 (4, 14, 10, 4, 0),
 (4, 15, 10, 4, 0),
 (4, 31, 30, 4, 0),
-(4, 1, 0, 2, 10),
-(4, 2, 0, 2, 10),
+(6, 1, 0, 1, 15),
+(6, 2, 0, 0, 20),
+(6, 3, 0, 2, 10),
 (6, 21, 12, 4, 0),
 (6, 22, 12, 4, 0),
 (6, 23, 12, 4, 0),
 (6, 25, 12, 4, 0),
-(6, 1, 0, 1, 15),
-(6, 2, 0, 0, 20),
-(6, 3, 0, 2, 10),
+(7, 1, 0, 2, 20),
 (7, 22, 15, 3, 0),
 (7, 23, 15, 3, 0),
 (7, 25, 15, 3, 0),
 (7, 26, 30, 4, 0),
 (7, 30, 30, 4, 0),
 (7, 31, 30, 4, 0),
-(7, 1, 0, 2, 20),
 (9, 6, 10, 4, 0),
 (9, 7, 10, 4, 0),
 (9, 8, 15, 4, 0),
@@ -769,7 +790,41 @@ INSERT INTO `tabla_con_ejercicio` (`idTabla`, `idEjercicio`, `numseries`, `numre
 (9, 13, 25, 4, 0),
 (9, 19, 10, 4, 0),
 (9, 22, 10, 4, 0),
-(9, 29, 25, 4, 0);
+(9, 29, 25, 4, 0),
+(10, 1, 1, 0, 20),
+(10, 10, 3, 8, 0),
+(10, 11, 4, 8, 0),
+(10, 13, 3, 8, 0),
+(10, 21, 3, 12, 0),
+(10, 32, 3, 0, 1),
+(10, 33, 3, 0, 1),
+(11, 1, 1, 0, 10),
+(11, 2, 2, 0, 15),
+(11, 3, 2, 0, 15),
+(11, 28, 3, 25, 0),
+(11, 31, 3, 25, 0),
+(11, 32, 3, 25, 0),
+(12, 1, 1, 0, 10),
+(12, 4, 3, 10, 0),
+(12, 5, 3, 10, 0),
+(12, 9, 3, 10, 0),
+(12, 10, 3, 10, 0),
+(12, 13, 3, 10, 0),
+(12, 14, 3, 10, 0),
+(12, 19, 3, 10, 0),
+(12, 21, 3, 10, 0),
+(12, 22, 3, 10, 0),
+(12, 32, 3, 0, 1),
+(13, 2, 1, 12, 15),
+(13, 3, 1, 12, 15),
+(13, 6, 3, 12, 0),
+(13, 7, 3, 12, 0),
+(13, 11, 3, 12, 0),
+(13, 19, 3, 12, 0),
+(13, 20, 3, 12, 0),
+(13, 23, 3, 12, 0),
+(13, 24, 4, 0, 1),
+(13, 27, 4, 0, 1);
 
 -- --------------------------------------------------------
 

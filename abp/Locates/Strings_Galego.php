@@ -30,6 +30,7 @@ $strings = array(
 'La sesion se ha modificado con éxito' => 'A sesion foi modificada con éxito',
 'No se puede borrar porque no existe esa notificacion.' => 'Non se pode borrar porque non existe.',
 'La notificacion fue borrada con éxito.' => 'A notificacion foi borrada con éxito.',  
+'No tienes los permisos necesarios' => 'Careces dos permisos necesarios',
     
     
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)
@@ -113,6 +114,8 @@ $strings = array(
 'Eliminar Deportista' => 'Eliminar Deportista',
 'Ver Deportista' => 'Ver Deportista',
 'VerTablas' => 'Táboas asignadas',
+'VerEstadisticas' =>'Estadísticas',
+'AsignarT' => 'AsinarTaboa',
  
 
 //INSCRIPCIONES
@@ -126,6 +129,9 @@ $strings = array(
 'Rechazar' => 'Rechazar', 
 'Solicitud tramitada' => 'Solicitude tramitada con éxito',
 'Ya existe esta solicitud' => 'Xa existe esta solicitude',
+'MandarSolicitud' => 'Solicitar',
+'EnTramite' => 'En trámite',
+'YaInscrito' => 'Xa Inscrito',
     
     
     
@@ -180,9 +186,12 @@ $strings = array(
 'tablaasignar' => 'Asignar Exercicios',
 'tablamodificar' => 'Modificar',
 'tablaeliminar' => 'Eliminar',
-'Personalizado' => 'Personaliazdo',
+'Personalizada' => 'Personalizada',
 'Estandar' => 'Estandar',
 'tablaTipo' => 'Tipo de Táboa',
+'tipo' => 'Tipo',
+'Tablas' => 'Táboas',
+'descripcionTabla' =>'Descripción',
 
 
  //ACTIVIDADES GRUPALES
@@ -201,6 +210,21 @@ $strings = array(
 'Añadida con exito' => 'Añadida con éxito',
 'La actividad grupal fue borrada con éxito' => 'A actividade grupal borrouse con éxito.',
 'No se puede borrar porque no existe esa actividad grupal' => 'Esa actividade grupal non existe',
+'ActividadesGrupales' => 'Actividades',
+'VerMonitor' => 'VerMonitor',
+'diaActividadGrupal' => 'Día',
+'horaInicioActividadGrupal' => 'Hora Inicio',
+'horaFinActividadGrupal' =>'Hora Fin',
+'fechaInicioActividadGrupal' => 'Data Inicio',
+'fechaFinActividadGrupal' =>'Data Fin',
+'La actividad grupal se ha modificado con exito' => 'A actividade grupal modificouse con éxito',
+'Ya existe una actividad en esta fecha, instalacion y horario o el monitor esta ocupado' => 'Xa existe unha actividade nesa data, instalación ou horario ou el monitor está ocupado',
+'Lunes' => 'Luns',
+'Martes' =>'Martes',
+'Miércoles' => 'Mércores',
+'Jueves'=> 'Xoves',
+'Viernes' => 'Venres',
+'DesasignarActividad' => 'Desasinar Actividade',
 
     //ACTIVIDADES INDIVIDUALES
 
@@ -214,9 +238,11 @@ $strings = array(
 'La actividad individual fue borrada con exito' => 'A actividade individual foi borrada con exito',
 'La actividad individual ya existe en la base de datos' => 'A actividade individual xa existe na base de datos',
 'No se puede borrar porque no existe esa actividad individual' => 'Non se pode borrar porque non existe tal actividade individual',
-'La actividad individual se ha modificado con exito' => 'A actividade individual modificouse con exito'
+'La actividad individual se ha modificado con exito' => 'A actividade individual modificouse con exito',
   
-    
+//ESTADISTICAS    
+ 'Estadisticas' => 'Estadisticas das sesións do usuario ',    
+     
 
 )
 ?>

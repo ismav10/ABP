@@ -30,6 +30,7 @@ $strings = array(
 'La sesion se ha modificado con éxito' => 'La sesion se ha modificado con éxito',
 'No se puede borrar porque no existe esa notificacion.' => 'No se puede borrar porque no existe esa notificacion.',
 'La notificacion fue borrada con éxito.' => 'La notificacion fue borrada con éxito.',
+'No tienes los permisos necesarios' => 'No tienes los permisos necesarios',
     
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)
 'Iniciar Sesion' => 'Iniciar Sesion',
@@ -102,7 +103,7 @@ $strings = array(
 'Modificar entrenador' => 'Modificar Entrenador',
 'Eliminar Entrenador' => 'Eliminar Entrenador',
 'Ver Entrenador' => 'Ver Entrenador',
-    
+'VerActividadesImpartidas' => 'Actividades Impartidas',    
     
 //DEPORTISTA
 'metodoPago' =>'Tarjeta de Crédito',
@@ -113,6 +114,8 @@ $strings = array(
 'Modificar deportista' => 'Modificar Deportista',
 'Eliminar Deportista' => 'Eliminar Deportista',
 'Ver Deportista' => 'Ver Deportista',
+'VerEstadisticas' =>'Estadísticas',
+'AsignarT' => 'AsignarTabla',
     
 
 //INSCRIPCIONES
@@ -127,6 +130,9 @@ $strings = array(
 'Rechazar' => 'Rechazar',
 'Solicitud tramitada' => 'Solicitud tramitada con éxito',
 'Ya existe esta solicitud' => 'Ya existe esta solicitud',
+'MandarSolicitud' => 'Solicitar',
+'EnTramite' => 'En trámite',
+'YaInscrito' => 'Ya Inscrito',
 
   
     
@@ -172,7 +178,22 @@ $strings = array(
 'Ver Actividad Grupal' => 'Ver Actividad Grupal',
 'Actividad Grupal añadida con exito' => 'Actividad grupal añadida con exito',
 'La actividad grupal fue borrada con exito' => 'La actividad grupal fue borrada con éxito.',
-'No se puede borrar porque no existe esa actividad grupal' => 'No se puede borrar porque no existe esa actividad grupal',
+'No se puede borrar porque no existe esa actividad grupal' => 'No se puede borrar porque no existe esa actividad grupal',  
+'ActividadesGrupales' => 'Actividades',
+'VerMonitor' => 'VerMonitor',
+'diaActividadGrupal' => 'Día',
+'horaInicioActividadGrupal' => 'Hora Inicio',
+'horaFinActividadGrupal' =>'Hora Fin',
+'fechaInicioActividadGrupal' => 'Fecha Inicio',
+'fechaFinActividadGrupal' =>'Fecha Fin',
+'La actividad grupal se ha modificado con exito' => 'La actividad grupal se ha modificado con éxito',
+'Ya existe una actividad en esta fecha, instalacion y horario o el monitor esta ocupado' => 'Ya existe una actividad en esta fecha, instalación y horario o el monitor está ocupado',
+'Lunes' => 'Lunes',
+'Martes' =>'Martes',
+'Miércoles' => 'Miércoles',
+'Jueves'=> 'Jueves',
+'Viernes' => 'Viernes',
+'DesasignarActividad' => 'Desasignar Actividad',
 
 
 //GESTION DE EJERCICIOS
@@ -205,6 +226,9 @@ $strings = array(
 'Personalizada' => 'Personalizada',
 'Estandar' => 'Estándar',
 'tablaTipo' => 'Tipo de Tabla',
+'tipo' => 'Tipo',
+'Tablas' => 'Tablas',
+'descripcionTabla' =>'Descripción',
     
 //ACTIVIDADES INDIVIDUALES
 
@@ -220,55 +244,13 @@ $strings = array(
 'No se puede borrar porque no existe esa actividad individual' => 'No se puede borrar porque no existe esa actividad individual',
 'La actividad individual se ha modificado con exito' => 'La actividad individual se ha modificado con exito',
     
-
-
- 
     
     
-/*
-    #Nuevos Strings para la version final
-*/
-    
- 
-  //Solicitudes
-  'MandarSolicitud' => 'Solicitar',
-  'EnTramite' => 'En trámite',
-  'YaInscrito' => 'Ya Inscrito',
     
     
-  //Deportistas
-  'VerEstadisticas' =>'Estadísticas',
-  'AsignarT' => 'AsignarTabla',
-    
-  //Entrenadores
-  'VerActividadesImpartidas' => 'Actividades Impartidas',
-    
-    
-  //Actividades Grupales
-  'ActividadesGrupales' => 'Actividades',
-  'VerMonitor' => 'VerMonitor',
-  'diaActividadGrupal' => 'Día',
-  'horaInicioActividadGrupal' => 'Hora Inicio',
-  'horaFinActividadGrupal' =>'Hora Fin',
-  'fechaInicioActividadGrupal' => 'Fecha Inicio',
-  'fechaFinActividadGrupal' =>'Fecha Fin',
-  'La actividad grupal se ha modificado con exito' => 'La actividad grupal se ha modificado con éxito',
-  'Ya existe una actividad en esta fecha, instalacion y horario o el monitor esta ocupado' => 'Ya existe una actividad en esta fecha, instalación y horario o el monitor está ocupado',
-  'Lunes' => 'Lunes',
-  'Martes' =>'Martes',
-  'Miércoles' => 'Miércoles',
-  'Jueves'=> 'Jueves',
-  'Viernes' => 'Viernes',
-  'DesasignarActividad' => 'Desasignar Actividad',
-    
-    
-//ESTADUSTUCAS    
- 'Estadisticas' => 'Estadisticas de sesiones del usuario ',
-    
-//TABLAS
-'tipo' => 'Tipo',
-'Tablas' => 'Tablas',
-'descripcionTabla' =>'Descripción',
+    'Guardar'=>'Guardar',
+    'AñadirTabla'=>'Añadir Tabla',
+    'EliminarTabla'=>'EliminarTabla',
     
 );
 ?>

@@ -235,7 +235,7 @@ class USUARIO_Modelo {
 
     function obtenerTablasEstandar() {
         $this->ConectarBD();
-        $sql = "SELECT DISTINCTROW * FROM Tabla WHERE idTabla NOT IN (SELECT idTabla FROM deportista_asignar_tabla WHERE username= '" . $this->userName . "') AND tipo='Estandar'";
+        $sql = "SELECT DISTINCTROW * FROM Tabla WHERE idTabla NOT IN (SELECT idTabla FROM deportista_asignar_tabla WHERE username= '" . $this->userName . "') AND tipo='Estándar'";
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
         } else {
