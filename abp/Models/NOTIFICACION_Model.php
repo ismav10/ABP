@@ -47,6 +47,7 @@ class NOTIFICACION_Model {
             $sql = "INSERT INTO NOTIFICACION VALUES ('".$this->MaximoID()."','" . $this->ConsultarMailUsuario($this->userName) . "','"
                     . $this->destinatarioNotificacion . "','','" . $this->asuntoNotificacion . "','" . $this->mensajeNotificacion . "','" . $this->userName . "')";
             $this->mysqli->query($sql);
+            return 'Inserción realizada con éxito';
         }
     }
 
@@ -82,7 +83,44 @@ class NOTIFICACION_Model {
         }
     }
 
-    function Consultar() {
+    function Consultar()
+    {
+        $this->ConectarBD();
+
+        if($this->remitenteNotificacion == '' && $this->asuntoNotificacion == '')
+        {
+            $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='".$this->consultarEmail($this->userName)."'";
+        }
+        else
+            if($this->remitenteNotificacion != '' && $this->asuntoNotificacion =='')
+            {
+                 $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='".$this->consultarEmail($this->userName)."' AND remitenteNotificacion LIKE '%".$this->remitenteNotificacion."%'";
+            }
+            else if($this->remitenteNotificacion == '' && $this->asuntoNotificacion !='')
+            {
+                 $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='".$this->consultarEmail($this->userName)."' AND asuntoNotificacion LIKE '%".$this->asuntoNotificacion."%'";
+            }
+            else if($this->remitenteNotificacion != '' && $this->asuntoNotificacion !='')
+            {
+               $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='".$this->consultarEmail($this->userName)."' AND asuntoNotificacion LIKE '%".$this->asuntoNotificacion."%' AND remitenteNotificacion LIKE '%".$this->remitenteNotificacion."%'"; 
+            }
+        if(!($resultado = $this->mysqli->query($sql)))
+        {
+            return 'No se ha podido conectar con la base de datos.';
+        }
+        else
+        {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            return $toret;
+        }
+    }
+
+    function ConsultarGrande() {
         $this->ConectarBD();
 
         if ($this->remitente == '' && $this->fechaHoraNotif == '' && $this->destinatario == '' && $this->username == '') { //0000
@@ -129,6 +167,50 @@ class NOTIFICACION_Model {
                 $i++;
             }
             return $toret;
+        }
+    }
+
+    //Consulta todos los deportistas para que los entrenadores puedan enviarle notificaciones
+    function ConsultarDeportistas()
+    {
+        $this->ConectarBD();
+        $sql = "SELECT EMAIL FROM USUARIO U, DEPORTISTA D WHERE U.userName = D.userName";
+
+        if(!($resultado = $this->mysqli->query($sql)))
+        {
+            return 'Error en la consulta sobre la base de datos.';
+        }
+        else
+        {
+              $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            return $toret;
+        }
+    }
+
+    //Consulta todos los usuarios para que los administradores puedan enviarle notificaciones
+    function ConsultarUsuarios()
+    {
+        $this->ConectarBD();
+        $sql = "SELECT email FROM USUARIO";
+
+        if(!($resultado = $this->mysqli->query($sql)))
+        {
+            return 'Error en la consulta sobre la base de datos.';
+        }
+        else
+        {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            return $toret;     
         }
     }
 
@@ -188,7 +270,7 @@ class NOTIFICACION_Model {
     function RellenaDatos()
     {
     	$this->ConectarBD();
-    	$sql = "SELECT remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, 
+    	$sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, 
     	asuntoNotificacion, mensajeNotificacion FROM NOTIFICACION WHERE idNotificacion= '".$this->idNotificacion."'";
     	if(!($resultado = $this->mysqli->query($sql)))
     	{
