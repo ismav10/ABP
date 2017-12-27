@@ -16,6 +16,7 @@ class NOTIFICACION_Listar {
 
     function render() {
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
+        //var_dump($this->datos);
         ?> 
         <div class="container">
             <?php
@@ -40,7 +41,8 @@ class NOTIFICACION_Listar {
                 <?php
             }
             ?>
-    
+            <button type="button" class="btn btn-default btn-lg"><a href='NOTIFICACION_Controller.php?accion=<?php echo $strings['Consultar']; ?>'><?php echo $strings['Consultar'] ?></a></button>  
+
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
@@ -61,7 +63,8 @@ class NOTIFICACION_Listar {
                                                 echo "<td>";
                                                 if ($clave === 'idNotificacion') {
                                                     ?>
-                                            <a href='NOTIFICACION_Controller.php?idNotificacion=<?php echo $this->datos[$j]['idNotificacion'] . '&accion=' . $strings['Ver']; ?>'><img src="../img/notificacion.png" width="30px" height="30px"></a>                       
+                                            <a href='NOTIFICACION_Controller.php?idNotificacion=<?php echo $this->datos[$j]['idNotificacion'] . '&accion=' . $strings['Ver']; ?>'><img src="../img/notificacion.png" width="30px" height="30px"></a> 
+                                            <a href='NOTIFICACION_Controller.php?idNotificacion=<?php echo $this->datos[$j]['idNotificacion'] . '&accion=' . $strings['Borrar']; ?>'><img src="../img/BorrarNoti.jpg" width="30px" height="30px"></a>                         
                                             <?php
                                             break;
                                         } else {
