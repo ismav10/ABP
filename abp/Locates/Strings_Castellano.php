@@ -146,6 +146,12 @@ $strings = array(
 'mensajeNotificacion' => 'Mensaje',
 'Ver Notificacion' => 'Ver Notificación',
 'Insertar Notificacion' => 'Insertar Notificacion',
+'Borrar notificación' => 'Borrar notificación',
+'La notificación fue borrada con éxito.' => 'La notificación fue borrada con éxito',
+'Remitente' => 'Remitente',
+'Asunto' => 'Asunto',
+'Fecha' => 'Fecha',
+
 
  
 //SESIONES
