@@ -44,72 +44,72 @@ class NOTIFICACION_Model {
         if (!$result = $this->mysqli->query($sql)) {
             return 'No se ha podido conectar con la base de datos.';
         } else {
-            $sql = "INSERT INTO NOTIFICACION VALUES ('".$this->MaximoID()."','" . $this->ConsultarMailUsuario($this->userName) . "','"
-                    . $this->destinatarioNotificacion . "','','" . $this->asuntoNotificacion . "','" . $this->mensajeNotificacion . "','" . $this->userName . "')";
-            $this->mysqli->query($sql);
+
+            //Vamos a utilizar la funcion strpos para determinar si el destinatario es un usuario/s o una actividad sobre la que vamos a crear un aviso. Para esto evaluamos si contiene una @
+            if (strpos($this->destinatarioNotificacion, '@')) {
+                //Vuelvo a construir un array con todas las direcciones de destinatarios
+                $this->destinatarioNotificacion = explode(", ", $this->destinatarioNotificacion);
+
+                //Para cada dirección de destinatario, creo una nueva notificación.
+                foreach ($this->destinatarioNotificacion as $valor) {
+                    $sql = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . $this->ConsultarMailUsuario($this->userName) . "','" . $valor . "', '" . $this->asuntoNotificacion . "','" . $this->mensajeNotificacion . "','" . $this->userName . "')";
+                    $this->mysqli->query($sql);
+                }
+                //$this->mysqli->query($sql);
+                return 'Inserción realizada con éxito';
+            } else {
+                //En caso de que no contenga ninguna @, vamos a obtener todos los correos de los deportistas de esa actividad y generar una notificacion
+                $this->destinatarioNotificacion = ConsultarDeportistasActividad($this->destinatarioNotificacion);
+                 
+                foreach ($this->destinatarioNotificacion as $valor) {
+                    $sql = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . $this->ConsultarMailUsuario($this->userName) . "','" . $valor . "', '" . $this->asuntoNotificacion . "','" . $this->mensajeNotificacion . "','" . $this->userName . "')";
+                    $this->mysqli->query($sql);
+                }
+            }
             return 'Inserción realizada con éxito';
         }
     }
 
-    function ConsultarMailUsuario($username)
-    {
-    	$this->ConectarBD();
-    	$sql = "SELECT email FROM USUARIO WHERE username ='".$this->userName."'";
-    	if(!($resultado=$this->mysqli->query($sql)))
-    	{
-    		return 'No se ha podido conectar con la base de datos.';
-    	}
-    	else
-    	{
-    		$result = $resultado->fetch_array();
-    		return $result['email'];
-    	}
-    }
-
-    //Como el autoincremental de la base de datos no esta funcionando creo esta funcion auxiliar que devuelve el maximo valor en los ids de la tabla,
-    //De esta forma en el insertar inserto con el siguiente valor a ese
-    function MaximoID()
-    {
+    function ConsultarMailUsuario($username) {
         $this->ConectarBD();
-        $sql = "SELECT MAX(idNotificacion) as Maximo FROM NOTIFICACION";
-        if(!($resultado = $this->mysqli->query($sql)))
-        {
+        $sql = "SELECT email FROM USUARIO WHERE username ='" . $this->userName . "'";
+        if (!($resultado = $this->mysqli->query($sql))) {
             return 'No se ha podido conectar con la base de datos.';
-        }
-        else
-        {
+        } else {
             $result = $resultado->fetch_array();
-            return $result['Maximo']+1;
+            return $result['email'];
         }
     }
 
-    function Consultar()
-    {
+//    //Como el autoincremental de la base de datos no esta funcionando creo esta funcion auxiliar que devuelve el maximo valor en los ids de la tabla,
+//    //De esta forma en el insertar inserto con el siguiente valor a ese
+//    function MaximoID() {
+//        $this->ConectarBD();
+//        $sql = "SELECT MAX(idNotificacion) as Maximo FROM NOTIFICACION";
+//        if (!($resultado = $this->mysqli->query($sql))) {
+//            return 'No se ha podido conectar con la base de datos.';
+//        } else {
+//            $result = $resultado->fetch_array();
+//            return $result['Maximo'] + 1;
+//        }
+//    }
+
+    function Consultar() {
         $this->ConectarBD();
 
-        if($this->remitenteNotificacion == '' && $this->asuntoNotificacion == '')
-        {
-            $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='".$this->consultarEmail($this->userName)."'";
+        if ($this->remitenteNotificacion == '' && $this->asuntoNotificacion == '') {
+            $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='" . $this->consultarEmail($this->userName) . "'";
+        } else
+        if ($this->remitenteNotificacion != '' && $this->asuntoNotificacion == '') {
+            $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='" . $this->consultarEmail($this->userName) . "' AND remitenteNotificacion LIKE '%" . $this->remitenteNotificacion . "%'";
+        } else if ($this->remitenteNotificacion == '' && $this->asuntoNotificacion != '') {
+            $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='" . $this->consultarEmail($this->userName) . "' AND asuntoNotificacion LIKE '%" . $this->asuntoNotificacion . "%'";
+        } else if ($this->remitenteNotificacion != '' && $this->asuntoNotificacion != '') {
+            $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='" . $this->consultarEmail($this->userName) . "' AND asuntoNotificacion LIKE '%" . $this->asuntoNotificacion . "%' AND remitenteNotificacion LIKE '%" . $this->remitenteNotificacion . "%'";
         }
-        else
-            if($this->remitenteNotificacion != '' && $this->asuntoNotificacion =='')
-            {
-                 $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='".$this->consultarEmail($this->userName)."' AND remitenteNotificacion LIKE '%".$this->remitenteNotificacion."%'";
-            }
-            else if($this->remitenteNotificacion == '' && $this->asuntoNotificacion !='')
-            {
-                 $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='".$this->consultarEmail($this->userName)."' AND asuntoNotificacion LIKE '%".$this->asuntoNotificacion."%'";
-            }
-            else if($this->remitenteNotificacion != '' && $this->asuntoNotificacion !='')
-            {
-               $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='".$this->consultarEmail($this->userName)."' AND asuntoNotificacion LIKE '%".$this->asuntoNotificacion."%' AND remitenteNotificacion LIKE '%".$this->remitenteNotificacion."%'"; 
-            }
-        if(!($resultado = $this->mysqli->query($sql)))
-        {
+        if (!($resultado = $this->mysqli->query($sql))) {
             return 'No se ha podido conectar con la base de datos.';
-        }
-        else
-        {
+        } else {
             $toret = array();
             $i = 0;
             while ($fila = $resultado->fetch_array()) {
@@ -171,18 +171,51 @@ class NOTIFICACION_Model {
     }
 
     //Consulta todos los deportistas para que los entrenadores puedan enviarle notificaciones
-    function ConsultarDeportistas()
-    {
+    function ConsultarDeportistas() {
         $this->ConectarBD();
         $sql = "SELECT EMAIL FROM USUARIO U, DEPORTISTA D WHERE U.userName = D.userName";
 
-        if(!($resultado = $this->mysqli->query($sql)))
-        {
+        if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            return $toret;
         }
-        else
-        {
-              $toret = array();
+    }
+
+    //Consulta todos los deportistas para que los entrenadores puedan enviarle notificaciones
+    function ConsultarActividades() {
+        $this->ConectarBD();
+        $sql = "SELECT DISTINCT nombreActividadGrupal FROM ACTIVIDADGRUPAL";
+
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            return $toret;
+        }
+    }
+    
+    
+    //Consulta todos los deportistas para que los entrenadores puedan enviarle notificaciones
+    function ConsultarActividadesImpartidas($login) {
+        $this->ConectarBD();
+        $sql = "SELECT DISTINCT nombreActividadGrupal FROM ACTIVIDADGRUPAL G WHERE G.userName = '". $login. "'";
+
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
             $i = 0;
             while ($fila = $resultado->fetch_array()) {
                 $toret[$i] = $fila;
@@ -193,24 +226,20 @@ class NOTIFICACION_Model {
     }
 
     //Consulta todos los usuarios para que los administradores puedan enviarle notificaciones
-    function ConsultarUsuarios()
-    {
+    function ConsultarUsuarios() {
         $this->ConectarBD();
         $sql = "SELECT email FROM USUARIO";
 
-        if(!($resultado = $this->mysqli->query($sql)))
-        {
+        if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
-        }
-        else
-        {
+        } else {
             $toret = array();
             $i = 0;
             while ($fila = $resultado->fetch_array()) {
                 $toret[$i] = $fila;
                 $i++;
             }
-            return $toret;     
+            return $toret;
         }
     }
 
@@ -267,21 +296,16 @@ class NOTIFICACION_Model {
         }
     }
 
-    function RellenaDatos()
-    {
-    	$this->ConectarBD();
-    	$sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, 
-    	asuntoNotificacion, mensajeNotificacion FROM NOTIFICACION WHERE idNotificacion= '".$this->idNotificacion."'";
-    	if(!($resultado = $this->mysqli->query($sql)))
-    	{
-    		return 'Error en la consulta sobre la base de datos.';
-    	}
-    	else
-    	{
-    		$result = $resultado->fetch_array();
-    		return $result;
-    	}
-
+    function RellenaDatos() {
+        $this->ConectarBD();
+        $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, 
+    	asuntoNotificacion, mensajeNotificacion FROM NOTIFICACION WHERE idNotificacion= '" . $this->idNotificacion . "'";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $result = $resultado->fetch_array();
+            return $result;
+        }
     }
 
     function Enviar_Email() {

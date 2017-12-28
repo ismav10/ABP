@@ -258,5 +258,8 @@ $strings = array(
     'AñadirTabla'=>'Añadir Tabla',
     'EliminarTabla'=>'EliminarTabla',
     
+    'seleccionarDestinatario' => 'Seleccionar Destinatario',
+    'Destinatario' => 'Destinatario',
+    
 );
 ?>

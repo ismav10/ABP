@@ -145,7 +145,6 @@ function ConsultarTipoDeportista($userName) {
     return $result['tipoDeportista'];
 }
 
-
 function ConsultarIDTabla($nombreTabla) {
     $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
@@ -155,8 +154,6 @@ function ConsultarIDTabla($nombreTabla) {
     $result = $mysqli->query($sql)->fetch_array();
     return $result['idTabla'];
 }
-
-
 
 //Devuelve el id de un rol a partir del userName del usuario
 function ConsultarTipoUsuario($userName) {
@@ -226,7 +223,7 @@ function ConsultarSolicitudGrupal($idActividadGrupal) {
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
-    $sql = "SELECT estado FROM DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL WHERE idActividadGrupal='" . $idActividadGrupal . "' AND userName='". $_SESSION['login'] . "'";
+    $sql = "SELECT estado FROM DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL WHERE idActividadGrupal='" . $idActividadGrupal . "' AND userName='" . $_SESSION['login'] . "'";
     $result = $mysqli->query($sql);
     if ($result->num_rows == 0) {
         return 3;
@@ -245,26 +242,48 @@ function ConsultarIdInstalacion($nombreActividadGrupal) {
     return $result['idInstalacion'];
 }
 
-function CambiarFormatoTiempoHoraInicio($idActividadGrupal){
+function ConsultarDeportistasActividad($nombreActividad) {
     $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
-    $sql = "SELECT DATE_FORMAT(horaInicioActividadGrupal, '%H:%i') FROM actividadgrupal WHERE idActividadGrupal = '". $idActividadGrupal ."' ";
-    $result = $mysqli->query($sql)->fetch_array();
-    return $result[0];
-}
+    $sql = "SELECT EMAIL FROM USUARIO U, DEPORTISTA D, DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL DIA, ACTIVIDADGRUPAL G WHERE U.userName = D.userName AND U.userName = DIA.userName AND DIA.idActividadGrupal = G.idActividadGrupal AND G.nombreActividadGrupal = '" . $nombreActividad . "' AND DIA.estado = 1";
 
-function CambiarFormatoTiempoHoraFin($idActividadGrupal){
+    if (!($resultado = $mysqli->query($sql))) {
+        return 'Error en la consulta sobre la base de datos.';
+   } else {
+            $toret = array();
+            $filaAux;
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $filaAux[$i] = $toret[$i]['EMAIL'];
+                $i++;
+            }
+            
+            return $filaAux;
+        }
+    }
+
+function CambiarFormatoTiempoHoraInicio($idActividadGrupal) {
     $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
-    $sql = "SELECT DATE_FORMAT(horaFinActividadGrupal, '%H:%i') FROM actividadgrupal WHERE idActividadGrupal = '". $idActividadGrupal ."' ";
+    $sql = "SELECT DATE_FORMAT(horaInicioActividadGrupal, '%H:%i') FROM actividadgrupal WHERE idActividadGrupal = '" . $idActividadGrupal . "' ";
     $result = $mysqli->query($sql)->fetch_array();
     return $result[0];
 }
 
+function CambiarFormatoTiempoHoraFin($idActividadGrupal) {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT DATE_FORMAT(horaFinActividadGrupal, '%H:%i') FROM actividadgrupal WHERE idActividadGrupal = '" . $idActividadGrupal . "' ";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result[0];
+}
 
 function ConsultarNombreInstalacion($idInstalacion) {
     $mysqli = new mysqli("localhost", "root", "", "muevet");
@@ -303,15 +322,16 @@ function añadirFuncionalidades($NOM) {
                                 <?php if (ConsultarTipoUsuarioLogin() == 1) { ?>
                                     <a class = "dropdown-item" href = "../Controllers/ENTRENADOR_Controller.php?user=entrenador"><?php echo $strings['Gestión de Entrenadores'];
                                     ?></a>
-                                <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?user=deportista"><?php echo $strings['Gestión de Deportistas']; ?></a><br>
-                                <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios']; ?></a><br>
-                            <?php } else if (ConsultarTipoUsuarioLogin() == 2) { ?>
-                                <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?user=deportista"><?php echo $strings['Gestión de Deportistas']; ?></a>
-                        <?php } ?>
-                   
-                    </div>
-                    </li>
-                    <?php }
+                                    <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?user=deportista"><?php echo $strings['Gestión de Deportistas']; ?></a><br>
+                                    <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios']; ?></a><br>
+                                <?php } else if (ConsultarTipoUsuarioLogin() == 2) { ?>
+                                    <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?user=deportista"><?php echo $strings['Gestión de Deportistas']; ?></a>
+                                <?php } ?>
+
+                            </div>
+                        </li>
+                        <?php
+                    }
                     break;
 
                 case "Gestion Actividad Grupal":
@@ -336,7 +356,7 @@ function añadirFuncionalidades($NOM) {
                             <a class="dropdown-item" href="../Controllers/EJERCICIO_Controller.php?"><?php echo $strings['Gestión de ejercicios']; ?></a><br>
                             <?php if (ConsultarTipoUsuarioLogin() == 3) { ?>
                                 <a class="dropdown-item" href='../Controllers/SESION_Controller.php'><?php echo $strings['Gestión de sesiones']; ?></a>
-                    <?php } ?>
+                            <?php } ?>
                         </div>
                     </li>
 
@@ -353,7 +373,7 @@ function añadirFuncionalidades($NOM) {
                         <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $strings['Gestión de Inscripciones'] ?> </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="../Controllers/INSCRIPCION_Controller.php?act=grupal"><?php echo $strings['Gestión de Actividades Grupales']; ?></a><br>
-<!--                            <a class="dropdown-item" href="../Controllers/INSCRIPCION_Controller.php?act=individual"><?php echo $strings['Gestión de Actividades Individuales']; ?></a><br>-->
+                    <!--                            <a class="dropdown-item" href="../Controllers/INSCRIPCION_Controller.php?act=individual"><?php echo $strings['Gestión de Actividades Individuales']; ?></a><br>-->
                         </div>
                     </li>
                     <?php
@@ -403,20 +423,19 @@ function showNavbar() {
         ?>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <?php echo $strings['Cuenta'] ?>
+                <?php echo $strings['Cuenta'] ?>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['Modificar']; ?>"><?php echo $strings['Mi Perfil'] ?></a><br>
                 <?php if (ConsultarTipoUsuarioLogin() == 3) { ?>
                     <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['MisActividades']; ?>"><?php echo $strings['MisActividades'] ?></a><br>
-        <?php } ?>
+                <?php } ?>
                 <a class="dropdown-item" href="../Functions/Desconectar.php"><?php echo $strings['Cerrar Sesión'] ?></a> <br>
             </div>
         </li> 
         <?php
     }
 }
-
 
 function ListarEntrenadores() {
 
@@ -432,10 +451,10 @@ function ListarEntrenadores() {
     }
     return $toret;
 }
-	
+
 function ListarInstalaciones() {
-    
-	$mysqli = new mysqli("localhost", "root", "", "muevet");
+
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }

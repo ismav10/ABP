@@ -42,20 +42,36 @@ switch ($_REQUEST['accion']) {
         } else {
             if (!isset($_REQUEST['username'])) {
                 //Si es administrador le pasa todos los usuarios a la vista
-                if(ConsultarTipoUsuario($_SESSION['login'])==1)
-                {
-                    $notificacion = new NOTIFICACION_Model('','','','','','',$_SESSION['login']);
-                    $datos = $notificacion->ConsultarUsuarios();
-                new NOTIFICACION_Insertar($datos,'../Controllers/NOTIFICACION_Controller.php');
+                if (ConsultarTipoUsuario($_SESSION['login']) == 1) {
+                    $notificacion = new NOTIFICACION_Model('', '', '', '', '', '', $_SESSION['login']);
+                    $users = $notificacion->ConsultarUsuarios();
+                    $act = $notificacion->ConsultarActividades();
+                    //Esto es nuevo
+                    if (!isset($_POST['destinatarios'])) {
+                        $desti = '';
+                    } else {
+                        $desti = $_POST['destinatarios'];
+                        $desti = implode(", ", $desti);
+                    }
+                    new NOTIFICACION_Insertar($desti, $users, $act, '../Controllers/NOTIFICACION_Controller.php');
                 }
+
+
                 //Si es entrenador le pasa solo los deportistas a la vista
-                else 
-                    if(ConsultarTipoUsuario($_SESSION['login'])==2)
-                    {
-                    $notificacion = new NOTIFICACION_Model('','','','','','',$_SESSION['login']);
-                    $datos = $notificacion->ConsultarDeportistas();
-                        new NOTIFICACION_Insertar($datos,'../Controllers/NOTIFICACION_Controller.php');
-                    }            
+                else
+                if (ConsultarTipoUsuario($_SESSION['login']) == 2) {
+                    $notificacion = new NOTIFICACION_Model('', '', '', '', '', '', $_SESSION['login']);
+                    $users = $notificacion->ConsultarDeportistas();
+                    $actImpartidas = $notificacion->ConsultarActividadesImpartidas($_SESSION['login']);
+
+                    if (!isset($_POST['destinatarios'])) {
+                        $desti = '';
+                    } else {
+                        $desti = $_POST['destinatarios'];
+                        $desti = implode(", ", $desti);
+                    }
+                    new NOTIFICACION_Insertar($desti, $users, $actImpartidas, '../Controllers/NOTIFICACION_Controller.php');
+                }
             } else {
                 $notificacion = new NOTIFICACION_Model('', '', $_REQUEST['destinatarioNotificacion'], '', $_REQUEST['asuntoNotificacion'], $_REQUEST['mensajeNotificacion'], $_SESSION['login']);
                 $respuesta = $notificacion->Insertar();
@@ -88,7 +104,7 @@ switch ($_REQUEST['accion']) {
                 new NOTIFICACION_Consultar('../Controllers/NOTIFICACION_Controller.php');
             }
         } else {
-            $notificacion = new NOTIFICACION_Model('',$_REQUEST['Remitente'],'','',$_REQUEST['Asunto'],'',$_SESSION['login']);
+            $notificacion = new NOTIFICACION_Model('', $_REQUEST['Remitente'], '', '', $_REQUEST['Asunto'], '', $_SESSION['login']);
             $datos = $notificacion->Consultar();
             $tipoUsuario = ConsultarTipoUsuario($_SESSION['login']);
             new NOTIFICACION_Listar($datos, $tipoUsuario, '../Controllers/NOTIFICACION_Controller.php');
@@ -110,6 +126,11 @@ switch ($_REQUEST['accion']) {
             }
         }
         break;
+
+
+
+
+
 
 
     //Por defecto se realiza un show all de las notificaciones a las que tiene acceso el usuario.
