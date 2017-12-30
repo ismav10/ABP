@@ -3,22 +3,21 @@
 //VISTA PARA LA INSERCIÓN DE USUARIOS
 class SESION_Insertar {
 
-//private $tablas;
-//private $actividades;
+    private $nombreTabla;
+    private $idTabla;
     private $volver;
 
-    function __construct($tablas,$actividades,$idTablas, $idActividades,$volver) {
+    function __construct($nombreTabla,$idTabla,$volver) {
         $this->volver = $volver;
-        //$this->$tablas = $tablas;
-        //$this->$actividades = $actividades;
-        $this->render($tablas,$actividades,$idTablas, $idActividades);
+        $this->nombreTabla = $nombreTabla;
+        $this->idTabla =$idTabla;
+        $this->render();
     }
 
-    function render($tablas,$actividades,$idTablas, $idActividades) {
-        
-        
+    function render() {
         $hoy = getDate();
         $hoy1 = localTime(time(),true);
+        $mesCorrecto = $hoy1['tm_mon'] +1;
         ?> <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
 
         <?php
@@ -30,8 +29,12 @@ class SESION_Insertar {
                     <label class="control-label" ><?php echo $strings['Iniciar sesion']; ?></label><br>
                 </div>
                 <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['Realizando tabla']; echo ":".$this->nombreTabla ?></label><br>   
+                    <label class="control-label" ><?php echo $strings['Actividad']; echo ": Fittness" ?></label><br>        
+                </div>
+                <div class="form-group">
                     <label class="control-label" ><?php echo $strings['fechaSesion']; ?></label><br>
-                    <input class="form" id="fechaSesion" name="fechaSesion" size="25" type="text" required="true" readonly="true" value=<?php echo $hoy['year']."/".$hoy1['tm_mon']."/".$hoy1['tm_mday']?> />
+                    <input class="form" id="fechaSesion" name="fechaSesion" size="25" type="text" required="true" readonly="true" value=<?php echo $hoy['year']."/".$mesCorrecto."/".$hoy1['tm_mday']?> />
                 </div>
 
                 <div class="form-group">
@@ -40,34 +43,13 @@ class SESION_Insertar {
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['idTabla']; ?></label><br>
-                    <?php
-                    for($i=0;$i<count($tablas);$i++)
-                    {
-                       echo '<label class="control-label" >'.$tablas[$i]['idTabla'].'</label><br>';
-                       echo '<input class="form" id="idTabla" name="idTabla" size="50" type="radio" value='.$idTablas[$i]['idTabla']. 'required="true"/><br>';
-                       echo '<br>';
-                    }
-                    ?>            
-                </div>
-
-                 <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['idActividadIndividual']; ?></label><br>
-                    <?php
-                    for($i=0;$i<count($actividades);$i++)
-                    {
-                       echo '<label class="control-label" >'.$actividades[$i]['idActividadIndividual'].'</label><br>';
-                       echo '<input class="form" id="idActividadIndividual" name="idActividadIndividual" size="50" type="radio" value='.$idActividades[$i]['idActividadIndividual']. 'required="true"/><br>';
-                       echo '<br>';
-                    }
-                    ?>            
-                </div>
-
-                <div class="form-group">
                     <label class="control-label" ><?php echo $strings['comentarioSesion']; ?></label><br>
                     <input class="form" id="comentarioSesion" name="comentarioSesion" type="textarea" rows="10" cols="40" />
                 </div>
-                <input type='submit' onclick="" name='accion'  value="<?php echo $strings['Insertar']; ?>">
+                <label class="control-label" ><?php echo $strings['Finalizar Sesion'] ?></label><br>   
+                <button type='submit' class="btn btn-success"><?php echo $strings['Insertar']; ?></button>
+                <input class="hidden" id= "accion" name= "accion" size="25" type="text" required = "true" value=<?php echo $strings['Insertar']?> />
+                <input class="hidden" id= "idTabla" name= "idTabla" size="25" type="text" required = "true" value=<?php echo $this->idTabla?> />
                 <a class="form-link" href="<?php echo $this->volver?>"><?php echo $strings['Volver']; ?>
             </form>
         </div>

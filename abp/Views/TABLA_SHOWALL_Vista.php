@@ -87,7 +87,7 @@ class TABLA_Show
 				echo '<td><a href="?accion=modificar&id='.$valor['0'].'"><button type="button" class="btn btn-primary">'.$strings['tablamodificar'].'</button></a></td>';
 				echo '<td><a href="?accion=eliminar&id='.$valor['0'].'"><button type="button" class="btn btn-danger">'.$strings['tablaeliminar'].'</button></a></td>';
 			}else{
-				echo '<td></td>';
+				echo '<td><a href="SESION_Controller.php?accion=Insertar&id='.$valor['0'].'"><button type="button" class="btn btn-success">Iniciar sesion</button></a></td>';
 				echo '<td></td>';
 				echo '<td></td>';
 			}

@@ -26,7 +26,6 @@ class SESION_Listar {
         <div class="container">
             <div class="col-lg-12">
                 <button type="button" class="btn btn-default btn-lg"><a href='SESION_Controller.php?accion=<?php echo $strings['Consultar']; ?>'><?php echo $strings['Consultar'] ?></a></button>
-                <button type="button" class="btn btn-default btn-lg"><a href='SESION_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><?php echo $strings['Insertar'] ?></a></button>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
