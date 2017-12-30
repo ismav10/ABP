@@ -104,7 +104,7 @@ switch ($_REQUEST['accion']) {
                 new NOTIFICACION_Consultar('../Controllers/NOTIFICACION_Controller.php');
             }
         } else {
-            $notificacion = new NOTIFICACION_Model('', $_REQUEST['Remitente'], '', '', $_REQUEST['Asunto'], '', $_SESSION['login']);
+            $notificacion = new NOTIFICACION_Model('',$_REQUEST['Remitente'],'','',$_REQUEST['Asunto'],$_REQUEST['Mensaje'],$_SESSION['login']);
             $datos = $notificacion->Consultar();
             $tipoUsuario = ConsultarTipoUsuario($_SESSION['login']);
             new NOTIFICACION_Listar($datos, $tipoUsuario, '../Controllers/NOTIFICACION_Controller.php');
