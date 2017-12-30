@@ -43,7 +43,7 @@ class SESION_Model {
         if (!$resultado = $this->mysqli->query($sql)) {
             return 'No se ha podido conectar con la base de datos.';
         } else {
-            $sql = "INSERT INTO SESION VALUES('".$this->MaximoID()."','".$this->userName."','".$this->idTabla."','".$this->fecha."','".$this->horaInicio."','".$this->horaFin."','".$this->comentarioSesion."','".$this->idActividadIndividual."')";
+            $sql = "INSERT INTO SESION VALUES('".$this->MaximoID()."','".$this->userName."','".$this->idTabla."','".$this->fecha."','".$this->horaInicio."','".$this->horaFin."','".$this->comentarioSesion."','1')";
             $this->mysqli->query($sql);
             return 'Se ha insertado con éxito';
         }
