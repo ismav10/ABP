@@ -150,6 +150,9 @@ $strings = array(
 'Asunto' => 'Asunto',
 'Fecha' => 'Data',
 'Mensaje' => 'Mensaxe',
+'Finalizar Sesion' => 'Finalizar Sesión',
+'Realizando tabla' => 'TABLA DA SESIÓN',
+'Actividad' => 'ACTIVIDADE',
 
 
 
@@ -165,6 +168,7 @@ $strings = array(
 'horaFin' => 'Fin',
 'Modificar sesion' => 'Modificar Sesión',
  'Consultar sesiones por fecha' => 'Consultar sesiones por fecha',
+ 'IniciarSesion' => 'Iniciar sesión',
 
 //GESTION DE EJERCICIOS
 'ejercicioname' => 'Nome do Exercicio',

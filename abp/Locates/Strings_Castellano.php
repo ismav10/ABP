@@ -152,6 +152,9 @@ $strings = array(
 'Asunto' => 'Asunto',
 'Fecha' => 'Fecha',
 'Mensaje' => 'Mensaje',
+'Finalizar Sesion' => 'Finalizar Sesión',
+'Realizando tabla' => 'TABLA DE LA SESIÓN',
+'Actividad' => 'ACTIVIDAD',
 
 
  
@@ -169,6 +172,7 @@ $strings = array(
  'Consultar sesiones por fecha' => 'Consultar sesiones por fecha',
  'Se ha insertado con éxito' => 'Se ha insertado con éxito',
  'Iniciar sesion' => 'Iniciar sesión',
+ 'IniciarSesion' => 'Iniciar sesión',
 
  //ACTIVIDADES GRUPALES
 

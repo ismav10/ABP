@@ -176,6 +176,11 @@ $strings = array(
 'horaFin' => 'Edn',
 'Modificar sesion' => 'Modify Session',
 'Consultar sesiones por fecha' => 'Consult sessions by date',
+'IniciarSesion' => 'New session',
+'Finalizar Sesion' => 'Finish Session',
+'Realizando tabla' => 'TABLE OF THE SESSION',
+'Actividad' => 'ACTIVITY',
+
 
 //GESTION DE EJERCICIOS
 'ejercicioname' => 'Work Name',
