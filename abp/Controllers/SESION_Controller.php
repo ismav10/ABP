@@ -25,16 +25,15 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
             if (!isset($_REQUEST['comentarioSesion'])) {
+                $tabla = (Integer) $_REQUEST['id'];
+                $hoy = getDate();
                 $sesion = new SESION_Model($_SESSION['login'], '','','','','','','');
-                $idTablas = $sesion->ConsultarIdTablas();
-                $idActividadesIndividuales = $sesion->ConsultarIdActividadesIndividuales();
-                $tablas = $sesion->ConsultarTablas();
-                $actividadesIndividuales = $sesion->ConsultarActividades();
-                new SESION_Insertar($tablas, $actividadesIndividuales,$idTablas,$idActividadesIndividuales,'SESION_Controller.php');
+                $nombreTabla = $sesion->ConsultarNombreTabla($tabla);
+                new SESION_Insertar($nombreTabla,$tabla,'SESION_Controller.php');
             } else {
                 $hoy = getDate();
                 $horaFin = $hoy['hours'].":".$hoy['minutes'];
-                $sesion = new SESION_Model($_SESSION['login'], '', $_REQUEST['idTabla'], $_REQUEST['comentarioSesion'], $_REQUEST['idActividadIndividual'], $_REQUEST['fechaSesion'], $_REQUEST['horaInicio'], $horaFin);
+                $sesion = new SESION_Model($_SESSION['login'], '', $_REQUEST['idTabla'], $_REQUEST['comentarioSesion'], '', $_REQUEST['fechaSesion'], $_REQUEST['horaInicio'], $horaFin);
                 $respuesta = $sesion->Insertar();
                 new Mensaje($respuesta, 'SESION_Controller.php');
             }
