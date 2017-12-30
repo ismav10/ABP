@@ -180,6 +180,7 @@ $strings = array(
 'Finalizar Sesion' => 'Finish Session',
 'Realizando tabla' => 'TABLE OF THE SESSION',
 'Actividad' => 'ACTIVITY',
+'La sesion se ha modificado con éxito.' => 'Session succesfully modified.',
 
 
 //GESTION DE EJERCICIOS

@@ -169,6 +169,7 @@ $strings = array(
 'Modificar sesion' => 'Modificar Sesión',
  'Consultar sesiones por fecha' => 'Consultar sesiones por fecha',
  'IniciarSesion' => 'Iniciar sesión',
+ 'La sesion se ha modificado con éxito.' => 'A sesión modificouse con éxito.',
 
 //GESTION DE EJERCICIOS
 'ejercicioname' => 'Nome do Exercicio',

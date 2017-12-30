@@ -173,6 +173,7 @@ $strings = array(
  'Se ha insertado con éxito' => 'Se ha insertado con éxito',
  'Iniciar sesion' => 'Iniciar sesión',
  'IniciarSesion' => 'Iniciar sesión',
+ 'La sesion se ha modificado con éxito.' => 'La sesión se ha modificado con éxito.',
 
  //ACTIVIDADES GRUPALES
 
