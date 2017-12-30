@@ -149,6 +149,7 @@ $strings = array(
  'Remitente' => 'Remitente',
 'Asunto' => 'Asunto',
 'Fecha' => 'Data',
+'Mensaje' => 'Mensaxe',
 
 
 
