@@ -25,6 +25,11 @@ class NOTIFICACION_Consultar
      <label class="control-label" ><?php echo $strings['Asunto']; ?></label><br>
       <input class="form" id="Asunto" name="Asunto" size="25" type="text"/>
       </div>
+       <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['mensajeNotificacion']; ?></label><br>
+                    <textarea rows="25" cols="70" name="Mensaje"></textarea>
+                    
+                </div>
       <div class="form-group">
        <div class="form-group">
                     <input type="hidden" id="consulta" name="consulta" size="25" type="text" required="true" value='consulta'/>
