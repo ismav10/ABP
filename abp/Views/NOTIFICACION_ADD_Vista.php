@@ -118,9 +118,9 @@ class NOTIFICACION_Insertar {
                     <input class="form" id="asuntoNotificacion" name="asuntoNotificacion" size="50" type="text" required="true"/>
                 </div>
 
-                <div class="form-group">
+               <div class="form-group">
                     <label class="control-label" ><?php echo $strings['mensajeNotificacion']; ?></label><br>
-                    <input class="form" id="mensajeNotificacion" name="mensajeNotificacion" type="textarea" rows="10" cols="40" required="true"/>
+                    <textarea class="form" id="mensajeNotificacion" name="mensajeNotificacion" rows="20" cols="70" required="true"></textarea>
                 </div>
 
                 <div class="form-group">
