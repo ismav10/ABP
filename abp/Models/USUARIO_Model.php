@@ -97,10 +97,15 @@ class USUARIO_Modelo {
 
                         if ($this->tipoUsuario == 3) {
                             $sql = "INSERT INTO DEPORTISTA (userName, tipoDeportista, metodoPago) VALUES ( '" . $this->userName . "', '" . $this->tipoDeportista . "', '" . $this->medotoPago . "');";
-                            $this->mysqli->query($sql);
 
-                            $sqlAux = "INSERT INTO DEPORTISTA_INSCRIBIR_ACTIVIDADINDIVIDUAL  VALUES ( '" . $this->userName . "', 1);";
-                            $this->mysqli->query($sqlAux);
+
+                            if ($result3 = $this->mysqli->query($sql)) {
+                                $sqlAux = "INSERT INTO DEPORTISTA_INSCRIBIR_ACTIVIDADINDIVIDUAL  VALUES ( '" . $this->userName . "', 1);";
+                                $this->mysqli->query($sqlAux);
+
+                                $sqlAux2 = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . ConsultarEmailUsuario($_SESSION['login']) . "','" . ConsultarEmailUsuario($this->userName) . "', 'Bienvenido a MueveT','El equipo de MueveT le da la bienvenida y comunica que se ponga en contacto con nosotros ante cualquier problema.', '" . $_SESSION['login'] . "')";
+                                $this->mysqli->query($sqlAux2);
+                            }
                         }
 
                         $sql = "INSERT INTO USUARIO_ROL (userName, idRol) VALUES('" . $this->userName . "'," . $this->tipoUsuario . ")";
@@ -337,17 +342,21 @@ class USUARIO_Modelo {
             return 'Error en la consulta sobre la base de datos.';
         }
     }
-    
-    
+
     function desasignarActividad($idActividadGrupal) {
         $this->ConectarBD();
         $sql = "DELETE FROM deportista_inscribir_actividadgrupal WHERE idActividadGrupal='" . $idActividadGrupal . "' AND userName= '" . $this->userName . "'";
+
+        if ($resultado = $this->mysqli->query($sql)) {
+            $sql = "UPDATE deportista_inscribir_actividadgrupal
+                    SET  plazasDisponibles = plazasDisponibles + 1
+                    WHERE idActividadGrupal = '" . $idActividadGrupal. "' ";
+        }
+
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
         }
     }
-    
-    
 
     function ConsultarGrupalesDeportista() {
 

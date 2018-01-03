@@ -251,19 +251,19 @@ function ConsultarDeportistasActividad($nombreActividad) {
 
     if (!($resultado = $mysqli->query($sql))) {
         return 'Error en la consulta sobre la base de datos.';
-   } else {
-            $toret = array();
-            $filaAux;
-            $i = 0;
-            while ($fila = $resultado->fetch_array()) {
-                $toret[$i] = $fila;
-                $filaAux[$i] = $toret[$i]['EMAIL'];
-                $i++;
-            }
-            
-            return $filaAux;
+    } else {
+        $toret = array();
+        $filaAux;
+        $i = 0;
+        while ($fila = $resultado->fetch_array()) {
+            $toret[$i] = $fila;
+            $filaAux[$i] = $toret[$i]['EMAIL'];
+            $i++;
         }
+
+        return $filaAux;
     }
+}
 
 function CambiarFormatoTiempoHoraInicio($idActividadGrupal) {
     $mysqli = new mysqli("localhost", "root", "", "muevet");
@@ -293,6 +293,16 @@ function ConsultarNombreInstalacion($idInstalacion) {
     $sql = "SELECT nombreInstalacion FROM Instalacion WHERE idInstalacion='" . $idInstalacion . "'";
     $result = $mysqli->query($sql)->fetch_array();
     return $result['nombreInstalacion'];
+}
+
+function ConsultarEmailUsuario($username) {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT email FROM Usuario WHERE username='" . $username . "'";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['email'];
 }
 
 //añade a la pagina default los enlaces correspondientes a las funcionalidades
@@ -369,15 +379,9 @@ function añadirFuncionalidades($NOM) {
                     break;
 
                 case "Gestion Inscripciones":
-                    ?><li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $strings['Gestión de Inscripciones'] ?> </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="../Controllers/INSCRIPCION_Controller.php?act=grupal"><?php echo $strings['Gestión de Actividades Grupales']; ?></a><br>
-                    <!--                            <a class="dropdown-item" href="../Controllers/INSCRIPCION_Controller.php?act=individual"><?php echo $strings['Gestión de Actividades Individuales']; ?></a><br>-->
-                        </div>
-                    </li>
-                    <?php
-                    break;
+                    ?><li><a style="font-size:15px;" href="../Controllers/INSCRIPCION_Controller.php?act=grupal"><?php echo $strings['Gestión de Inscripciones']; ?></a></li> <?php
+                        break;
+                        
 
                 default:
                     break;
@@ -423,11 +427,11 @@ function showNavbar() {
         ?>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <?php echo $strings['Cuenta'] ?>
+        <?php echo $strings['Cuenta'] ?>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['Modificar']; ?>"><?php echo $strings['Mi Perfil'] ?></a><br>
-                <?php if (ConsultarTipoUsuarioLogin() == 3) { ?>
+        <?php if (ConsultarTipoUsuarioLogin() == 3) { ?>
                     <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['MisActividades']; ?>"><?php echo $strings['MisActividades'] ?></a><br>
                 <?php } ?>
                 <a class="dropdown-item" href="../Functions/Desconectar.php"><?php echo $strings['Cerrar Sesión'] ?></a> <br>

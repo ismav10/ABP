@@ -14,7 +14,7 @@ class ESTADISTICAS_SHOWALL {
     function render() {
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
         echo '<div class="container">';
-		echo '<h4>'. $strings['Estadisticas']. ''. $_REQUEST['userName']. '</h4>';
+		echo '<h4>'. $strings['VerEstadisticas']. ' '. $_REQUEST['userName']. '</h4>';
 		echo '<canvas id="myChart" width="200" height="200"></canvas>';
 		echo '</div>';
         include 'footer.php';

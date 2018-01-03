@@ -60,7 +60,7 @@ class NOTIFICACION_Model {
             } else {
                 //En caso de que no contenga ninguna @, vamos a obtener todos los correos de los deportistas de esa actividad y generar una notificacion
                 $this->destinatarioNotificacion = ConsultarDeportistasActividad($this->destinatarioNotificacion);
-                 
+
                 foreach ($this->destinatarioNotificacion as $valor) {
                     $sql = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . $this->ConsultarMailUsuario($this->userName) . "','" . $valor . "', '" . $this->asuntoNotificacion . "','" . $this->mensajeNotificacion . "','" . $this->userName . "')";
                     $this->mysqli->query($sql);
@@ -94,51 +94,32 @@ class NOTIFICACION_Model {
 //        }
 //    }
 
-   function Consultar()
-    {
+    function Consultar() {
         $this->ConectarBD();
 
-        if($this->remitenteNotificacion == '' && $this->asuntoNotificacion == '' && $this->mensajeNotificacion == '') //000
-        {
-            $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='".$this->consultarEmail($this->userName)."'";
+        if ($this->remitenteNotificacion == '' && $this->asuntoNotificacion == '' && $this->mensajeNotificacion == '') { //000
+            $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='" . $this->consultarEmail($this->userName) . "'";
+        } else
+        if ($this->remitenteNotificacion == '' && $this->asuntoNotificacion == '' && $this->mensajeNotificacion != '') { //001
+            $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='" . $this->consultarEmail($this->userName) . "' AND mensajeNotificacion LIKE '%" . $this->mensajeNotificacion . "%'";
+        } else
+        if ($this->remitenteNotificacion != '' && $this->asuntoNotificacion == '' && $this->mensajeNotificacion == '') { //100
+            $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='" . $this->consultarEmail($this->userName) . "' AND remitenteNotificacion LIKE '%" . $this->remitenteNotificacion . "%'";
+        } else
+        if ($this->remitenteNotificacion != '' && $this->asuntoNotificacion == '' && $this->mensajeNotificacion != '') { //101
+            $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='" . $this->consultarEmail($this->userName) . "' AND remitenteNotificacion LIKE '%" . $this->remitenteNotificacion . "%' AND mensajeNotificacion LIKE '%" . $this->mensajeNotificacion . "%'";
+        } else if ($this->remitenteNotificacion == '' && $this->asuntoNotificacion != '' && $this->mensajeNotificacion == '') { //010
+            $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='" . $this->consultarEmail($this->userName) . "' AND asuntoNotificacion LIKE '%" . $this->asuntoNotificacion . "%'";
+        } else if ($this->remitenteNotificacion == '' && $this->asuntoNotificacion != '' && $this->mensajeNotificacion != '') { //011
+            $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='" . $this->consultarEmail($this->userName) . "' AND asuntoNotificacion LIKE '%" . $this->asuntoNotificacion . "%' AND mensajeNotificacion LIKE '%" . $this->mensajeNotificacion . "%'";
+        } else if ($this->remitenteNotificacion != '' && $this->asuntoNotificacion != '' && $this->mensajeNotificacion == '') { //110
+            $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='" . $this->consultarEmail($this->userName) . "' AND asuntoNotificacion LIKE '%" . $this->asuntoNotificacion . "%' AND remitenteNotificacion LIKE '%" . $this->remitenteNotificacion . "%'";
+        } else if ($this->remitenteNotificacion != '' && $this->asuntoNotificacion != '' && $this->mensajeNotificacion != '') { //111
+            $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='" . $this->consultarEmail($this->userName) . "' AND asuntoNotificacion LIKE '%" . $this->asuntoNotificacion . "%' AND remitenteNotificacion LIKE '%" . $this->remitenteNotificacion . "%' AND mensajeNotificacion LIKE '%" . $this->mensajeNotificacion . "%'";
         }
-        else
-            if($this->remitenteNotificacion == '' && $this->asuntoNotificacion =='' && $this->mensajeNotificacion != '') //001
-            {
-                 $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='".$this->consultarEmail($this->userName)."' AND mensajeNotificacion LIKE '%".$this->mensajeNotificacion."%'";
-            }
-        else
-            if($this->remitenteNotificacion != '' && $this->asuntoNotificacion =='' && $this->mensajeNotificacion == '') //100
-            {
-                 $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='".$this->consultarEmail($this->userName)."' AND remitenteNotificacion LIKE '%".$this->remitenteNotificacion."%'";
-            }
-             else
-            if($this->remitenteNotificacion != '' && $this->asuntoNotificacion =='' && $this->mensajeNotificacion != '') //101
-            {
-                 $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='".$this->consultarEmail($this->userName)."' AND remitenteNotificacion LIKE '%".$this->remitenteNotificacion."%' AND mensajeNotificacion LIKE '%".$this->mensajeNotificacion."%'";
-            }
-            else if($this->remitenteNotificacion == '' && $this->asuntoNotificacion !='' && $this->mensajeNotificacion == '') //010
-            {
-                 $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='".$this->consultarEmail($this->userName)."' AND asuntoNotificacion LIKE '%".$this->asuntoNotificacion."%'";
-            }
-            else if($this->remitenteNotificacion == '' && $this->asuntoNotificacion !='' && $this->mensajeNotificacion != '') //011
-            {
-                 $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='".$this->consultarEmail($this->userName)."' AND asuntoNotificacion LIKE '%".$this->asuntoNotificacion."%' AND mensajeNotificacion LIKE '%".$this->mensajeNotificacion."%'";
-            }
-            else if($this->remitenteNotificacion != '' && $this->asuntoNotificacion !='' && $this->mensajeNotificacion == '') //110
-            {
-               $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='".$this->consultarEmail($this->userName)."' AND asuntoNotificacion LIKE '%".$this->asuntoNotificacion."%' AND remitenteNotificacion LIKE '%".$this->remitenteNotificacion."%'"; 
-            }
-             else if($this->remitenteNotificacion != '' && $this->asuntoNotificacion !='' && $this->mensajeNotificacion != '') //111
-            {
-               $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='".$this->consultarEmail($this->userName)."' AND asuntoNotificacion LIKE '%".$this->asuntoNotificacion."%' AND remitenteNotificacion LIKE '%".$this->remitenteNotificacion."%' AND mensajeNotificacion LIKE '%".$this->mensajeNotificacion."%'"; 
-            }
-        if(!($resultado = $this->mysqli->query($sql)))
-        {
+        if (!($resultado = $this->mysqli->query($sql))) {
             return 'No se ha podido conectar con la base de datos.';
-        }
-        else
-        {
+        } else {
             $toret = array();
             $i = 0;
             while ($fila = $resultado->fetch_array()) {
@@ -234,12 +215,11 @@ class NOTIFICACION_Model {
             return $toret;
         }
     }
-    
-    
+
     //Consulta todos los deportistas para que los entrenadores puedan enviarle notificaciones
     function ConsultarActividadesImpartidas($login) {
         $this->ConectarBD();
-        $sql = "SELECT DISTINCT nombreActividadGrupal FROM ACTIVIDADGRUPAL G WHERE G.userName = '". $login. "'";
+        $sql = "SELECT DISTINCT nombreActividadGrupal FROM ACTIVIDADGRUPAL G WHERE G.userName = '" . $login . "'";
 
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
@@ -294,7 +274,7 @@ class NOTIFICACION_Model {
             return 'Error en la consulta sobre la base de datos.';
         } else {
             $this->ConectarBD();
-            $sql = "SELECT idNotificacion, remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion ,asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='" . $email . "'";
+            $sql = "SELECT estado, idNotificacion, remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion ,asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='" . $email . "'";
             if (!($resultado = $this->mysqli->query($sql))) {
                 return 'Error en la consulta sobre la base de datos.';
             } else {
@@ -334,6 +314,21 @@ class NOTIFICACION_Model {
         } else {
             $result = $resultado->fetch_array();
             return $result;
+        }
+    }
+
+    function Ver() {
+        $this->ConectarBD();
+        $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, 
+    	asuntoNotificacion, mensajeNotificacion FROM NOTIFICACION WHERE idNotificacion= '" . $this->idNotificacion . "'";
+        if (($resultado = $this->mysqli->query($sql))) {
+            $sql1 = "UPDATE notificacion SET estado=1  WHERE idNotificacion= '" . $this->idNotificacion . "'";
+            $this->mysqli->query($sql1);
+
+            $result = $resultado->fetch_array();
+            return $result;
+        } else {
+            return 'Error en la consulta sobre la base de datos.';
         }
     }
 

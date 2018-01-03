@@ -24,14 +24,14 @@ class DEPORTISTA_Show {
         ?> 
         <div class="container">
             <?php
-            $lista = array('foto', 'userName', 'nombre', 'apellidos', 'dni', 'fechaNac', 'direccion', 'telefono', 'email', 'tipoDeportista', 'metodoPago');
+            $lista = array('foto', 'userName', 'nombre', 'apellidos', 'dni', 'fechaNac', 'telefono', 'tipoDeportista');
             ?>
             <br><br>
 
             <div class="container">
                 <div align='left'>
-                    <?php if(ConsultarTipoUsuarioLogin() == 1){ ?>
-                    <a href='DEPORTISTA_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><img src="../img/useradd.png" width="50px" height="50px"></a>
+                    <?php if (ConsultarTipoUsuarioLogin() == 1) { ?>
+                        <a href='DEPORTISTA_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><img src="../img/useradd.png" width="50px" height="50px"></a>
                     <?php } ?>
                 </div>
 
@@ -73,25 +73,24 @@ class DEPORTISTA_Show {
                                         if ($clave === 'userName') {
                                             ?>
                                         <a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Ver']; ?>'><font color="#088A4B"><?php echo $valor; ?></font></a> <?php
-                        } else {
-                            echo $valor;
+                                    } else {
+                                        echo $valor;
+                                    }
+                                    echo "</td>";
+                                }
+                            }
                         }
-                        echo "</td>";
-                    }
-                }
-            }
-                            ?>
+                        ?>
 
-                         <?php if(ConsultarTipoUsuarioLogin() == 1){ ?>
-                        <td><button type="button" class="btn btn-info"><a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Modificar']; ?>'><?php echo $strings['Modificar']; ?></a></button></td>
-                        <td><button type="button" class="btn btn-danger"><a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Borrar']; ?>'><?php echo $strings['Borrar']; ?></a></button></td>
-                        <td><button type="button" class="btn btn-success"><a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['AsignarT']; ?>'><?php echo $strings['Tablas']; ?></a></button></td>
-                        <td><button type="button" class="btn btn-primary"><a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['ActividadesGrupales']; ?>'><?php echo $strings['ActividadesGrupales']; ?></a></button></td>
-                        <td><button type="button" class="btn btn"><a href='ESTADISTICAS_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['VerEstadisticas']; ?>'><?php echo $strings['VerEstadisticas']; ?></a></button></td>
-                         <?php }
-                         
-                         
-                            }?>
+                        <?php if (ConsultarTipoUsuarioLogin() == 1) { ?>
+                            <td><button type="button" class="btn btn-info"><a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Modificar']; ?>'><?php echo $strings['Modificar']; ?></a></button></td>
+                            <td><button type="button" class="btn btn-danger"><a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Borrar']; ?>'><?php echo $strings['Borrar']; ?></a></button></td>
+                            <td><button type="button" class="btn btn-success"><a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['AsignarT']; ?>'><?php echo $strings['Tablas']; ?></a></button></td>
+                            <td><button type="button" class="btn btn-primary"><a href='DEPORTISTA_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['ActividadesGrupales']; ?>'><?php echo $strings['ActividadesGrupales']; ?></a></button></td>
+                            <td><button type="button" class="btn btn"><a href='ESTADISTICAS_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['VerEstadisticas']; ?>'><?php echo $strings['VerEstadisticas']; ?></a></button></td>
+                                <?php }
+                            }
+                            ?>
 
                     </tbody>
                 </table>

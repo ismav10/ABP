@@ -228,6 +228,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         echo '<script> location.replace("../Controllers/DEPORTISTA_Controller.php?accion=' . $strings['ActividadesGrupales'] . '&userName=' . $_REQUEST['userName'] . '"); </script>';
         exit(0);
         break;
+    
 
     default: //Por defecto se realiza el show all
         if (!isset($_REQUEST['userName'])) {

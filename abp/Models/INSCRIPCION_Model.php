@@ -40,6 +40,10 @@ class INSCRIPCION_Model {
                 $result23 = $this->mysqli->query($sql1);
                 $sql2 = "UPDATE deportista_inscribir_actividadgrupal SET plazasDisponibles = plazasDisponibles -1 WHERE idActividadGrupal = '" . $this->idActividadGrupal . "'";
                 $this->mysqli->query($sql2);
+
+                $sqlAux2 = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . ConsultarEmailUsuario($_SESSION['login']) . "', '" . ConsultarEmailUsuario($this->userName) . "', 'Resolución sobre petición para actividad " . ConsultarNombreActividadGrupal($this->idActividadGrupal) . "'  , 'Su solicitud para inscribirse en la actividad " . ConsultarNombreActividadGrupal($this->idActividadGrupal) . " ha sido aceptada por parte de MueveT. ¡Esperamos que disfrute mucho de las clases! ', '" . $_SESSION['login'] . "')";
+                $this->mysqli->query($sqlAux2);
+
                 return "Solicitud aceptada";
             } else {
                 return "No hay plazas para esa actividad";
@@ -54,7 +58,6 @@ class INSCRIPCION_Model {
         $sql = "UPDATE DEPORTISTA_INSCRIBIR_ACTIVIDADINDIVIDUAL SET estado = 1 WHERE userName= '" . $this->userName . "' AND idActividadIndividual = '" . $this->idActividadGrupal . "'";
         $result = $this->mysqli->query($sql);
         return "Solicitud aceptada";
-        
     }
 
     function RechazarGrupal() {
@@ -66,14 +69,16 @@ class INSCRIPCION_Model {
         if ($result->num_rows == 1) {
             $sql1 = "DELETE FROM DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL where userName = '" . $this->userName . "' AND idActividadGrupal = '" . $this->idActividadGrupal . "'";
             $this->mysqli->query($sql1);
+
+            $sqlAux2 = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . ConsultarEmailUsuario($_SESSION['login']) . "', '" . ConsultarEmailUsuario($this->userName) . "', 'Resolución sobre petición para actividad " . ConsultarNombreActividadGrupal($this->idActividadGrupal) . "'  , 'Su solicitud para inscribirse en la actividad " . ConsultarNombreActividadGrupal($this->idActividadGrupal) . " ha sido rechazada por parte de MueveT. Esperamos que encuentre otras actividades de su gusto en nuestro catálogo. ¡Esperamos verle pronto! ', '" . $_SESSION['login'] . "')";
+            $this->mysqli->query($sqlAux2);
+
             return "Solicitud rechazada";
         } else {
             return "No existe la inscripcion";
         }
     }
 
-    
-    
     function RechazarIndividual() {
 
         $this->ConectarBD();
@@ -88,8 +93,7 @@ class INSCRIPCION_Model {
             return "No existe la inscripcion";
         }
     }
-    
-    
+
     function ConsultarTodoGrupales() {
         $this->ConectarBD();
         $sql = "SELECT * FROM DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL WHERE estado = 0";
@@ -105,7 +109,7 @@ class INSCRIPCION_Model {
             return $toret;
         }
     }
-    
+
     function ConsultarTodoIndividuales() {
         $this->ConectarBD();
         $sql = "SELECT * FROM DEPORTISTA_INSCRIBIR_ACTIVIDADINDIVIDUAL WHERE estado = 0";

@@ -121,7 +121,7 @@ switch ($_REQUEST['accion']) {
             } else {
                 $idNotificacion = $_REQUEST['idNotificacion'];
                 $notificacion = new NOTIFICACION_Model($idNotificacion, '', '', '', '', '', '');
-                $resultado = $notificacion->RellenaDatos();
+                $resultado = $notificacion->Ver();
                 new NOTIFICACION_Seleccionar($resultado, '../Controllers/NOTIFICACION_Controller.php');
             }
         }

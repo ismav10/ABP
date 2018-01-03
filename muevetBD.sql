@@ -185,8 +185,8 @@ CREATE TABLE `deportista_inscribir_actividadgrupal` (
 INSERT INTO `deportista_inscribir_actividadgrupal` (`userName`, `idActividadGrupal`, `estado`, `plazasDisponibles`) VALUES
 ('deportista1', 1, 0, 24),
 ('deportista1', 5, 1, 19),
-('deportista1', 8, 1, 8),
-('deportista2', 8, 1, 8),
+('deportista1', 8, 1, 7),
+('deportista2', 8, 1, 7),
 ('deportista2', 1, 1, 24),
 ('deportista2', 4, 1, 24),
 ('deportista2', 10, 0, 10),
@@ -565,6 +565,7 @@ INSERT INTO `instalacion` (`idInstalacion`, `nombreInstalacion`, `descipcionInst
 --
 
 CREATE TABLE `notificacion` (
+  `estado` tinyint(1) DEFAULT '0',
   `idNotificacion` int(100) NOT NULL,
   `remitenteNotificacion` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `destinatarioNotificacion` text COLLATE utf8_spanish_ci NOT NULL,
@@ -578,9 +579,9 @@ CREATE TABLE `notificacion` (
 -- Volcado de datos para la tabla `notificacion`
 --
 
-INSERT INTO `notificacion` (`idNotificacion`, `remitenteNotificacion`, `destinatarioNotificacion`, `fechaHoraNotificacion`, `asuntoNotificacion`, `mensajeNotificacion`, `username`) VALUES
-(1, 'ivanddf1994@gmail.com', 'ivanddf1994@hotmail.com', '2017-11-18 12:52:47', 'Probando SHOWALL', 'Hola', 'admin'),
-(2, 'isma@hotmail.com', 'ivanddf1994@hotmail.com', '2017-11-18 12:58:50', 'Prueba SHOWALL 2', 'Hola 2', 'deportista1');
+INSERT INTO `notificacion` (`estado`, `idNotificacion`, `remitenteNotificacion`, `destinatarioNotificacion`, `fechaHoraNotificacion`, `asuntoNotificacion`, `mensajeNotificacion`, `username`) VALUES
+(0, 1, 'ivanddf1994@gmail.com', 'ivanddf1994@hotmail.com', '2017-11-18 12:52:47', 'Probando SHOWALL', 'Hola', 'admin'),
+(0, 2, 'isma@hotmail.com', 'ivanddf1994@hotmail.com', '2017-11-18 12:58:50', 'Prueba SHOWALL 2', 'Hola 2', 'deportista1');
 
 -- --------------------------------------------------------
 
@@ -855,7 +856,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`foto`, `userName`, `password`, `tipoUsuario`, `nombre`, `apellidos`, `dni`, `fechaNac`, `direccion`, `telefono`, `email`) VALUES
-('../Documents/Administradores/44488795X/Foto/ivan.jpg', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'IvÃ¡n', 'de Dios FernÃ¡ndez', '44488795X', '1994-03-26', 'Avenida Vistahermosa 8, 3ÂºA', 988252875, 'ivanddf1994@hotmail.com'),
+('../Documents/Administradores/44488795X/Foto/ivan.jpg', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'IvÃ¡n', 'de Dios FernÃ¡ndez', '44488795X', '1994-03-26', 'Avenida Vistahermosa 8, 3ÂºA', 988252875, 'administracion@muevet.com'),
 ('../Documents/Deportistas/87654321Q/Foto/s.jpeg', 'deportista1', '5e3ea95c649fe43cbc6e9c1c71071f0f', 3, 'Bruno', 'Romero Rodriguez', '45147231W', '1995-10-10', 'Paseo de la Castellana 22, 1Âº', 988767165, 'brunoromero@gmail.com'),
 ('../img/user.jpg', 'deportista2', '220a15a78a728aa88fcf45d009705d96', 3, 'Alberto', 'Porral FramiÃ±Ã¡n', '54064900L', '1992-09-17', 'Manuel Antonio Puga 54, 2ÂºA', 678987432, 'albertoporral@hotmail.com'),
 ('../Documents/Deportistas/45147607X/Foto/FOTO_CARNET.png', 'deportista3', '1dcbb1e46c4c3e87b42c4a4128f9b6cd', 3, 'Rafa', 'VÃ¡zquez VÃ¡zquez', '45147607X', '1982-05-10', 'Ervedelo 36, 1Âº', 617890654, 'rafarafita@hotmail.com'),
