@@ -155,6 +155,21 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         }
 
         break;
+        
+//         case $strings['Ver1']:
+//        if (!isset($_REQUEST['nombre'])) {
+//            //Crea un usuario solo con el user para rellenar posteriormente sus datos y mostrarlos en el formulario
+//            $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '', '');
+//            $valores = $usuario->RellenaDatos();
+//            $datos['tablas'] = $usuario->consultarTablas();
+//            if (!tienePermisos('DEPORTISTA_SELECT_SHOW')) {
+//                new Mensaje('No tienes los permisos necesarios', 'DEPORTISTA_Controller.php');
+//            } else {
+//                new DEPORTISTA_SELECT_SHOW($valores, $datos, '../Controllers/DEPORTISTA_Controller.php?accion='. $strings['MisActividades']);
+//            }
+//        }
+//
+//        break;
 
 
 
@@ -171,7 +186,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         foreach ($tabla as &$valor) {
             $datos['selectedTablas'] .= "<option>" . $valor['nombreTabla'] . "</option>";
         }
-        new DEPORTISTA_ASIGNAR_TABLA($tablas, $datos, '../Views/DEPORTISTA_Controller.php');
+        new DEPORTISTA_ASIGNAR_TABLA($tablas, $datos, 'DEPORTISTA_Controller.php');
         break;
 
 
@@ -182,6 +197,9 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         $asign_data_formated = array_chunk($asign_data, 1, false);
         foreach ($asign_data_formated as $key => $value) {
             $respuesta = $usuario->asignarTablas($value);
+        }
+       if (!isset($respuesta)) {
+            $respuesta = "Debe seleccionar una tabla";
         }
         new Mensaje($respuesta, '../Controllers/DEPORTISTA_Controller.php?accion=' . $strings['AsignarT'] . '&userName=' . $_REQUEST['userName']);
         break;
@@ -197,8 +215,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 
 
     case $strings['MisActividades']:
-
-        $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+        $usuario = new USUARIO_Modelo($_SESSION['login'], '', '', '', '', '', '', '', '', '', '', '', '', '', '');
         $datos = $usuario->consultarGrupalesDeportista();
         if (!tienePermisos('DEPORTISTA_SHOW_GRUPALES')) {
             new Mensaje('No tienes los permisos necesarios', 'DEPORTISTA_Controller.php');

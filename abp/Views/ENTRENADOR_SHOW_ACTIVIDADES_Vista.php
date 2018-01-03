@@ -1,6 +1,6 @@
 <?php
 
-class DEPORTISTA_SHOW_GRUPALES {
+class ENTRENADOR_SHOW_GRUPALES {
 
 //VISTA PARA LISTAR TODAS LAS ACTIVIDADES GRUPALES
     private $datos;
@@ -17,7 +17,7 @@ class DEPORTISTA_SHOW_GRUPALES {
         ?> 
         <div class="container">	
             <?php
-            $lista = array('nombreActividadGrupal', 'username', 'idInstalacion');
+            $lista = array('nombreActividadGrupal', 'diaActividadGrupal', 'horaInicioActividadGrupal', 'horaFinActividadGrupal', 'fechaInicioActividadGrupal', 'fechaFinActividadGrupal', 'idInstalacion');
             ?>
             <br><br>
 
@@ -44,15 +44,15 @@ class DEPORTISTA_SHOW_GRUPALES {
                                                 if ($clave === 'nombreActividadGrupal') {
                                                     ?>
                                             <a href='ACTIVIDAD_GRUPAL_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Ver']; ?>'><font color="#088A4B"><?php echo $valor; ?></font></a> <?php
-                                            break;
-                                        } if ($clave === 'username') {
+                                        } else if ($clave === 'username') {
                                             ?>
-                                            <a href='ENTRENADOR_Controller.php?userName=<?php echo $this->datos[$j]['username'] . '&accion=' . $strings['Ver1']; ?>'><font color="#088A4B"><?php echo $valor; ?></font></a> <?php
-                                            break;
-                                        }if ($clave === 'idInstalacion') {
-                                            ?>
-                                            <a href='INSTALACION_Controller.php?userName=<?php echo $this->datos[$j]['idInstalacion'] . '&accion=' . $strings['Ver']; ?>'><font color="#088A4B"><?php echo ConsultarNombreInstalacion($valor); ?></font></a> <?php
-                                            break;
+                                            <a href='ENTRENADOR_Controller.php?userName=<?php echo $this->datos[$j]['username'] . '&accion=' . $strings['VerMonitor']; ?>'><font color="#088A4B"><?php echo $valor; ?></font></a> <?php
+                                        } else if ($clave === 'horaInicioActividadGrupal') {
+                                            echo CambiarFormatoTiempoHoraInicio($this->datos[$j]['idActividadGrupal']);
+                                        } else if ($clave === 'horaFinActividadGrupal') {
+                                            echo CambiarFormatoTiempoHoraFin($this->datos[$j]['idActividadGrupal']);
+                                        } else if ($clave === 'idInstalacion') {
+                                            echo ConsultarNombreInstalacion($this->datos[$j]['idInstalacion']);
                                         } else {
                                             echo $valor;
                                         }
@@ -61,14 +61,15 @@ class DEPORTISTA_SHOW_GRUPALES {
                                     }
                                 }
                             }
-                        }
-                        ?>
+                            ?>
+                            <td><button type="button" class="btn btn-info"><a href='ENTRENADOR_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['VerDeportistas']; ?>'><?php echo $strings['VerDeportistas']; ?></a></button></td>
+                                <?php }
+                                ?>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-
         <?php
         include '../Views/footer.php';
     }

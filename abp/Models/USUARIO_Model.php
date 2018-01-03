@@ -317,20 +317,45 @@ class USUARIO_Modelo {
             return $toret;
         }
     }
+    
+    
+    
+    function consultarDeportistasActividades($idActividadGrupal) {
+        $this->ConectarBD();
+        $sql = "SELECT * FROM USUARIO, DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL, ACTIVIDADGRUPAL WHERE USUARIO.userName = DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.userName AND DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.idActividadGrupal = ACTIVIDADGRUPAL.idActividadGrupal AND DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.estado = 1 AND ACTIVIDADGRUPAL.idActividadGrupal = '". $idActividadGrupal . "' AND ACTIVIDADGRUPAL.userName = '" .$this->userName. "'";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            return $toret;
+        }
+    }
+    
+    
+    
 
     function asignarTablas($listaTablas) {
         $this->ConectarBD();
-        foreach ($listaTablas as $tabla) {
-            $sqlAux = "SELECT COUNT(*) FROM deportista_asignar_tabla WHERE username = '" . $this->userName . "'";
-            $resultAux = $this->mysqli->query($sqlAux)->fetch_array();
-            if ($resultAux['COUNT(*)'] >= 5) {
-                return 'Ya han sido asignadas 5 tablas para este deportista';
-            } else {
-                $sql = "INSERT INTO DEPORTISTA_ASIGNAR_TABLA VALUES ('" . $this->userName . "',(SELECT idTabla FROM TABLA WHERE nombreTabla='" . $tabla . "'))";
-            }if (!($resultado = $this->mysqli->query($sql))) {
-                return 'La tabla ya ha sido asignada a este usuario';
-            } else {
-                return 'La tabla se ha asignado correctamente';
+        if (!isset($listaTablas)) {
+            return 'Debe seleccionar una tabla';
+        } else {
+            foreach ($listaTablas as $tabla) {
+                $sqlAux = "SELECT COUNT(*) FROM deportista_asignar_tabla WHERE username = '" . $this->userName . "'";
+                $resultAux = $this->mysqli->query($sqlAux)->fetch_array();
+                if ($resultAux['COUNT(*)'] >= 5) {
+                    return 'Ya han sido asignadas 5 tablas para este deportista';
+                } else {
+                    $sql = "INSERT INTO DEPORTISTA_ASIGNAR_TABLA VALUES ('" . $this->userName . "',(SELECT idTabla FROM TABLA WHERE nombreTabla='" . $tabla . "'))";
+                }if (!($resultado = $this->mysqli->query($sql))) {
+                    return 'La tabla ya ha sido asignada a este usuario';
+                } else {
+                    return 'La tabla se ha asignado correctamente';
+                }
             }
         }
     }
@@ -350,7 +375,7 @@ class USUARIO_Modelo {
         if ($resultado = $this->mysqli->query($sql)) {
             $sql = "UPDATE deportista_inscribir_actividadgrupal
                     SET  plazasDisponibles = plazasDisponibles + 1
-                    WHERE idActividadGrupal = '" . $idActividadGrupal. "' ";
+                    WHERE idActividadGrupal = '" . $idActividadGrupal . "' ";
         }
 
         if (!($resultado = $this->mysqli->query($sql))) {

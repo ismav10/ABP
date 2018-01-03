@@ -1,6 +1,6 @@
-<?php
+﻿<?php
 
-class ENTRENADOR_Show {
+class DEPORTISTA_SHOW_ACTIVIDADES {
 
 //VISTA PARA LISTAR TODOS LOS USUARIOS
     private $datos;
@@ -19,10 +19,8 @@ class ENTRENADOR_Show {
             <?php
             $lista = array('foto', 'userName', 'nombre', 'apellidos', 'dni', 'fechaNac', 'telefono', 'email');
             ?>
-
             <div class="container">
-                     <div align='left'>
-                         <a href='ENTRENADOR_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><img src="../img/useradd.png" width="50px" height="50px"></a>
+                <div align='left'>
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
@@ -52,16 +50,9 @@ class ENTRENADOR_Show {
                                                 echo $strings[ConsultarNOMRol($valor)];
                                                 break;
                                             }
-                                            if($clave == 'cuentaBanc'){
-                                                $pre = substr($valor, 0, 2);
-                                                $post= substr($valor, -4);
-                                                $resultado = $pre."•••••••••••••••••".$post;
-                                                echo $resultado;
-                                                break;
-                                            }
                                             if ($clave === 'userName') {
                                                 ?>
-                                            <a href='ENTRENADOR_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Ver']; ?>'><font color="#088A4B"><?php echo $valor; ?></font></a> <?php
+                                            <a href='USUARIO_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Ver']; ?>'><font color="#088A4B"><?php echo $valor; ?></font></a> <?php
                                         } else {
                                             echo $valor;
                                         }
@@ -70,10 +61,6 @@ class ENTRENADOR_Show {
                                 }
                             }
                             ?>
-
-                                                                        <!--<td><button type="button" class="btn btn-success"><a href='USUARIO_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Ver']; ?>'><?php echo $strings['Ver']; ?></a></button></td>   -->          
-                            <td><button type="button" class="btn btn-info"><a href='ENTRENADOR_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Modificar']; ?>'><?php echo $strings['Modificar']; ?></a></button></td>
-                            <td><button type="button" class="btn btn-danger"><a href='ENTRENADOR_Controller.php?userName=<?php echo $this->datos[$j]['userName'] . '&accion=' . $strings['Borrar']; ?>'><?php echo $strings['Borrar']; ?></a></button></td>
                                     <?php
                                 }
                                 ?>

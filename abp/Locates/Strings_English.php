@@ -42,7 +42,7 @@ $strings = array(
 'No se puede borrar porque no existe esa actividad individual' => 'It can not be deleted because there is no such individual activity',
 'La actividad individual se ha modificado con exito' => 'The individual activity has been modified successfully',
 'No tienes los permisos necesarios' => 'You do not have the necessary permits',
-    
+'Debe seleccionar una tabla' => 'You must select a table',
     
     
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)
@@ -82,6 +82,8 @@ $strings = array(
 'Cerrar' => 'Close',
 'Guardar' => 'Save',
 'Asignar' => 'Assign',
+'Ver1' => 'Ver1',
+'VerDeportistas' => 'See Athletes',
 
 
 //USUARIOS

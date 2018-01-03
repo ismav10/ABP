@@ -31,6 +31,7 @@ $strings = array(
 'No se puede borrar porque no existe esa notificacion.' => 'No se puede borrar porque no existe esa notificacion.',
 'La notificacion fue borrada con éxito.' => 'La notificacion fue borrada con éxito.',
 'No tienes los permisos necesarios' => 'No tienes los permisos necesarios',
+'Debe seleccionar una tabla' =>'Debe seleccionar una tabla',
     
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)
 'Iniciar Sesion' => 'Iniciar Sesion',
@@ -72,6 +73,8 @@ $strings = array(
 'Asignar' => 'Asignar',
 'Desasignar' =>'Desasignar',
 'ver' =>'ver',
+'Ver1' => 'Ver1',
+'VerDeportistas' => 'Ver Deportistas',
 
 //USUARIOS
 'userName' => 'Usuario',
@@ -81,7 +84,7 @@ $strings = array(
 'apellidos' => 'Apellidos',
 'tipoUsuario' => 'Tipo',
 'dni' => 'DNI',
-'fechaNac' => 'Fecha de Nacimiento',
+'fechaNac' => 'Fecha Nac.',
 'telefono' => 'Teléfono',
 'direccion' => 'Dirección',
 'email' => 'Email',
@@ -266,6 +269,7 @@ $strings = array(
     
     'seleccionarDestinatario' => 'Seleccionar Destinatario',
     'Destinatario' => 'Destinatario',
+
     
 );
 ?>

@@ -31,8 +31,8 @@ function get_data_form_Entrenador() {
     $telefono = $_REQUEST['telefono'];
     $email = $_REQUEST['email'];
     $cuentaBanc = $_REQUEST['cuentaBanc'];
-    
-    if (!isset($_REQUEST['newPassword']) || $_REQUEST['newPassword'] == '' ) {
+
+    if (!isset($_REQUEST['newPassword']) || $_REQUEST['newPassword'] == '') {
         $newPassword = '';
     } else {
         $newPassword = $_REQUEST['newPassword'];
@@ -143,34 +143,83 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
             //Crea un usuario solo con el user para rellenar posteriormente sus datos y mostrarlos en el formulario
             $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '', '');
             $valores = $usuario->RellenaDatos();
-           $datos['actividades'] = $usuario->ConsultarActividades();
+            $datos['actividades'] = $usuario->ConsultarActividades();
             if (!tienePermisos('ENTRENADOR_SELECT_SHOW')) {
                 new Mensaje('No tienes los permisos necesarios', 'DEPORTISTA_Controller.php');
             } else {
-                
+
                 new ENTRENADOR_SELECT_SHOW($valores, $datos, 'ENTRENADOR_Controller.php');
             }
         }
 
         break;
-        
-        
-        case $strings['VerMonitor']:
+
+
+
+    case $strings['Ver1']:
         if (!isset($_REQUEST['nombre'])) {
             //Crea un usuario solo con el user para rellenar posteriormente sus datos y mostrarlos en el formulario
             $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '', '');
             $valores = $usuario->RellenaDatos();
-           $datos['actividades'] = $usuario->ConsultarActividades();
+            $datos['actividades'] = $usuario->ConsultarActividades();
+            if (!tienePermisos('ENTRENADOR_SELECT_SHOW')) {
+                new Mensaje('No tienes los permisos necesarios', 'DEPORTISTA_Controller.php');
+            } else {
+
+                new ENTRENADOR_SELECT_SHOW($valores, $datos, '../Controllers/DEPORTISTA_Controller.php?accion=' . $strings['MisActividades']);
+            }
+        }
+
+        break;
+
+
+
+    case $strings['VerMonitor']:
+        if (!isset($_REQUEST['nombre'])) {
+            //Crea un usuario solo con el user para rellenar posteriormente sus datos y mostrarlos en el formulario
+            $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '', '');
+            $valores = $usuario->RellenaDatos();
+            $datos['actividades'] = $usuario->ConsultarActividades();
             if (!tienePermisos('ENTRENADOR_SELECT_SHOW')) {
                 new Mensaje('No tienes los permisos necesarios', 'ACTIVIDAD_GRUPAL_Controller.php');
             } else {
-                
+
                 new ENTRENADOR_SELECT_SHOW($valores, $datos, 'ACTIVIDAD_GRUPAL_Controller.php');
             }
         }
 
         break;
- 
+
+
+
+    case $strings['MisActividades']:
+        $usuario = new USUARIO_Modelo($_SESSION['login'], '', ConsultarTipoUsuario($_SESSION['login']), '', '', '', '', '', '', '', '', '', '', '', '');
+        //$valores = $usuario->RellenaDatos();
+        $datos = $usuario->ConsultarActividades();
+        if (!tienePermisos('ENTRENADOR_SHOW_GRUPALES')) {
+            new Mensaje('No tienes los permisos necesarios', 'ACTIVIDAD_GRUPAL_Controller.php');
+        } else {
+
+            new ENTRENADOR_SHOW_GRUPALES($datos, 'ACTIVIDAD_GRUPAL_Controller.php');
+        }
+        break;
+
+
+        
+    case $strings['VerDeportistas']:
+        $usuario = new USUARIO_Modelo($_SESSION['login'], '', ConsultarTipoUsuario($_SESSION['login']), '', '', '', '', '', '', '', '', '', '', '', '');
+        //$valores = $usuario->RellenaDatos();
+        $datos = $usuario->ConsultarDeportistasActividades($_REQUEST['idActividadGrupal']);
+        if (!tienePermisos('DEPORTISTA_SHOW_ACTIVIDADES')) {
+            new Mensaje('No tienes los permisos necesarios', '../Controllers/DEPORTISTA_Controller.php?accion=' . $strings['MisActividades']);
+        } else {
+            new DEPORTISTA_SHOW_ACTIVIDADES($datos, '../Controllers/DEPORTISTA_Controller.php?accion=' . $strings['MisActividades']);
+        }
+        break;
+
+
+
+
 
     default: //Por defecto se realiza el show all
         if (!isset($_REQUEST['userName'])) {

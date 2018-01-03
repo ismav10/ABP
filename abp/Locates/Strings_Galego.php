@@ -31,6 +31,7 @@ $strings = array(
 'No se puede borrar porque no existe esa notificacion.' => 'Non se pode borrar porque non existe.',
 'La notificacion fue borrada con éxito.' => 'A notificacion foi borrada con éxito.',  
 'No tienes los permisos necesarios' => 'Careces dos permisos necesarios',
+'Debe seleccionar una tabla' =>'Debe seleccionar unha táboa',
     
     
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)
@@ -71,7 +72,9 @@ $strings = array(
 'Cerrar' => 'Cerrar',
 'Guardar' => 'Gardar',
 'Asignar' => 'Asinar',
-
+'Ver1' => 'Ver1',
+'VerDeportistas' => 'Ver Deportistas',
+    
 //USUARIOS
 'userName' => 'Usuario',
 'password'=>'Contrasinal',

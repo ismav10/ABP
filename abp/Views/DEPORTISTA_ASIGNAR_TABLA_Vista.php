@@ -16,10 +16,9 @@ class DEPORTISTA_ASIGNAR_TABLA {
     function render() {
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
         ?>
-        <form method="POST" action="?accion=<?php echo $strings['Asignar'] ?>&userName=<?php echo $_REQUEST['userName']?>" id="frmTableEjercicios">
+        <form method="POST" action="?accion=<?php echo $strings['Asignar'] ?>&userName=<?php echo $_REQUEST['userName'] ?>" id="frmTableEjercicios">
             <div class="container">
-                <button id="savefrm" type="button" class="btn btn-primary btn-lg btn-block"><?php echo $strings['Guardar']; ?></button>
-                <br>
+                <button type="button" class="btn"><a  href='<?php echo $this->volver ?>'><?php echo $strings['Volver']; ?></a></button>
                 <button type="button" class="btn btn-success" id="addrow"><?php echo $strings['AñadirTabla']; ?></button> 
                 <?php
                 $lista = array('nombreTabla', 'tipo', 'descripcionTabla');
@@ -57,14 +56,15 @@ class DEPORTISTA_ASIGNAR_TABLA {
                             }
                             if (ConsultarTipoUsuarioLogin() == 1) {
                                 ?>
-                                <td><button type="button" class="btn btn-danger"><a href='DEPORTISTA_Controller.php?idTabla=<?php echo ConsultarIDTabla($this->TablasUser[$j]['nombreTabla']) . '&userName=' . $_REQUEST['userName']. '&accion=' . $strings['Desasignar']; ?>'><?php echo $strings['Desasignar']; ?></a></button></td>
-                                    <?php
-                                    }
-                                }
-                                ?>
+                                <td><button type="button" class="btn btn-danger"><a href='DEPORTISTA_Controller.php?idTabla=<?php echo ConsultarIDTabla($this->TablasUser[$j]['nombreTabla']) . '&userName=' . $_REQUEST['userName'] . '&accion=' . $strings['Desasignar']; ?>'><?php echo $strings['Desasignar']; ?></a></button></td>
+                                <?php
+                            }
+                        }
+                        ?>
 
                         </tbody>
                     </table>
+                    <button id="savefrm" type="button" class="btn btn-primary"><?php echo $strings['Guardar']; ?></button>
                 </div>
             </div>
         </div>
