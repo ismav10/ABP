@@ -305,6 +305,21 @@ function ConsultarEmailUsuario($username) {
     return $result['email'];
 }
 
+function ConsultarNotificacionesPendientes($destinatario) {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT * FROM notificacion WHERE estado = 0 AND destinatarioNotificacion = '". ConsultarEmailUsuario($destinatario). "'";
+    $result = $mysqli->query($sql);
+      if ($result->num_rows >= 1) {
+          return 1;
+      } else {
+          return 0;
+      }
+   
+}
+
 //añade a la pagina default los enlaces correspondientes a las funcionalidades
 function añadirFuncionalidades($NOM) {
     include '../Locates/Strings_' . $NOM['IDIOMA'] . '.php';

@@ -588,8 +588,8 @@ CREATE TABLE `notificacion` (
 --
 
 INSERT INTO `notificacion` (`estado`, `idNotificacion`, `remitenteNotificacion`, `destinatarioNotificacion`, `fechaHoraNotificacion`, `asuntoNotificacion`, `mensajeNotificacion`, `username`) VALUES
-(0, 1, 'ivanddf1994@gmail.com', 'ivanddf1994@hotmail.com', '2017-11-18 12:52:47', 'Probando SHOWALL', 'Hola', 'admin'),
-(0, 2, 'isma@hotmail.com', 'ivanddf1994@hotmail.com', '2017-11-18 12:58:50', 'Prueba SHOWALL 2', 'Hola 2', 'deportista1');
+(0, 1, 'ivanddf1994@gmail.com', 'administracion@muevet.com', '2017-11-18 12:52:47', 'Probando SHOWALL', 'Hola', 'admin'),
+(0, 2, 'isma@hotmail.com', 'administracion@muevet.com', '2017-11-18 12:58:50', 'Prueba SHOWALL 2', 'Hola 2', 'deportista1');
 
 -- --------------------------------------------------------
 

@@ -271,5 +271,9 @@ $strings = array(
     'Destinatario' => 'Destinatario',
 
     
+    
+    'tienesNotificacion' => 'Tienes Notificaciones nuevas sin abrir. ',
+    'AccedeMisNotificaciones' =>'Accede a Notificaciones para revisarlas.'
+    
 );
 ?>

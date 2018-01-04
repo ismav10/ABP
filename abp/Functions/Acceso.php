@@ -14,6 +14,7 @@ include '../Views/header.php';
             session_start();
             $_SESSION['IDIOMA'] = $_REQUEST['IDIOMA']; //Establece el idioma de la sesión
             $_SESSION['login'] = $usuario->userName; //Establece el login de la sesión
+            $_SESSION['sesion'] = 0;
             header('Location:../index.php');
         } else {
             $_SESSION['IDIOMA'] = $_REQUEST['IDIOMA'];
