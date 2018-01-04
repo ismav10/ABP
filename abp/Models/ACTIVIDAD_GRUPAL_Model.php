@@ -671,6 +671,25 @@ class ACTIVIDAD_GRUPAL_Model {
         }
     }
 
+    function ConsultarDeportistasActividad() {
+
+        $this->ConectarBD();
+        $sql = "SELECT DISTINCT U.*, DIA.estado
+                FROM usuario U, deportista D, deportista_inscribir_actividadgrupal DIA
+                WHERE U.tipoUsuario=3 AND U.userName = DIA.userName AND DIA.estado = 1 AND DIA.idActividadGrupal= '". $this->idActividadGrupal."'";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $i++;
+            }
+            return $toret;
+        }
+    }
+
 }
 
 ?>

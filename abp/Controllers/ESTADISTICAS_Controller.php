@@ -23,6 +23,8 @@ Switch ($_REQUEST['accion'])
 { //Actúa según la acción elegida
 
     
+    
+    
     default:
         //if (!tienePermisos('SESION_Listar')) {
             //new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');

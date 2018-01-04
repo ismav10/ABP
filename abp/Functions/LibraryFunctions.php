@@ -310,14 +310,13 @@ function ConsultarNotificacionesPendientes($destinatario) {
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
-    $sql = "SELECT * FROM notificacion WHERE estado = 0 AND destinatarioNotificacion = '". ConsultarEmailUsuario($destinatario). "'";
+    $sql = "SELECT * FROM notificacion WHERE estado = 0 AND destinatarioNotificacion = '" . ConsultarEmailUsuario($destinatario) . "'";
     $result = $mysqli->query($sql);
-      if ($result->num_rows >= 1) {
-          return 1;
-      } else {
-          return 0;
-      }
-   
+    if ($result->num_rows >= 1) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 //añade a la pagina default los enlaces correspondientes a las funcionalidades
@@ -396,62 +395,62 @@ function añadirFuncionalidades($NOM) {
                 case "Gestion Inscripciones":
                     ?><li><a style="font-size:15px;" href="../Controllers/INSCRIPCION_Controller.php?act=grupal"><?php echo $strings['Gestión de Inscripciones']; ?></a></li> <?php
                         break;
-                        
 
-                default:
-                    break;
+
+                    default:
+                        break;
+                }
             }
         }
     }
-}
 
 //Revisa si tiene permiso al comprobar si se ha incluido la clase a la que se quiere acceder
-function tienePermisos($string) {
-    return class_exists($string);
-}
+    function tienePermisos($string) {
+        return class_exists($string);
+    }
 
 //Genera los includes correspondientes a las paginas a las que se tiene acceso
-function generarIncludes() {
-    $toret = array();
-    $mysqli = new mysqli("localhost", "root", "", "muevet");
-    if ($mysqli->connect_errno) {
-        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-    }
-    $sql = "SELECT DISTINCT pagina.linkPagina FROM Pagina, funcionalidad_pagina, funcionalidad_rol, usuario_rol WHERE pagina.idPagina=funcionalidad_pagina.idPagina AND funcionalidad_pagina.idFuncionalidad=funcionalidad_rol.idFuncionalidad AND funcionalidad_rol.idRol=usuario_rol.idRol AND usuario_rol.userName ='" . $_SESSION['login'] . "'";
-    if (!($resultado = $mysqli->query($sql))) {
-        echo 'Error en la consulta sobre la base de datos';
-    } else {
-        while ($tupla = $resultado->fetch_array()) {
-            array_push($toret, $tupla['linkPagina']);
+    function generarIncludes() {
+        $toret = array();
+        $mysqli = new mysqli("localhost", "root", "", "muevet");
+        if ($mysqli->connect_errno) {
+            echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
         }
+        $sql = "SELECT DISTINCT pagina.linkPagina FROM Pagina, funcionalidad_pagina, funcionalidad_rol, usuario_rol WHERE pagina.idPagina=funcionalidad_pagina.idPagina AND funcionalidad_pagina.idFuncionalidad=funcionalidad_rol.idFuncionalidad AND funcionalidad_rol.idRol=usuario_rol.idRol AND usuario_rol.userName ='" . $_SESSION['login'] . "'";
+        if (!($resultado = $mysqli->query($sql))) {
+            echo 'Error en la consulta sobre la base de datos';
+        } else {
+            while ($tupla = $resultado->fetch_array()) {
+                array_push($toret, $tupla['linkPagina']);
+            }
+        }
+        return $toret;
     }
-    return $toret;
-}
 
 //Funcionalidades en funcion de los permisos
 
-function showNavbar() {
+    function showNavbar() {
 
-    if (!isset($_SESSION)) {
-        echo '<br><br><li role="presentation" class="active"><a href="../Functions/Conectar.php" class="m1">Iniciar Sesion</a></li>';
-        echo '<li role="presentation"><a href="" class="m1">Sobre Nosotros</a></li>';
-        echo '<li role="presentation"><a href="" class="m1">Contacto</a></li>';
-    } else {
-        include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
-        añadirFuncionalidades($_SESSION);
-        ?>
+        if (!isset($_SESSION)) {
+            echo '<br><br><li role="presentation" class="active"><a href="../Functions/Conectar.php" class="m1">Iniciar Sesion</a></li>';
+            echo '<li role="presentation"><a href="" class="m1">Sobre Nosotros</a></li>';
+            echo '<li role="presentation"><a href="" class="m1">Contacto</a></li>';
+        } else {
+            include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
+            añadirFuncionalidades($_SESSION);
+            ?>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <?php echo $strings['Cuenta'] ?>
+                <?php echo $strings['Cuenta'] ?>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['Modificar']; ?>"><?php echo $strings['Mi Perfil'] ?></a><br>
-        <?php if (ConsultarTipoUsuarioLogin() == 3) { ?>
+                <?php if (ConsultarTipoUsuarioLogin() == 3) { ?>
                     <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['MisActividades']; ?>"><?php echo $strings['MisActividades'] ?></a><br>
                 <?php } if (ConsultarTipoUsuarioLogin() == 2) { ?>
                     <a class="dropdown-item" href="../Controllers/ENTRENADOR_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['MisActividades']; ?>"><?php echo $strings['MisActividades'] ?></a><br>
-                <?php }  if (ConsultarTipoUsuarioLogin() == 1) { ?>
-                    <a class="dropdown-item" href="../Controllers/ESTADISCTICAS_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['Estadisticas']; ?>"><?php echo $strings['Estadisticas'] ?></a><br>
+                <?php } if (ConsultarTipoUsuarioLogin() == 1) { ?>
+                    <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php?accion=<?php echo $strings['Estadisticas']; ?>"><?php echo $strings['Estadisticas'] ?></a><br>
                 <?php } ?>
                 <a class="dropdown-item" href="../Functions/Desconectar.php"><?php echo $strings['Cerrar Sesión'] ?></a> <br>
             </div>
@@ -489,5 +488,184 @@ function ListarInstalaciones() {
     }
     return $toret;
 }
+
+function ActividadMasUsuarios() {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "    SELECT idActividadGrupal FROM deportista_inscribir_actividadgrupal WHERE estado=1  GROUP BY idActividadGrupal HAVING COUNT(*) = ( SELECT MAX(contador) max_contador
+                                                                                                                                      FROM ( SELECT idActividadGrupal, COUNT(*) contador
+                                                                                                                                            FROM deportista_inscribir_actividadgrupal  WHERE estado=1 GROUP BY idActividadGrupal
+                                                                                                                                            ) T 
+                                                                                                                                     )";
+    if (!($resultado = $mysqli->query($sql))) {
+        echo 'Error en la consulta sobre la base de datos';
+    } else {
+        $toret = $resultado->fetch_all();
+    }
+    return $toret;
+}
+
+function PlazasOcupadas($idActividadGrupal) {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "  SELECT COUNT(*) FROM deportista_inscribir_actividadgrupal WHERE estado = 1 AND idActividadGrupal = '" . $idActividadGrupal . "' GROUP BY idActividadGrupal";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['COUNT(*)'];
+}
+
+function Ocupacion($idActividadGrupal, $plazasOcupadas) {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "  SELECT DISTINCT ('" . $plazasOcupadas . "'*100/(plazasDisponibles+'" . $plazasOcupadas . "')) AS porcentaje FROM deportista_inscribir_actividadgrupal WHERE idActividadGrupal = '" . $idActividadGrupal . "'";
+    $result = $mysqli->query($sql)->fetch_array();
+
+    $sql = "SELECT ROUND('" . $result['porcentaje'] . "', 2) AS porcentaje";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['porcentaje'];
+}
+
+function ActividadMenosUsuarios() {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "    SELECT idActividadGrupal FROM deportista_inscribir_actividadgrupal WHERE estado=1  GROUP BY idActividadGrupal HAVING COUNT(*) = ( SELECT MIN(contador) max_contador
+                                                                                                                                      FROM ( SELECT idActividadGrupal, COUNT(*) contador
+                                                                                                                                            FROM deportista_inscribir_actividadgrupal  WHERE estado=1 GROUP BY idActividadGrupal
+                                                                                                                                            ) T 
+                                                                                                                                     )";
+    if (!($resultado = $mysqli->query($sql))) {
+        echo 'Error en la consulta sobre la base de datos';
+    } else {
+        $toret = $resultado->fetch_all();
+    }
+    return $toret;
+}
+
+function EntrenadorMasActividades() {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "  SELECT username
+  FROM actividadgrupal 
+  GROUP BY username
+  HAVING COUNT(*) = ( SELECT MAX(contador) max_contador
+                      FROM ( SELECT username, COUNT(*) contador
+                             FROM actividadgrupal GROUP BY username
+                                                                                                                                            ) T 
+                                                                                                                                     )";
+
+    if (!($resultado = $mysqli->query($sql))) {
+        echo 'Error en la consulta sobre la base de datos';
+    } else {
+        $toret = $resultado->fetch_all();
+    }
+    return $toret;
+}
+
+function NumActividadesEntrenador($username) {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT COUNT(username) AS count
+FROM actividadgrupal
+WHERE username= '" . $username . "'
+GROUP BY username";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['count'];
+}
+
+function EntrenadorMenosActividades() {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "  SELECT username
+  FROM actividadgrupal 
+  GROUP BY username
+  HAVING COUNT(*) = ( SELECT MIN(contador) max_contador
+                      FROM ( SELECT username, COUNT(*) contador
+                             FROM actividadgrupal GROUP BY username
+                                                                                                                                            ) T 
+                                                                                                                                     )";
+
+    if (!($resultado = $mysqli->query($sql))) {
+        echo 'Error en la consulta sobre la base de datos';
+    } else {
+        $toret = $resultado->fetch_all();
+    }
+    return $toret;
+}
+
+function DeportistaMasSesiones() {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = " SELECT username FROM sesion GROUP BY username HAVING COUNT(*) = ( SELECT MAX(contador) max_contador FROM ( SELECT username, COUNT(*) contador FROM sesion GROUP BY username ) T )";
+
+    if (!($resultado = $mysqli->query($sql))) {
+        echo 'Error en la consulta sobre la base de datos';
+    } else {
+        $toret = $resultado->fetch_all();
+    }
+    return $toret;
+}
+
+
+function NumSesionesEntrenador($username) {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT COUNT(username) AS count
+FROM sesion
+WHERE username= '" . $username . "'
+GROUP BY username";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['count'];
+}
+
+
+
+function DeportistaMasActividades() {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = " SELECT username FROM deportista_inscribir_actividadgrupal WHERE estado=1 GROUP BY username HAVING COUNT(*) = ( SELECT MAX(contador) max_contador FROM ( SELECT username, COUNT(*) contador FROM deportista_inscribir_actividadgrupal WHERE estado=1 GROUP BY username ) T )";
+
+    if (!($resultado = $mysqli->query($sql))) {
+        echo 'Error en la consulta sobre la base de datos';
+    } else {
+        $toret = $resultado->fetch_all();
+    }
+    return $toret;
+}
+
+function NumActividadesDeportista($username) {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT COUNT(username) AS count
+FROM deportista_inscribir_actividadgrupal
+WHERE username= '" . $username . "'
+GROUP BY username";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['count'];
+}
+
+
+
 ?>
+
 

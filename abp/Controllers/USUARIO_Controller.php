@@ -4,7 +4,6 @@
 include '../Models/USUARIO_Model.php';
 include '../Views/MENSAJE_Vista.php';
 
-
 if (!IsAuthenticated()) {
     header('Location:../index.php');
 }
@@ -388,6 +387,21 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
             }
         }
         break;
+
+
+    case $strings['Estadisticas']:
+
+        if (ConsultarTipoUsuarioLogin() == 1) {
+            //if (!tienePermisos('ADMIN_STATS')) {
+                  //  new Mensaje('No tienes los permisos necesarios', 'USUARIO_Controller.php');
+             //   } else {
+                    //muestra el formulario de borrado
+                    new ADMIN_STATS('../Views/DEFAULT_Vista.php');
+              //  }
+        }
+
+        break;
+
 
 
     default: //Por defecto se realiza el show all

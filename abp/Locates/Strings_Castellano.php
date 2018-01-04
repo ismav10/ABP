@@ -128,6 +128,7 @@ $strings = array(
 'nombreActividadGrupal'=> 'Actividad',
 0 => 'Solicitud Pendiente',
 1 => 'Solicitud Aceptada',
+'11'=>'Inscrito',
 'plazasDisponibles' => 'Plazas',
 'estado' => 'Estado',
 'Aceptar' => 'Aceptar',
@@ -274,7 +275,23 @@ $strings = array(
     
     
     'tienesNotificacion' => 'Tienes Notificaciones nuevas sin abrir. ',
-    'AccedeMisNotificaciones' =>'Accede a Notificaciones para revisarlas.'
+    'AccedeMisNotificaciones' =>'Accede a Notificaciones para revisarlas.',
+    
+
+    
+    'EstadísticasMuevet' =>'Estadísticas del Sistema',
+    'ActividadMas' => 'Actividad/es con más inscritos',
+    'ActividadMenos' =>'Actividad/es con menos inscritos',
+    'PlazasOcupadas' =>'Inscritos',
+    'Ocupacion' =>'Ocupación',
+    'EntrenadorMas' => 'Entrenador/es que imparte más clases',
+    'EntrenadorMenos' => 'Entrenador/es que imparte menos clases',
+    'NumActividadesEntrenador' =>'Número de Actividades impartidas',
+    'DeportistaMas' =>'Deportista con más sesiones',
+    'NumSesiones' => 'Número de Sesiones',
+    'DeportistaMasActividades' => 'Deportista inscrito en más actividades',
+    'NumActividades' =>'Número de Actividades',
+    'VerInscritos' =>'Inscritos'
     
 );
 ?>

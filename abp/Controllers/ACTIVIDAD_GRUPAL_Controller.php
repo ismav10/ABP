@@ -233,6 +233,22 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         break;
 
 
+    case $strings['VerInscritos']:
+
+        if (isset($_REQUEST['idActividadGrupal'])) {
+            $numPlazasActividadGrupal = ConsultarNumPlazas($_REQUEST['idActividadGrupal']);
+            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model($_REQUEST['idActividadGrupal'], '', '', '', '', '', '', '', '', '', '');
+            $datos = $actividadGrupal->ConsultarDeportistasActividad();
+            if (!tienePermisos('ACTIVIDAD_GRUPAL_LISTAR_USERS')) {
+                new Mensaje('No tienes los permisos necesarios', '../Controllers/ACTIVIDAD_GRUPAL.php');
+            } else {
+                new ACTIVIDAD_GRUPAL_LISTAR_USERS($datos, '../Controllers/ACTIVIDAD_GRUPAL.php');
+            }
+        }
+
+        break;
+
+
 
 
     default: //Por defecto se realiza el show all
