@@ -7,8 +7,8 @@ class ACTIVIDAD_GRUPAL_VerDetalle {
 
 //VISTA PARA LA VISUALIZACION DE ACTIVIDADES GRUPALES
     function __construct($valores, $volver) {
-		$this->valores = $valores;
-		$this->volver = $volver;
+        $this->valores = $valores;
+        $this->volver = $volver;
         $this->render();
     }
 
@@ -48,7 +48,7 @@ class ACTIVIDAD_GRUPAL_VerDetalle {
                     <input class="form-control" id="idInstalacion" name="idInstalacion" size="10" type="int" readonly="true" value="<?php echo $this->valores['idInstalacion']; ?>">
                 </div>
 
-				<button type="button" class="btn btn-info"><a href='ACTIVIDAD_GRUPAL_Controller.php'>Volver</a></button>
+                <a class="form-link" href='<?php echo $this->volver ?> '><?php echo $strings['Volver']; ?> </a>
             </form>
 
         </div>

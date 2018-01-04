@@ -43,7 +43,7 @@ class DEPORTISTA_SHOW_GRUPALES {
                                                 echo "<td>";
                                                 if ($clave === 'nombreActividadGrupal') {
                                                     ?>
-                                            <a href='ACTIVIDAD_GRUPAL_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Ver']; ?>'><font color="#088A4B"><?php echo $valor; ?></font></a> <?php
+                                            <a href='ACTIVIDAD_GRUPAL_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Ver1']; ?>'><font color="#088A4B"><?php echo $valor; ?></font></a> <?php
                                             break;
                                         } if ($clave === 'username') {
                                             ?>

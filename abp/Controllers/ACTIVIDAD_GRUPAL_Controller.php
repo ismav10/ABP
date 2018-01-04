@@ -48,7 +48,6 @@ if (!isset($_REQUEST['accion'])) {
 
 
 Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
-   
     case $strings['Insertar']:
 
         if (!isset($_REQUEST['nombreActividadGrupal'])) { //Si no se ha introducido ningun valor, mostramos la vista con el formulario
@@ -79,7 +78,6 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
                 $actividadGrupal = get_data_form();
                 $respuesta = $actividadGrupal->Modificar();
                 new Mensaje($respuesta, '../Controllers/ACTIVIDAD_GRUPAL_Controller.php');
-          
             }
         }
         break;
@@ -176,16 +174,31 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 //        }
 //        break;
 
-        
+
     case $strings['Ver']:
 
         if (isset($_REQUEST['idActividadGrupal'])) {
-            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model($_REQUEST['idActividadGrupal'], '', '', '', '', '','', '', '', '', '');
+            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model($_REQUEST['idActividadGrupal'], '', '', '', '', '', '', '', '', '', '');
             $datos = $actividadGrupal->RellenaDatos();
             if (!tienePermisos('ACTIVIDAD_GRUPAL_VerDetalle')) {
                 new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
             } else {
-                new ACTIVIDAD_GRUPAL_VerDetalle($datos, '../Views/DEFAULT_Vista.php');
+                new ACTIVIDAD_GRUPAL_VerDetalle($datos, '../Controllers/ACTIVIDAD_GRUPAL_Controller.php');
+            }
+        }
+
+        break;
+
+
+    case $strings['Ver1']:
+
+        if (isset($_REQUEST['idActividadGrupal'])) {
+            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model($_REQUEST['idActividadGrupal'], '', '', '', '', '', '', '', '', '', '');
+            $datos = $actividadGrupal->RellenaDatos();
+            if (!tienePermisos('ACTIVIDAD_GRUPAL_VerDetalle')) {
+                new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+            } else {
+                new ACTIVIDAD_GRUPAL_VerDetalle($datos, '../Controllers/DEPORTISTA_Controller.php?userName=' . $_SESSION['login'] . '&accion=' . $strings['MisActividades']);
             }
         }
 
@@ -195,7 +208,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
     case $strings['MisActividades']:
 
         if (isset($_REQUEST['userName'])) {
-            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model('', '', '', '','', '', '', '', '', $_REQUEST['userName'], '');
+            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model('', '', '', '', '', '', '', '', '', $_REQUEST['userName'], '');
             $datos = $actividadGrupal->ConsultarActividadesUser();
             if (!tienePermisos('ACTIVIDAD_GRUPAL_Listar_User')) {
                 new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
@@ -226,7 +239,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         if (!tienePermisos('ACTIVIDAD_GRUPAL_Listar')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
-            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model('', '', '', '', '', '','', '', '', '', '');
+            $actividadGrupal = new ACTIVIDAD_GRUPAL_Model('', '', '', '', '', '', '', '', '', '', '');
             $datos = $actividadGrupal->Listar();
             new ACTIVIDAD_GRUPAL_Listar($datos, '../Views/DEFAULT_Vista.php');
         }
