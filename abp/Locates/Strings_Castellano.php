@@ -53,6 +53,7 @@ $strings = array(
 'Gestión de Actividades Individuales' => 'Individuales',
 'Entrenamiento' => 'Entrenamiento',
 'MisActividades' => 'Mis Actividades',
+'Estadisticas' =>'Estadisticas',
 
 
 

@@ -317,12 +317,10 @@ class USUARIO_Modelo {
             return $toret;
         }
     }
-    
-    
-    
+
     function consultarDeportistasActividades($idActividadGrupal) {
         $this->ConectarBD();
-        $sql = "SELECT * FROM USUARIO, DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL, ACTIVIDADGRUPAL WHERE USUARIO.userName = DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.userName AND DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.idActividadGrupal = ACTIVIDADGRUPAL.idActividadGrupal AND DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.estado = 1 AND ACTIVIDADGRUPAL.idActividadGrupal = '". $idActividadGrupal . "' AND ACTIVIDADGRUPAL.userName = '" .$this->userName. "'";
+        $sql = "SELECT * FROM USUARIO, DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL, ACTIVIDADGRUPAL WHERE USUARIO.userName = DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.userName AND DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.idActividadGrupal = ACTIVIDADGRUPAL.idActividadGrupal AND DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL.estado = 1 AND ACTIVIDADGRUPAL.idActividadGrupal = '" . $idActividadGrupal . "' AND ACTIVIDADGRUPAL.userName = '" . $this->userName . "'";
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
         } else {
@@ -335,9 +333,6 @@ class USUARIO_Modelo {
             return $toret;
         }
     }
-    
-    
-    
 
     function asignarTablas($listaTablas) {
         $this->ConectarBD();
@@ -354,6 +349,8 @@ class USUARIO_Modelo {
                 }if (!($resultado = $this->mysqli->query($sql))) {
                     return 'La tabla ya ha sido asignada a este usuario';
                 } else {
+                    $sqlAux2 = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . ConsultarEmailUsuario($_SESSION['login']) . "', '" . ConsultarEmailUsuario($this->userName) . "', 'Nueva tabla de entrenamientos a su disposición!', 'Le ha sido asignada la tabla de entrenamiento " . $tabla . ". Esperemos que la disfrute y no repare en ponerse en contacto con nosotros ante cualquier problema. ¡Esperamos que la exprima a tope! ', '" . $_SESSION['login'] . "')";
+                    $this->mysqli->query($sqlAux2);
                     return 'La tabla se ha asignado correctamente';
                 }
             }
@@ -365,6 +362,9 @@ class USUARIO_Modelo {
         $sql = "DELETE FROM deportista_asignar_tabla WHERE idTabla='" . $idTabla . "' AND username= '" . $this->userName . "'";
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $sqlAux2 = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . ConsultarEmailUsuario($_SESSION['login']) . "', '" . ConsultarEmailUsuario($this->userName) . "', 'Le ha sido eliminada una tabla de entrenamientos', 'La tabla de entrenamiento " . ConsultarNombreTabla($idTabla) . ". le ha sido retirada. Por favor póngase en contacto con nosotros si esto no era deseado. ', '" . $_SESSION['login'] . "')";
+            $this->mysqli->query($sqlAux2);
         }
     }
 

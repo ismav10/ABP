@@ -81,16 +81,10 @@ switch ($_REQUEST['accion']) {
         break;
 
     case $strings['Borrar']:
-        if (!isset($_REQUEST['identificador'])) {
-            $notificacion = new NOTIFICACION_Model($_REQUEST['idNotificacion'], '', '', '', '', '', '');
-            $valores = $notificacion->RellenaDatos();
-            if (!tienePermisos('NOTIFICACION_Borrar')) {
-                new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
-            } else {
-                new NOTIFICACION_Borrar($valores, 'NOTIFICACION_Controller.php');
-            }
+        if (!tienePermisos('NOTIFICACION_Borrar')) {
+            new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
-            $notificacion = new NOTIFICACION_Model($_REQUEST['identificador'], '', '', '', '', '', '');
+            $notificacion = new NOTIFICACION_Model($_REQUEST['idNotificacion'], '', '', '', '', '', '');
             $respuesta = $notificacion->Borrar();
             new Mensaje($respuesta, '../Controllers/NOTIFICACION_Controller.php');
         }
@@ -104,7 +98,7 @@ switch ($_REQUEST['accion']) {
                 new NOTIFICACION_Consultar('../Controllers/NOTIFICACION_Controller.php');
             }
         } else {
-            $notificacion = new NOTIFICACION_Model('',$_REQUEST['Remitente'],'','',$_REQUEST['Asunto'],$_REQUEST['Mensaje'],$_SESSION['login']);
+            $notificacion = new NOTIFICACION_Model('', $_REQUEST['Remitente'], '', '', $_REQUEST['Asunto'], $_REQUEST['Mensaje'], $_SESSION['login']);
             $datos = $notificacion->Consultar();
             $tipoUsuario = ConsultarTipoUsuario($_SESSION['login']);
             new NOTIFICACION_Listar($datos, $tipoUsuario, '../Controllers/NOTIFICACION_Controller.php');

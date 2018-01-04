@@ -81,7 +81,7 @@ class NOTIFICACION_Listar {
                                                 $this->setCont(0);
                                             }
                                             ?>
-                                            <a href = 'NOTIFICACION_Controller.php?idNotificacion=<?php echo $this->datos[$j]['idNotificacion'] . '&accion = ' . $strings['Borrar']; ?>'><img src = "../img/BorrarNoti.jpg" width = "30px" height = "30px"></a><?php
+                                            <a href = 'NOTIFICACION_Controller.php?idNotificacion=<?php echo $this->datos[$j]['idNotificacion'] . '&accion=' . $strings['Borrar']; ?>'><img src = "../img/BorrarNoti.jpg" width = "30px" height = "30px"></a><?php
                                             break;
                                         } else {
                                             if ($this->cont == 1) {

@@ -274,7 +274,7 @@ class NOTIFICACION_Model {
             return 'Error en la consulta sobre la base de datos.';
         } else {
             $this->ConectarBD();
-            $sql = "SELECT estado, idNotificacion, remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion ,asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='" . $email . "'";
+            $sql = "SELECT estado, idNotificacion, remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion ,asuntoNotificacion FROM NOTIFICACION WHERE destinatarioNotificacion ='" . $email . "' ORDER BY fechaHoraNotificacion DESC";
             if (!($resultado = $this->mysqli->query($sql))) {
                 return 'Error en la consulta sobre la base de datos.';
             } else {
