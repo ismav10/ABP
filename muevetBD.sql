@@ -116,9 +116,16 @@ CREATE TABLE `deportista` (
 
 INSERT INTO `deportista` (`userName`, `tipoDeportista`, `metodoPago`) VALUES
 ('deportista1', 'PEF', '1234567898765432'),
+('deportista10', 'PEF', '3344556677881234'),
 ('deportista2', 'TDU', '5406282043000000'),
 ('deportista3', 'PEF', '5489067823456543'),
-('deportista4', 'TDU', '5467876523459876');
+('deportista4', 'TDU', '5467876523459876'),
+('deportista5', 'PEF', '9876435617825462'),
+('deportista6', 'PEF', '7654829106675286'),
+('deportista7', 'TDU', '6547281928365478'),
+('deportista8', 'PEF', '1234567893018274'),
+('deportista9', 'TDU', '4567876548987216');
+
 
 -- --------------------------------------------------------
 
@@ -914,9 +921,15 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`foto`, `userName`, `password`, `tipoUsuario`, `nombre`, `apellidos`, `dni`, `fechaNac`, `direccion`, `telefono`, `email`) VALUES
 ('../Documents/Administradores/44488795X/Foto/ivan.jpg', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'IvÃ¡n', 'de Dios FernÃ¡ndez', '44488795X', '1994-03-26', 'Avenida Vistahermosa 8, 3ÂºA', 988252875, 'administracion@muevet.com'),
 ('../Documents/Deportistas/87654321Q/Foto/s.jpeg', 'deportista1', '5e3ea95c649fe43cbc6e9c1c71071f0f', 3, 'Bruno', 'Romero Rodriguez', '45147231W', '1995-10-10', 'Paseo de la Castellana 22, 1Âº', 988767165, 'brunoromero@gmail.com'),
+('../Documents/Deportistas/44495311V/Foto/deportista10.jpg', 'deportista10', '9dafe1b7ef8477287cc4ff5cf99d1fa1', 3, 'HÃ©ctor', 'Otero RodrÃ­guex', '44495311V', '1990-01-12', 'Plaza de las Mercedes 5, 1Âº', 654879543, 'hectorvikingo@hotmail.com'),
 ('../img/user.jpg', 'deportista2', '220a15a78a728aa88fcf45d009705d96', 3, 'Alberto', 'Porral FramiÃ±Ã¡n', '54064900L', '1992-09-17', 'Manuel Antonio Puga 54, 2ÂºA', 678987432, 'albertoporral@hotmail.com'),
 ('../Documents/Deportistas/45147607X/Foto/FOTO_CARNET.png', 'deportista3', '1dcbb1e46c4c3e87b42c4a4128f9b6cd', 3, 'Rafa', 'VÃ¡zquez VÃ¡zquez', '45147607X', '1982-05-10', 'Ervedelo 36, 1Âº', 617890654, 'rafarafita@hotmail.com'),
 ('../Documents/Deportistas/45145143F/Foto/Harish_bhadana.jpg', 'deportista4', 'adee36ea3dc20ed625d1e1e091247c89', 3, 'Miguel', 'Gallego Mayor', '45145143F', '1989-07-14', 'Concordia 135, 4ÂºC', 654789654, 'miguelgallego@hotmail.com'),
+('../Documents/Deportistas/44497084L/Foto/deportista5.jpg', 'deportista5', '468fb3d1ac774e8195d07cf113e15441', 3, 'Julio', 'Morenza FernÃ¡ndez', '44497084L', '1990-05-03', 'Calle de la Rosa 4', 675489076, 'juliomorenza@hotmail.com'),
+('../Documents/Deportistas/44662778K/Foto/deportista6.jpg', 'deportista6', 'bffd24877608eaa809ebfea35c6878ec', 3, 'RubÃ©n', 'Conde MartÃ­nez', '44662778K', '1978-06-30', 'Emilia Pardo BazÃ¡n 18, 4Âº F', 654332567, 'galegonotas@hotmail.com'),
+('../Documents/Deportistas/44495984T/Foto/deportista7.jpg', 'deportista7', 'c3064e6681be3292425922f8a12f36c7', 3, 'David', 'Garbo DiÃ©guez', '44495984T', '1992-08-01', 'Calle Evedelo 194, 4ÂºA', 677543221, 'elgrangarbo@hotmail.com'),
+('../Documents/Deportistas/33559530T/Foto/deportista8.jpg', 'deportista8', '063f4a178fca6a81e89d91a5f49855d5', 3, 'RubÃ©n', 'Vega Lamelas', '33559530T', '1994-09-28', 'Calle Alfonso X 65, 6Âº Izquierda', 654378919, 'rubenvega@hotmail.com'),
+('../Documents/Deportistas/44665055K/Foto/deportista9.jpg', 'deportista9', 'bd788fd71d6da1c51fb7372bb5ee9caf', 3, 'Alejandro', 'MartÃ­nez GonzÃ¡lez', '44665055K', '1995-03-23', 'Avenida Vistahermosa 6, 2ÂºC', 654897152, 'jandrogonzaleez@hotmail.com'),
 ('../img/user.jpg', 'entrenador', 'a990ba8861d2b344810851e7e6b49104', 2, 'Ismael', 'VÃ¡zquez FernÃ¡ndez', '45143252W', '1995-10-01', 'Avenida de la Albufera 6, 2Âº', 988767521, 'ismaelvazquez@hotmail.com'),
 ('../Documents/Entrenadores/45145326Y/Foto/section-premium-3.png', 'entrenador2', '0aed0af4f39be2e7834c46ee778851f5', 2, 'Pedro', 'MartÃ­nez PadrÃ³n', '45145326Y', '1994-06-14', 'C/ Rampa de SÃ¡s 165, 2ÂºF', 678906554, 'pedrofittness@gmail.com'),
 ('../Documents/Entrenadores/45161706X/Foto/TWpIdSbcdJe2GiKt8e5p_rafael-perez-carretero.jpg', 'entrenador3', '5e82bb13949e857dd51b7edc40507c3f', 2, 'Manuel', 'FernÃ¡ndez Inaraja', '45161706X', '1999-05-17', 'Plaza Los Suaves 56, 6Âº A', 643445021, 'manuelgym@gmail.com');
@@ -939,9 +952,15 @@ CREATE TABLE `usuario_rol` (
 INSERT INTO `usuario_rol` (`userName`, `idRol`) VALUES
 ('admin', 1),
 ('deportista1', 3),
+('deportista10', 3),
 ('deportista2', 3),
 ('deportista3', 3),
 ('deportista4', 3),
+('deportista5', 3),
+('deportista6', 3),
+('deportista7', 3),
+('deportista8', 3),
+('deportista9', 3),
 ('entrenador', 2),
 ('entrenador2', 2),
 ('entrenador3', 2);
