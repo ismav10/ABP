@@ -70,11 +70,11 @@ INSERT INTO `actividadgrupal` (`idActividadGrupal`, `nombreActividadGrupal`, `de
 (2, 'Yoga B', 'AdÃ©ntrate en el mundo del fittness y aprende a conectar todos tus sentidos con tu cuerpo', 25, 'MiÃ©rcoles', '18:00:00', '19:30:00', '2018-01-01', '2018-01-31', 'entrenador', 1),
 (3, 'Yoga C', 'AdÃ©ntrate en el mundo del fittness y aprende a conectar todos tus sentidos con tu cuerpo', 25, 'Jueves', '18:00:00', '19:30:00', '2018-01-01', '2018-01-31', 'entrenador', 1),
 (4, 'Yoga D', 'AdÃ©ntrate en el mundo del fittness y aprende a conectar todos tus sentidos con tu cuerpo', 25, 'Viernes', '18:00:00', '19:30:00', '2018-01-01', '2018-01-31', 'entrenador', 1),
-(5, 'Spinning A', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'Lunes', '16:00:00', '18:00:00', '2018-01-15', '2018-02-15', 'entrenador2', 1),
-(6, 'Spinning B', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'MiÃ©rcoles', '16:00:00', '18:00:00', '2018-01-15', '2018-02-15', 'entrenador2', 1),
-(7, 'Spinning C', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'Viernes', '16:00:00', '18:00:00', '2018-01-15', '2018-02-15', 'entrenador2', 1),
-(8, 'Boxeo A', 'Deporte en que dos adversarios luchan con los puÃ±os enfundados en guantes especiales, para golpear al contrario por encima de la cintura.', 10, 'Martes', '19:30:00', '21:00:00', '2018-01-01', '2018-02-01', 'entrenador2', 1),
-(9, 'Boxeo B', 'Deporte en que dos adversarios luchan con los puÃ±os enfundados en guantes especiales, para golpear al contrario por encima de la cintura.', 10, 'Jueves', '19:30:00', '21:00:00', '2018-01-01', '2018-02-01', 'entrenador2', 1),
+(5, 'Spinning A', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'Lunes', '16:00:00', '18:00:00', '2018-01-15', '2018-02-15', 'entrenador2', 8),
+(6, 'Spinning B', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'MiÃ©rcoles', '16:00:00', '18:00:00', '2018-01-15', '2018-02-15', 'entrenador2', 8),
+(7, 'Spinning C', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'Viernes', '16:00:00', '18:00:00', '2018-01-15', '2018-02-15', 'entrenador2', 8),
+(8, 'Boxeo A', 'Deporte en que dos adversarios luchan con los puÃ±os enfundados en guantes especiales, para golpear al contrario por encima de la cintura.', 10, 'Martes', '19:30:00', '21:00:00', '2018-01-01', '2018-02-01', 'entrenador2', 10),
+(9, 'Boxeo B', 'Deporte en que dos adversarios luchan con los puÃ±os enfundados en guantes especiales, para golpear al contrario por encima de la cintura.', 10, 'Jueves', '19:30:00', '21:00:00', '2018-01-01', '2018-02-01', 'entrenador2', 10),
 (10, 'Body Pumb A', 'Programa de entrenamiento Les Mills con barras y discos que fortalece, tonifica y define la musculatura de todo el cuerpo', 10, 'Martes', '19:30:00', '21:00:00', '2018-01-10', '2018-02-10', 'entrenador3', 2),
 (11, 'Body Pumb B', 'Programa de entrenamiento Les Mills con barras y discos que fortalece, tonifica y define la musculatura de todo el cuerpo', 10, 'MiÃ©rcoles', '19:30:00', '21:00:00', '2018-01-10', '2018-02-10', 'entrenador3', 2),
 (12, 'Body Pumb C', 'Programa de entrenamiento Les Mills con barras y discos que fortalece, tonifica y define la musculatura de todo el cuerpo', 10, 'Jueves', '19:30:00', '21:00:00', '2018-01-10', '2018-02-10', 'entrenador3', 2);
@@ -363,7 +363,13 @@ INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categori
 (452, 'Modificar Actividad Individual', 'Gestion Actividad Individual'),
 (453, 'Consultar Actividades Individuales', 'Gestion Actividad Individual'),
 (454, 'Listar Actividades Individuales', 'Gestion Actividad Individual'),
-(455, 'Ver Actividad Individual', 'Gestion Actividad Individual');
+(455, 'Ver Actividad Individual', 'Gestion Actividad Individual'),
+(600, 'Insertar Instalacion', 'Gestion Instalacion'),
+(601, 'Borrar Instalacion', 'Gestion Instalacion'),
+(602, 'Modificar Instalacion', 'Gestion Instalacion'),
+(603, 'Consultar Instalaciones', 'Gestion Instalacion'),
+(604, 'Listar Instalaciones', 'Gestion Instalacion'),
+(605, 'Ver Instalacion', 'Gestion Instalacion');
 
 -- --------------------------------------------------------
 
@@ -435,7 +441,13 @@ INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
 (452, 452),
 (453, 453),
 (454, 454),
-(455, 455);
+(455, 455),
+(600, 600),
+(601, 601),
+(602, 602),
+(603, 603),
+(604, 604),
+(605, 605);
 
 -- --------------------------------------------------------
 
@@ -550,7 +562,19 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 (454, 3),
 (455, 1),
 (455, 2),
-(455, 3);
+(455, 3),
+(600, 1),
+(601, 1),
+(602, 1),
+(603, 1),
+(603, 2),
+(603, 3),
+(604, 1),
+(604, 2),
+(604, 3),
+(605, 1),
+(605, 2),
+(605, 3);
 
 -- --------------------------------------------------------
 
@@ -561,17 +585,25 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 CREATE TABLE `instalacion` (
   `idInstalacion` int(10) NOT NULL,
   `nombreInstalacion` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
-  `descipcionInstalacion` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `aforoIntalacion` int(10) NOT NULL
+  `descripcionInstalacion` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `aforoInstalacion` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `instalacion`
 --
 
-INSERT INTO `instalacion` (`idInstalacion`, `nombreInstalacion`, `descipcionInstalacion`, `aforoIntalacion`) VALUES
-(1, 'Sala Multiusos A', NULL, 50),
-(2, 'Sala Multiusos B', NULL, 50);
+INSERT INTO `instalacion` (`idInstalacion`, `nombreInstalacion`, `descripcionInstalacion`, `aforoInstalacion`) VALUES
+(1, 'Sala Multiusos A', 'Sala preparada para cualquier evento que no requiera instrumental', 50),
+(2, 'Sala Multiusos B', 'Sala preparada para cualquier evento que no requiera instrumental', 50),
+(3, 'Sala Zumba', 'Sala de bailes', 20),
+(4, 'Sala MusculaciÃ³n', 'Sala acondicionada con mÃ¡quinas para el ejercicio fÃsico', 30),
+(5, 'Pista Principal', 'Campo cubierto con cancha de fÃºtbol sala, baloncesto, voley y tenis.', 40),
+(6, 'Pista Secundaria', 'Campo descubierto con cancha de fÃºtbol sala, tenis y voley.', 40),
+(7, 'Sala de MÃ¡quinas', 'Sala acondicionada con mÃ¡quinas para el ejercicio fÃsico', 40),
+(8, 'Sala de Spinning', 'Sala acondicionada con biciletas estÃ¡ticas', 20),
+(9, 'Sala de TRX', 'Sala acondicionada para la prÃ¡ctica del TRX', 20),
+(10, 'Sala de Boxeo', 'Sala acondicionada con un ring y sacos de boxeo', 10);
 
 -- --------------------------------------------------------
 
@@ -669,8 +701,13 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 (452, '../Views/ACTIVIDAD_INDIVIDUAL_EDIT_Vista.php', 'ACTIVIDAD INDIVIDUAL EDIT'),
 (453, '../Views/ACTIVIDAD_INDIVIDUAL_SHOWCURRENT_Vista.php', 'ACTIVIDAD INDIVIDUAL SHOWCURRENT'),
 (454, '../Views/ACTIVIDAD_INDIVIDUAL_SHOWALL_Vista.php', 'ACTIVIDAD INDIVIDUAL SHOWALL'),
-(455, '../Views/ACTIVIDAD_INDIVIDUAL_SHOW_Vista.php', 'ACTIVIDAD INDIVIDUAL SHOW');
-
+(455, '../Views/ACTIVIDAD_INDIVIDUAL_SHOW_Vista.php', 'ACTIVIDAD INDIVIDUAL SHOW'),
+(600, '../Views/INSTALACION_ADD_Vista.php', 'INSTALACION ADD'),
+(601, '../Views/INSTALACION_DELETE_Vista.php', 'INSTALACION DELETE'),
+(602, '../Views/INSTALACION_EDIT_Vista.php', 'INSTALACION EDIT'),
+(603, '../Views/INSTALACION_SHOWCURRENT_Vista.php', 'INSTALACION SHOWCURRENT'),
+(604, '../Views/INSTALACION_SHOWALL_Vista.php', 'INSTALACION SHOWALL'),
+(605, '../Views/INSTALACION_SHOW_Vista.php', 'INSTALACION SHOW');
 -- --------------------------------------------------------
 
 --

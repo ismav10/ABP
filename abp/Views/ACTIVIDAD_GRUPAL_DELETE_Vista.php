@@ -50,7 +50,7 @@ class ACTIVIDAD_GRUPAL_Borrar {
 
 
                 <input type = 'submit' name = 'accion' value = '<?php echo $strings['Borrar'] ?>'>
-                <button type="button" class="btn btn-info"><a href='ACTIVIDAD_GRUPAL_Controller.php'>Volver</a></button>
+                <button type="button" class="btn btn-info"><a href='ACTIVIDAD_GRUPAL_Controller.php'><?php echo $strings['Volver']; ?></a></button>
             </form>
 
         </div>

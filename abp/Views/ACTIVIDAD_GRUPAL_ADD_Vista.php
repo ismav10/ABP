@@ -107,7 +107,7 @@ class ACTIVIDAD_GRUPAL_Insertar {
 
 
                 <input type = 'submit' onclick="return valida_envia_ACTIVIDAD_GRUPAL()" name = 'accion' value = '<?php echo $strings['Insertar'] ?>'>
-                <a class="form-link" href='ACTIVIDAD_GRUPAL_Controller.php'><?php echo $strings['Volver']; ?>"></a>
+                <a class="form-link" href='ACTIVIDAD_GRUPAL_Controller.php'><?php echo $strings['Volver']; ?></a>
             </form>
         </div>
 

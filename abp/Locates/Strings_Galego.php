@@ -32,7 +32,19 @@ $strings = array(
 'La notificacion fue borrada con éxito.' => 'A notificacion foi borrada con éxito.',  
 'No tienes los permisos necesarios' => 'Careces dos permisos necesarios',
 'Debe seleccionar una tabla' =>'Debe seleccionar unha táboa',
-    
+    'EstadísticasMuevet' =>'Estadísticas do Sistema',
+    'ActividadMas' => 'Actividad/es con máis inscritos',
+    'ActividadMenos' =>'Actividad/es con menos inscritos',
+    'PlazasOcupadas' =>'Inscritos',
+    'Ocupacion' =>'Ocupación',
+    'EntrenadorMas' => 'Entrenador/es que máis clases imparte',
+    'EntrenadorMenos' => 'Entrenador/es que menos clases imparte',
+    'NumActividadesEntrenador' =>'Número de Actividades impartidas',
+    'DeportistaMas' =>'Deportista con máis sesións',
+    'NumSesiones' => 'Número de sesións',
+    'DeportistaMasActividades' => 'Deportista inscrito en máis actividades',
+    'NumActividades' =>'Número de Actividades',
+    'VerInscritos' =>'Inscritos',    
     
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)
 'Iniciar Sesion' => 'Iniciar Sesion',
@@ -259,6 +271,23 @@ $strings = array(
 //ESTADISTICAS    
  'Estadisticas' => 'Estadisticas das sesións do usuario ',    
      
+ //INSTALACIONES
+
+'nombreInstalacion' => 'Nome',
+'descripcionInstalacion' =>'Descricion',
+'aforoInstalacion' =>'Aforo',
+'idInstalacion' => 'ID',
+'Modificar Instalacion' => 'Modificar Instalacion',
+'Insertar Instalacion' => 'Insertar Instalacion',
+'Borrar Instalacion' => 'Borrar Instalacion',
+'Consultar Instalaciones' => 'Consultar Instalacions',
+'Ver Instalacion' => 'Ver Instalacion',
+'La instalacion fue borrada con exito' => 'A instalacion foi borrada con exito',
+'La instalacion ya existe en la base de datos' => 'A instalacion xa existe na base de datos',
+'No se puede borrar porque no existe esa instalacion' => 'Non se pode borrar porque non existe esa instalacion',
+'La instalacion se ha modificado con exito' => 'A instalacion modificouse con exito',
+'No se puede borrar porque no existe esa instalacion' => 'Non se pode eliminar porque a instalación non existe',
+    'Añadida con exito'=>'A instalación foi añadida con éxito'
 
 )
 ?>

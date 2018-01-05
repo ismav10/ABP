@@ -34,7 +34,7 @@ class ACTIVIDAD_INDIVIDUAL_VerDetalle {
                 </div>
                
 
-				<button type="button" class="btn btn-info"><a href='ACTIVIDAD_INDIVIDUAL_Controller.php'>Volver</a></button>
+				<button type="button" class="btn btn-info"><a href='ACTIVIDAD_INDIVIDUAL_Controller.php'><?php echo $strings['Volver']; ?></a></button>
             </form>
 
         </div>

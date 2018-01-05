@@ -1,7 +1,7 @@
 <?php
 
-//VISTA PARA LA CONSULTA DE ACTIVIDADES INDIVIDUALES
-class ACTIVIDAD_INDIVIDUAL_Consultar {
+//VISTA PARA LA CONSULTA DE INSTALACIONES
+class INSTALACION_Consultar {
 
     private $volver;
     private $cont;
@@ -19,16 +19,17 @@ class ACTIVIDAD_INDIVIDUAL_Consultar {
         <div class="container" >
             <form  id="form" name="form" action='<?php echo $this->cont; ?>'  method='POST'   enctype="multipart/form-data">
                 <div class="form-group" >
-                    <label class="control-label" ><?php echo $strings['Consultar Actividades Individuales']; ?></label><br>
+                    <label class="control-label" ><?php echo $strings['Consultar Instalaciones']; ?></label><br>
                 </div>
+				
                 <div class="form-group">
-                    <label class="control-label" ><?php echo $strings['nombreActividadIndividual']; ?></label><br>
-                    <input class="form-control" id="nombreActividadIndividual" name="nombreActividadIndividual" size="80" type="text">
+                    <label class="control-label" ><?php echo $strings['nombreInstalacion']; ?></label><br>
+                    <input class="form-control" id="nombreInstalacion" name="nombreInstalacion" size="80" type="text">
                 </div>                              
 
 
-                <input type='submit' onclick="return valida_envia_ACTIVIDAD_INDIVIDUAL()" name='accion'  value="<?php echo $strings['Consultar']; ?>">
-                <button type="button" class="btn btn-info"><a href='ACTIVIDAD_INDIVIDUAL_Controller.php'><?php echo $strings['Volver']; ?></a></button>
+                <input type='submit' onclick="return valida_envia_INSTALACION()" name='accion'  value="<?php echo $strings['Consultar']; ?>">
+                <button type="button" class="btn btn-info"><a href='INSTALACION_Controller.php'><?php echo $strings['Volver']; ?></a></button>
             </form>
         </div>
 

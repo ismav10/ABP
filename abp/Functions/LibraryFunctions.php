@@ -371,6 +371,13 @@ function añadirFuncionalidades($NOM) {
                     <?php
                     break;
 
+                case "Gestion Instalacion":
+                    if (ConsultarTipoUsuarioLogin() == 1) {?>
+                        
+                        <li><a style="font-size:15px;" href='../Controllers/INSTALACION_Controller.php'><?php echo $strings['Gestión de Instalaciones']; ?></a></li> <?php
+                    }
+                    break;
+
                 case "Gestion Ejercicios":
                     ?>
                     <li class="nav-item dropdown">
@@ -385,11 +392,6 @@ function añadirFuncionalidades($NOM) {
                     </li>
 
                     <?php
-                    break;
-
-
-                case "Gestion Notificaciones":
-                    ?><li><a style="font-size:15px;" href='../Controllers/NOTIFICACION_Controller.php'><?php echo $strings['Gestión de notificaciones']; ?></a></li> <?php
                     break;
 
                 case "Gestion Inscripciones":
@@ -445,6 +447,7 @@ function añadirFuncionalidades($NOM) {
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['Modificar']; ?>"><?php echo $strings['Mi Perfil'] ?></a><br>
+                <a class="dropdown-item" href="../Controllers/NOTIFICACION_Controller.php"><?php echo $strings['Gestión de notificaciones'] ?></a><br>
                 <?php if (ConsultarTipoUsuarioLogin() == 3) { ?>
                     <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['MisActividades']; ?>"><?php echo $strings['MisActividades'] ?></a><br>
                 <?php } if (ConsultarTipoUsuarioLogin() == 2) { ?>
@@ -620,7 +623,6 @@ function DeportistaMasSesiones() {
     return $toret;
 }
 
-
 function NumSesionesEntrenador($username) {
     $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
@@ -633,8 +635,6 @@ GROUP BY username";
     $result = $mysqli->query($sql)->fetch_array();
     return $result['count'];
 }
-
-
 
 function DeportistaMasActividades() {
     $mysqli = new mysqli("localhost", "root", "", "muevet");
@@ -663,9 +663,6 @@ GROUP BY username";
     $result = $mysqli->query($sql)->fetch_array();
     return $result['count'];
 }
-
-
-
 ?>
 
 
