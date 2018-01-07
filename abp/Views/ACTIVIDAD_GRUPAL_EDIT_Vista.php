@@ -37,8 +37,8 @@ function render() {
         </div>
 
         <div class="form-group">
-            <label class="control-label" ><?php echo $strings['numPlazasActividadGrupal']; ?></label><br>
-            <input class="form" id="numPlazasActividadGrupal" name="numPlazasActividadGrupal" size="10" type="int" required="true" value="<?php echo $this->valores['numPlazasActividadGrupal']; ?>">
+<!--            <label class="control-label" ></label><br>-->
+            <input class="form" type='hidden' id="numPlazasActividadGrupal" name="numPlazasActividadGrupal" size="10" type="int" required="true" value="<?php echo $this->valores['numPlazasActividadGrupal']; ?>">
         </div>
 
 

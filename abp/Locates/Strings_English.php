@@ -57,6 +57,7 @@ $strings = array(
  'DeportistaMasActividades' => 'Athlete enrolled in more activities',
  'NumActividades' => 'Number of Activities',
  'VerInscritos' => 'Inscribed',
+  'NoHayPlazas'=>'Any Sites',
 
 
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)

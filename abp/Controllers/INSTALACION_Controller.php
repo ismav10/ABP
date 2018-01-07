@@ -122,8 +122,14 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
             } else {
                 $nombreInstalacion = $_REQUEST['nombreInstalacion'];
             }
+            
+             if (!isset($_REQUEST['aforoInstalacion'])) {
+                $aforoInstalacion = '';
+            } else {
+                $aforoInstalacion = $_REQUEST['aforoInstalacion'];
+            }
 
-            $instalacion = new INSTALACION_Model('', $nombreInstalacion, '', '');
+            $instalacion = new INSTALACION_Model('', $nombreInstalacion, '', $aforoInstalacion);
             $datos = $instalacion->Consultar();
             new INSTALACION_Listar($datos, '../Views/INSTALACION_Controller.php');
         }

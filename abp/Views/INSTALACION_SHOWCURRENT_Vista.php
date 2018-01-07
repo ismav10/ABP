@@ -25,11 +25,16 @@ class INSTALACION_Consultar {
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['nombreInstalacion']; ?></label><br>
                     <input class="form-control" id="nombreInstalacion" name="nombreInstalacion" size="80" type="text">
-                </div>                              
+                </div>     
+                
+                 <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['aforoInstalacion']; ?></label><br>
+                    <input class="form-control" id="aforoInstalacion" name="aforoInstalacion" size="3" type="text">
+                </div>     
 
 
-                <input type='submit' onclick="return valida_envia_INSTALACION()" name='accion'  value="<?php echo $strings['Consultar']; ?>">
-                <button type="button" class="btn btn-info"><a href='INSTALACION_Controller.php'><?php echo $strings['Volver']; ?></a></button>
+                <input type='submit' name='accion'  value="<?php echo $strings['Consultar']; ?>">
+               <a class="form-link" href='INSTALACION_Controller.php'><?php echo $strings['Volver']; ?></a>
             </form>
         </div>
 

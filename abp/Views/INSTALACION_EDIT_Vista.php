@@ -39,7 +39,7 @@ class INSTALACION_Modificar {
                 </div>
 
                 <input type = 'submit' name = 'accion' value = '<?php echo $strings['Modificar'] ?>'  onclick="return valida_envia_INSTALACION()" >
-                <button type="button" class="btn btn-info"><a href='INSTALACION_Controller.php'><?php echo $strings['Volver']; ?></a></button>
+                     <a class="form-link" href='INSTALACION_Controller.php'><?php echo $strings['Volver']; ?></a>
             </form>
         </div>
 

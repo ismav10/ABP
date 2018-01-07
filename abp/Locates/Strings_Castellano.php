@@ -68,6 +68,7 @@ $strings = array(
  'Entrenamiento' => 'Entrenamiento',
  'MisActividades' => 'Mis Actividades',
  'Estadisticas' => 'Estadisticas',
+ 'NoHayPlazas'=>'Plazas Agotadas',
     
 //Acciones
 'Volver' => 'Volver',

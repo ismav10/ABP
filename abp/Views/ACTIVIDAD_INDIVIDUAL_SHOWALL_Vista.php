@@ -17,7 +17,7 @@ class ACTIVIDAD_INDIVIDUAL_Listar {
         ?> 
         <div class="container">	
             <?php
-            $lista = array('nombreActividadIndividual', 'descripcionActividadIndividual');
+            $lista = array('nombreActividadIndividual', 'descripcionActividadIndividual', 'idInstalacion');
             ?>
             <br>
             <div class="container">
@@ -25,11 +25,11 @@ class ACTIVIDAD_INDIVIDUAL_Listar {
                     <?php
                     if (ConsultarTipoUsuario($_SESSION['login']) != 3) {
                         ?><a href='ACTIVIDAD_INDIVIDUAL_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><img src="../img/actividadadd.png" width="50px" height="50px"></a>
-                            <?php
-                        } else {
-                            echo "";
-                        }
-                        ?>								
+                        <?php
+                    } else {
+                        echo "";
+                    }
+                    ?>								
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
@@ -51,6 +51,10 @@ class ACTIVIDAD_INDIVIDUAL_Listar {
                                                 if ($clave === 'nombreActividadIndividual') {
                                                     ?>
                                             <a href='ACTIVIDAD_INDIVIDUAL_Controller.php?idActividadIndividual=<?php echo $this->datos[$j]['idActividadIndividual'] . '&accion=' . $strings['Ver']; ?>'><font color="#088A4B"><?php echo $valor; ?></font></a> <?php
+                                            break;
+                                        } if ($clave === 'idInstalacion') {
+                                            echo ConsultarNombreInstalacion($valor);
+                                            break;
                                         } else {
                                             echo $valor;
                                         }
@@ -63,7 +67,8 @@ class ACTIVIDAD_INDIVIDUAL_Listar {
                             <?php if (ConsultarTipoUsuario($_SESSION['login']) == 1) { ?>	
                                 <td><button type="button" class="btn btn-info"><a href='ACTIVIDAD_INDIVIDUAL_Controller.php?idActividadIndividual=<?php echo $this->datos[$j]['idActividadIndividual'] . '&accion=' . $strings['Modificar']; ?>'><?php echo $strings['Modificar']; ?></a></button></td>
                                 <td><button type="button" class="btn btn-danger"><a href='ACTIVIDAD_INDIVIDUAL_Controller.php?idActividadIndividual=<?php echo $this->datos[$j]['idActividadIndividual'] . '&accion=' . $strings['Borrar']; ?>'><?php echo $strings['Borrar']; ?></a></button></td>
-                                <?php } 
+                                        <?php
+                                    }
                                 }
                                 ?>
                         </tbody>

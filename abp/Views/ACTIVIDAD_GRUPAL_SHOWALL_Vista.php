@@ -69,7 +69,11 @@ class ACTIVIDAD_GRUPAL_Listar {
                                 <td><button type="button" class="btn btn-success"><a href='ACTIVIDAD_GRUPAL_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['VerInscritos']; ?>'><?php echo $strings['VerInscritos']; ?></a></button></td>
                                 <?php
                             } if (ConsultarTipoUsuarioLogin() == 3) {
-                                if (ConsultarSolicitudGrupal($this->datos[$j]['idActividadGrupal']) == 0) {
+                                if (ConsultarPlazas($this->datos[$j]['idActividadGrupal']) == 0) {
+                                    ?>
+                                    <td><button type="button" class="btn"><?php echo $strings['NoHayPlazas']; ?></a></button></td>
+                                <?php }
+                                else if (ConsultarSolicitudGrupal($this->datos[$j]['idActividadGrupal']) == 0) {
                                     ?>
                                     <td><button type="button" class="btn btn-warning"><a href='ACTIVIDAD_GRUPAL_Controller.php?idActividadGrupal=<?php echo $this->datos[$j]['idActividadGrupal'] . '&accion=' . $strings['Asignar'] . '&userName=' . $_SESSION['login']; ?>'><?php echo $strings['EnTramite']; ?></a></button></td>
                                 <?php } else if (ConsultarSolicitudGrupal($this->datos[$j]['idActividadGrupal']) == 1) {

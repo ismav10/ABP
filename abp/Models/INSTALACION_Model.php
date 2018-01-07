@@ -9,14 +9,14 @@ class INSTALACION_Model {
     var $idInstalacion;
     var $nombreInstalacion;
     var $descripcionInstalacion;
-	var $aforoInstalacion;
+    var $aforoInstalacion;
     var $mysqli;
 
     function __construct($idInstalacion, $nombreInstalacion, $descripcionInstalacion, $aforoInstalacion) {
         $this->idInstalacion = $idInstalacion;
         $this->nombreInstalacion = $nombreInstalacion;
         $this->descripcionInstalacion = $descripcionInstalacion;
-		$this->aforoInstalacion = $aforoInstalacion;
+        $this->aforoInstalacion = $aforoInstalacion;
     }
 
 //Función para conectarnos a la Base de datos
@@ -86,10 +86,14 @@ class INSTALACION_Model {
     function Consultar() {
         $this->ConectarBD();
 
-        if ($this->nombreInstalacion == '') { //0
-            $sql = "SELECT nombreInstalacion, descripcionInstalacion FROM instalacion ";
-        } else if ($this->nombreInstalacion != '') { //1
-            $sql = "SELECT nombreInstalacion, descripcionInstalacion FROM instalacion WHERE nombreInstalacion = '" . $this->nombreInstalacion . "'";
+        if ($this->nombreInstalacion == '' && $this->aforoInstalacion == '') { //00
+            $sql = "SELECT * FROM instalacion ";
+        } else if ($this->nombreInstalacion == '' && $this->aforoInstalacion != '') { //01
+            $sql = "SELECT * FROM instalacion WHERE aforoInstalacion = '" . $this->aforoInstalacion . "'";
+        } else if ($this->nombreInstalacion != '' && $this->aforoInstalacion == '') { //10
+            $sql = "SELECT * FROM instalacion WHERE nombreInstalacion = '" . $this->nombreInstalacion . "'";
+        } else if ($this->nombreInstalacion != '' && $this->aforoInstalacion != '') { //11
+            $sql = "SELECT * FROM instalacion WHERE nombreInstalacion = '" . $this->nombreInstalacion . "' AND aforoInstalacion = '" . $this->aforoInstalacion . "'";
         }
 
         if (!$resultado = $this->mysqli->query($sql)) {
@@ -146,9 +150,6 @@ class INSTALACION_Model {
             return $result;
         }
     }
-    
-    
-    
 
 }
 

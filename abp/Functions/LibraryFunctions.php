@@ -452,8 +452,8 @@ function showNavbar() {
 
     if (!isset($_SESSION)) {
         echo '<br><br><li role="presentation" class="active"><a href="../Functions/Conectar.php" class="m1">Iniciar Sesion</a></li>';
-        echo '<li role="presentation"><a href="" class="m1">Sobre Nosotros</a></li>';
-        echo '<li role="presentation"><a href="" class="m1">Contacto</a></li>';
+//        echo '<li role="presentation"><a href="" class="m1">Sobre Nosotros</a></li>';
+//        echo '<li role="presentation"><a href="" class="m1">Contacto</a></li>';
     } else {
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
         añadirFuncionalidades($_SESSION);
@@ -567,6 +567,18 @@ function ActividadMenosUsuarios() {
     }
     return $toret;
 }
+
+
+function ConsultarPlazas($idActividadGrupal) {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "  SELECT DISTINCT plazasDisponibles FROM deportista_inscribir_actividadgrupal WHERE idActividadGrupal = '". $idActividadGrupal."'";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['plazasDisponibles'];
+}
+
 
 function EntrenadorMasActividades() {
     $mysqli = new mysqli("localhost", "root", "", "muevet");

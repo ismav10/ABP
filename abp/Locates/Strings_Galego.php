@@ -45,6 +45,7 @@ $strings = array(
     'DeportistaMasActividades' => 'Deportista inscrito en máis actividades',
     'NumActividades' =>'Número de Actividades',
     'VerInscritos' =>'Inscritos',    
+    'NoHayPlazas'=>'Prazas agotadas',
     
 //MENU DEFAULTS (LOGIN Y SIN LOGIN)
 'Iniciar Sesion' => 'Iniciar Sesion',

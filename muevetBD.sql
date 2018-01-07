@@ -70,11 +70,14 @@ INSERT INTO `actividadgrupal` (`idActividadGrupal`, `nombreActividadGrupal`, `de
 (5, 'Spinning A', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'Lunes', '16:00:00', '18:00:00', '2018-01-15', '2018-02-15', 'entrenador2', 8),
 (6, 'Spinning B', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'MiÃ©rcoles', '16:00:00', '18:00:00', '2018-01-15', '2018-02-15', 'entrenador2', 8),
 (7, 'Spinning C', 'Ejercicio cardiovascular sobre bici que recrea un circuito de montaÃ±a, de intensidad media-alta, al ritmo de la mÃºsica. Se caracteriza por su alto consumo calÃ³rico', 20, 'Viernes', '16:00:00', '18:00:00', '2018-01-15', '2018-02-15', 'entrenador2', 8),
-(8, 'Boxeo A', 'Deporte en que dos adversarios luchan con los puÃ±os enfundados en guantes especiales, para golpear al contrario por encima de la cintura.', 10, 'Martes', '19:30:00', '21:00:00', '2018-01-01', '2018-02-01', 'entrenador2', 10),
-(9, 'Boxeo B', 'Deporte en que dos adversarios luchan con los puÃ±os enfundados en guantes especiales, para golpear al contrario por encima de la cintura.', 10, 'Jueves', '19:30:00', '21:00:00', '2018-01-01', '2018-02-01', 'entrenador2', 10),
+(8, 'Boxeo A', 'Deporte en que dos adversarios luchan con los puÃ±os enfundados en guantes especiales, para golpear al contrario por encima de la cintura.', 8, 'Martes', '19:30:00', '21:00:00', '2018-01-01', '2018-02-01', 'entrenador2', 10),
+(9, 'Boxeo B', 'Deporte en que dos adversarios luchan con los puÃ±os enfundados en guantes especiales, para golpear al contrario por encima de la cintura.', 8, 'Jueves', '19:30:00', '21:00:00', '2018-01-01', '2018-02-01', 'entrenador2', 10),
 (10, 'Body Pumb A', 'Programa de entrenamiento Les Mills con barras y discos que fortalece, tonifica y define la musculatura de todo el cuerpo', 10, 'Martes', '19:30:00', '21:00:00', '2018-01-10', '2018-02-10', 'entrenador3', 2),
 (11, 'Body Pumb B', 'Programa de entrenamiento Les Mills con barras y discos que fortalece, tonifica y define la musculatura de todo el cuerpo', 10, 'MiÃ©rcoles', '19:30:00', '21:00:00', '2018-01-10', '2018-02-10', 'entrenador3', 2),
-(12, 'Body Pumb C', 'Programa de entrenamiento Les Mills con barras y discos que fortalece, tonifica y define la musculatura de todo el cuerpo', 10, 'Jueves', '19:30:00', '21:00:00', '2018-01-10', '2018-02-10', 'entrenador3', 2);
+(12, 'Body Pumb C', 'Programa de entrenamiento Les Mills con barras y discos que fortalece, tonifica y define la musculatura de todo el cuerpo', 10, 'Jueves', '19:30:00', '21:00:00', '2018-01-10', '2018-02-10', 'entrenador3', 2),
+(13, 'Crossfit A', 'Actividad destinada a  los amantes del ejercicio fÃ­sico extremo.', 12, 'Martes', '16:00:00', '18:00:00', '2018-02-01', '2018-03-01', 'entrenador3', 4),
+(14, 'Crossfit B', 'Actividad destinada a  los amantes del ejercicio fÃ­sico extremo.', 12, 'MiÃ©rcoles', '16:00:00', '18:00:00', '2018-02-01', '2018-03-01', 'entrenador3', 4),
+(15, 'Crossfit C', 'Actividad destinada a  los amantes del ejercicio fÃ­sico extremo.', 12, 'Jueves', '16:00:00', '18:00:00', '2018-02-01', '2018-03-01', 'entrenador3', 4);
 
 -- --------------------------------------------------------
 
@@ -85,15 +88,16 @@ INSERT INTO `actividadgrupal` (`idActividadGrupal`, `nombreActividadGrupal`, `de
 CREATE TABLE IF NOT EXISTS `actividadindividual` (
   `idActividadIndividual` int(10) NOT NULL,
   `nombreActividadIndividual` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
-  `descripcionActividadIndividual` text COLLATE utf8_spanish_ci
+  `descripcionActividadIndividual` text COLLATE utf8_spanish_ci,
+  `idInstalacion` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `actividadindividual`
 --
 
-INSERT INTO `actividadindividual` (`idActividadIndividual`, `nombreActividadIndividual`, `descripcionActividadIndividual`) VALUES
-(1, 'Fittness', 'RealizaciÃ³n de diferentes ejercicios fÃ­sicos en una sala acondicionada para ello');
+INSERT INTO `actividadindividual` (`idActividadIndividual`, `nombreActividadIndividual`, `descripcionActividadIndividual`, `idInstalacion`) VALUES
+(1, 'Fittness', 'RealizaciÃ³n de diferentes ejercicios fÃ­sicos en una sala acondicionada para ello', 7);
 
 -- --------------------------------------------------------
 
@@ -175,22 +179,83 @@ CREATE TABLE IF NOT EXISTS `deportista_inscribir_actividadgrupal` (
 --
 
 INSERT INTO `deportista_inscribir_actividadgrupal` (`userName`, `idActividadGrupal`, `estado`, `plazasDisponibles`) VALUES
-('deportista1', 1, 0, 24),
-('deportista1', 5, 1, 19),
-('deportista1', 8, 1, 7),
-('deportista2', 8, 1, 7),
-('deportista2', 1, 1, 24),
-('deportista2', 4, 1, 24),
-('deportista2', 10, 0, 10),
-('deportista3', 8, 0, 7),
-('deportista3', 6, 0, 20),
-('deportista3', 5, 0, 19),
-('deportista3', 11, 0, 10),
-('deportista4', 3, 1, 24),
-('deportista4', 8, 1, 7),
-('deportista4', 2, 1, 19),
-('deportista4', 7, 1, 19),
-('deportista4', 12, 1, 9);
+('deportista1', 1, 1, 21),
+('deportista1', 4, 1, 16),
+('deportista1', 5, 1, 16),
+('deportista1', 8, 1, 0),
+('deportista1', 12, 0, 8),
+('deportista1', 14, 1, 9),
+('deportista1', 15, 0, 10),
+('deportista10', 1, 1, 21),
+('deportista10', 2, 1, 21),
+('deportista10', 3, 1, 21),
+('deportista10', 4, 1, 16),
+('deportista10', 5, 1, 16),
+('deportista10', 6, 1, 16),
+('deportista10', 7, 1, 17),
+('deportista10', 9, 1, 5),
+('deportista10', 13, 0, 9),
+('deportista10', 14, 0, 9),
+('deportista10', 15, 0, 10),
+('deportista2', 2, 1, 21),
+('deportista2', 3, 1, 21),
+('deportista2', 6, 1, 19),
+('deportista2', 7, 1, 17),
+('deportista2', 8, 1, 0),
+('deportista2', 10, 1, 5),
+('deportista2', 11, 1, 5),
+('deportista2', 13, 0, 9),
+('deportista3', 8, 1, 0),
+('deportista3', 9, 1, 5),
+('deportista3', 10, 0, 5),
+('deportista3', 13, 1, 9),
+('deportista3', 14, 1, 9),
+('deportista3', 15, 1, 10),
+('deportista4', 1, 1, 21),
+('deportista4', 4, 1, 16),
+('deportista4', 6, 1, 18),
+('deportista4', 7, 1, 17),
+('deportista4', 8, 1, 0),
+('deportista5', 1, 0, 21),
+('deportista5', 4, 0, 16),
+('deportista5', 8, 1, 0),
+('deportista5', 10, 1, 5),
+('deportista5', 11, 1, 5),
+('deportista5', 13, 1, 9),
+('deportista6', 2, 1, 21),
+('deportista6', 3, 1, 21),
+('deportista6', 8, 1, 0),
+('deportista6', 9, 1, 5),
+('deportista6', 10, 1, 5),
+('deportista6', 11, 1, 5),
+('deportista6', 12, 1, 8),
+('deportista7', 1, 1, 21),
+('deportista7', 2, 1, 21),
+('deportista7', 3, 1, 21),
+('deportista7', 4, 1, 16),
+('deportista7', 5, 1, 16),
+('deportista7', 6, 1, 17),
+('deportista7', 7, 1, 17),
+('deportista7', 8, 1, 0),
+('deportista7', 9, 1, 5),
+('deportista7', 13, 0, 9),
+('deportista7', 14, 0, 9),
+('deportista7', 15, 0, 10),
+('deportista8', 5, 1, 16),
+('deportista8', 8, 1, 0),
+('deportista8', 9, 1, 5),
+('deportista8', 10, 1, 5),
+('deportista8', 11, 1, 5),
+('deportista8', 14, 0, 9),
+('deportista8', 15, 0, 10),
+('deportista9', 5, 0, 16),
+('deportista9', 6, 0, 16),
+('deportista9', 7, 0, 17),
+('deportista9', 13, 1, 9),
+('deportista9', 14, 1, 9),
+('deportista9', 15, 1, 10);
+
+
 -- --------------------------------------------------------
 
 --
@@ -210,8 +275,13 @@ INSERT INTO `deportista_inscribir_actividadindividual` (`userName`, `idActividad
 ('deportista1', 1),
 ('deportista2', 1),
 ('deportista3', 1),
-('deportista4', 1);
-
+('deportista4', 1),
+('deportista5', 1),
+('deportista6', 1),
+('deportista7', 1),
+('deportista8', 1),
+('deportista9', 1),
+('deportista10', 1);
 -- --------------------------------------------------------
 
 --
@@ -990,7 +1060,8 @@ ALTER TABLE `actividadgrupal`
 -- Indices de la tabla `actividadindividual`
 --
 ALTER TABLE `actividadindividual`
-  ADD PRIMARY KEY (`idActividadIndividual`);
+  ADD PRIMARY KEY (`idActividadIndividual`),
+  ADD KEY `idInstalacion`(`idInstalacion`);
 
 --
 -- Indices de la tabla `deportista`
@@ -1185,6 +1256,12 @@ ALTER TABLE `usuario_rol`
 ALTER TABLE `actividadgrupal`
   ADD CONSTRAINT `actividadgrupal_ibfk_1` FOREIGN KEY (`username`) REFERENCES `entrenador` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `actividadgrupal_ibfk_2` FOREIGN KEY (`idInstalacion`) REFERENCES `instalacion` (`idInstalacion`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `actividadindividual`
+--
+ALTER TABLE `actividadindividual`
+  ADD CONSTRAINT `actividadindividual_ibfk_2` FOREIGN KEY (`idInstalacion`) REFERENCES `instalacion` (`idInstalacion`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `deportista`
