@@ -93,6 +93,9 @@ class USUARIO_Modelo {
                         if ($this->tipoUsuario == 2) {
                             $sql = "INSERT INTO ENTRENADOR VALUES ( '" . $this->userName . "', '" . $this->cuentaBanc . "');";
                             $this->mysqli->query($sql);
+
+                            $sqlAux2 = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . ConsultarEmailUsuario($_SESSION['login']) . "','" . ConsultarEmailUsuario($this->userName) . "', 'Bienvenido a MueveT','El equipo de MueveT le da la bienvenida y con la intencion de hacerle sus primeros dias mas faciles le comunica que se ponga en contacto con nosotros para atender cualquier tipo de eventualidad.\n\nMucha suerte nuevo entrenador!\n\n\nEquipo MueveT.\n\n\nEquipo MueveT', '" . $_SESSION['login'] . "')";
+                            $this->mysqli->query($sqlAux2);
                         }
 
                         if ($this->tipoUsuario == 3) {
@@ -103,7 +106,7 @@ class USUARIO_Modelo {
                                 $sqlAux = "INSERT INTO DEPORTISTA_INSCRIBIR_ACTIVIDADINDIVIDUAL  VALUES ( '" . $this->userName . "', 1);";
                                 $this->mysqli->query($sqlAux);
 
-                                $sqlAux2 = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . ConsultarEmailUsuario($_SESSION['login']) . "','" . ConsultarEmailUsuario($this->userName) . "', 'Bienvenido a MueveT','El equipo de MueveT le da la bienvenida y comunica que se ponga en contacto con nosotros ante cualquier problema.', '" . $_SESSION['login'] . "')";
+                                $sqlAux2 = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . ConsultarEmailUsuario($_SESSION['login']) . "','" . ConsultarEmailUsuario($this->userName) . "', 'Bienvenido a MueveT','El equipo de MueveT le da la bienvenida y comunica que se ponga en contacto con nosotros ante cualquier problema.\n\n\nEquipo MueveT', '" . $_SESSION['login'] . "')";
                                 $this->mysqli->query($sqlAux2);
                             }
                         }
@@ -349,7 +352,7 @@ class USUARIO_Modelo {
                 }if (!($resultado = $this->mysqli->query($sql))) {
                     return 'La tabla ya ha sido asignada a este usuario';
                 } else {
-                    $sqlAux2 = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . ConsultarEmailUsuario($_SESSION['login']) . "', '" . ConsultarEmailUsuario($this->userName) . "', 'Nueva tabla de entrenamientos a su disposición!', 'Le ha sido asignada la tabla de entrenamiento " . $tabla . ". Esperemos que la disfrute y no repare en ponerse en contacto con nosotros ante cualquier problema. ¡Esperamos que la exprima a tope! ', '" . $_SESSION['login'] . "')";
+                    $sqlAux2 = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . ConsultarEmailUsuario($_SESSION['login']) . "', '" . ConsultarEmailUsuario($this->userName) . "', 'Nueva tabla de entrenamientos a su disposición!', 'Le ha sido asignada la tabla de entrenamiento " . $tabla . ". Esperemos que la disfrute y no repare en ponerse en contacto con nosotros ante cualquier problema. \n\n¡Esperamos que la exprima a tope! \n\n\nEquipo MueveT ', '" . $_SESSION['login'] . "')";
                     $this->mysqli->query($sqlAux2);
                     return 'La tabla se ha asignado correctamente';
                 }
@@ -363,7 +366,7 @@ class USUARIO_Modelo {
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
         } else {
-            $sqlAux2 = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . ConsultarEmailUsuario($_SESSION['login']) . "', '" . ConsultarEmailUsuario($this->userName) . "', 'Le ha sido eliminada una tabla de entrenamientos', 'La tabla de entrenamiento " . ConsultarNombreTabla($idTabla) . ". le ha sido retirada. Por favor póngase en contacto con nosotros si esto no era deseado. ', '" . $_SESSION['login'] . "')";
+            $sqlAux2 = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . ConsultarEmailUsuario($_SESSION['login']) . "', '" . ConsultarEmailUsuario($this->userName) . "', 'Le ha sido eliminada una tabla de entrenamientos', 'La tabla de entrenamiento " . ConsultarNombreTabla($idTabla) . ". le ha sido retirada. \n\nPor favor póngase en contacto con nosotros si esto no era deseado. \n\n\nEquipo MueveT', '" . $_SESSION['login'] . "')";
             $this->mysqli->query($sqlAux2);
         }
     }

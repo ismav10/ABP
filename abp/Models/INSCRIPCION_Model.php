@@ -37,11 +37,10 @@ class INSCRIPCION_Model {
             $resultado = $result->fetch_array();
             if ($resultado['plazasDisponibles'] > 0) {
                 $sql1 = "UPDATE DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL SET estado = 1 WHERE userName= '" . $this->userName . "' AND idActividadGrupal = '" . $this->idActividadGrupal . "'";
-                $result23 = $this->mysqli->query($sql1);
+                $this->mysqli->query($sql1);
                 $sql2 = "UPDATE deportista_inscribir_actividadgrupal SET plazasDisponibles = plazasDisponibles -1 WHERE idActividadGrupal = '" . $this->idActividadGrupal . "'";
                 $this->mysqli->query($sql2);
-
-                $sqlAux2 = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . ConsultarEmailUsuario($_SESSION['login']) . "', '" . ConsultarEmailUsuario($this->userName) . "', 'Resolución sobre petición para actividad " . ConsultarNombreActividadGrupal($this->idActividadGrupal) . "'  , 'Su solicitud para inscribirse en la actividad " . ConsultarNombreActividadGrupal($this->idActividadGrupal) . " ha sido aceptada por parte de MueveT. ¡Esperamos que disfrute mucho de las clases! ', '" . $_SESSION['login'] . "')";
+                $sqlAux2 = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . ConsultarEmailUsuario($_SESSION['login']) . "', '" . ConsultarEmailUsuario($this->userName) . "', 'Resolución sobre petición para actividad " . ConsultarNombreActividadGrupal($this->idActividadGrupal) . "'  , 'Su solicitud para inscribirse en la actividad " . ConsultarNombreActividadGrupal($this->idActividadGrupal) . " ha sido aceptada por parte de MueveT. \n\n¡Esperamos que disfrute mucho de las clases!\n\n\nEquipo MueveT ', '" . $_SESSION['login'] . "')";
                 $this->mysqli->query($sqlAux2);
 
                 return "Solicitud aceptada";
@@ -70,7 +69,7 @@ class INSCRIPCION_Model {
             $sql1 = "DELETE FROM DEPORTISTA_INSCRIBIR_ACTIVIDADGRUPAL where userName = '" . $this->userName . "' AND idActividadGrupal = '" . $this->idActividadGrupal . "'";
             $this->mysqli->query($sql1);
 
-            $sqlAux2 = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . ConsultarEmailUsuario($_SESSION['login']) . "', '" . ConsultarEmailUsuario($this->userName) . "', 'Resolución sobre petición para actividad " . ConsultarNombreActividadGrupal($this->idActividadGrupal) . "'  , 'Su solicitud para inscribirse en la actividad " . ConsultarNombreActividadGrupal($this->idActividadGrupal) . " ha sido rechazada por parte de MueveT. Esperamos que encuentre otras actividades de su gusto en nuestro catálogo. ¡Esperamos verle pronto! ', '" . $_SESSION['login'] . "')";
+            $sqlAux2 = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . ConsultarEmailUsuario($_SESSION['login']) . "', '" . ConsultarEmailUsuario($this->userName) . "', 'Resolución sobre petición para actividad " . ConsultarNombreActividadGrupal($this->idActividadGrupal) . "'  , 'Su solicitud para inscribirse en la actividad " . ConsultarNombreActividadGrupal($this->idActividadGrupal) . " ha sido rechazada por parte de MueveT. Esperamos que encuentre otras actividades de su gusto en nuestro catálogo. \n\n¡Esperamos verle pronto!\n\n\nEquipo MueveT ', '" . $_SESSION['login'] . "')";
             $this->mysqli->query($sqlAux2);
 
             return "Solicitud rechazada";

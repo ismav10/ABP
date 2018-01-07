@@ -13,6 +13,10 @@ function IsAuthenticated() {
     }
 }
 
+function saltoLinea($str) {
+  return str_replace(array("\r\n", "\r", "\n"), "<br/>", $str);
+}  
+
 //Añade los roles al desplegable de tipos
 function AñadirTipos($array) {
     $mysqli = new mysqli("localhost", "root", "", "muevet");
@@ -305,6 +309,18 @@ function ConsultarEmailUsuario($username) {
     return $result['email'];
 }
 
+function ConsultarSolicitudes() {
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    $sql = "SELECT COUNT(estado) estado
+            FROM deportista_inscribir_actividadgrupal
+            WHERE estado = 0";
+    $result = $mysqli->query($sql)->fetch_array();
+    return $result['estado'];
+}
+
 function ConsultarNotificacionesPendientes($destinatario) {
     $mysqli = new mysqli("localhost", "root", "", "muevet");
     if ($mysqli->connect_errno) {
@@ -343,12 +359,12 @@ function añadirFuncionalidades($NOM) {
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><?php echo $strings['Gestión de Usuarios'] ?> </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <?php if (ConsultarTipoUsuarioLogin() == 1) { ?>
+                        <?php if (ConsultarTipoUsuarioLogin() == 1) { ?>
                                     <a class = "dropdown-item" href = "../Controllers/ENTRENADOR_Controller.php?user=entrenador"><?php echo $strings['Gestión de Entrenadores'];
-                                    ?></a>
+                            ?></a>
                                     <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?user=deportista"><?php echo $strings['Gestión de Deportistas']; ?></a><br>
                                     <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios']; ?></a><br>
-                                <?php } else if (ConsultarTipoUsuarioLogin() == 2) { ?>
+                                    <?php } else if (ConsultarTipoUsuarioLogin() == 2) { ?>
                                     <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?user=deportista"><?php echo $strings['Gestión de Deportistas']; ?></a>
                                 <?php } ?>
 
@@ -372,8 +388,9 @@ function añadirFuncionalidades($NOM) {
                     break;
 
                 case "Gestion Instalacion":
-                    if (ConsultarTipoUsuarioLogin() == 1) {?>
-                        
+                    if (ConsultarTipoUsuarioLogin() == 1) {
+                        ?>
+
                         <li><a style="font-size:15px;" href='../Controllers/INSTALACION_Controller.php'><?php echo $strings['Gestión de Instalaciones']; ?></a></li> <?php
                     }
                     break;
@@ -385,7 +402,7 @@ function añadirFuncionalidades($NOM) {
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="../Controllers/TABLA_Controller.php"><?php echo $strings['Gestión de tablas']; ?></a><br>
                             <a class="dropdown-item" href="../Controllers/EJERCICIO_Controller.php?"><?php echo $strings['Gestión de ejercicios']; ?></a><br>
-                            <?php if (ConsultarTipoUsuarioLogin() == 3) { ?>
+                    <?php if (ConsultarTipoUsuarioLogin() == 3) { ?>
                                 <a class="dropdown-item" href='../Controllers/SESION_Controller.php'><?php echo $strings['Gestión de sesiones']; ?></a>
                             <?php } ?>
                         </div>
@@ -396,59 +413,59 @@ function añadirFuncionalidades($NOM) {
 
                 case "Gestion Inscripciones":
                     ?><li><a style="font-size:15px;" href="../Controllers/INSCRIPCION_Controller.php?act=grupal"><?php echo $strings['Gestión de Inscripciones']; ?></a></li> <?php
-                        break;
+                    break;
 
 
-                    default:
-                        break;
-                }
+                default:
+                    break;
             }
         }
     }
+}
 
 //Revisa si tiene permiso al comprobar si se ha incluido la clase a la que se quiere acceder
-    function tienePermisos($string) {
-        return class_exists($string);
-    }
+function tienePermisos($string) {
+    return class_exists($string);
+}
 
 //Genera los includes correspondientes a las paginas a las que se tiene acceso
-    function generarIncludes() {
-        $toret = array();
-        $mysqli = new mysqli("localhost", "root", "", "muevet");
-        if ($mysqli->connect_errno) {
-            echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-        }
-        $sql = "SELECT DISTINCT pagina.linkPagina FROM Pagina, funcionalidad_pagina, funcionalidad_rol, usuario_rol WHERE pagina.idPagina=funcionalidad_pagina.idPagina AND funcionalidad_pagina.idFuncionalidad=funcionalidad_rol.idFuncionalidad AND funcionalidad_rol.idRol=usuario_rol.idRol AND usuario_rol.userName ='" . $_SESSION['login'] . "'";
-        if (!($resultado = $mysqli->query($sql))) {
-            echo 'Error en la consulta sobre la base de datos';
-        } else {
-            while ($tupla = $resultado->fetch_array()) {
-                array_push($toret, $tupla['linkPagina']);
-            }
-        }
-        return $toret;
+function generarIncludes() {
+    $toret = array();
+    $mysqli = new mysqli("localhost", "root", "", "muevet");
+    if ($mysqli->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
+    $sql = "SELECT DISTINCT pagina.linkPagina FROM Pagina, funcionalidad_pagina, funcionalidad_rol, usuario_rol WHERE pagina.idPagina=funcionalidad_pagina.idPagina AND funcionalidad_pagina.idFuncionalidad=funcionalidad_rol.idFuncionalidad AND funcionalidad_rol.idRol=usuario_rol.idRol AND usuario_rol.userName ='" . $_SESSION['login'] . "'";
+    if (!($resultado = $mysqli->query($sql))) {
+        echo 'Error en la consulta sobre la base de datos';
+    } else {
+        while ($tupla = $resultado->fetch_array()) {
+            array_push($toret, $tupla['linkPagina']);
+        }
+    }
+    return $toret;
+}
 
 //Funcionalidades en funcion de los permisos
 
-    function showNavbar() {
+function showNavbar() {
 
-        if (!isset($_SESSION)) {
-            echo '<br><br><li role="presentation" class="active"><a href="../Functions/Conectar.php" class="m1">Iniciar Sesion</a></li>';
-            echo '<li role="presentation"><a href="" class="m1">Sobre Nosotros</a></li>';
-            echo '<li role="presentation"><a href="" class="m1">Contacto</a></li>';
-        } else {
-            include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
-            añadirFuncionalidades($_SESSION);
-            ?>
+    if (!isset($_SESSION)) {
+        echo '<br><br><li role="presentation" class="active"><a href="../Functions/Conectar.php" class="m1">Iniciar Sesion</a></li>';
+        echo '<li role="presentation"><a href="" class="m1">Sobre Nosotros</a></li>';
+        echo '<li role="presentation"><a href="" class="m1">Contacto</a></li>';
+    } else {
+        include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
+        añadirFuncionalidades($_SESSION);
+        ?>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <?php echo $strings['Cuenta'] ?>
+        <?php echo $strings['Cuenta'] ?>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['Modificar']; ?>"><?php echo $strings['Mi Perfil'] ?></a><br>
                 <a class="dropdown-item" href="../Controllers/NOTIFICACION_Controller.php"><?php echo $strings['Gestión de notificaciones'] ?></a><br>
-                <?php if (ConsultarTipoUsuarioLogin() == 3) { ?>
+        <?php if (ConsultarTipoUsuarioLogin() == 3) { ?>
                     <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['MisActividades']; ?>"><?php echo $strings['MisActividades'] ?></a><br>
                 <?php } if (ConsultarTipoUsuarioLogin() == 2) { ?>
                     <a class="dropdown-item" href="../Controllers/ENTRENADOR_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['MisActividades']; ?>"><?php echo $strings['MisActividades'] ?></a><br>

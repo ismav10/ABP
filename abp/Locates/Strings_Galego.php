@@ -29,7 +29,7 @@ $strings = array(
 'Error en la consulta sobre la base de datos.' => 'Erro na consulta sobre a base de datos.',
 'La sesion se ha modificado con éxito' => 'A sesion foi modificada con éxito',
 'No se puede borrar porque no existe esa notificacion.' => 'Non se pode borrar porque non existe.',
-'La notificacion fue borrada con éxito.' => 'A notificacion foi borrada con éxito.',  
+'La notificacion fue borrada con éxito.' => 'A notificación foi borrada con éxito.',  
 'No tienes los permisos necesarios' => 'Careces dos permisos necesarios',
 'Debe seleccionar una tabla' =>'Debe seleccionar unha táboa',
     'EstadísticasMuevet' =>'Estadísticas do Sistema',
@@ -169,6 +169,7 @@ $strings = array(
 'Finalizar Sesion' => 'Finalizar Sesión',
 'Realizando tabla' => 'TABLA DA SESIÓN',
 'Actividad' => 'ACTIVIDADE',
+'Crear'=>'Enviar',
 
 
 

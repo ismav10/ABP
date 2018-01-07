@@ -22,7 +22,7 @@ class EJERCICIO_Show
                 echo '<br>';
                 
                 if(ConsultarTipoUsuario($_SESSION['login']) != 3){
-		echo '<a href="?accion=vistainsertar"><button type="button" class="btn btn-primary btn-lg btn-block">'.$strings['newejercicio'].'</button></a>';
+		echo '<a href="?accion=vistainsertar"><button type="button" class="btn btn-primary btn-lg">'.$strings['newejercicio'].'</button></a>';
                 } else {
                      echo "<br><br>";
                 }
@@ -41,8 +41,8 @@ class EJERCICIO_Show
 		foreach($this->datos as $valor)
 		{
 			echo '<tr>';
-			echo '<th>'.$valor['1'].'</th>';
-			echo '<td>'.$valor['2'].'</td>';
+			echo '<th><br>'.$valor['1'].'</th>';
+			echo '<td>'. saltoLinea($valor['2']).'</td>';
 			echo '<td><img width="100" height="100" src="'.$valor['3'].'"/></td>';
 			echo '<td><a href="?accion=modificar&id='.$valor['0'].'"><button type="button" class="btn btn-primary">'.$strings['ejerciciomodificar'].'</button></a></td>';
 			echo '<td><a href="?accion=eliminar&id='.$valor['0'].'"><button type="button" class="btn btn-danger">'.$strings['ejercicioeliminar'].'</button></a></td>';

@@ -65,24 +65,19 @@ class ACTIVIDAD_GRUPAL_Model {
 
                         $sql23 = "SELECT email FROM USUARIO WHERE tipoUsuario = 3";
                         $resultado123 = $this->mysqli->query($sql23);
-                            $toret = array();
-                            $i = 0;
-                            while ($fila = $resultado123->fetch_array()) {
-                                $toret[$i] = $fila;
-                                $i++;
-                            }
-                            
-                            foreach($resultado123 as $dato){
-                                 foreach($dato as $valor){
-                                     echo $valor;
-                                    //$sql1234 = "INSERT INTO NOTIFICACION (destinatarioNotificacion, remitenteNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES( '". $valor."', '". ConsultarEmailUsuario($_SESSION['login']) . "', 'Actualizado el catálogo de Actividades Grupales', 'Se ha actualizado el catálogo que ofrece MueveT con la actividad '". $this->nombreActividadGrupal ."'. ¡Solicita tu inscripción antes de que se terminen las plazas!', '". $_SESSION['login'] ."')";
-                                      $sql1234 = "INSERT INTO NOTIFICACION (destinatarioNotificacion, remitenteNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES( '". $valor."', '". ConsultarEmailUsuario($_SESSION['login']) . "', 'Actualizado el catálogo de Actividades Grupales', 'Se ha actualizado el catálogo que ofrece MueveT con la actividad ". $this->nombreActividadGrupal ."', '". $_SESSION['login'] ."')";
-                                     
-                                     $resultado1234 = $this->mysqli->query($sql1234);
-                                 }
+                        $toret = array();
+                        $i = 0;
+                        while ($fila = $resultado123->fetch_array()) {
+                            $toret[$i] = $fila;
+                            $i++;
                         }
 
-
+                        foreach ($resultado123 as $dato) {
+                            foreach ($dato as $valor) {
+                                $sql1234 = "INSERT INTO NOTIFICACION (destinatarioNotificacion, remitenteNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES( '" . $valor . "', '" . ConsultarEmailUsuario($_SESSION['login']) . "', 'Actualizado el catálogo de Actividades Grupales', 'Se ha actualizado el catálogo que ofrece MueveT con nuevas actividades, Ã©chale un ojo y solicita tu inscripciÃ³n rÃ¡pido que vuelan!\n\n\nEquipo de MueveT" . $this->nombreActividadGrupal . "', '" . $_SESSION['login'] . "')";
+                                $this->mysqli->query($sql1234);
+                            }
+                        }
                         return 'Actividad Grupal añadida con exito';
                     }
                 }
@@ -139,8 +134,26 @@ class ACTIVIDAD_GRUPAL_Model {
         } else if ($resultado->num_rows == 0) {
             return 'No se puede borrar porque no existe esa actividad grupal';
         } else {
+
+            if ($this->ConsultarExisteDeportistasActividad($this->idActividadGrupal) > 0) {
+                $destinatarios = $this->ConsultarEmailDeportistasActividad($this->idActividadGrupal);
+                foreach ($destinatarios as $valor) {
+                    $sql1234 = "INSERT INTO NOTIFICACION (destinatarioNotificacion, remitenteNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES( '" . $valor . "', '" . ConsultarEmailUsuario($_SESSION['login']) . "', 'Eliminada una actividad de MueveT en la que estabas inscrito', 'Se ha eliminado la actividad " . ConsultarNombreActividadGrupal($this->idActividadGrupal) . " en la que estabas inscrito por lo que quedan canceladas todas sus clases\n\nLamentamos muchas las molestias ocasionadas.\n\n\nEquipo de MueveT" . $this->nombreActividadGrupal . "', '" . $_SESSION['login'] . "')";
+                    $this->mysqli->query($sql1234);
+                }
+            } 
+            
+            if ($this->ConsultarExisteDeportistasActividad2($this->idActividadGrupal) > 0) {
+                $destinatarios = $this->ConsultarEmailDeportistasActividad2($this->idActividadGrupal);
+                foreach ($destinatarios as $valor) {
+                    $sql1234 = "INSERT INTO NOTIFICACION (destinatarioNotificacion, remitenteNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES( '" . $valor . "', '" . ConsultarEmailUsuario($_SESSION['login']) . "', 'Eliminada una actividad de MueveT en la que quería inscribirse', 'Se ha eliminado la actividad " . ConsultarNombreActividadGrupal($this->idActividadGrupal) . " en la que había solicitado inscribirse por lo que quedan canceladas todas sus clases\n\nLamentamos muchas las molestias ocasionadas y esperamos que encuentre otras actividades de su agrado en nuestro catálogo.\n\n\nEquipo de MueveT" . $this->nombreActividadGrupal . "', '" . $_SESSION['login'] . "')";
+                    $this->mysqli->query($sql1234);
+                }
+            }
+
             $sql = "DELETE FROM actividadgrupal WHERE idActividadGrupal='" . $this->idActividadGrupal . "'";
             $this->mysqli->query($sql);
+
             return "La actividad grupal fue borrada con exito";
         }
     }
@@ -240,6 +253,76 @@ class ACTIVIDAD_GRUPAL_Model {
                 $i++;
             }
             return $toret;
+        }
+    }
+
+    function ConsultarEmailDeportistasActividad($idActividadGrupal) {
+
+        $this->ConectarBD();
+        $sql = "SELECT DISTINCT EMAIL
+                FROM usuario U, deportista D, deportista_inscribir_actividadgrupal DIA
+                WHERE U.tipoUsuario=3 AND U.userName = DIA.userName AND DIA.estado = 1 AND DIA.idActividadGrupal= '" . $idActividadGrupal . "'";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
+            $filaAux;
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $filaAux[$i] = $toret[$i]['EMAIL'];
+                $i++;
+            }
+
+
+            return $filaAux;
+        }
+    }
+
+    function ConsultarEmailDeportistasActividad2($idActividadGrupal) {
+
+        $this->ConectarBD();
+        $sql = "SELECT DISTINCT EMAIL
+                FROM usuario U, deportista D, deportista_inscribir_actividadgrupal DIA
+                WHERE U.tipoUsuario=3 AND U.userName = DIA.userName AND DIA.estado = 0 AND DIA.idActividadGrupal= '" . $idActividadGrupal . "'";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $toret = array();
+            $filaAux;
+            $i = 0;
+            while ($fila = $resultado->fetch_array()) {
+                $toret[$i] = $fila;
+                $filaAux[$i] = $toret[$i]['EMAIL'];
+                $i++;
+            }
+
+
+            return $filaAux;
+        }
+    }
+
+    function ConsultarExisteDeportistasActividad($idActividadGrupal) {
+
+        $this->ConectarBD();
+        $sql = "SELECT COUNT(*) FROM deportista_inscribir_actividadgrupal WHERE estado =1 AND idActividadGrupal = '" . $idActividadGrupal . "'";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $result = $this->mysqli->query($sql)->fetch_array();
+            return $result['COUNT(*)'];
+        }
+    }
+
+    function ConsultarExisteDeportistasActividad2($idActividadGrupal) {
+
+        $this->ConectarBD();
+        $sql = "SELECT COUNT(*) FROM deportista_inscribir_actividadgrupal WHERE estado =0 AND idActividadGrupal = '" . $idActividadGrupal . "'";
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos.';
+        } else {
+            $result = $this->mysqli->query($sql)->fetch_array();
+            return $result['COUNT(*)'];
         }
     }
 

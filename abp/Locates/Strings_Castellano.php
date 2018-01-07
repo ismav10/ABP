@@ -152,7 +152,7 @@ $strings = array(
  'asuntoNotificacion' => 'Asunto',
  'mensajeNotificacion' => 'Mensaje',
  'Ver Notificacion' => 'Ver Notificación',
- 'Insertar Notificacion' => 'Insertar Notificacion',
+ 'Insertar Notificacion' => 'Crear Notificación',
  'Borrar notificación' => 'Borrar notificación',
  'La notificación fue borrada con éxito.' => 'La notificación fue borrada con éxito',
  'Remitente' => 'Remitente',
@@ -162,6 +162,7 @@ $strings = array(
  'Finalizar Sesion' => 'Finalizar Sesión',
  'Realizando tabla' => 'TABLA DE LA SESIÓN',
  'Actividad' => 'ACTIVIDAD',
+ 'Crear' =>'Enviar',
 //SESIONES
 
 'nombreTabla' => 'Tabla',

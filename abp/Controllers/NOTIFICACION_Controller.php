@@ -36,7 +36,7 @@ function get_data_form() {
 }
 
 switch ($_REQUEST['accion']) {
-    case $strings['Insertar']:
+    case $strings['Crear']:
         if (!tienePermisos('NOTIFICACION_Insertar')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {

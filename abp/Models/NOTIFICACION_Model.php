@@ -45,8 +45,21 @@ class NOTIFICACION_Model {
             return 'No se ha podido conectar con la base de datos.';
         } else {
 
+            $porciones = explode(",", $this->destinatarioNotificacion);
             //Vamos a utilizar la funcion strpos para determinar si el destinatario es un usuario/s o una actividad sobre la que vamos a crear un aviso. Para esto evaluamos si contiene una @
-            if (strpos($this->destinatarioNotificacion, '@')) {
+            if (strpos($this->ConsultarMailUsuario($porciones[0]), '@')) {
+                //Vuelvo a construir un array con todas las direcciones de destinatarios
+                $this->destinatarioNotificacion = explode(", ", $this->destinatarioNotificacion);
+
+                //Para cada dirección de destinatario, creo una nueva notificación.
+                foreach ($this->destinatarioNotificacion as $valor) {
+                    $sql = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . $this->ConsultarMailUsuario($this->userName) . "','" . $this->ConsultarMailUsuario($valor) . "', '" . $this->asuntoNotificacion . "','" . $this->mensajeNotificacion . "','" . $this->userName . "')";
+                    $this->mysqli->query($sql);
+                }
+                //$this->mysqli->query($sql);
+                return 'Inserción realizada con éxito';
+            } else if (strpos($this->destinatarioNotificacion, '@')) {
+
                 //Vuelvo a construir un array con todas las direcciones de destinatarios
                 $this->destinatarioNotificacion = explode(", ", $this->destinatarioNotificacion);
 
@@ -60,19 +73,20 @@ class NOTIFICACION_Model {
             } else {
                 //En caso de que no contenga ninguna @, vamos a obtener todos los correos de los deportistas de esa actividad y generar una notificacion
                 $this->destinatarioNotificacion = ConsultarDeportistasActividad($this->destinatarioNotificacion);
+                // var_dump($this->destinatarioNotificacion);
 
-                foreach ($this->destinatarioNotificacion as $valor) {
-                    $sql = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . $this->ConsultarMailUsuario($this->userName) . "','" . $valor . "', '" . $this->asuntoNotificacion . "','" . $this->mensajeNotificacion . "','" . $this->userName . "')";
+                foreach ($this->destinatarioNotificacion as $valor1) {
+                    $sql = "INSERT INTO NOTIFICACION(remitenteNotificacion, destinatarioNotificacion, asuntoNotificacion, mensajeNotificacion, username) VALUES ('" . $this->ConsultarMailUsuario($this->userName) . "','" . $valor1 . "', '" . $this->asuntoNotificacion . "','" . $this->mensajeNotificacion . "','" . $this->userName . "')";
                     $this->mysqli->query($sql);
                 }
+                return 'Inserción realizada con éxito';
             }
-            return 'Inserción realizada con éxito';
         }
     }
 
     function ConsultarMailUsuario($username) {
         $this->ConectarBD();
-        $sql = "SELECT email FROM USUARIO WHERE username ='" . $this->userName . "'";
+        $sql = "SELECT email FROM USUARIO WHERE username ='" . $username . "'";
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'No se ha podido conectar con la base de datos.';
         } else {
@@ -180,7 +194,7 @@ class NOTIFICACION_Model {
         }
     }
 
-    //Consulta todos los deportistas para que los entrenadores puedan enviarle notificaciones
+//Consulta todos los deportistas para que los entrenadores puedan enviarle notificaciones
     function ConsultarDeportistas() {
         $this->ConectarBD();
         $sql = "SELECT EMAIL FROM USUARIO U, DEPORTISTA D WHERE U.userName = D.userName";
@@ -198,7 +212,7 @@ class NOTIFICACION_Model {
         }
     }
 
-    //Consulta todos los deportistas para que los entrenadores puedan enviarle notificaciones
+//Consulta todos los deportistas para que los entrenadores puedan enviarle notificaciones
     function ConsultarActividades() {
         $this->ConectarBD();
         $sql = "SELECT DISTINCT nombreActividadGrupal FROM ACTIVIDADGRUPAL";
@@ -216,7 +230,7 @@ class NOTIFICACION_Model {
         }
     }
 
-    //Consulta todos los deportistas para que los entrenadores puedan enviarle notificaciones
+//Consulta todos los deportistas para que los entrenadores puedan enviarle notificaciones
     function ConsultarActividadesImpartidas($login) {
         $this->ConectarBD();
         $sql = "SELECT DISTINCT nombreActividadGrupal FROM ACTIVIDADGRUPAL G WHERE G.userName = '" . $login . "'";
@@ -234,10 +248,10 @@ class NOTIFICACION_Model {
         }
     }
 
-    //Consulta todos los usuarios para que los administradores puedan enviarle notificaciones
+//Consulta todos los usuarios para que los administradores puedan enviarle notificaciones
     function ConsultarUsuarios() {
         $this->ConectarBD();
-        $sql = "SELECT email FROM USUARIO";
+        $sql = "SELECT username FROM USUARIO";
 
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos.';
@@ -252,9 +266,9 @@ class NOTIFICACION_Model {
         }
     }
 
-    //Como en la base de datos solo hay guardado el username del que crea la notificacion,
-    //para listar las notificaciones que han sido enviadas a un usuario necesito conseguir su email a partir de su username
-    //de esta forma puedo listar todas las notificaciones asociadas a ese email.
+//Como en la base de datos solo hay guardado el username del que crea la notificacion,
+//para listar las notificaciones que han sido enviadas a un usuario necesito conseguir su email a partir de su username
+//de esta forma puedo listar todas las notificaciones asociadas a ese email.
     function consultarEmail() {
         $this->ConectarBD();
         $sql = "SELECT email FROM USUARIO WHERE userName='" . $this->userName . "'";
@@ -266,8 +280,8 @@ class NOTIFICACION_Model {
         }
     }
 
-    //Devuelve la información de todas las notificaciones asociadas a este usuario
-    //para esto hace falta saber que usuario esta accediendo a la funcion.
+//Devuelve la información de todas las notificaciones asociadas a este usuario
+//para esto hace falta saber que usuario esta accediendo a la funcion.
     function Listar() {
         $email = $this->consultarEmail();
         if ($email == 'Error en la consulta sobre la base de datos.') {
@@ -289,7 +303,7 @@ class NOTIFICACION_Model {
         }
     }
 
-    //Funcion para dar de baja una notificacion en el sistema.
+//Funcion para dar de baja una notificacion en el sistema.
     function Borrar() {
         $this->ConectarBD();
         $sql = "SELECT * FROM NOTIFICACION WHERE idNotificacion= '" . $this->idNotificacion . "'";

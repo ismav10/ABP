@@ -358,6 +358,42 @@ function valida_envia_ACTIVIDAD_GRUPAL() {
         return false;
     }
 
+    if (document.form.diaActividadGrupal.value.length == 0) {
+        alert("Introduzca un valor para el día de la semana");
+        document.form.diaActividadGrupal.focus();
+        return false;
+    }
+    if (document.form.diaActividadGrupal.value.length < 2) {
+        alert("Día de la semana demasiado corto (mínimo 2 caracteres)");
+        document.form.diaActividadGrupal.focus();
+        return false;
+    }
+    if (document.form.diaActividadGrupal.value.length > 25) {
+        alert("Día de la semana demasiado largo (máximo 25 caracteres)");
+        document.form.diaActividadGrupal.focus();
+        return false;
+    }
+
+    if (document.form.diaActividadGrupal.value != 'Lunes' || document.form.diaActividadGrupal.value != 'Martes' || document.form.diaActividadGrupal.value != 'Miércoles' || document.form.diaActividadGrupal.value != 'Jueves' || document.form.diaActividadGrupal.value != 'Viernes') {
+        alert("Día de la semana incompatible. Seleccione uno correcto.");
+        document.form.diaActividadGrupal.focus();
+        return false;
+    }
+
+
+    if (document.form.horaInicio.value.length == 0) {
+        alert("Introduzca un valor para la hora de inicio");
+        document.form.horaInicio.focus();
+        return false;
+    }
+    
+     if (document.form.horaInicio.value > document.form.horaFin.value ) {
+        alert("Hora de Inicio no puede ser más tarde que hora Fin");
+        document.form.horaInicio.focus();
+        return false;
+    }
+
+
 
     if (document.form.username.value.length == 0) {
         alert("Introduzca un valor para el profesor");
@@ -374,8 +410,8 @@ function valida_envia_ACTIVIDAD_GRUPAL() {
         document.form.username.focus();
         return false;
     }
-	
-	if (document.form.idInstalacion.value.length == 0) {
+
+    if (document.form.idInstalacion.value.length == 0) {
         alert("Introduzca un valor para el id instalacion");
         document.form.idInstalacion.focus();
         return false;

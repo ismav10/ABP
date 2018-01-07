@@ -1,6 +1,3 @@
-
-
-
 DROP DATABASE IF EXISTS `muevet`;
 CREATE DATABASE IF NOT EXISTS `muevet` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 USE `muevet`;
@@ -47,7 +44,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `actividadgrupal`
 --
 
-CREATE TABLE `actividadgrupal` (
+CREATE TABLE IF NOT EXISTS `actividadgrupal` (
   `idActividadGrupal` int(10) NOT NULL,
   `nombreActividadGrupal` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
   `descripcionActividadGrupal` text COLLATE utf8_spanish_ci,
@@ -85,7 +82,7 @@ INSERT INTO `actividadgrupal` (`idActividadGrupal`, `nombreActividadGrupal`, `de
 -- Estructura de tabla para la tabla `actividadindividual`
 --
 
-CREATE TABLE `actividadindividual` (
+CREATE TABLE IF NOT EXISTS `actividadindividual` (
   `idActividadIndividual` int(10) NOT NULL,
   `nombreActividadIndividual` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `descripcionActividadIndividual` text COLLATE utf8_spanish_ci
@@ -104,7 +101,7 @@ INSERT INTO `actividadindividual` (`idActividadIndividual`, `nombreActividadIndi
 -- Estructura de tabla para la tabla `deportista`
 --
 
-CREATE TABLE `deportista` (
+CREATE TABLE IF NOT EXISTS `deportista` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `tipoDeportista` char(3) COLLATE utf8_spanish_ci NOT NULL,
   `metodoPago` varchar(45) COLLATE utf8_spanish_ci NOT NULL
@@ -133,7 +130,7 @@ INSERT INTO `deportista` (`userName`, `tipoDeportista`, `metodoPago`) VALUES
 -- Estructura de tabla para la tabla `deportista_asignar_tabla`
 --
 
-CREATE TABLE `deportista_asignar_tabla` (
+CREATE TABLE IF NOT EXISTS `deportista_asignar_tabla` (
   `username` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `idTabla` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -163,22 +160,10 @@ INSERT INTO `deportista_asignar_tabla` (`username`, `idTabla`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `deportista_asistir_actividadgrupal`
---
-
-CREATE TABLE `deportista_asistir_actividadgrupal` (
-  `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
-  `idActividadGrupal` int(10) NOT NULL,
-  `fechaAsistencia` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `deportista_inscribir_actividadgrupal`
 --
 
-CREATE TABLE `deportista_inscribir_actividadgrupal` (
+CREATE TABLE IF NOT EXISTS `deportista_inscribir_actividadgrupal` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `idActividadGrupal` int(10) NOT NULL,
   `estado` tinyint(1) DEFAULT '0',
@@ -212,7 +197,7 @@ INSERT INTO `deportista_inscribir_actividadgrupal` (`userName`, `idActividadGrup
 -- Estructura de tabla para la tabla `deportista_inscribir_actividadindividual`
 --
 
-CREATE TABLE `deportista_inscribir_actividadindividual` (
+CREATE TABLE IF NOT EXISTS `deportista_inscribir_actividadindividual` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `idActividadIndividual` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -233,10 +218,10 @@ INSERT INTO `deportista_inscribir_actividadindividual` (`userName`, `idActividad
 -- Estructura de tabla para la tabla `ejercicio`
 --
 
-CREATE TABLE `ejercicio` (
+CREATE TABLE IF NOT EXISTS `ejercicio` (
   `idEjercicio` int(10) NOT NULL,
   `nombreEjercicio` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
-  `descripcionEjercicio` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `descripcionEjercicio` text COLLATE utf8_spanish_ci NOT NULL,
   `giftEjercicio` varchar(500) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -248,36 +233,36 @@ INSERT INTO `ejercicio` (`idEjercicio`, `nombreEjercicio`, `descripcionEjercicio
 (1, 'Cinta de Correr', 'Trotar de menos a mÃ¡s', 'http://bicicletaeliptica.org/wp-content/uploads/2016/05/chica-corriendo-en-cinta-de-correr.jpg'),
 (2, 'Bicicleta EstÃ¡tica', 'Andar en la bicleta estÃ¡tica de menos a mÃ¡s.','https://images-na.ssl-images-amazon.com/images/I/71R2L1-eeOL._SL1500.jpg'),
 (3, 'Bicicleta ElÃ­ptica', 'Andar en la bicleta elÃ­ptica de menos a mÃ¡s.', 'https://www.decathlon.es/media/835/8358831/big_d3737dee-2c16-47ef-9d5c-9def26d4ec40.jpg'),
-(4, 'Prensa de Pecho en Banco', 'RecuÃ©state de espalda sobre un banco y sujeta 2 mancuernas al nivel del pecho, a los lados del cuerpo, con las palmas apuntando hacia tus pies', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/1.gif'),
-(5, 'Prensa de Pecho en Banco (EmpuÃ±adura Neutral', 'RecuÃ©state de espalda sobre un banco y sujeta 2 mancuernas al nivel del pecho, a los lados del cuerpo, con las palmas apuntando una hacia otra.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/2.gif'),
-(6, 'Prensa de Pecho en Banco - Inclinada', 'RecuÃ©state de espalda sobre un banco inclinado y sujeta 2 mancuernas al nivel del pecho, a los lados del cuerpo, con las palmas apuntando hacia adelante.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/3.gif'),
-(7, 'Prensa de Pecho en Banco - Declinada', 'RecuÃ©state de espalda sobre un banco declinado y sujeta 2 mancuernas al nivel del pecho, con las palmas apuntando hacia adelante.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/5.gif'),
-(8, 'Apertura - Inclinada', 'RecuÃ©state de espalda sobre un banco inclinado y coge una mancuerna con cada mano a la altura del cuerpo, con tus codos ligeramente arqueados.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/7.gif'),
-(9, 'Pullover - Brazos Rectos', 'RecuÃ©state de espalda sobre uno de los extremos del banco y sujeta una mancuerna con ambas manos por sobre el Ã¡rea de tu pecho, con los brazos extendidos.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/8.gif'),
-(10, 'Pullover - Brazos Flexionados', 'RecuÃ©state de espalda sobre uno de los extremos del banco y sujeta 2 mancuernas por debajo del nivel de tu cabeza, con los codos formando un Ã¡ngulo de 90 grados.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/9.gif'),
-(11, 'Prensa de Hombros', 'Ponte de pie y sujeta dos mancuernas cerca de tus hombros, con las palmas apuntando hacia adelante.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/hombros/images/5.gif'),
-(12, 'Vuelos Laterales', 'Ponte de pie y sujeta una mancuerna con cada mano frente a tus caderas, con las palmas apuntando una hacia otra.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/hombros/images/8.gif'),
-(13, 'Remo Vertical', 'Ponte de pie y sujeta una mancuerna en cada mano enfrente de tus muslos.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/hombros/images/15.gif'),
-(14, 'Vuelos Frontales', 'Ponte de pie y sujeta una mancuerna con cada mano frente a tus muslos, con las palmas apuntando hacia tu cuerpo.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/hombros/images/16.gif'),
-(15, 'Prensa Superior', 'Ponte de pie y sujeta dos mancuernas justo por encima de tus hombros, con las palmas apuntando una hacia otra, y las rodillas arqueadas.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/hombros/images/18.gif'),
-(16, 'Encogimiento de Hombros', 'Ponte de pie y sujeta una mancuerna con cada mano frente a tus muslos, con las palmas apuntando hacia tu cuerpo.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/hombros/images/17.gif'),
-(17, 'Flexiones de BÃ­ceps', 'Ponte de pie y sujeta una mancuerna con cada mano, a los costados de tu cuerpo, con las palmas apuntando una hacia otra.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/biceps/images/4.gif'),
-(18, 'Flexiones Martillo', 'Coge una mancuerna con cada mano, hacia los costados de tu cuerpo, con las palmas apuntando hacia tu cuerpo.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/biceps/images/5.gif'),
-(19, 'Flexiones de BÃ­ceps Inclinado', 'SiÃ©ntate sobre un banco inclinado y sujeta una mancuerna con cada mano, con las palmas de tu mano apuntando una hacia otra.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/biceps/images/9.gif'),
-(20, 'Flexiones de BÃ­ceps Supinadoras', 'RecuÃ©state de espalda sobre un banco y sujeta una mancuerna con cada mano hacia cada lado de tu cuerpo, por debajo de la altura del cuerpo, con las palmas apuntando hacia arriba.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/biceps/images/18.gif'),
-(21, 'Apertura de Espalda', 'RecuÃ©state sobre tu pecho en el banco y coge dos mancuernas con tus manos, con los codos formando Ã¡ngulos de 90 grados.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/espalda/images/9.gif'),
-(22, 'Peso Muerto', 'Ponte de pie y sujeta una mancuerna con cada una de tus manos.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/espalda/images/5.gif'),
-(23, 'Remo Arrodillado - A Un Brazo', 'ColÃ³cate en posiciÃ³n inclinada hacia adelante enfrente de un banco, mientras sostienes una mancuerna con una mano (con el brazo extendido).', 'http://www.ejercicios-con-mancuernas.com/ejercicios/espalda/images/4.gif'),
-(24, 'Flexiones al Pie Opuesto', 'Ponte de pie y estÃ­rate hacia abajo de modo de tomar dos mancuernas con ambas manos (las rodillas ligeramente flexionadas).', 'http://www.ejercicios-con-mancuernas.com/ejercicios/espalda/images/6.gif'),
-(25, 'Sentadillas', 'Ponte de pie y sujeta una mancuerna en cada mano a los costados de tu cuerpo, con las palmas apuntando hacia tu cuerpo.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/piernas/images/2.gif'),
-(26, 'Estocadas EstÃ¡ticas', 'Ponte de pie con un pie al frente, el otro atrÃ¡s y sujeta una mancuerna en cada mano a los costados de tu cuerpo, con las palmas apuntando una hacia la otra.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/piernas/images/3.gif'),
-(27, 'ElevaciÃ³n de Punta del Pie - A Una Pierna', 'PÃ¡rate en un pie sobre un pequeÃ±o escalÃ³n y sujeta una mancuerna con una mano contra el costado de tu cuerpo.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/piernas/images/8.gif'),
-(28, 'Peso Muerto - Piernas Rectas', 'Ponte de pie y sujeta una mancuerna en cada mano contra los costados de tu cuerpo, con las palmas apuntando una hacia la otra.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/piernas/images/6.gif'),
-(29, 'Encogimientos - Con Carga', 'RecuÃ©state de espalda sobre un banco y sujeta una mancuerna por encima de tu pecho.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/abdominales/images/1.gif'),
-(30, 'Elevaciones de Piernas - Con Carga', 'RecuÃ©state de espalda sobre el banco, con tus manos agarrando los costados del mismo y sujeta una mancuerna entre tus pies.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/abdominales/images/2.gif'),
-(31, 'Flexiones Laterales con Mancuernas', 'Sujeta una mancuerna con una mano, al costado de tu cuerpo.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/abdominales/images/3.gif'),
-(32, 'Navajas con Pelota', 'Coloca tus tobillos por encima de la pelota de ejercitaciÃ³n, las piernas extendidas, el pecho apuntando hacia el suelo y extiende tus brazos para levantarte del suelo.', 'http://www.ejercicios-con-pelotas.com/ejercicios/abdominales/images/ball-jacknife.gif'),
-(33, 'Plancha sobre Pelota', 'Ponte de rodillas, coloca tus antebrazos por encima de la pelota de ejercitaciÃ³n frente a ti, los codos con un Ã¡ngulo de 90 grados y la espalda recta.', 'http://www.ejercicios-con-pelotas.com/ejercicios/abdominales/images/ball-table-top.gif');
+(4, 'Prensa de Pecho en Banco', 'RecuÃ©state de espalda sobre un banco y sujeta 2 mancuernas al nivel del pecho, a los lados del cuerpo, con las palmas apuntando hacia tus pies.\n\nEleva las mancuernas  rectas hacia arriba hasta que tus codos se encuentren cerca de trabarse y bÃ¡jalas.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/1.gif'),
+(5, 'Prensa de Pecho en Banco (EmpuÃ±adura Neutral)', 'RecuÃ©state de espalda sobre un banco y sujeta 2 mancuernas al nivel del pecho, con las palmas apuntando una hacia otra.\n\nEleva las mancuernas en forma recta hacia arriba hasta que tus codos se encuentren cerca de trabarse y bÃ¡jalas.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/2.gif'),
+(6, 'Prensa de Pecho en Banco - Inclinada', 'RecuÃ©state de espalda sobre un banco inclinado y sujeta 2 mancuernas al nivel del pecho, con las palmas apuntando hacia adelante.\n\nEleva las mancuernas en forma recta hacia arriba hasta que tus codos se encuentren cerca de trabarse y bÃ¡jalas.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/3.gif'),
+(7, 'Prensa de Pecho en Banco - Declinada', 'RecuÃ©state de espalda sobre un banco declinado y sujeta 2 mancuernas al nivel del pecho, con las palmas apuntando hacia adelante.\nEleva las mancuernas en forma recta hacia arriba hasta que tus codos se encuentren cerca de trabarse y bÃ¡jalas.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/5.gif'),
+(8, 'Apertura - Inclinada', 'RecuÃ©state de espalda sobre un banco inclinado y coge una mancuerna con cada mano a la altura del cuerpo, con tus codos ligeramente arqueados.\n\nEleva las mancuernas hasta que estÃ©n lado a lado por encima de tu cuerpo y luego de una breve pausa bÃ¡jalas.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/7.gif'),
+(9, 'Pullover - Brazos Rectos', 'RecuÃ©state de espalda sobre uno de los extremos del banco y sujeta una mancuerna con ambas manos, con los brazos extendidos.\n\nEleva la mancuerna hacia arriba recta, hasta que tus brazos estÃ©n perpendiculares al suelo y bÃ¡jala.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/8.gif'),
+(10, 'Pullover - Brazos Flexionados', 'RecuÃ©state de espalda sobre uno de los extremos del banco y sujeta 2 mancuernas por debajo tu cabeza, con los codos formando un Ã¡ngulo de 90 grados.\n\nEleva ambas mancuernas hasta que estÃ©n prÃ³ximas a tu pecho, y luego bÃ¡jalas', 'http://www.ejercicios-con-mancuernas.com/ejercicios/pecho/images/9.gif'),
+(11, 'Prensa de Hombros', 'Ponte de pie y sujeta dos mancuernas cerca de tus hombros, con las palmas apuntando hacia adelante.\n\nEmpuja las mancuernas en forma recta hacia arriba, hasta que tus codos estÃ©n cerca de trabarse y bÃ¡jalas luego de una breve pausa.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/hombros/images/5.gif'),
+(12, 'Vuelos Laterales', 'Ponte de pie y sujeta una mancuerna con cada mano frente a tus caderas, con las palmas apuntando una hacia otra.\n\nEleva las mancuernas hacia los costados, hasta que tus brazos estÃ©n cerca de quedar paralelos al suelo y bÃ¡jalas luego de una breve pausa.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/hombros/images/8.gif'),
+(13, 'Remo Vertical', 'Ponte de pie y sujeta una mancuerna en cada mano enfrente de tus muslos.\n\nLevanta ambas mancuernas hasta que tus brazos estÃ©n casi paralelos al suelo y bÃ¡jalas lentamente luego de una breve pausa.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/hombros/images/15.gif'),
+(14, 'Vuelos Frontales', 'Ponte de pie y sujeta una mancuerna con cada mano frente a tus muslos, con las palmas apuntando hacia tu cuerpo.\n\nEleva las mancuernas hacia adelante hasta que tus brazos estÃ©n casi paralelos al suelo, y bÃ¡jalas luego de una breve pausa.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/hombros/images/16.gif'),
+(15, 'Prensa Superior', 'Ponte de pie y sujeta dos mancuernas justo por encima de tus hombros, con las palmas apuntando una hacia otra, y las rodillas arqueadas.\n\nEmpuja las mancuernas en forma recta hacia arriba hasta que tus brazos estÃ©n cerca de trabarse y bÃ¡jalas.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/hombros/images/18.gif'),
+(16, 'Encogimiento de Hombros', 'Ponte de pie y sujeta una mancuerna con cada mano frente a tus muslos, con las palmas apuntando hacia tu cuerpo.\n\nEleva las mancuernas en forma recta hacia arriba encogiendo tus hombros y bÃ¡jalas luego de una breve pausa.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/hombros/images/17.gif'),
+(17, 'Flexiones de BÃ­ceps', 'Ponte de pie y sujeta una mancuerna con cada mano, a los costados de tu cuerpo, con las palmas apuntando una hacia otra.\n\nEleva ambas mancuernas hasta que alcancen la altura de tus hombros y bÃ¡jalas lentamente hacia atrÃ¡s luego de una breve pausa.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/biceps/images/4.gif'),
+(18, 'Flexiones Martillo', 'Coge una mancuerna con cada mano, hacia los costados de tu cuerpo, con las palmas apuntando hacia tu cuerpo.\n\nEleva ambas mancuernas mediante la flexiÃ³n de tus codos y bÃ¡jalas luego de una breve pausa.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/biceps/images/5.gif'),
+(19, 'Flexiones de BÃ­ceps Inclinado', 'SiÃ©ntate sobre un banco inclinado y sujeta una mancuerna con cada mano, con las palmas de tu mano apuntando una hacia otra.\n\nEleva ambas mancuernas hasta que alcancen la altura de tus hombros y luego de una breve pausa, bÃ¡jalas lentamente.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/biceps/images/9.gif'),
+(20, 'Flexiones de BÃ­ceps Supinadoras', 'RecuÃ©state de espalda sobre un banco y sujeta una mancuerna con cada mano hacia cada lado de tu cuerpo, por debajo de la altura del cuerpo, con las palmas apuntando hacia arriba.\n\nEleva las mancuernas hasta que alcancen la altura de tu cuerpo y lentamente bÃ¡jalas luego de una breve pausa.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/biceps/images/18.gif'),
+(21, 'Apertura de Espalda', 'RecuÃ©state sobre tu pecho en el banco y coge dos mancuernas con tus manos, con los codos formando Ã¡ngulos de 90 grados.\n\nEleva las mancuernas hasta que tus brazos estÃ©n paralelos al suelo y bÃ¡jalas nuevamente luego de una breve pausa.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/espalda/images/9.gif'),
+(22, 'Peso Muerto', 'Ponte de pie y sujeta una mancuerna con cada una de tus manos.\n\nFlexiona tus rodillas y caderas de manera de bajar las mancuernas hacia abajo en forma recta, y elÃ©vate a ti mismo luego de una breve pausa', 'http://www.ejercicios-con-mancuernas.com/ejercicios/espalda/images/5.gif'),
+(23, 'Remo Arrodillado - A Un Brazo', 'ColÃ³cate en posiciÃ³n inclinada hacia adelante enfrente de un banco, mientras sostienes una mancuerna con una mano (con el brazo extendido).\n\nEleva la mancuerna sin mover otra cosa que tu brazo y bÃ¡jala luego de una breve pausa.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/espalda/images/4.gif'),
+(24, 'Flexiones al Pie Opuesto', 'Ponte de pie y estÃ­rate hacia abajo de modo de tomar dos mancuernas con ambas manos (las rodillas ligeramente flexionadas).\n\nEleva la mancuerna hacia arriba hasta que estÃ©s parado y bÃ¡jala luego de una breve pausa.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/espalda/images/6.gif'),
+(25, 'Sentadillas', 'Ponte de pie y sujeta una mancuerna en cada mano a los costados de tu cuerpo, con las palmas apuntando hacia tu cuerpo.\n\nBaja tu cuerpo flexionando tus rodillas hasta que formen un Ã¡ngulo de 90 grados, y elÃ©vate a ti mismo hacia arriba luego de una breve pausa.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/piernas/images/2.gif'),
+(26, 'Estocadas EstÃ¡ticas', 'Ponte de pie con un pie al frente, el otro atrÃ¡s y sujeta una mancuerna en cada mano a los costados de tu cuerpo, con las palmas apuntando una hacia la otra.\n\nBÃ¡jate a ti mismo sin mover tus pies hasta que tus rodillas forme un Ã¡ngulo de 90 grados y luego de una breve pausa elÃ©vate a ti mismo.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/piernas/images/3.gif'),
+(27, 'ElevaciÃ³n de Punta del Pie - A Una Pierna', 'PÃ¡rate en un pie sobre un pequeÃ±o escalÃ³n y sujeta una mancuerna con una mano contra el costado de tu cuerpo.\n\nElÃ©vate a ti mismo parÃ¡ndote sobre los dedos de tu pie y lentamente bÃ¡jate luego de una breve pausa. Luego de terminada la serie, cambia de pie.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/piernas/images/8.gif'),
+(28, 'Peso Muerto - Piernas Rectas', 'Ponte de pie y sujeta una mancuerna en cada mano contra los costados de tu cuerpo, con las palmas apuntando una hacia la otra.\n\nBaja las mancuernas mediante la flexiÃ³n de tus caderas hacia adelante y elÃ©vate nuevamente hacia arriba luego de una breve pausa.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/piernas/images/6.gif'),
+(29, 'Encogimientos - Con Carga', 'RecuÃ©state de espalda sobre un banco y sujeta una mancuerna por encima de tu pecho.\n\nEleva la parte superior de tu cuerpo hasta que tus omÃ³platos dejen de tocar el banco y luego de una breve pausa vuelve a bajarlo.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/abdominales/images/1.gif'),
+(30, 'Elevaciones de Piernas - Con Carga', 'RecuÃ©state de espalda sobre el banco, con tus manos agarrando los costados del mismo y sujeta una mancuerna entre tus pies.\n\nEleva tus piernas hacia arriba hasta que estÃ©n perpendiculares al suelo, y luego de una breve pausa bÃ¡jalas.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/abdominales/images/2.gif'),
+(31, 'Flexiones Laterales con Mancuernas', 'Sujeta una mancuerna con una mano, al costado de tu cuerpo.\n\nInclina la parte superior de tu cuerpo hacia el costado en el que sostienes la mancuerna, y luego de una breve pausa, vuelve a la posiciÃ³n inicial. Completa tu serie y cambia de lado.', 'http://www.ejercicios-con-mancuernas.com/ejercicios/abdominales/images/3.gif'),
+(32, 'Navajas con Pelota', 'Coloca tus tobillos por encima de la pelota de ejercitaciÃ³n, las piernas extendidas, el pecho apuntando hacia el suelo y extiende tus brazos para levantarte del suelo.\n\nSosteniendo tu peso sobre tus brazos extendidos, rueda la pelota flexionando tus rodillas y caderas, y extiende nuevamente tus piernas luego de una breve pausa.', 'http://www.ejercicios-con-pelotas.com/ejercicios/abdominales/images/ball-jacknife.gif'),
+(33, 'Plancha sobre Pelota', 'Ponte de rodillas, coloca tus antebrazos por encima de la pelota de ejercitaciÃ³n frente a ti, los codos con un Ã¡ngulo de 90 grados y la espalda recta.\n\nEleva tus rodillas del suelo rodando hacia adelante sobre la pelota, hasta que tus piernas se encuentren completamente extendidas, y retorna a la posiciÃ³n inicial luego de una breve pausa.', 'http://www.ejercicios-con-pelotas.com/ejercicios/abdominales/images/ball-table-top.gif');
 
 -- --------------------------------------------------------
 
@@ -285,7 +270,7 @@ INSERT INTO `ejercicio` (`idEjercicio`, `nombreEjercicio`, `descripcionEjercicio
 -- Estructura de tabla para la tabla `entrenador`
 --
 
-CREATE TABLE `entrenador` (
+CREATE TABLE IF NOT EXISTS `entrenador` (
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `cuentaBanc` varchar(20) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -305,7 +290,7 @@ INSERT INTO `entrenador` (`userName`, `cuentaBanc`) VALUES
 -- Estructura de tabla para la tabla `funcionalidad`
 --
 
-CREATE TABLE `funcionalidad` (
+CREATE TABLE IF NOT EXISTS `funcionalidad` (
   `idFuncionalidad` int(10) NOT NULL,
   `nombreFuncionalidad` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `categoriaFuncionalidad` varchar(45) COLLATE utf8_spanish_ci NOT NULL
@@ -384,7 +369,7 @@ INSERT INTO `funcionalidad` (`idFuncionalidad`, `nombreFuncionalidad`, `categori
 -- Estructura de tabla para la tabla `funcionalidad_pagina`
 --
 
-CREATE TABLE `funcionalidad_pagina` (
+CREATE TABLE IF NOT EXISTS `funcionalidad_pagina` (
   `idFuncionalidad` int(10) NOT NULL,
   `idPagina` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -462,7 +447,7 @@ INSERT INTO `funcionalidad_pagina` (`idFuncionalidad`, `idPagina`) VALUES
 -- Estructura de tabla para la tabla `funcionalidad_rol`
 --
 
-CREATE TABLE `funcionalidad_rol` (
+CREATE TABLE IF NOT EXISTS `funcionalidad_rol` (
   `idFuncionalidad` int(10) NOT NULL,
   `idRol` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -589,7 +574,7 @@ INSERT INTO `funcionalidad_rol` (`idFuncionalidad`, `idRol`) VALUES
 -- Estructura de tabla para la tabla `instalacion`
 --
 
-CREATE TABLE `instalacion` (
+CREATE TABLE IF NOT EXISTS `instalacion` (
   `idInstalacion` int(10) NOT NULL,
   `nombreInstalacion` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `descripcionInstalacion` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -604,10 +589,10 @@ INSERT INTO `instalacion` (`idInstalacion`, `nombreInstalacion`, `descripcionIns
 (1, 'Sala Multiusos A', 'Sala preparada para cualquier evento que no requiera instrumental', 50),
 (2, 'Sala Multiusos B', 'Sala preparada para cualquier evento que no requiera instrumental', 50),
 (3, 'Sala Zumba', 'Sala de bailes', 20),
-(4, 'Sala MusculaciÃ³n', 'Sala acondicionada con mÃ¡quinas para el ejercicio fÃsico', 30),
+(4, 'Sala MusculaciÃ³n', 'Sala acondicionada con mÃ¡quinas para el ejercicio fÃ­sico', 30),
 (5, 'Pista Principal', 'Campo cubierto con cancha de fÃºtbol sala, baloncesto, voley y tenis.', 40),
 (6, 'Pista Secundaria', 'Campo descubierto con cancha de fÃºtbol sala, tenis y voley.', 40),
-(7, 'Sala de MÃ¡quinas', 'Sala acondicionada con mÃ¡quinas para el ejercicio fÃsico', 40),
+(7, 'Sala de MÃ¡quinas', 'Sala acondicionada con mÃ¡quinas para el ejercicio fÃ­sico', 40),
 (8, 'Sala de Spinning', 'Sala acondicionada con biciletas estÃ¡ticas', 20),
 (9, 'Sala de TRX', 'Sala acondicionada para la prÃ¡ctica del TRX', 20),
 (10, 'Sala de Boxeo', 'Sala acondicionada con un ring y sacos de boxeo', 10);
@@ -618,7 +603,7 @@ INSERT INTO `instalacion` (`idInstalacion`, `nombreInstalacion`, `descripcionIns
 -- Estructura de tabla para la tabla `notificacion`
 --
 
-CREATE TABLE `notificacion` (
+CREATE TABLE IF NOT EXISTS `notificacion` (
   `estado` tinyint(1) DEFAULT '0',
   `idNotificacion` int(100) NOT NULL,
   `remitenteNotificacion` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
@@ -634,8 +619,32 @@ CREATE TABLE `notificacion` (
 --
 
 INSERT INTO `notificacion` (`estado`, `idNotificacion`, `remitenteNotificacion`, `destinatarioNotificacion`, `fechaHoraNotificacion`, `asuntoNotificacion`, `mensajeNotificacion`, `username`) VALUES
-(0, 1, 'ivanddf1994@gmail.com', 'administracion@muevet.com', '2017-11-18 12:52:47', 'Probando SHOWALL', 'Hola', 'admin'),
-(0, 2, 'isma@hotmail.com', 'administracion@muevet.com', '2017-11-18 12:58:50', 'Prueba SHOWALL 2', 'Hola 2', 'deportista1');
+(1, 1, 'administracion@muevet.com', 'brunoromero@gmail.com', '2018-01-07 11:05:15', 'Bienvenido a MueveT', 'El equipo de MueveT le da la bienvenida y comunica que se ponga en contacto con nosotros ante cualquier problema.\n\n\nEquipo de MueveT', 'admin'),
+(1, 2, 'administracion@muevet.com', 'hectorvikingo@hotmail.com', '2018-01-07 11:05:15', 'Bienvenido a MueveT', 'El equipo de MueveT le da la bienvenida y comunica que se ponga en contacto con nosotros ante cualquier problema.\n\n\nEquipo de MueveT', 'admin'),
+(1, 3, 'administracion@muevet.com', 'rafarafita@hotmail.com', '2018-01-07 11:05:15', 'Bienvenido a MueveT', 'El equipo de MueveT le da la bienvenida y comunica que se ponga en contacto con nosotros ante cualquier problema.\n\n\nEquipo de MueveT', 'admin'),
+(1, 4, 'administracion@muevet.com', 'miguelgallego@hotmail.com', '2018-01-07 11:05:15', 'Bienvenido a MueveT', 'El equipo de MueveT le da la bienvenida y comunica que se ponga en contacto con nosotros ante cualquier problema.\n\n\nEquipo de MueveT', 'admin'),
+(1, 5, 'administracion@muevet.com', 'juliomorenza@hotmail.com', '2018-01-07 11:05:15', 'Bienvenido a MueveT', 'El equipo de MueveT le da la bienvenida y comunica que se ponga en contacto con nosotros ante cualquier problema.\n\n\nEquipo de MueveT', 'admin'),
+(1, 6, 'administracion@muevet.com', 'galegonotas@hotmail.com', '2018-01-07 11:05:15', 'Bienvenido a MueveT', 'El equipo de MueveT le da la bienvenida y comunica que se ponga en contacto con nosotros ante cualquier problema.\n\n\nEquipo de MueveT', 'admin'),
+(1, 7, 'administracion@muevet.com', 'elgrangarbo@hotmail.com', '2018-01-07 11:05:15', 'Bienvenido a MueveT', 'El equipo de MueveT le da la bienvenida y comunica que se ponga en contacto con nosotros ante cualquier problema.\n\n\nEquipo de MueveT', 'admin'),
+(1, 8, 'administracion@muevet.com', 'rubenvega@hotmail.com', '2018-01-07 11:05:15', 'Bienvenido a MueveT', 'El equipo de MueveT le da la bienvenida y comunica que se ponga en contacto con nosotros ante cualquier problema.\n\n\nEquipo de MueveT', 'admin'),
+(1, 9, 'administracion@muevet.com', 'jandrogonzaleez@hotmail.com', '2018-01-07 11:05:15', 'Bienvenido a MueveT', 'El equipo de MueveT le da la bienvenida y comunica que se ponga en contacto con nosotros ante cualquier problema.\n\n\nEquipo de MueveT', 'admin'),
+(1, 10, 'administracion@muevet.com', 'ismaelvazquez@hotmail.com', '2018-01-07 11:05:15', 'Bienvenido a MueveT', 'El equipo de MueveT le da la bienvenida y comunica que se ponga en contacto con nosotros ante cualquier problema.\n\n\nEquipo de MueveT', 'admin'),
+(1, 11, 'administracion@muevet.com', 'pedrofittness@gmail.com', '2018-01-07 11:05:15', 'Bienvenido a MueveT', 'El equipo de MueveT le da la bienvenida y comunica que se ponga en contacto con nosotros ante cualquier problema.\n\n\nEquipo de MueveT', 'admin'),
+(1, 12, 'administracion@muevet.com', 'manuelgym@gmail.com', '2018-01-07 11:05:15', 'Bienvenido a MueveT', 'El equipo de MueveT le da la bienvenida y comunica que se ponga en contacto con nosotros ante cualquier problema.\n\n\nEquipo de MueveT', 'admin'),
+(1, 13, 'administracion@muevet.com', 'brunoromero@gmail.com', '2018-01-08 06:15:15', 'Se ha actualizado el catÃ¡logo de Actividades', 'Hemos actualizado el catÃ¡logo de activdades que ofertamos, Ã©chale un ojo y solicita tu inscripciÃ³n rÃ¡pido que vuelan!\n\n\nEquipo de MueveT', 'admin'),
+(1, 14, 'administracion@muevet.com', 'hectorvikingo@hotmail.com', '2018-01-08 06:15:15', 'Se ha actualizado el catÃ¡logo de Actividades', 'Hemos actualizado el catÃ¡logo de activdades que ofertamos, Ã©chale un ojo y solicita tu inscripciÃ³n rÃ¡pido que vuelan!\n\n\nEquipo de MueveT', 'admin'),
+(1, 15, 'administracion@muevet.com', 'rafarafita@hotmail.com', '2018-01-08 06:15:15', 'Se ha actualizado el catÃ¡logo de Actividades', 'Hemos actualizado el catÃ¡logo de activdades que ofertamos, Ã©chale un ojo y solicita tu inscripciÃ³n rÃ¡pido que vuelan!\n\n\nEquipo de MueveT', 'admin'),
+(1, 16, 'administracion@muevet.com', 'miguelgallego@hotmail.com', '2018-01-08 06:15:15', 'Se ha actualizado el catÃ¡logo de Actividades', 'Hemos actualizado el catÃ¡logo de activdades que ofertamos, Ã©chale un ojo y solicita tu inscripciÃ³n rÃ¡pido que vuelan!\n\n\nEquipo de MueveT', 'admin'),
+(1, 17, 'administracion@muevet.com', 'juliomorenza@hotmail.com', '2018-01-08 06:15:15', 'Se ha actualizado el catÃ¡logo de Actividades', 'Hemos actualizado el catÃ¡logo de activdades que ofertamos, Ã©chale un ojo y solicita tu inscripciÃ³n rÃ¡pido que vuelan!\n\n\nEquipo de MueveT', 'admin'),
+(1, 18, 'administracion@muevet.com', 'galegonotas@hotmail.com', '2018-01-08 06:15:15', 'Se ha actualizado el catÃ¡logo de Actividades', 'Hemos actualizado el catÃ¡logo de activdades que ofertamos, Ã©chale un ojo y solicita tu inscripciÃ³n rÃ¡pido que vuelan!\n\n\nEquipo de MueveT', 'admin'),
+(1, 19, 'administracion@muevet.com', 'elgrangarbo@hotmail.com', '2018-01-08 06:15:15', 'Se ha actualizado el catÃ¡logo de Actividades', 'Hemos actualizado el catÃ¡logo de activdades que ofertamos, Ã©chale un ojo y solicita tu inscripciÃ³n rÃ¡pido que vuelan!\n\n\nEquipo de MueveT', 'admin'),
+(1, 20, 'administracion@muevet.com', 'rubenvega@hotmail.com', '2018-01-08 06:15:15', 'Se ha actualizado el catÃ¡logo de Actividades', 'Hemos actualizado el catÃ¡logo de activdades que ofertamos, Ã©chale un ojo y solicita tu inscripciÃ³n rÃ¡pido que vuelan!\n\n\nEquipo de MueveT', 'admin'),
+(1, 21, 'administracion@muevet.com', 'jandrogonzaleez@hotmail.com', '2018-01-08 06:15:15', 'Se ha actualizado el catÃ¡logo de Actividades', 'Hemos actualizado el catÃ¡logo de activdades que ofertamos, Ã©chale un ojo y solicita tu inscripciÃ³n rÃ¡pido que vuelan!\n\n\nEquipo de MueveT', 'admin'),
+(1, 22, 'administracion@muevet.com', 'ismaelvazquez@hotmail.com', '2018-01-08 06:15:15', 'Se ha actualizado el catÃ¡logo de Actividades', 'Hemos actualizado el catÃ¡logo de activdades que ofertamos, Ã©chale un ojo y solicita tu inscripciÃ³n rÃ¡pido que vuelan!\n\n\nEquipo de MueveT', 'admin'),
+(1, 23, 'administracion@muevet.com', 'pedrofittness@gmail.com', '2018-01-08 06:15:15', 'Se ha actualizado el catÃ¡logo de Actividades', 'Hemos actualizado el catÃ¡logo de activdades que ofertamos, Ã©chale un ojo y solicita tu inscripciÃ³n rÃ¡pido que vuelan!\n\n\nEquipo de MueveT', 'admin'),
+(1, 24, 'administracion@muevet.com', 'manuelgym@gmail.com', '2018-01-08 06:15:15', 'Se ha actualizado el catÃ¡logo de Actividades', 'Hemos actualizado el catÃ¡logo de activdades que ofertamos, Ã©chale un ojo y solicita tu inscripciÃ³n rÃ¡pido que vuelan!\n\n\nEquipo de MueveT', 'admin');
+
+
 
 -- --------------------------------------------------------
 
@@ -643,7 +652,7 @@ INSERT INTO `notificacion` (`estado`, `idNotificacion`, `remitenteNotificacion`,
 -- Estructura de tabla para la tabla `pagina`
 --
 
-CREATE TABLE `pagina` (
+CREATE TABLE IF NOT EXISTS `pagina` (
   `idPagina` int(10) NOT NULL,
   `linkPagina` varchar(55) COLLATE utf8_spanish_ci NOT NULL,
   `nombrePagina` varchar(80) COLLATE utf8_spanish_ci NOT NULL
@@ -721,7 +730,7 @@ INSERT INTO `pagina` (`idPagina`, `linkPagina`, `nombrePagina`) VALUES
 -- Estructura de tabla para la tabla `rol`
 --
 
-CREATE TABLE `rol` (
+CREATE TABLE IF NOT EXISTS `rol` (
   `idRol` int(10) NOT NULL,
   `nombreRol` varchar(45) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -741,7 +750,7 @@ INSERT INTO `rol` (`idRol`, `nombreRol`) VALUES
 -- Estructura de tabla para la tabla `sesion`
 --
 
-CREATE TABLE `sesion` (
+CREATE TABLE IF NOT EXISTS `sesion` (
   `idSesion` int(10) NOT NULL,
   `username` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `idTabla` int(10) NOT NULL,
@@ -766,7 +775,7 @@ INSERT INTO `sesion` (`idSesion`, `username`, `idTabla`, `fechaSesion`, `horaIni
 -- Estructura de tabla para la tabla `tabla`
 --
 
-CREATE TABLE `tabla` (
+CREATE TABLE IF NOT EXISTS `tabla` (
   `idTabla` int(10) NOT NULL,
   `nombreTabla` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `tipo` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
@@ -796,7 +805,7 @@ INSERT INTO `tabla` (`idTabla`, `nombreTabla`, `tipo`, `descripcionTabla`) VALUE
 -- Estructura de tabla para la tabla `tabla_con_ejercicio`
 --
 
-CREATE TABLE `tabla_con_ejercicio` (
+CREATE TABLE IF NOT EXISTS `tabla_con_ejercicio` (
   `idTabla` int(10) NOT NULL,
   `idEjercicio` int(10) NOT NULL,
   `numseries` int(10) DEFAULT NULL,
@@ -900,7 +909,7 @@ INSERT INTO `tabla_con_ejercicio` (`idTabla`, `idEjercicio`, `numseries`, `numre
 -- Estructura de tabla para la tabla `usuario`
 --
 
-CREATE TABLE `usuario` (
+CREATE TABLE IF NOT EXISTS `usuario` (
   `foto` varchar(500) COLLATE utf8_spanish_ci DEFAULT '../img/user.jpg',
   `userName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(128) COLLATE utf8_spanish_ci NOT NULL,
@@ -940,7 +949,7 @@ INSERT INTO `usuario` (`foto`, `userName`, `password`, `tipoUsuario`, `nombre`, 
 -- Estructura de tabla para la tabla `usuario_rol`
 --
 
-CREATE TABLE `usuario_rol` (
+CREATE TABLE IF NOT EXISTS `usuario_rol` (
   `userName` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   `idRol` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -996,12 +1005,6 @@ ALTER TABLE `deportista_asignar_tabla`
   ADD PRIMARY KEY (`username`,`idTabla`),
   ADD KEY `idTabla` (`idTabla`);
 
---
--- Indices de la tabla `deportista_asistir_actividadgrupal`
---
-ALTER TABLE `deportista_asistir_actividadgrupal`
-  ADD PRIMARY KEY (`userName`,`idActividadGrupal`),
-  ADD KEY `idActividadGrupal` (`idActividadGrupal`);
 
 --
 -- Indices de la tabla `deportista_inscribir_actividadgrupal`
@@ -1195,13 +1198,6 @@ ALTER TABLE `deportista`
 ALTER TABLE `deportista_asignar_tabla`
   ADD CONSTRAINT `deportista_asignar_tabla_ibfk_1` FOREIGN KEY (`username`) REFERENCES `deportista` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `deportista_asignar_tabla_ibfk_2` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `deportista_asistir_actividadgrupal`
---
-ALTER TABLE `deportista_asistir_actividadgrupal`
-  ADD CONSTRAINT `deportista_asistir_actividadgrupal_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `deportista` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `deportista_asistir_actividadgrupal_ibfk_2` FOREIGN KEY (`idActividadGrupal`) REFERENCES `actividadgrupal` (`idActividadGrupal`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `deportista_inscribir_actividadgrupal`

@@ -38,11 +38,11 @@ class NOTIFICACION_Listar {
                     <?php
                     if ($this->tipoUsuario == 1) {
                         ?>
-                        <button type="button" class="btn btn-default btn-lg"><a href='NOTIFICACION_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><?php echo $strings['Insertar'] ?></a></button>
+                        <button type="button" class="btn btn-default btn-lg"><a href='NOTIFICACION_Controller.php?accion=<?php echo $strings['Crear']; ?>'><?php echo $strings['Crear'] ?></a></button>
                         <?php
                     } else if ($this->tipoUsuario == 2) {
                         ?>
-                        <button type="button" class="btn btn-default btn-lg"><a href='NOTIFICACION_Controller.php?accion=<?php echo $strings['Insertar']; ?>'><?php echo $strings['Insertar'] ?></a></button>  
+                        <button type="button" class="btn btn-default btn-lg"><a href='NOTIFICACION_Controller.php?accion=<?php echo $strings['Crear']; ?>'><?php echo $strings['Crear'] ?></a></button>  
                         <?php
                     }
                     ?>

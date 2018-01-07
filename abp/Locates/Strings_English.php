@@ -165,6 +165,7 @@ $strings = array(
  'Asunto' => 'Affair',
  'Fecha' => 'Date',
  'Mensaje' => 'Message',
+ 'Crear'=>'Send',
 //SESIONES
 
 'nombreTabla' => 'Table',

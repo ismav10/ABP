@@ -29,7 +29,7 @@ class NOTIFICACION_Insertar {
 
         <!--Modal 1 -  Correo de usuarios individuales-->
         <div class = "modal fade" id = "myModal1" tabindex = "-1" role = "dialog" aria-labelledby = "exampleModalLabel" aria-hidden = "true">
-            <form id = "frmAsignar" method = "POST" action = "?accion=Insertar">
+            <form id = "frmAsignar" method = "POST" action = "?accion=<?php echo $strings['Crear']; ?>">
                 <div class = "modal-dialog" role = "document">
                     <div class = "modal-content">
                         <div class = "modal-header">
@@ -64,7 +64,7 @@ class NOTIFICACION_Insertar {
         
          <!--Modal 1 -  Correo de usuarios que pertenecen a una actividad (AVISOS)-->
         <div class = "modal fade" id = "myModal2" tabindex = "-1" role = "dialog" aria-labelledby = "exampleModalLabel" aria-hidden = "true">
-            <form id = "frmAsignar" method = "POST" action = "?accion=Insertar">
+            <form id = "frmAsignar" method = "POST" action = "?accion=<?php echo $strings['Crear']; ?>">
                 <div class = "modal-dialog" role = "document">
                     <div class = "modal-content">
                         <div class = "modal-header">
@@ -127,8 +127,8 @@ class NOTIFICACION_Insertar {
                     <input type="hidden" id="username" name="username" size="25" type="text" required="true" value='usuario'/>
                 </div>
 
-                <input type='submit' onclick="" name='accion'  value="<?php echo $strings['Insertar']; ?>">
-                <a class="form-link" href="<?php echo $this->volver ?>"><?php echo $strings['Volver']; ?>
+                <input type='submit' onclick="" name='accion'  value="<?php echo $strings['Crear']; ?>">
+                <a class="form-link" href="<?php echo $this->volver ?>"><?php echo $strings['Volver']; ?></a>
             </form>
         </div>
         <?php
