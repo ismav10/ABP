@@ -171,6 +171,10 @@ $strings = array(
 'Realizando tabla' => 'TABLA DA SESIÓN',
 'Actividad' => 'ACTIVIDADE',
 'Crear'=>'Enviar',
+ 'Enviados' => 'Enviados',
+ 'Recibidos' => 'Recibidos', 
+ 'Notificaciones enviadas' => 'Notificacions enviadas',
+ 'Notificaciones recibidas' => 'Notificacions recibidas',
 
 
 

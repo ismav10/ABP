@@ -167,6 +167,10 @@ $strings = array(
  'Fecha' => 'Date',
  'Mensaje' => 'Message',
  'Crear'=>'Send',
+  'Enviados' => 'Sended',
+ 'Recibidos' => 'Received', 
+ 'Notificaciones enviadas' => 'Notifications sended',
+ 'Notificaciones recibidas' => 'Notifications received',
 //SESIONES
 
 'nombreTabla' => 'Table',
