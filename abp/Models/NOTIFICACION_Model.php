@@ -303,6 +303,26 @@ class NOTIFICACION_Model {
         }
     }
 
+     function ListarEnviados()
+    {
+        $this->ConectarBD();
+        $sql = "SELECT estado,idNotificacion, remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion ,asuntoNotificacion FROM NOTIFICACION WHERE username ='" . $this->userName . "'";
+        if(!($resultado = $this->mysqli->query($sql)))
+        {
+            return 'Error en la consulta sobre la base de datos.';
+        }
+        else {
+                $toret = array();
+                $i = 0;
+                while ($fila = $resultado->fetch_array()) {
+                    $toret[$i] = $fila;
+                    $i++;
+                }
+                return $toret;
+            }
+    }
+
+
 //Funcion para dar de baja una notificacion en el sistema.
     function Borrar() {
         $this->ConectarBD();
@@ -336,9 +356,21 @@ class NOTIFICACION_Model {
         $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, 
     	asuntoNotificacion, mensajeNotificacion FROM NOTIFICACION WHERE idNotificacion= '" . $this->idNotificacion . "'";
         if (($resultado = $this->mysqli->query($sql))) {
-            $sql1 = "UPDATE notificacion SET estado=1  WHERE idNotificacion= '" . $this->idNotificacion . "'";
+            $sql1 = "UPDATE notificacion SET estado=0  WHERE idNotificacion= '" . $this->idNotificacion . "'";
             $this->mysqli->query($sql1);
 
+            $result = $resultado->fetch_array();
+            return $result;
+        } else {
+            return 'Error en la consulta sobre la base de datos.';
+        }
+    }
+
+    function VerSinEstado() {
+        $this->ConectarBD();
+        $sql = "SELECT idNotificacion,remitenteNotificacion, destinatarioNotificacion, fechaHoraNotificacion, 
+        asuntoNotificacion, mensajeNotificacion FROM NOTIFICACION WHERE idNotificacion= '" . $this->idNotificacion . "'";
+        if (($resultado = $this->mysqli->query($sql))) {
             $result = $resultado->fetch_array();
             return $result;
         } else {
