@@ -113,18 +113,38 @@ switch ($_REQUEST['accion']) {
             if (!isset($_REQUEST['idNotificacion'])) {
                 
             } else {
+                if($_REQUEST['usuario']=="envio")
+                {
+                $idNotificacion = $_REQUEST['idNotificacion'];
+                $notificacion = new NOTIFICACION_Model($idNotificacion, '', '', '', '', '', '');
+                $resultado = $notificacion->VerSinEstado();
+                new NOTIFICACION_Seleccionar($resultado, '../Controllers/NOTIFICACION_Controller.php');
+                }
+                else
+                {
                 $idNotificacion = $_REQUEST['idNotificacion'];
                 $notificacion = new NOTIFICACION_Model($idNotificacion, '', '', '', '', '', '');
                 $resultado = $notificacion->Ver();
                 new NOTIFICACION_Seleccionar($resultado, '../Controllers/NOTIFICACION_Controller.php');
+                }
             }
         }
         break;
 
-
-
-
-
+ case $strings['Enviados']:
+        if(!tienePermisos('NOTIFICACION_Listar'))
+        {
+            new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+        }
+        else
+        {
+            $enviados = 1;
+            $notificacion = new NOTIFICACION_Model('','','','','','',$_SESSION['login']);
+            $datos = $notificacion->ListarEnviados();
+            $tipoUsuario = ConsultarTipoUsuario($_SESSION['login']);
+            new NOTIFICACION_Listar($datos, $tipoUsuario, $enviados, '../Controllers/NOTIFICACION_Controller.php');
+        }
+        break;
 
 
     //Por defecto se realiza un show all de las notificaciones a las que tiene acceso el usuario.
@@ -132,10 +152,11 @@ switch ($_REQUEST['accion']) {
         if (!tienePermisos('NOTIFICACION_Listar')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
+            $enviados = 0;
             $notificacion = new NOTIFICACION_Model('', '', '', '', '', '', $_SESSION['login']);
             $datos = $notificacion->Listar();
             $tipoUsuario = ConsultarTipoUsuario($_SESSION['login']);
-            new NOTIFICACION_Listar($datos, $tipoUsuario, '../Controllers/NOTIFICACION_Controller.php');
+            new NOTIFICACION_Listar($datos, $tipoUsuario, $enviados, '../Controllers/NOTIFICACION_Controller.php');
         }
 }
 ?>
