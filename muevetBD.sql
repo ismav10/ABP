@@ -712,10 +712,11 @@ INSERT INTO `notificacion` (`estado`, `idNotificacion`, `remitenteNotificacion`,
 (1, 21, 'administracion@muevet.com', 'jandrogonzaleez@hotmail.com', '2018-01-08 06:15:15', 'Se ha actualizado el catÃ¡logo de Actividades', 'Hemos actualizado el catÃ¡logo de activdades que ofertamos, Ã©chale un ojo y solicita tu inscripciÃ³n rÃ¡pido que vuelan!\n\n\nEquipo de MueveT', 'admin'),
 (1, 22, 'administracion@muevet.com', 'ismaelvazquez@hotmail.com', '2018-01-08 06:15:15', 'Se ha actualizado el catÃ¡logo de Actividades', 'Hemos actualizado el catÃ¡logo de activdades que ofertamos, Ã©chale un ojo y solicita tu inscripciÃ³n rÃ¡pido que vuelan!\n\n\nEquipo de MueveT', 'admin'),
 (1, 23, 'administracion@muevet.com', 'pedrofittness@gmail.com', '2018-01-08 06:15:15', 'Se ha actualizado el catÃ¡logo de Actividades', 'Hemos actualizado el catÃ¡logo de activdades que ofertamos, Ã©chale un ojo y solicita tu inscripciÃ³n rÃ¡pido que vuelan!\n\n\nEquipo de MueveT', 'admin'),
-(1, 24, 'administracion@muevet.com', 'manuelgym@gmail.com', '2018-01-08 06:15:15', 'Se ha actualizado el catÃ¡logo de Actividades', 'Hemos actualizado el catÃ¡logo de activdades que ofertamos, Ã©chale un ojo y solicita tu inscripciÃ³n rÃ¡pido que vuelan!\n\n\nEquipo de MueveT', 'admin');
-
-
-
+(1, 24, 'administracion@muevet.com', 'manuelgym@gmail.com', '2018-01-08 06:15:15', 'Se ha actualizado el catÃ¡logo de Actividades', 'Hemos actualizado el catÃ¡logo de activdades que ofertamos, Ã©chale un ojo y solicita tu inscripciÃ³n rÃ¡pido que vuelan!\n\n\nEquipo de MueveT', 'admin'),
+(1, 25, 'ismaelvazquez@hotmail.com', 'brunoromero@gmail.com', '2018-01-08 06:15:15', 'Empiezan las clases', 'Os informo de que proximamente empezaremos las clases en el gimnasio', 'entrenador'),
+(1, 26, 'ismaelvazquez@hotmail.com', 'hectorvikingo@gmail.com', '2018-01-08 06:15:15', 'Empiezan las clases', 'Os informo de que proximamente empezaremos las clases en el gimnasio', 'entrenador'),
+(1, 27, 'ismaelvazquez@hotmail.com', 'juliomorenza@gmail.com', '2018-01-08 06:15:15', 'Empiezan las clases', 'Os informo de que proximamente empezaremos las clases en el gimnasio', 'entrenador'),
+(1, 28, 'ismaelvazquez@hotmail.com', 'elgrangarbo@gmail.com', '2018-01-08 06:15:15', 'Empiezan las clases', 'Os informo de que proximamente empezaremos las clases en el gimnasio', 'entrenador');
 -- --------------------------------------------------------
 
 --
@@ -837,7 +838,44 @@ CREATE TABLE IF NOT EXISTS `sesion` (
 
 INSERT INTO `sesion` (`idSesion`, `username`, `idTabla`, `fechaSesion`, `horaInicio`, `horaFin`, `comentarioSesion`, `idActividadIndividual`) VALUES
 (1, 'deportista1', 3, '2017-12-18', '18:00', '18:45', 'Okey', 1),
-(2, 'deportista1', 2, '2017-12-25', '18:25', '19:10', 'Uff', 1);
+(2, 'deportista1', 2, '2017-12-25', '18:25', '19:10', 'Uff', 1),
+(3, 'deportista1', 2, '2017-12-26', '18:25', '19:10', 'Ha estado bien', 1),
+(4, 'deportista1', 2, '2017-12-27', '18:25', '19:10', 'Podría haber sido mejor', 1),
+(5, 'deportista1', 2, '2017-12-28', '18:25', '19:10', 'Tengo agujetas del otro dia', 1),
+(6, 'deportista1', 2, '2017-12-29', '18:25', '19:10', 'Uff', 1),
+(7, 'deportista1', 2, '2017-12-30', '18:25', '19:10', 'Uff', 1),
+(8, 'deportista1', 2, '2017-12-2', '18:25', '19:10', 'Uff', 1),
+(9, 'deportista1', 2, '2017-12-3', '18:25', '19:10', 'Uff', 1),
+(10, 'deportista1', 2, '2017-12-24', '18:25', '19:10', 'Uff', 1),
+(11, 'deportista1', 2, '2017-12-5', '18:25', '19:10', 'Uff', 1),
+(12, 'deportista1', 2, '2017-12-23', '18:25', '19:10', 'Uff', 1),
+(13, 'deportista1', 2, '2017-12-22', '18:25', '19:10', 'Uff', 1),
+(14, 'deportista1', 2, '2017-12-21', '18:25', '19:10', 'Uff', 1),
+(15, 'deportista1', 2, '2017-12-20', '18:25', '19:10', 'Uff', 1),
+(16, 'deportista1', 2, '2017-12-19', '18:25', '19:10', 'Uff', 1),
+(17, 'deportista1', 2, '2017-12-17', '18:25', '19:10', 'Uff', 1),
+(18, 'deportista1', 2, '2017-12-16', '18:25', '19:10', 'Uff', 1),
+(19, 'deportista1', 2, '2017-12-15', '18:25', '19:10', 'Uff', 1),
+(20, 'deportista2', 3, '2017-12-18', '18:00', '18:45', 'Okey', 1),
+(21, 'deportista2', 2, '2017-12-25', '18:25', '19:10', 'Uff', 1),
+(22, 'deportista2', 2, '2017-12-26', '18:25', '19:10', 'Ha estado bien', 1),
+(23, 'deportista2', 2, '2017-12-27', '18:25', '19:10', 'Podría haber sido mejor', 1),
+(24, 'deportista2', 2, '2017-12-28', '18:25', '19:10', 'Tengo agujetas del otro dia', 1),
+(25, 'deportista2', 2, '2017-12-29', '18:25', '19:10', 'Uff', 1),
+(26, 'deportista2', 2, '2017-12-30', '18:25', '19:10', 'Uff', 1),
+(27, 'deportista2', 2, '2017-12-2', '18:25', '19:10', 'Uff', 1),
+(28, 'deportista2', 2, '2017-12-3', '18:25', '19:10', 'Uff', 1),
+(29, 'deportista2', 2, '2017-12-24', '18:25', '19:10', 'Uff', 1),
+(30, 'deportista2', 2, '2017-12-5', '18:25', '19:10', 'Uff', 1),
+(31, 'deportista2', 2, '2017-12-23', '18:25', '19:10', 'Uff', 1),
+(32, 'deportista2', 2, '2017-12-22', '18:25', '19:10', 'Uff', 1),
+(33, 'deportista2', 2, '2017-12-21', '18:25', '19:10', 'Uff', 1),
+(34, 'deportista2', 2, '2017-12-20', '18:25', '19:10', 'Uff', 1),
+(35, 'deportista2', 2, '2017-12-19', '18:25', '19:10', 'Uff', 1),
+(36, 'deportista2', 2, '2017-12-17', '18:25', '19:10', 'Uff', 1),
+(37, 'deportista2', 2, '2017-12-16', '18:25', '19:10', 'Uff', 1),
+(38, 'deportista2', 2, '2017-12-15', '18:25', '19:10', 'Uff', 1),
+(39, 'deportista2', 2, '2017-11-12', '18:25', '19:10', 'Uff', 1);
 
 -- --------------------------------------------------------
 
