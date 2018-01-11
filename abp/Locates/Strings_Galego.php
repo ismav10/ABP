@@ -88,6 +88,8 @@ $strings = array(
 'Asignar' => 'Asinar',
 'Ver1' => 'Ver1',
 'VerDeportistas' => 'Ver Deportistas',
+'InsertarSesion'=>'Finalizar',
+    'IniciarSesion' =>'Iniciar Sesión',
     
 //USUARIOS
 'userName' => 'Usuario',

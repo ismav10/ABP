@@ -120,6 +120,8 @@ $strings = array(
  'Eliminar Administrador' => 'Delete Administrator',
  'Modificar usuario' => 'Edit User',
  'Ver Administrador' => 'See Administrator',
+ 'InsertarSesion'=>'Finalize',
+ 'IniciarSesion' =>'Start Session',
 //ENTRENADOR
 'cuentaBanc' => 'Bank Account',
  'Insertar entrenador' => 'Add Coach',

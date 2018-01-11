@@ -89,6 +89,7 @@ $strings = array(
  'ver' => 'ver',
  'Ver1' => 'Ver1',
  'VerDeportistas' => 'Ver Deportistas',
+ 'InsertarSesion'=>'Finalizar',
 //USUARIOS
 'userName' => 'Usuario',
  'password' => 'Contraseña',
@@ -182,7 +183,7 @@ $strings = array(
  'Consultar sesiones por fecha' => 'Consultar sesiones por fecha',
  'Se ha insertado con éxito' => 'Se ha insertado con éxito',
  'Iniciar sesion' => 'Iniciar sesión',
- 'IniciarSesion' => 'Iniciar sesión',
+ 'IniciarSesion' => 'Iniciar Sesión',
  'La sesion se ha modificado con éxito.' => 'La sesión se ha modificado con éxito.',
  //ACTIVIDADES GRUPALES
 

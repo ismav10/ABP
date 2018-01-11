@@ -44,11 +44,11 @@ class SESION_Insertar {
 
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['comentarioSesion']; ?></label><br>
-                    <input class="form" id="comentarioSesion" name="comentarioSesion" type="textarea" rows="10" cols="40" />
+<!--                    <input class="form" id="comentarioSesion" name="comentarioSesion" type="textarea" rows="10" cols="40" />-->
+                    <textarea id="comentarioSesion" rows="25" cols="70" name="comentarioSesion"></textarea>
                 </div>
-                <label class="control-label" ><?php echo $strings['Finalizar Sesion'] ?></label><br>   
-                <button type='submit' class="btn btn-success"><?php echo $strings['Insertar']; ?></button>
-                <input class="hidden" id= "accion" name= "accion" size="25" type="text" required = "true" value=<?php echo $strings['Insertar']?> />
+                <button type='submit' class="btn btn-success"><?php echo $strings['InsertarSesion']; ?></button>
+                <input class="hidden" id= "accion" name= "accion" size="25" type="text" required = "true" value=<?php echo $strings['InsertarSesion']?> />
                 <input class="hidden" id= "idTabla" name= "idTabla" size="25" type="text" required = "true" value=<?php echo $this->idTabla?> />
                 <a class="form-link" href="<?php echo $this->volver?>"><?php echo $strings['Volver']; ?>
             </form>

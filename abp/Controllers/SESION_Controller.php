@@ -20,7 +20,7 @@ for ($z = 0; $z < count($pags); $z++) {
 }
 
 Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
-    case $strings['Insertar']:
+    case $strings['InsertarSesion']:
         if (!tienePermisos('SESION_Insertar')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
