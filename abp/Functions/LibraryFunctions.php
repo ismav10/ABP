@@ -410,6 +410,15 @@ function añadirFuncionalidades($NOM) {
 
                     <?php
                     break;
+                    
+                     case "Gestion Estadisticas":
+                    if (ConsultarTipoUsuarioLogin() == 3) {
+                        ?>
+
+                        <li><a style="font-size:15px;" href='../Controllers/ESTADISTICAS_Controller.php?userName=<?php echo $_SESSION['login']?>'> <?php echo $strings['Gestión de Estadisticas']; ?></a></li> <?php
+                    }
+                    break;
+
 
                 case "Gestion Inscripciones":
                     ?><li><a style="font-size:15px;" href="../Controllers/INSCRIPCION_Controller.php?act=grupal"><?php echo $strings['Gestión de Inscripciones']; ?></a></li> <?php

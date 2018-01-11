@@ -31,7 +31,7 @@ Switch ($_REQUEST['accion'])
         //} else {
             $sesion = new SESION_Model($_REQUEST['userName'], '', '', '', '', '', '', '');
             $datos = "";
-			require_once '../Views/ESTADISTICAS_SHOWALL.php';
+			//require_once '../Views/ESTADISTICAS_SHOWALL.php';
             new ESTADISTICAS_SHOWALL($datos, 'SESION_Controller.php');
         //}
 }

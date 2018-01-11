@@ -65,6 +65,7 @@ $strings = array(
  'Gestión de Actividades' => 'Actividades',
  'Gestión de Actividades Grupales' => 'Grupales',
  'Gestión de Actividades Individuales' => 'Individuales',
+ 'Gestión de Estadisticas' =>'Estadísticas',
  'Entrenamiento' => 'Entrenamiento',
  'MisActividades' => 'Mis Actividades',
  'Estadisticas' => 'Estadisticas',
