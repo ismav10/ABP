@@ -28,8 +28,9 @@ function get_data_form() {
 
     $nombreActividadIndividual = $_REQUEST['nombreActividadIndividual'];
     $descripcionActividadIndividual = $_REQUEST['descripcionActividadIndividual'];
+    $idInstalacion = $_REQUEST['idInstalacion'];
 
-    $actividadIndividual = new ACTIVIDAD_INDIVIDUAL_Model($idActividadIndividual, $nombreActividadIndividual, $descripcionActividadIndividual);
+    $actividadIndividual = new ACTIVIDAD_INDIVIDUAL_Model($idActividadIndividual, $nombreActividadIndividual, $descripcionActividadIndividual, $idInstalacion);
 
     return $actividadIndividual;
 }
@@ -52,9 +53,10 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
     case $strings['Insertar']:
 
         if (!isset($_REQUEST['nombreActividadIndividual'])) { //Si no se ha introducido ningun valor, mostramos la vista con el formulario
-            $actividadIndividual = new ACTIVIDAD_INDIVIDUAL_Model('', '', '');
+            $actividadIndividual = new ACTIVIDAD_INDIVIDUAL_Model('', '', '', '');
             $datos = $actividadIndividual->RellenaDatos();
-            new ACTIVIDAD_INDIVIDUAL_Insertar($datos, '../Views/DEFAULT_Vista.php');
+            $instalaciones = ListarInstalaciones();
+            new ACTIVIDAD_INDIVIDUAL_Insertar($datos, $instalaciones, '../Views/DEFAULT_Vista.php');
         } else {
             //Recogemos los datos del formulario
             $actividadIndividual = get_data_form();
@@ -69,17 +71,18 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
             if (!isset($_REQUEST['nombreActividadIndividual'])) {
-                $actividadIndividual = new ACTIVIDAD_INDIVIDUAL_Model($_REQUEST['idActividadIndividual'], '', '');
+                $actividadIndividual = new ACTIVIDAD_INDIVIDUAL_Model($_REQUEST['idActividadIndividual'], '', '', '');
                 $datos = $actividadIndividual->RellenaDatos();
-                new ACTIVIDAD_INDIVIDUAL_Modificar($datos, '../Views/DEFAULT_Vista.php');
+                $instalaciones = ListarInstalaciones();
+                new ACTIVIDAD_INDIVIDUAL_Modificar($datos, $instalaciones, '../Views/DEFAULT_Vista.php');
             } else {
                 $idActividadIndividual = $_REQUEST['idActividadIndividual'];
                 $actividadIndividual = get_data_form();
-                $actividadIndividual->guardarCambios($idActividadIndividual);
-                $datos = $actividadIndividual->Listar();
-                new ACTIVIDAD_INDIVIDUAL_Listar($datos, '../Controllers/ACTIVIDAD_INDIVIDUAL_Controller.php');
+                $respuesta = $actividadIndividual->Modificar();
+                new Mensaje($respuesta, 'ACTIVIDAD_INDIVIDUAL_Controller.php');
             }
         }
+
         break;
 
 
@@ -87,7 +90,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
     case $strings['Borrar']:
 
         if (!isset($_REQUEST['idActividadIndividual'])) {
-            $actividadIndividual = new ACTIVIDAD_INDIVIDUAL_Model($_REQUEST['idActividadIndividual'], '', '');
+            $actividadIndividual = new ACTIVIDAD_INDIVIDUAL_Model($_REQUEST['idActividadIndividual'], '', '', '');
             $valores = $actividadIndividual->RellenaDatos();
             if (!tienePermisos('ACTIVIDAD_INDIVIDUAL_Borrar')) {
                 new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
@@ -95,7 +98,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
                 new ACTIVIDAD_INDIVIDUAL_Borrar($valores, 'ACTIVIDAD_INDIVIDUAL_Controller.php');
             }
         } else {
-            $actividadIndividual = new ACTIVIDAD_INDIVIDUAL_Model($_REQUEST['idActividadIndividual'], '', '');
+            $actividadIndividual = new ACTIVIDAD_INDIVIDUAL_Model($_REQUEST['idActividadIndividual'], '', '', '');
             $respuesta = $actividadIndividual->Borrar();
             new Mensaje($respuesta, '../Controllers/ACTIVIDAD_INDIVIDUAL_Controller.php');
         }
@@ -118,7 +121,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
                 $nombreActividadIndividual = $_REQUEST['nombreActividadIndividual'];
             }
 
-            $actividadIndividual = new ACTIVIDAD_INDIVIDUAL_Model('', $nombreActividadIndividual, '');
+            $actividadIndividual = new ACTIVIDAD_INDIVIDUAL_Model('', $nombreActividadIndividual, '', '');
             $datos = $actividadIndividual->Consultar();
             new ACTIVIDAD_INDIVIDUAL_Listar($datos, '../Views/ACTIVIDAD_INDIVIDUAL_Controller.php');
         }
@@ -128,7 +131,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
     case $strings['Ver']:
 
         if (isset($_REQUEST['idActividadIndividual'])) {
-            $actividadIndividual = new ACTIVIDAD_INDIVIDUAL_Model($_REQUEST['idActividadIndividual'], '', '');
+            $actividadIndividual = new ACTIVIDAD_INDIVIDUAL_Model($_REQUEST['idActividadIndividual'], '', '', '');
             $datos = $actividadIndividual->RellenaDatos();
             if (!tienePermisos('ACTIVIDAD_INDIVIDUAL_VerDetalle')) {
                 new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
@@ -144,7 +147,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         if (!tienePermisos('ACTIVIDAD_INDIVIDUAL_Listar')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
-            $actividadIndividual = new ACTIVIDAD_INDIVIDUAL_Model('', '', '');
+            $actividadIndividual = new ACTIVIDAD_INDIVIDUAL_Model('', '', '', '');
             $datos = $actividadIndividual->Listar();
             new ACTIVIDAD_INDIVIDUAL_Listar($datos, '../Views/DEFAULT_Vista.php');
         }

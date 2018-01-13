@@ -4,10 +4,12 @@
 class ACTIVIDAD_INDIVIDUAL_Insertar {
 
     private $volver;
+    private $instalaciones;
     private $cont;
     
-    function __construct($valores, $volver) {
+    function __construct($valores, $instalaciones, $volver) {
         $this->valores = $valores;
+        $this->instalaciones = $instalaciones;
         $this->volver = $volver;
         $this->render();
     }
@@ -30,6 +32,24 @@ class ACTIVIDAD_INDIVIDUAL_Insertar {
                 <div class="form-group">
                     <label class="control-label" ><?php echo $strings['descripcionActividadIndividual']; ?></label><br>
                     <input class="form" id="descripcionActividadIndividual" name="descripcionActividadIndividual" size="160" type="text" required="false"/>
+                </div>
+                
+                 <div class="form-group">
+                    <label class="control-label" ><?php echo $strings['idInstalacion']; ?></label><br>
+                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="idInstalacion" name="idInstalacion" required="true"> 
+                        <option selected></option>
+                        <?php
+                        for ($j = 0; $j < count($this->instalaciones); $j++) {
+                            echo "<tr>";
+                            foreach ($this->instalaciones [$j] as $clave => $valor) {
+                                echo "<td>";
+                                ?>
+                                <option><?php echo ConsultarNombreInstalacion($valor); ?></option>
+                                <?php
+                            }
+                        }
+                        ?>			 
+                    </select>
                 </div>
                            
 

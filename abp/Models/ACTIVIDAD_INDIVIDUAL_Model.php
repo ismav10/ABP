@@ -9,12 +9,14 @@ class ACTIVIDAD_INDIVIDUAL_Model {
     var $idActividadIndividual;
     var $nombreActividadIndividual;
     var $descripcionActividadIndividual;
+    var $idInstalacion;
     var $mysqli;
 
-    function __construct($idActividadIndividual, $nombreActividadIndividual, $descripcionActividadIndividual) {
+    function __construct($idActividadIndividual, $nombreActividadIndividual, $descripcionActividadIndividual, $idInstalacion) {
         $this->idActividadIndividual = $idActividadIndividual;
         $this->nombreActividadIndividual = $nombreActividadIndividual;
         $this->descripcionActividadIndividual = $descripcionActividadIndividual;
+        $this->idInstalacion = $idInstalacion;
     }
 
 //Función para conectarnos a la Base de datos
@@ -35,7 +37,7 @@ class ACTIVIDAD_INDIVIDUAL_Model {
             return 'La actividad individual ya existe en la base de datos';
         } else {
             if ($result->num_rows == 0) {
-                $sql = "INSERT INTO actividadindividual(nombreActividadIndividual, descripcionActividadIndividual) VALUES ('" . $this->nombreActividadIndividual . "','" . $this->descripcionActividadIndividual . "')";
+                $sql = "INSERT INTO actividadindividual(nombreActividadIndividual, descripcionActividadIndividual, idInstalacion) VALUES ('" . $this->nombreActividadIndividual . "','" . $this->descripcionActividadIndividual . "','" . ConsultarIdInstalacion($this->idInstalacion) . "')";
                 $this->mysqli->query($sql);
                 return 'Añadida con exito';
             }
@@ -44,7 +46,7 @@ class ACTIVIDAD_INDIVIDUAL_Model {
 
     function guardarCambios($id) {
         $this->ConectarBD();
-        $sql = "UPDATE actividadindividual SET nombreActividadIndividual ='" . $this->nombreActividadIndividual . "', descripcionActividadIndividual ='" . $this->descripcionActividadIndividual . "' WHERE idActividadIndividual = '" . $id . "'";
+        $sql = "UPDATE actividadindividual SET nombreActividadIndividual ='" . $this->nombreActividadIndividual . "', descripcionActividadIndividual ='" . $this->descripcionActividadIndividual . "', idInstalacion= '" . ConsultarIdInstalacion($this->idInstalacion) . "' WHERE idActividadIndividual = '" . $id . "'";
         $result = $this->mysqli->query($sql);
         return "La actividad individual se ha modificado con exito";
     }
@@ -55,7 +57,7 @@ class ACTIVIDAD_INDIVIDUAL_Model {
         $result = $this->mysqli->query($sql);
         if ($result->num_rows == 1) {
 
-            $sql = "UPDATE actividadindividual SET nombreActividadIndividual ='" . $this->nombreActividadIndividual . "', descripcionActividadIndividual ='" . $this->descripcionActividadIndividual . "' WHERE idActividadIndividual = '" . $this->idActividadIndividual . "'";
+            $sql = "UPDATE actividadindividual SET nombreActividadIndividual ='" . $this->nombreActividadIndividual . "', descripcionActividadIndividual ='" . $this->descripcionActividadIndividual . "', idInstalacion= '" . ConsultarIdInstalacion($this->idInstalacion) . "' WHERE idActividadIndividual = '" . $this->idActividadIndividual . "'";
             if (!($resultado = $this->mysqli->query($sql))) {
                 return "Error en la consulta sobre la base de datos";
             } else {
@@ -84,10 +86,14 @@ class ACTIVIDAD_INDIVIDUAL_Model {
     function Consultar() {
         $this->ConectarBD();
 
-        if ($this->nombreActividadIndividual == '') { //0
-            $sql = "SELECT nombreActividadIndividual, descripcionActividadIndividual FROM actividadindividual ";
-        } else if ($this->nombreActividadIndividual != '') { //1
-            $sql = "SELECT nombreActividadIndividual, descripcionActividadIndividual FROM actividadindividual WHERE nombreActividadIndividual = '" . $this->nombreActividadIndividual . "'";
+        if ($this->nombreActividadIndividual == '' && $this->idInstalacion == '') { //00
+            $sql = "SELECT * FROM actividadindividual ";
+        } else if ($this->nombreActividadIndividual == '' && $this->idInstalacion != '') { //01
+            $sql = "SELECT * FROM actividadindividual WHERE idInstalacion = '" . ConsultarIdInstalacion($this->idInstalacion) . "'";
+        } else if ($this->nombreActividadIndividual != '' && $this->idInstalacion == '') { //10
+            $sql = "SELECT * FROM actividadindividual WHERE nombreActividadIndividual = '" . $this->nombreActividadIndividual . "'";
+        }else if ($this->nombreActividadIndividual != '' && $this->idInstalacion != '') { //10
+            $sql = "SELECT * FROM actividadindividual WHERE nombreActividadIndividual = '" . $this->nombreActividadIndividual . "' AND  idInstalacion = '" . ConsultarIdInstalacion($this->idInstalacion) . "'";
         }
 
         if (!$resultado = $this->mysqli->query($sql)) {
@@ -135,7 +141,7 @@ class ACTIVIDAD_INDIVIDUAL_Model {
     //Devuelve los valores almacenados para una determinada actividad individual para posteriormente rellenar un formulario
     function RellenaDatos() {
         $this->ConectarBD();
-        $sql = "SELECT nombreActividadIndividual, descripcionActividadIndividual FROM actividadindividual WHERE actividadindividual.idActividadIndividual = '" . $this->idActividadIndividual . "'";
+        $sql = "SELECT * FROM actividadindividual WHERE actividadindividual.idActividadIndividual = '" . $this->idActividadIndividual . "'";
 
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos';
@@ -144,7 +150,6 @@ class ACTIVIDAD_INDIVIDUAL_Model {
             return $result;
         }
     }
-    
 
 }
 
