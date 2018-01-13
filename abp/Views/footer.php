@@ -13,7 +13,7 @@
 					<div class="widget">
 						<h5 class="widgetheading">Actividades</h5>
 						<ul class="link-list">
-							<li><a href="#">...</a></li>
+							<li><a href="#">Pídenos información acerca del catálogo de actividades ofertadas utilizando la información de contacto. Anímate sin compromiso!</a></li>
 						</ul>
 					</div>
 				</div>

@@ -356,11 +356,12 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
                 //Crea un usuario solo con el user para rellenar posteriormente sus datos y mostrarlos en el formulario
                 $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '', '');
                 $valores = $usuario->RellenaDatos();
+                $datos = '';
                 if (!tienePermisos('ENTRENADOR_SELECT_SHOW')) {
                     new Mensaje('No tienes los permisos necesarios', 'USUARIO_Controller.php');
                 } else {
                     //muestra el formulario de borrado
-                    new ENTRENADOR_SELECT_SHOW($valores, 'USUARIO_Controller.php');
+                    new ENTRENADOR_SELECT_SHOW($valores,$datos, 'USUARIO_Controller.php');
                 }
             } else {
                 $_REQUEST['password'] = '';
@@ -373,11 +374,12 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
                 //Crea un usuario solo con el user para rellenar posteriormente sus datos y mostrarlos en el formulario
                 $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '', '');
                 $valores = $usuario->RellenaDatos();
+                $datos = '';
                 if (!tienePermisos('DEPORTISTA_SELECT_SHOW')) {
                     new Mensaje('No tienes los permisos necesarios', 'USUARIO_Controller.php');
                 } else {
                     //muestra el formulario de borrado
-                    new DEPORTISTA_SELECT_SHOW($valores, 'USUARIO_Controller.php');
+                    new DEPORTISTA_SELECT_SHOW($valores,$datos, 'USUARIO_Controller.php');
                 }
             } else {
                 $_REQUEST['password'] = '';

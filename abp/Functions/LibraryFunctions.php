@@ -176,6 +176,7 @@ function ConsultarTipoUsuarioLogin() {
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
+
     $sql = "SELECT tipoUsuario FROM USUARIO WHERE USUARIO.userName='" . $_SESSION['login'] . "'";
     $result = $mysqli->query($sql)->fetch_array();
     return $result['tipoUsuario'];
@@ -354,23 +355,20 @@ function añadirFuncionalidades($NOM) {
             switch ($funcionalidad) {
 
                 case "Gestion Entrenadores":
-                    if (ConsultarTipoUsuarioLogin() != 3) {
+                    if (ConsultarTipoUsuarioLogin() == 1) {
                         ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><?php echo $strings['Gestión de Usuarios'] ?> </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <?php if (ConsultarTipoUsuarioLogin() == 1) { ?>
-                                    <a class = "dropdown-item" href = "../Controllers/ENTRENADOR_Controller.php?user=entrenador"><?php echo $strings['Gestión de Entrenadores'];
-                            ?></a>
+                                    <a class = "dropdown-item" href = "../Controllers/ENTRENADOR_Controller.php?user=entrenador"><?php echo $strings['Gestión de Entrenadores']; ?></a>
                                     <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?user=deportista"><?php echo $strings['Gestión de Deportistas']; ?></a><br>
                                     <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios']; ?></a><br>
-                                    <?php } else if (ConsultarTipoUsuarioLogin() == 2) { ?>
-                                    <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?user=deportista"><?php echo $strings['Gestión de Deportistas']; ?></a>
-                                <?php } ?>
-
+  
                             </div>
                         </li>
                         <?php
+                    } else if (ConsultarTipoUsuarioLogin() == 2) { ?>
+                        <li><a style="font-size:15px;" href='../Controllers/DEPORTISTA_Controller.php?user=deportista'><?php echo $strings['Gestión de Deportistas']; ?></a></li> <?php
                     }
                     break;
 
