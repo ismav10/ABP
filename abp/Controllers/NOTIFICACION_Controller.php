@@ -113,6 +113,10 @@ switch ($_REQUEST['accion']) {
             if (!isset($_REQUEST['idNotificacion'])) {
                 
             } else {
+                if(!isset($_REQUEST['usuario']))
+                {
+                    $_REQUEST['usuario'] = "Otro";
+                }
                 if($_REQUEST['usuario']=="envio")
                 {
                 $idNotificacion = $_REQUEST['idNotificacion'];
