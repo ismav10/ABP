@@ -21,17 +21,17 @@ class TABLA_ASIGN {
                                 <h5> <b>' . $strings['tablaTipo'] . ': </b>' . $this->otros['tabla']['tipo'] . '</h5>
 				<h6> <b>' . $strings['tabladesc'] . ': </b>' . $this->otros['tabla']['descripcionTabla'] . '</</h6>';
         echo '<br><br><br><br>
-        <button id = "savefrm" type = "button" class = "btn btn-primary btn-lg btn-block">Guardar</button>';
+        <button id = "savefrm" type = "button" class = "btn btn-primary btn-lg btn-block">'.$strings['Guardar']. '</button>';
         echo '<br>';
-        echo '<button type = "button" class = "btn btn-success" id = "addrow">Añadir Ejercicio</button>
+        echo '<button type = "button" class = "btn btn-success" id = "addrow">'.$strings['AñadirEjercicio']. '</button>
 <div class="container">
         <h5><table class = "table" id = "tblEjercicios">
         <thead class = "thead-dark">
         <tr>
-        <th scope = "col">Ejercicio</th>
-        <th scope = "col">Num. Series</th>
-        <th scope = "col">Num. Repeticiones</th>
-        <th scope = "col">Duración</th>
+        <th scope = "col">'.$strings['Ejercicio']. '</th>
+        <th scope = "col">'.$strings['NumSeries']. '</th>
+        <th scope = "col">'.$strings['NumRepeticiones']. '</th>
+        <th scope = "col">'.$strings['Duracion']. '</th>
         <th scope = "col"></th>
         </tr>
         </thead><tbody>';

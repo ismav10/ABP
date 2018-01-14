@@ -37,7 +37,7 @@ class USUARIO_Modelo {
         $this->foto = $foto;
         $this->cuentaBanc = $cuentaBanc;
         $this->tipoDeportista = $tipoDeportista;
-        $this->medotoPago = $metodoPago;
+        $this->metodoPago = $metodoPago;
         $this->newPassword = $newPassword;
     }
 
@@ -215,6 +215,14 @@ class USUARIO_Modelo {
             } else {
                 $sql = "UPDATE USUARIO SET password = '" . md5($this->newPassword) . "',tipoUsuario ='" . $this->tipoUsuario . "',nombre= '" . $this->nombre . "',apellidos= '" . $this->apellidos . "',dni = '" . $this->dni . "',fechaNac= '" . $this->fechaNac . "',direccion= '" . $this->direccion . "',telefono= '" . $this->telefono . "',email= '" . $this->email . "'";
             }
+
+            if ($this->tipoUsuario == 2) {
+                $sqlAux = "UPDATE ENTRENADOR SET cuentaBanc = '" . $this->cuentaBanc . "' WHERE userName = '" . $this->userName . "'";
+            }if ($this->tipoUsuario == 3) {
+                echo $this->metodoPago;
+                $sqlAux = "UPDATE DEPORTISTA SET tipoDeportista = '" . $this->tipoDeportista . "', metodoPago ='" . $this->metodoPago . "' WHERE userName = '" . $this->userName . "'";
+            }
+            $this->mysqli->query($sqlAux);
 
             if ($this->foto != '') {
                 $sql.=", foto='" . $this->foto . "'";

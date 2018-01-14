@@ -83,7 +83,7 @@ class TABLA_Show
                         echo '<td>'.$valor['3'].'</td>';
 			if(ConsultarTipoUsuario($_SESSION['login']) != 3)
 			{
-				echo '<td><a href="?accion=frmasignar&id='.$valor['0'].'"><button type="button" class="btn btn-success">Asignar Ejercicios</button></a></td>';
+				echo '<td><a href="?accion=frmasignar&id='.$valor['0'].'"><button type="button" class="btn btn-success">'.$strings['AsignarEjercicios']. '</button></a></td>';
 				echo '<td><a href="?accion=modificar&id='.$valor['0'].'"><button type="button" class="btn btn-primary">'.$strings['tablamodificar'].'</button></a></td>';
 				echo '<td><a href="?accion=eliminar&id='.$valor['0'].'"><button type="button" class="btn btn-danger">'.$strings['tablaeliminar'].'</button></a></td>';
 			}else{

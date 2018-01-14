@@ -4,6 +4,7 @@
 $strings = array(
 
 //MENSAJES BASE DE DATOS
+'La actividad grupal fue borrada con exito'=> 'The group activity has been deleted successfully',
 'Fallo al conectar a MySQL' => 'Fail to connect to MySQL',
  'La contraseña para este usuario es errónea' => 'The password for this user is wrong',
  'El usuario no existe' => 'This User does not exist',
@@ -73,8 +74,8 @@ $strings = array(
  'Gestión de notificaciones' => 'Notifications',
  'Gestión de sesiones' => 'Sessions',
  'Gestión de Inscripciones' => 'Inscription',
- 'Gestión de ejercicios' => 'Exercise ',
- 'Gestión de tablas' => 'Boards',
+ 'Gestión de ejercicios' => 'Exercises',
+ 'Gestión de tablas' => 'Tables',
  'Gestión de Actividades' => 'Activities',
  'Gestión de Actividades Grupales' => 'Group',
  'Gestión de Actividades Individuales' => 'Individuals',
@@ -99,12 +100,15 @@ $strings = array(
  'Asignar' => 'Assign',
  'Ver1' => 'Ver1',
  'VerDeportistas' => 'See Athletes',
+ 'Desasignar' => 'Unassign',
+ 'AñadirTabla'=> 'Add table',
+  'AsignarEjercicios'=>'Assign Exercises',
 //USUARIOS
 'userName' => 'User',
  'password' => 'Password',
  'newPassword' => 'New Password',
- 'nombre' => 'Name',
- 'apellidos' => 'Apellidos',
+ 'nombre' => 'Firt Name',
+ 'apellidos' => 'Last Name',
  'tipoUsuario' => 'Type',
  'dni' => 'NID',
  'fechaNac' => 'Birthdate',
@@ -132,7 +136,7 @@ $strings = array(
  'VerActividadesImpartidas' => 'Imparted Activities',
 //DEPORTISTA
 'metodoPago' => 'Credit Card',
- 'tipoDeportista' => 'Athlete`s Type',
+ 'tipoDeportista' => "Athlete's Type",
  'PEF' => 'PEF',
  'TDU' => 'TDU',
  'Insertar deportista' => 'Add Athlete',
@@ -221,8 +225,14 @@ $strings = array(
  'Estandar' => 'Standard',
  'tablaTipo' => 'Type of Table',
  'tipo' => 'Type',
- 'Tablas' => 'Table',
+ 'Tablas' => 'Tables',
  'descripcionTabla' => 'Description',
+  'AñadirEjercicio' => 'Add Exercise',
+ 'Ejercicio'=>'Exersice',
+ 'NumSeries'=>'Num. Series',
+ 'NumRepeticiones'=>'Num. Repetitions',
+ 'Duracion'=>'Duration',
+ 'Guardar'=>'Save',
 //ACTIVIDADES GRUPALES
 
 'nombreActividadGrupal' => 'Activity Name',
@@ -260,6 +270,7 @@ $strings = array(
  'Ver Actividad Individual' => 'See Individual Activity',
 //ESTADISTICAS    
 'Estadisticas' => 'Statistics of user sessions ',
+ 'EstadísticasMuevet' =>'System Stats',
     
     
     

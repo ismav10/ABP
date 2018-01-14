@@ -4,6 +4,7 @@
 $strings = array(
 
 //MENSAJES BASE DE DATOS
+ 'deportista'=>'deportista',
 'Fallo al conectar a MySQL: (' => 'Fallo al conectar a MySQL: (',
  'La contraseña para este usuario es errónea' => 'La contraseña para este usuario es errónea',
  'El usuario no existe' => 'El usuario no existe',
@@ -68,7 +69,7 @@ $strings = array(
  'Gestión de Estadisticas' =>'Estadísticas',
  'Entrenamiento' => 'Entrenamiento',
  'MisActividades' => 'Mis Actividades',
- 'Estadisticas' => 'Estadisticas',
+ 'Estadisticas' => 'EstadisticasAdmin',
  'NoHayPlazas'=>'Plazas Agotadas',
     
 //Acciones
@@ -121,7 +122,7 @@ $strings = array(
  'Ver Entrenador' => 'Ver Entrenador',
  'VerActividadesImpartidas' => 'Actividades Impartidas',
 //DEPORTISTA
-'metodoPago' => 'Tarjeta de Crédito',
+ 'metodoPago' => 'Tarjeta de Crédito',
  'tipoDeportista' => 'Tipo Deportista',
  'PEF' => 'PEF',
  'TDU' => 'TDU',
@@ -131,6 +132,7 @@ $strings = array(
  'Ver Deportista' => 'Ver Deportista',
  'VerEstadisticas' => 'Estadísticas',
  'AsignarT' => 'AsignarTabla',
+ 'AsignarEjercicios'=>'Asignar Ejercicios',
 //INSCRIPCIONES
 'GrupalesPendientes' => 'Pendientes Actividades Grupales',
  'IndividualesPendientes' => 'Pendientes Actividades Individuales',
@@ -249,6 +251,12 @@ $strings = array(
  'tipo' => 'Tipo',
  'Tablas' => 'Tablas',
  'descripcionTabla' => 'Descripción',
+ 'AñadirEjercicio' => 'Añadir Ejercicio',
+ 'Ejercicio'=>'Ejercicio',
+ 'NumSeries'=>'Núm. Series',
+ 'NumRepeticiones'=>'Núm. Repeticiones',
+ 'Duracion'=>'Duración',
+ 'Guardar'=>'Guardar',
 //ACTIVIDADES INDIVIDUALES
 
 'nombreActividadIndividual' => 'Nombre',

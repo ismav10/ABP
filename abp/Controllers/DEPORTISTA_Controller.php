@@ -156,20 +156,20 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
 
         break;
         
-//         case $strings['Ver1']:
-//        if (!isset($_REQUEST['nombre'])) {
-//            //Crea un usuario solo con el user para rellenar posteriormente sus datos y mostrarlos en el formulario
-//            $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '', '');
-//            $valores = $usuario->RellenaDatos();
-//            $datos['tablas'] = $usuario->consultarTablas();
-//            if (!tienePermisos('DEPORTISTA_SELECT_SHOW')) {
-//                new Mensaje('No tienes los permisos necesarios', 'DEPORTISTA_Controller.php');
-//            } else {
-//                new DEPORTISTA_SELECT_SHOW($valores, $datos, '../Controllers/DEPORTISTA_Controller.php?accion='. $strings['MisActividades']);
-//            }
-//        }
-//
-//        break;
+         case $strings['Ver1']:
+        if (!isset($_REQUEST['nombre'])) {
+            //Crea un usuario solo con el user para rellenar posteriormente sus datos y mostrarlos en el formulario
+            $usuario = new USUARIO_Modelo($_REQUEST['userName'], '', ConsultarTipoUsuario($_REQUEST['userName']), '', '', '', '', '', '', '', '', '', '', '', '');
+            $valores = $usuario->RellenaDatos();
+            $datos['tablas'] = $usuario->consultarTablas();
+            if (!tienePermisos('DEPORTISTA_SELECT_SHOW')) {
+                new Mensaje('No tienes los permisos necesarios', 'DEPORTISTA_Controller.php');
+            } else {
+                new DEPORTISTA_SELECT_SHOW($valores, $datos, '../Controllers/DEPORTISTA_Controller.php?accion='. $strings['MisActividades']);
+            }
+        }
+
+        break;
 
 
 
@@ -203,7 +203,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         }
         new Mensaje($respuesta, '../Controllers/DEPORTISTA_Controller.php?accion=' . $strings['AsignarT'] . '&userName=' . $_REQUEST['userName']);
         break;
-
+//
 
 
     case $strings['Desasignar']:

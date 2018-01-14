@@ -391,7 +391,7 @@ Switch ($_REQUEST['accion']) { //Actúa según la acción elegida
         break;
 
 
-    case $strings['Estadisticas']:
+    case $strings['EstadísticasMuevet']:
 
         if (ConsultarTipoUsuarioLogin() == 1) {
             //if (!tienePermisos('ADMIN_STATS')) {

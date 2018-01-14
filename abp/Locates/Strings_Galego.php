@@ -3,6 +3,7 @@
 $strings = array(
 
 //MENSAJES BASE DE DATOS
+     'deportista'=>'deportista',
 'Fallo al conectar a MySQL: (' => 'Erro ao conectar a MySQL',
 'La contraseña para este usuario es errónea' =>'A contrasinal pra este usuario é errónea',
 'El usuario no existe' => 'O usuario non existe',
@@ -87,10 +88,12 @@ $strings = array(
 'Cerrar' => 'Cerrar',
 'Guardar' => 'Gardar',
 'Asignar' => 'Asinar',
+'Desasignar' => 'Desasinar',
 'Ver1' => 'Ver1',
 'VerDeportistas' => 'Ver Deportistas',
 'InsertarSesion'=>'Finalizar',
-    'IniciarSesion' =>'Iniciar Sesión',
+'IniciarSesion' =>'Iniciar Sesión',
+'AñadirTabla'=> 'Añadir Táboa',
     
 //USUARIOS
 'userName' => 'Usuario',
@@ -229,6 +232,13 @@ $strings = array(
 'tipo' => 'Tipo',
 'Tablas' => 'Táboas',
 'descripcionTabla' =>'Descripción',
+ 'AsignarEjercicios'=>'Asinar Exercicios',
+ 'AñadirEjercicio' => 'Añadir Exercicio',
+ 'Ejercicio'=>'Exercicio',
+ 'NumSeries'=>'Núm. Series',
+ 'NumRepeticiones'=>'Núm. Repeticións',
+ 'Duracion'=>'Duración',
+ 'Guardar'=>'Gardar',
 
 
  //ACTIVIDADES GRUPALES
@@ -278,7 +288,8 @@ $strings = array(
 'La actividad individual se ha modificado con exito' => 'A actividade individual modificouse con exito',
   
 //ESTADISTICAS    
- 'Estadisticas' => 'Estadisticas das sesións do usuario ',    
+ 'Estadisticas' => 'Estadisticas das sesións do usuario ',   
+ 'EstadísticasMuevet'=>'Estadísticas do Sistema',
      
  //INSTALACIONES
 

@@ -7,7 +7,7 @@ include '../Views/MENSAJE_Vista.php';
 if (isset($_REQUEST['accion'])) {
 
     if ($_REQUEST['accion'] == 'Login') {
-include '../Views/header.php';
+include '../css/header.php';
         $usuario = new USUARIO_Modelo($_REQUEST['username'], $_REQUEST['password'], '', '', '', '', '', '', '', '', '', '', '', '','');
         $respuesta = $usuario->Login(); //Comprueba que se pueda loguear
         if ($respuesta == 'true') {

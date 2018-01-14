@@ -360,7 +360,7 @@ function añadirFuncionalidades($NOM) {
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><?php echo $strings['Gestión de Usuarios'] ?> </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class = "dropdown-item" href = "../Controllers/ENTRENADOR_Controller.php?user=entrenador"><?php echo $strings['Gestión de Entrenadores']; ?></a>
+                                    <a class = "dropdown-item" href = "../Controllers/ENTRENADOR_Controller.php?user=entrenador"><?php echo $strings['Gestión de Entrenadores']; ?></a><br>
                                     <a class="dropdown-item" href="../Controllers/DEPORTISTA_Controller.php?user=deportista"><?php echo $strings['Gestión de Deportistas']; ?></a><br>
                                     <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php"><?php echo $strings['Gestión de Usuarios']; ?></a><br>
   
@@ -477,7 +477,7 @@ function showNavbar() {
                 <?php } if (ConsultarTipoUsuarioLogin() == 2) { ?>
                     <a class="dropdown-item" href="../Controllers/ENTRENADOR_Controller.php?userName=<?php echo $_SESSION['login']; ?>&accion=<?php echo $strings['MisActividades']; ?>"><?php echo $strings['MisActividades'] ?></a><br>
                 <?php } if (ConsultarTipoUsuarioLogin() == 1) { ?>
-                    <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php?accion=<?php echo $strings['Estadisticas']; ?>"><?php echo $strings['Estadisticas'] ?></a><br>
+                    <a class="dropdown-item" href="../Controllers/USUARIO_Controller.php?accion=<?php echo $strings['EstadísticasMuevet']; ?>"><?php echo $strings['EstadísticasMuevet'] ?></a><br>
                 <?php } ?>
                 <a class="dropdown-item" href="../Functions/Desconectar.php"><?php echo $strings['Cerrar Sesión'] ?></a> <br>
             </div>
