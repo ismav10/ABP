@@ -71,7 +71,7 @@ $(document).ready(function () {
 		});
     });
 	
-	//alert("Cargandotablas");
+	alert("Cargando gráficos, espere por favor...");
 
    new Chart(document.getElementById("myChart"), {
     type: 'bar',
