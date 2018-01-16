@@ -881,7 +881,19 @@ INSERT INTO `sesion` (`idSesion`, `username`, `idTabla`, `fechaSesion`, `horaIni
 (36, 'deportista2', 6, '2017-12-17', '10:47', '14:30',  'Podría haber sido mejor', 1),
 (37, 'deportista2', 12, '2017-12-16', '16:25', '17:25', 'Aumentando la carga de los ejercicios por encima de lo marcado', 1),
 (38, 'deportista2', 5, '2017-12-15', '16:56', '19:10', 'Podría haber sido mejor', 1),
-(39, 'deportista2', 6, '2017-11-12', '18:25', '19:10', 'Aumentando la carga de los ejercicios por encima de lo marcado', 1);
+(39, 'deportista2', 6, '2017-11-12', '18:25', '19:10', 'Aumentando la carga de los ejercicios por encima de lo marcado', 1),
+(40, 'deportista3', 1, '2017-12-3', '17:12', '19:19', NULL, 1),
+(41, 'deportista3', 3, '2017-12-24', '16:45', '19:10', NULL, 1),
+(42, 'deportista3', 9, '2017-12-5', '19:25', '21:40', NULL, 1),
+(43, 'deportista3', 1, '2017-12-23', '09:52', '12:10', 'Aumentando la carga de los ejercicios por encima de lo marcado', 1),
+(44, 'deportista3', 3, '2017-12-22', '18:25', '19:10', 'He alcanzado a terminar toda la sesion', 1),
+(45, 'deportista3', 9, '2017-12-21', '16:29', '16:40', 'No he podido terminar la sesion por una urgencia', 1),
+(46, 'deportista3', 1, '2017-12-20', '17:49', '18:20', 'Aumentando la carga de los ejercicios por encima de lo marcado', 1),
+(47, 'deportista3', 3, '2017-12-19', '11:25', '13:24', 'He alcanzado a terminar toda la sesion', 1),
+(48, 'deportista3', 9, '2017-12-17', '10:47', '14:30',  'Podría haber sido mejor', 1),
+(49, 'deportista3', 1, '2017-12-16', '16:25', '17:25', 'Aumentando la carga de los ejercicios por encima de lo marcado', 1),
+(50, 'deportista3', 3, '2017-12-15', '16:56', '19:10', 'Podría haber sido mejor', 1),
+(51, 'deportista3', 9, '2017-11-12', '18:25', '19:10', 'Aumentando la carga de los ejercicios por encima de lo marcado', 1);
 
 -- --------------------------------------------------------
 
