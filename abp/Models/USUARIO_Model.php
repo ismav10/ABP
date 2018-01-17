@@ -99,7 +99,7 @@ class USUARIO_Modelo {
                         }
 
                         if ($this->tipoUsuario == 3) {
-                            $sql = "INSERT INTO DEPORTISTA (userName, tipoDeportista, metodoPago) VALUES ( '" . $this->userName . "', '" . $this->tipoDeportista . "', '" . $this->medotoPago . "');";
+                            $sql = "INSERT INTO DEPORTISTA (userName, tipoDeportista, metodoPago) VALUES ( '" . $this->userName . "', '" . $this->tipoDeportista . "', '" . $this->metodoPago . "');";
 
 
                             if ($result3 = $this->mysqli->query($sql)) {
